@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/20 17:26:47 by dgross           ###   ########.fr       */
+/*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
+/*   Updated: 2022/11/21 16:46:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
-/// @brief Main struct for Minishell
-typedef struct s_minishell
+int	main(void)
 {
-	
-}t_minishell;
-
-/// @brief token struct for the parser
-typedef struct s_tokens
-{
-	
-}t_tokens;
-
-#endif
+	while (1)
+	{
+		readline("Minishell$ ");
+		test();
+	}
+	return (0);
+}
