@@ -6,9 +6,13 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/24 15:14:04 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/24 15:45:42 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int ft_export(t_koopa *shell)
+{
+	return (0);
+}
