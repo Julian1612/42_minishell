@@ -6,15 +6,18 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/11/15 16:49:27 by dgross           ###   ########.fr        #
+#    Updated: 2022/11/24 15:14:55 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
+VPATH		= src: src/builtins: src/execute:
+
 LIBFT		= libft/libft.a
 
-SRC			= main.c
+SRC			= minishell.c \
+			  echo.c cd.c pwd.c export.c env.c exit.c unset.c \
 
 OBJ_DIR		= ./obj/
 
@@ -42,7 +45,7 @@ all: $(NAME)
 obj:
 	@mkdir -p $(OBJ_DIR)
 
-obj/%.o: src/%.c
+obj/%.o: %.c
 	@echo "$(g)Compiling  $(w)$<$(de)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -59,6 +62,11 @@ clean:
 fclean: clean
 	@$(MAKE) fclean -C libft/
 	@rm -rf $(NAME)
+
+git:
+	git add .
+	git commit -m "commit"
+	git push
 
 re: fclean all
 
