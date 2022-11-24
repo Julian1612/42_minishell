@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/24 15:09:18 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/24 15:46:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@
 # define False 0
 
 #include "libft.h"
-
 /// @brief Main struct for Minishell
-typedef struct s_minishell
+typedef struct s_koopa
 {
 	char	*str;
 	int 	argc;
 	char	**cmd_str;
 	char	*flag;
 	int		exit_status;
-}t_minishell;
+	char	**envp;
+}t_koopa;
 
 
 #endif
