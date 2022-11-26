@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:57 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/24 17:33:40 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/26 13:59:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int ft_pwd(void)
 	if (getcwd(buf, PATH_MAX))
 		printf("%s\n", buf);
 	else
-		/*error message?*/
+		print_error();/*error message?*/
 	return (0); // !! exit status !!
 }
