@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/11/24 15:14:55 by dgross           ###   ########.fr        #
+#    Updated: 2022/11/26 15:03:19 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ VPATH		= src: src/builtins: src/execute:
 LIBFT		= libft/libft.a
 
 SRC			= minishell.c \
-			  echo.c cd.c pwd.c export.c env.c exit.c unset.c \
+			#  echo.c cd.c pwd.c export.c env.c exit.c unset.c \
 
 OBJ_DIR		= ./obj/
 
