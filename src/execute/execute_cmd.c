@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 14:25:50 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:27:42 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ static char *create_path(t_koopa *shell, char *cmd)
 	return (NULL);
 }
 
+// hier werden die cmd ausgeführt die keine builtins sind
+// wenn eine | da ist wird gepiped 
+// wie gesagt gucken ob man eine flag im struct hat oder manuell hier ist der funktion
+// durch die cmd line geht die man durch den parser i guess bekommt
 int ft_execute_cmd(t_koopa *shell)
 {
 	int fd[2];

@@ -6,12 +6,14 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 12:20:21 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:26:07 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// checken welcher builtin ausgeführt werden soll
+// und dann ausführen 
 int ft_execute_builtins(t_koopa *shell)
 {
 	//wahrscheinlich hier auch dupen aber mal gucken vllt machen wir das in redirect aber glaube nicht
