@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/24 19:33:49 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/26 01:29:04 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_cd(t_koopa *shell) // only relative or absolute path
 	else
 	{
 		// wenn cd + path gecalled wird
-		if (!chdir(shell->cmd_str[2]))
+		if (!chdir(shell->cmd_str[1]))
 		{
 			/*error message*/	
 		}
@@ -42,3 +42,4 @@ int	ft_cd(t_koopa *shell) // only relative or absolute path
 	// entwerder die envp PWD editieren oder irgendwas anderes 
 	update_pwd();
 }
+
