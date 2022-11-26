@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 12:18:50 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/26 14:25:50 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void *get_path(t_koopa *shell)
 {
 	if (access(/*cmd path*/, F_OK) == -1)
 	{
-		// so gehts nicht weil ich = noch drin habe
-		// gucken ob man einfach envp passen kann
-		// dann kann man pipex lösung nehmen
-		shell->path = ft_split(getenv("PATH"), ':');
+		// entwerder eine funktion schreiben die eine variable sucht und perfekt wieder gibt
+		// ohne = also pur inhalt (wäre vllt gut für expansion)
+		// oder pipex lösung
+		shell->path = ft_split(/*envp*/, ':');
 		if (shell->path == NULL)
 		 	print_error();
 		shell->file = create_path(shell, /*cmd*/);
@@ -73,7 +73,7 @@ int ft_execute_cmd(t_koopa *shell)
 		{
 			dup2(fd[0], STDIN_FILENO);
 			close(fd[0]);
-			close(fd{1});
+			close(fd[1]);
 		}
 	}
 }

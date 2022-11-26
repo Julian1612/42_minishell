@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 12:13:23 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:02:53 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_koopa *shell;
-
-	shell->envp = envp;
+	//t_koopa *shell;
+	argc = 0;
+	argv = NULL;
+	envp = NULL;
+	//shell->envp = envp;
 	return (0);
 }

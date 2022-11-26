@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 13:53:58 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/26 14:21:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,44 +26,46 @@ void here_doc(t_koopa *shell)
 
 	i = 0;
 	
-	pipex->limiter = ft_strjoin(pipex->limiter, "\n");
-	limit_len = ft_strlen(pipex->limiter);
-	pipex->infile = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	shell->limiter = ft_strjoin(shell->limiter, "\n");
+	limit_len = ft_strlen(shell->limiter);
+	shell->infile = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	while (1)
 	{
-		
-		write(pipex->infile, input, ft_strlen(input));
+		// gucken ob wir das irgendwie mit readline machen
+		// read mit max malloc len ist nicht so schlau
+		// zudem auch nur > printen nicht here_doc etc
+		write(shell->infile, input, ft_strlen(input));
 	}
-	close(pipex->infile);
-	pipex->infile = open("here_doc", O_RDONLY);
-	free(pipex->limiter);
+	close(shell->infile);
+	shell->infile = open("here_doc", O_RDONLY);
+	free(shell->limiter);
 	free(input);
 }
 
 void	check_heredoc(t_koopa *shell, int argc, char **argv)
 {
-	if (pipex->here_doc == 1)
+	if (shell->here_doc == 1)
 	{
 		if (argc < 6)
 		{
-			throw_error("Wrong input: ./pipex here_doc limiter \
+			throw_error("Wrong input: ./shell here_doc limiter \
 			cmd1 cmd2 ... outfile");
 		}
-		pipex->outfile = open(argv[argc - 1], O_CREAT | O_RDWR \
+		shell->outfile = open(argv[argc - 1], O_CREAT | O_RDWR \
 		| O_APPEND, 0777);
-		if (pipex->outfile == -1)
+		if (shell->outfile == -1)
 			throw_error("Wrong input: outfile Error");
-		pipex->limiter = argv[2];
-		ft_here_doc(pipex);
+		shell->limiter = argv[2];
+		ft_here_doc(shell);
 	}
 	else
 	{
-		pipex->infile = open(argv[1], O_RDONLY);
-		if (pipex->infile == -1)
+		shell->infile = open(argv[1], O_RDONLY);
+		if (shell->infile == -1)
 			throw_error3("Wrong input: infile Error");
-		pipex->outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0777);
-		if (pipex->outfile == -1)
+		shell->outfile = open(argv[argc - 1], O_CREAT | O_RDWR | O_TRUNC, 0777);
+		if (shell->outfile == -1)
 			throw_error("Wrong input: outfile Error");
-		pipex->here_doc = 0;
+		shell->here_doc = 0;
 	}
 }
