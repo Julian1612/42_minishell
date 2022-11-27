@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 15:26:07 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/27 10:42:33 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ int ft_execute_builtins(t_koopa *shell)
 	else if (ft_strcmp(shell->cmd, "pwd"))
 		ft_pwd();
 	else if (ft_strcmp(shell->cmd, "unset"))
-		ft_unset();	
+		ft_unset();
+	else
+		print_error(); // weiss nicht ob wir immer hier exiten und zurück zum promt gehen oder was machen
+	return (0);
 }
