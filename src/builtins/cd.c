@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 15:13:57 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/27 10:15:28 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static void update_pwd(t_koopa *shell)
 	// i guess deleting and adding the a new OLDPWD
 	// in envp
 	// wieder erst gucken wie wir das machen
-	// edgecases etc 	
+	// edgecases etc
+	/*brauchen jetzt eine funktion die wie getenv arbeitet aber für unser envp*/
+	/*danach OLDPWD mit PWD ersetzten und PWD deine neuen path geben*/
+	// herausfinden wie man den aktuelen path findet mit getcwd
 }
 
 int	ft_cd(t_koopa *shell) // only relative or absolute path 
@@ -41,6 +44,6 @@ int	ft_cd(t_koopa *shell) // only relative or absolute path
 		}
 			
 	}
-	update_pwd();
+	update_pwd(); // OLDPWD
 	return (0);// !exit status!
 }
