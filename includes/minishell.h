@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 10:30:31 by dna              ###   ########.fr       */
+/*   Updated: 2022/11/27 16:52:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,37 @@ typedef struct s_koopa
 	char	*flag;
 	int		exit_status;
 	char	**envp;
-	char	*new_var;
+	char	*var;
 }t_koopa;
 
 // https://github.com/dqtvictory/42-Garbage-Collector/blob/main/DOCUMENTATIONS.md gucken ob wir das implementieren oder selber irgendwie her coden
 // hab ne idee easy gc idee würde aber glaube sehr viel leistung ziehen weil nur am ende oder exit gefreed wird
+
+/// @brief		Searches in envp the variable name and returns the variable string, otherwise returns NULL
+/// @param shell main struct
+/// @param name name of the variable
+/// @return	variable string, else NULL if not found
+char	*ft_getenv(t_koopa *shell, char *name);
+
+////////////////////////////////////////
+////////		BUILINTS		////////
+////////////////////////////////////////
+
+int		ft_cd(t_koopa *shell);
+int		ft_echo(t_koopa *shell);
+int		ft_env(t_koopa *shell);
+void	ft_exit(t_koopa *shell);
+int		ft_export(t_koopa *shell);
+int		ft_pwd(t_koopa *shell);
+int		ft_unset(t_koopa *shell);
+
+////////////////////////////////////////
+////////		execution		////////
+////////////////////////////////////////
+
+////////////////////////////////////////
+////////		  UTILS  		////////
+////////////////////////////////////////
+
 
 #endif

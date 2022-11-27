@@ -6,13 +6,13 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/11/26 15:03:19 by dgross           ###   ########.fr        #
+#    Updated: 2022/11/27 15:53:00 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-VPATH		= src: src/builtins: src/execute:
+VPATH		= src: src/builtins: src/execution: src/utils:
 
 LIBFT		= libft/libft.a
 

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 10:15:28 by dna              ###   ########.fr       */
+/*   Updated: 2022/11/27 19:38:18 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h> //chdir
 #include <stdlib.h> // getenv
+#include <limits.h>
 
 static void update_pwd(t_koopa *shell)
 {
@@ -23,6 +24,11 @@ static void update_pwd(t_koopa *shell)
 	/*brauchen jetzt eine funktion die wie getenv arbeitet aber für unser envp*/
 	/*danach OLDPWD mit PWD ersetzten und PWD deine neuen path geben*/
 	// herausfinden wie man den aktuelen path findet mit getcwd
+	char buf[PATH_MAX];
+
+	if (getcwd(buf, PATH_MAX))
+
+	
 }
 
 int	ft_cd(t_koopa *shell) // only relative or absolute path 
