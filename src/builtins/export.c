@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 10:34:26 by dna              ###   ########.fr       */
+/*   Updated: 2022/11/27 19:33:29 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int ft_export(t_koopa *shell) // edit environment variables
 		print_error();
 	while (shell->envp[++i] != NULL)
 		tmp_envp[i] = ft_strdup(shell->envp[i]);
-	tmp_envp[i++] = shell->new_var;
+	tmp_envp[i++] = shell->var;
 	tmp_envp[i] = NULL;
 	return (0);
 }
