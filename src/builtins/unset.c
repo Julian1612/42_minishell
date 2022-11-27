@@ -3,27 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 19:33:16 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/27 22:35:37 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int search_for_var(t_koopa *shell)
-{
-	int i;
-
-	i = -1;
-	while (shell->envp[++i] != NULL)
-	{
-		if (ft_strncmp(shell->envp[i], shell->var, ft_name_len()))
-			return (0);
-	}
-	return (1);
-}
 
 //unset values and attributes of variables and functions
 // idee eine envp im struct haben und diese immer bearbeiten und
@@ -37,7 +25,7 @@ int ft_unset(t_koopa *shell) //unset values and attributes of variables and func
 
 	i = -1;
 	shell->envp = ft_calloc(ft_ptrcnt(shell->envp), sizeof(char *));
-	if (search_for_var(shell))
+	
 	{
 		while (shell->envp[++i] != NULL)
 		{
