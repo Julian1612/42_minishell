@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 16:52:58 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/28 15:45:14 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 
 #include "libft.h"
 /// @brief Main struct for Minishell
+typedef struct s_test
+{
+	int key;
+}t_test;
 typedef struct s_koopa
 {
 	char	*str;
@@ -30,6 +34,7 @@ typedef struct s_koopa
 	int		exit_status;
 	char	**envp;
 	char	*var;
+	t_test	*egal;
 }t_koopa;
 
 // https://github.com/dqtvictory/42-Garbage-Collector/blob/main/DOCUMENTATIONS.md gucken ob wir das implementieren oder selber irgendwie her coden

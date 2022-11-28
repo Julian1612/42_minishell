@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 19:51:47 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/28 16:08:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,4 @@ int	main(int argc, char **argv, char **envp)
 	argv = NULL;
 	envp = NULL;
 	return (0);
-
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 22:44:08 by dna              ###   ########.fr       */
+/*   Updated: 2022/11/28 13:48:52 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int sort_envp(t_koopa *shell)
 	// hehe push_swap
 	// kp wie ich die argv reinbekomme um zu gucken ob
 	// nur export gecallt wurde
+	
 }
 
 static int already_exist(t_koopa *shell)
