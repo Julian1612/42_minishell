@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 11:50:38 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 14:20:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_koopa
 	char		*cmd_str;
 	int			exit_status;
 	char		**envp;
-	t_data		*cmd;
+	t_data		*data;
 	t_pipeline	*pipes;
 }t_koopa;
 
@@ -54,21 +54,23 @@ char	*ft_getenv(t_koopa *shell, char *name);
 ////////		BUILINTS		////////
 ////////////////////////////////////////
 
-int		ft_cd(t_koopa *shell);
-int		ft_echo(t_koopa *shell);
+int		ft_cd(t_koopa *shell, t_data *data);
+int		ft_echo(t_koopa *shell, t_data *data);
 int		ft_env(t_koopa *shell);
 void	ft_exit(t_koopa *shell);
-int		ft_export(t_koopa *shell);
-int		ft_pwd(t_koopa *shell);
+int		ft_export(t_koopa *shell, t_data *data);
+int		ft_pwd(void);
 int		ft_unset(t_koopa *shell);
 
 ////////////////////////////////////////
 ////////		execution		////////
 ////////////////////////////////////////
 
+int		ft_execute_builtins(t_koopa *shell, t_data *data);
+int		ft_execute_cmd(t_koopa *shell);
+
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:49 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 10:47:07 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 14:09:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int	ft_env(t_koopa *shell)
 	i = -1;
 	while (shell->envp[++i] != NULL)
 		printf("%s\n", shell->envp[i]);
-	return (0); // ! exit status ! 
+	return (0);
 }
