@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 14:15:41 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 21:07:17 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,24 @@
 #include <stdlib.h> // getenv
 #include <limits.h> // [PATH_MAX]
 
-// nochmal umschreiben ist irgendwie kacke geschrieben und muss aus pwd noch
-// OLDPWD machen
 static void	update_pwd(t_koopa *shell, t_data *data)
 {
-	char	pwd[PATH_MAX];
+	char	*pwd;
 	char	*oldpwd;
 
-	if (getcwd(pwd, PATH_MAX))
+	if (!getcwd(NULL, 0))
 		print_error();
 	else
 	{
-		oldpwd = ft_getenv(shell, "PWD");
-		free(data->arg);
-		data->arg = ft_strdup(pwd);
-		ft_export(shell, data);
-		free(data->arg);
-		data->arg = ft_strdup(oldpwd);
-		ft_export(shell, data);
+		pwd = ft_strjoin("PWD=", pwd);
+		ft_export(shell,);
+		oldpwd = ft_strjoin("OLDPWD=", ft_getenv(shell, "PWD"));
+		ft_export(shell,);
+		free(oldpwd);
+		free(pwd);
+		return (0);
 	}
+	return (1);
 }
 
 int	ft_cd(t_koopa *shell, t_data *data)
@@ -43,14 +42,16 @@ int	ft_cd(t_koopa *shell, t_data *data)
 		if (!chdir(getenv("HOME")))
 		{
 			print_error();
-		}
+			return (1);
+		}		
 	}
 	else
 	{
-		if (!chdir(data->arg))
+		if (!chdir(data->cmd))
 		{
 			print_error();
-		}
+			return (1);
+		}	
 	}
 	update_pwd(shell, data);
 	return (0);
