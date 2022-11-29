@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 10:49:51 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 15:35:16 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdlib.h> // free
 
 // wird bearbeitet sobald wir wissen wo wir here_doc machen
-void here_doc(t_koopa *shell)
+void	here_doc(t_koopa *shell)
 {
 	char	*input;
 	int		length;
