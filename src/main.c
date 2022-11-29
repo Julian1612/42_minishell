@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 19:51:47 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/28 16:39:30 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-int init_evnp(t_koopa *shell, char **envp)
+int	init_evnp(t_koopa *shell, char **envp)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	shell->envp = ft_calloc(ft_ptrcnt(envp) + 1, sizeof(char *));
@@ -31,11 +31,11 @@ int init_evnp(t_koopa *shell, char **envp)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_koopa *shell;
-	
+	t_koopa	*shell;
+
 	init_envp(shell, envp);
 	argc = 0;
 	argv = NULL;
 	envp = NULL;
 	return (0);
-
+}
