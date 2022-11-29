@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 15:29:01 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 10:49:44 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 // hier wird dann auch der exec_status abgefangen und ausgegeben nach execution
 int	ft_execute(t_koopa *shell)
 {
-	int tmp_fd;
+	int	tmp_fd;
 
 	tmp_fd = dup(STDIN_FILENO);
 	ft_redirection();
-	if (/*check if cmd is a builtin*/)
-		ft_execute_builtin(shell);
+	if (ft_execute_builtin(shell))
+		return (0);
 	else
 		ft_execute_cmd(shell);
-	//watiing and get exec status from builtin and or cmd
+	while ()
+	{
+		//watiing and get exec status from builtin and or cmd
+	}
 }

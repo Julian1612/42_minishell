@@ -6,13 +6,13 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/28 13:48:52 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 10:47:36 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int sort_envp(t_koopa *shell)
+static int	sort_envp(t_koopa *shell)
 {
 	// hehe push_swap
 	// kp wie ich die argv reinbekomme um zu gucken ob
@@ -20,9 +20,9 @@ static int sort_envp(t_koopa *shell)
 	
 }
 
-static int already_exist(t_koopa *shell)
+static int	already_exist(t_koopa *shell)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (shell->envp[++i] != NULL)
@@ -37,10 +37,10 @@ static int already_exist(t_koopa *shell)
 	return (0);
 }
 
-int ft_export(t_koopa *shell) // edit environment variables
+int	ft_export(t_koopa *shell) // edit environment variables
 {
-	char **tmp_envp;
-	int i;
+	char	**tmp_envp;
+	int		i;
 
 	i = -1;
 	if (sort_envp(shell))
