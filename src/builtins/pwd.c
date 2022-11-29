@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:57 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 13:59:24 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 10:47:45 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <limits.h> // PATH_MAX
 #include <unistd.h> // getcwd
 
-int ft_pwd(void)
+int	ft_pwd(void)
 {
-	char buf[PATH_MAX];
+	char	buf[PATH_MAX];
 
 	if (getcwd(buf, PATH_MAX))
 		printf("%s\n", buf);

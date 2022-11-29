@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 15:27:42 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 10:49:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ static void *get_path(t_koopa *shell)
 			printf_error();
 	}
 	else
+	{
 		/*kommt drauf an wie der struct am ende aussieht
 		entwerder return oder shell->file = cmd_path oder so*/
+	}
 }
 
-static char *create_path(t_koopa *shell, char *cmd)
+static char	*create_path(t_koopa *shell, char *cmd)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (shell->path[++i])
@@ -54,9 +56,9 @@ static char *create_path(t_koopa *shell, char *cmd)
 // wenn eine | da ist wird gepiped 
 // wie gesagt gucken ob man eine flag im struct hat oder manuell hier ist der funktion
 // durch die cmd line geht die man durch den parser i guess bekommt
-int ft_execute_cmd(t_koopa *shell)
+int	ft_execute_cmd(t_koopa *shell)
 {
-	int fd[2];
+	int	fd[2];
 	int	pid;
 
 	while (/*kp später ändern :D sollange agrv nicht NULL ist oder so*/)

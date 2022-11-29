@@ -6,41 +6,45 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/28 15:45:14 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 11:50:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# define True 1
-# define False 0
+# include "libft.h"
+# define TRUE 1
+# define FALSE 0
 
-#include "libft.h"
-/// @brief Main struct for Minishell
-typedef struct s_test
+typedef struct s_pipeline
 {
-	int key;
-}t_test;
+	char	**path;
+}t_pipeline;
+
+typedef struct s_data
+{
+	char			*cmd;
+	char			*flag;
+	char			*arg;
+	int				argc;
+	struct s_data	*next;
+}t_data;
+
 typedef struct s_koopa
 {
-	char	*str;
-	int 	argc;
-	char 	**path;
-	char	*file;
-	char	*cmd;
-	char	**cmd_str;
-	char	*flag;
-	int		exit_status;
-	char	**envp;
-	char	*var;
-	t_test	*egal;
+	char		*cmd_str;
+	int			exit_status;
+	char		**envp;
+	t_data		*cmd;
+	t_pipeline	*pipes;
 }t_koopa;
 
 // https://github.com/dqtvictory/42-Garbage-Collector/blob/main/DOCUMENTATIONS.md gucken ob wir das implementieren oder selber irgendwie her coden
 // hab ne idee easy gc idee würde aber glaube sehr viel leistung ziehen weil nur am ende oder exit gefreed wird
 
-/// @brief		Searches in envp the variable name and returns the variable string, otherwise returns NULL
+/// @brief		Searches in envp the variable name and returns the variable string, 
+///				otherwise returns NULL
 /// @param shell main struct
 /// @param name name of the variable
 /// @return	variable string, else NULL if not found

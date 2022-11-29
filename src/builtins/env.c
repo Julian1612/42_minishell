@@ -6,21 +6,18 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:49 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 14:00:44 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 10:47:07 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_env(t_koopa *shell)
+int	ft_env(t_koopa *shell)
 {
-	int i;
+	int	i;
 
-	i = 0;
-	while (shell->envp[i] != NULL)
-	{
+	i = -1;
+	while (shell->envp[++i] != NULL)
 		printf("%s\n", shell->envp[i]);
-		i++;
-	}
 	return (0); // ! exit status ! 
 }
