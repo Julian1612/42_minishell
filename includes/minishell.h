@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 14:20:03 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 21:12:23 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 # include "libft.h"
 # define TRUE 1
 # define FALSE 0
-
-typedef struct s_pipeline
-{
-	char	**path;
-}t_pipeline;
 
 typedef struct s_data
 {
@@ -37,7 +32,6 @@ typedef struct s_koopa
 	int			exit_status;
 	char		**envp;
 	t_data		*data;
-	t_pipeline	*pipes;
 }t_koopa;
 
 // https://github.com/dqtvictory/42-Garbage-Collector/blob/main/DOCUMENTATIONS.md gucken ob wir das implementieren oder selber irgendwie her coden
