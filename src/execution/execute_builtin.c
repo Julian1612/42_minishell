@@ -3,35 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 10:42:33 by dna              ###   ########.fr       */
+/*   Updated: 2022/11/29 14:05:19 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// checken welcher builtin ausgeführt werden soll
-// und dann ausführen 
-int ft_execute_builtins(t_koopa *shell)
+int	ft_execute_builtins(t_koopa *shell, t_data *data)
 {
-	//wahrscheinlich hier auch dupen aber mal gucken vllt machen wir das in redirect aber glaube nicht
-	if (ft_strcmp(shell->cmd, "cd"))
-		ft_cd();
-	else if (ft_strcmp(shell->cmd, "echo"))
-		ft_echo();
-	else if (ft_strcmp(shell->cmd, "env"))
-		ft_env();
-	else if (ft_strcmp(shell->cmd, "exit"))
-		ft_exit();
-	else if (ft_strcmp(shell->cmd, "export"))
-		ft_export();
-	else if (ft_strcmp(shell->cmd, "pwd"))
+	if (ft_strcmp(data->cmd, "cd"))
+		ft_cd(shell, data);
+	else if (ft_strcmp(data->cmd, "echo"))
+		ft_echo(shell, data);
+	else if (ft_strcmp(data->cmd, "env"))
+		ft_env(shell);
+	else if (ft_strcmp(data->cmd, "exit"))
+		ft_exit(shell);
+	else if (ft_strcmp(data->cmd, "export"))
+		ft_export(shell, data);
+	else if (ft_strcmp(data->cmd, "pwd"))
 		ft_pwd();
-	else if (ft_strcmp(shell->cmd, "unset"))
-		ft_unset();
+	else if (ft_strcmp(data->cmd, "unset"))
+		ft_unset(shell);
 	else
-		print_error(); // weiss nicht ob wir immer hier exiten und zurück zum promt gehen oder was machen
+		print_error();
 	return (0);
 }

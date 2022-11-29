@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 15:29:21 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 10:49:51 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void here_doc(t_koopa *shell)
 	int		i;
 
 	i = 0;
-	
+
 	shell->limiter = ft_strjoin(shell->limiter, "\n");
 	limit_len = ft_strlen(shell->limiter);
 	shell->infile = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0777);

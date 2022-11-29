@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/27 10:39:51 by dna              ###   ########.fr       */
+/*   Updated: 2022/11/29 10:50:04 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.c"
 
-void ft_redirection(t_koopa *shell)
+void	ft_redirection(t_koopa *shell)
 {
 	// redirection ausführen
 }
 
-void check_redirection(t_koopa *shell)
+void	check_redirection(t_koopa *shell)
 {
 	// in der cmd line nachgucken ob es redirection gibt und
 	// ob man sie auch öffnen kann und halt erstellen
