@@ -6,52 +6,57 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 14:03:20 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/30 12:20:09 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	sort_envp(t_koopa *shell)
+static int	print_env(t_koopa *shell, char *variable)
 {
-	// hehe push_swap
-	// kp wie ich die argv reinbekomme um zu gucken ob
-	// nur export gecallt wurde
+	if (variable == NULL)
+	{
+		ft_env(shell);
+		return (0);
+	}
+	return (1);
 }
 
-static int	already_exist(t_koopa *shell, t_data *data)
+static int	already_exist(t_koopa *shell, char *variable)
 {
 	int	i;
 
 	i = -1;
 	while (shell->envp[++i] != NULL)
 	{
-		if (ft_strncmp(shell->envp[i], data->arg, ft_name_len(data->cmd)))
+		if (ft_strncmp(shell->envp[i], variable, ft_name_len(variable)))
 		{
 			free(shell->envp[i]);
-			shell->envp[i] = ft_strdup(data->arg);
+			shell->envp[i] = ft_strdup(variable);
 			return (1);
 		}
 	}
 	return (0);
 }
 
-int	ft_export(t_koopa *shell, t_data *data)
+int	ft_export(t_koopa *shell, char *variable)
 {
 	char	**tmp_envp;
 	int		i;
 
 	i = -1;
-	if (sort_envp(shell))
+	if (print_env(shell, variable))
 		return (0);
-	if (aleady_exist(shell, data))
+	if (aleady_exist(shell, variable))
 		return (0);
 	tmp_envp = ft_calloc(ft_ptrcnt(shell->envp) + 2, sizeof(char *));
 	if (tmp_envp == NULL)
 		print_error();
 	while (shell->envp[++i] != NULL)
 		tmp_envp[i] = ft_strdup(shell->envp[i]);
-	tmp_envp[i++] = data->arg;
+	tmp_envp[i++] = variable;
 	tmp_envp[i] = NULL;
+	free_envp(shell);
+	shell->envp = tmp_envp;
 	return (0);
 }

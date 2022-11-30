@@ -6,20 +6,20 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 15:35:02 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/30 16:14:52 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h> // free
 
-int	ft_name_len(char *name)
+int	ft_name_len(char *variable)
 {
 	int	i;
 
-	if (name == NULL)
+	if (variable == NULL)
 		return (-1);
-	i = ft_strchr(name, '=');
+	i = ft_strchr(variable, '=');
 	return (i + 1);
 }
 
@@ -36,7 +36,7 @@ char	*ft_getenv(t_koopa *shell, char *name)
 	return (NULL);
 }
 
-void	free_evnp(t_koopa *shell)
+void	free_envp(t_koopa *shell)
 {
 	int	i;
 
