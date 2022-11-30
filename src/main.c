@@ -3,23 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 15:34:41 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:40:37 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <signal.h>
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 
 int	init_evnp(t_koopa *shell, char **envp)
 {
-	int	i;
+	int					i;
+	struct sigaction	s_sigaction;
 
 	i = -1;
+	// s_sigaction.sa_sigaction = ;
+	s_sigaction.sa_flags = SA_SIGINFO;
+	sigaction(SIGINT, &s_sigaction, NULL); // ctrl - c
+	sigaction(SIGQUIT, &s_sigaction, NULL); // ctrl - d
 	shell->envp = ft_calloc(ft_ptrcnt(envp) + 1, sizeof(char *));
 	if (shell->envp == NULL)
 		print_error();
@@ -38,4 +44,4 @@ int	main(int argc, char **argv, char **envp)
 	argv = NULL;
 	envp = NULL;
 	return (0);
-
+}
