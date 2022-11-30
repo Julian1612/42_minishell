@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 21:07:17 by dna              ###   ########.fr       */
+/*   Updated: 2022/11/30 12:12:26 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,32 @@
 #include <stdlib.h> // getenv
 #include <limits.h> // [PATH_MAX]
 
-static void	update_pwd(t_koopa *shell, t_data *data)
+static void	update_pwd(t_koopa *shell)
 {
 	char	*pwd;
 	char	*oldpwd;
 
-	if (!getcwd(NULL, 0))
-		print_error();
+	pwd = getcwd(NULL, 0);
+	if (pwd == NULL)
+		return (1);
 	else
 	{
 		pwd = ft_strjoin("PWD=", pwd);
-		ft_export(shell,);
+		ft_export(shell, pwd);
 		oldpwd = ft_strjoin("OLDPWD=", ft_getenv(shell, "PWD"));
-		ft_export(shell,);
+		ft_export(shell, oldpwd);
 		free(oldpwd);
 		free(pwd);
+		oldpwd = NULL;
+		pwd = NULL;
 		return (0);
 	}
 	return (1);
 }
 
-int	ft_cd(t_koopa *shell, t_data *data)
+int	ft_cd(t_koopa *shell, char *path)
 {
-	if (data->argc == 1)
+	if (path == NULL)
 	{
 		if (!chdir(getenv("HOME")))
 		{
@@ -47,12 +50,12 @@ int	ft_cd(t_koopa *shell, t_data *data)
 	}
 	else
 	{
-		if (!chdir(data->cmd))
+		if (!chdir(path))
 		{
 			print_error();
 			return (1);
 		}	
 	}
-	update_pwd(shell, data);
+	update_pwd(shell);
 	return (0);
 }
