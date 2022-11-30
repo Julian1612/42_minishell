@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/29 16:40:37 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/11/30 14:49:41 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,4 @@ int	main(int argc, char **argv, char **envp)
 	argv = NULL;
 	envp = NULL;
 	return (0);
-}
+
