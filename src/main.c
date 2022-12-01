@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/30 16:21:00 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/30 20:49:20 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <signal.h>
 #include <stdio.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include <stdlib.h> // malloc
+#include <readline/readline.h> // readline
+#include <readline/history.h> // readline
 
 int	init_evnp(t_koopa *shell, char **envp)
 {
@@ -35,11 +36,18 @@ int	init_evnp(t_koopa *shell, char **envp)
 	return (0);
 }
 
+static int	init_koopa_shell(t_koopa *shell)
+{
+	shell = malloc(sizeof(t_koopa));
+	return (0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_koopa	*shell;
 
 	init_envp(shell, envp);
+	init_koopa_shell(shell);
 	argc = 0;
 	argv = NULL;
 	envp = NULL;
