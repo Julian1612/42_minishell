@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/30 16:14:52 by dgross           ###   ########.fr       */
+/*   Updated: 2022/11/30 20:45:30 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_getenv(t_koopa *shell, char *name)
 	i = -1;
 	while (shell->envp[++i] != NULL)
 	{
-		if (ft_strncmp(shell->envp[i], name, ft_strlen(name)))
+		if (!ft_strncmp(shell->envp[i], name, ft_strlen(name)))
 			return (shell->envp[i]);
 	}
 	return (NULL);

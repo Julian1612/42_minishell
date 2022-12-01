@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/30 16:23:06 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/01 10:11:34 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,15 @@ typedef struct s_data
 /// @brief Main stuct
 typedef struct s_koopa
 {
+	int			fd[2];
 	char		*line;
 	int			exit_status;
 	char		**envp;
 	char		*file;
+	int			infile;
+	int			outfile;
+	char		**path;
+	int			tmp_fd;
 	t_data		*data;
 }t_koopa;
 
@@ -83,7 +88,8 @@ int		ft_unset(t_koopa *shell, char *variable);
 /// @brief		Execute builtins
 /// @param shell Main struct
 /// @param data cmd/builtin struct to be executed
-void	ft_execute_builtins(t_koopa *shell, t_data *data);
+/// @return On success return 0, otherwise non-zero
+int		ft_execute_builtins(t_koopa *shell, t_data *data);
 /// @brief		Execute command
 /// @param shell Main struct
 /// @param data cmd/builtin struct to be executed
