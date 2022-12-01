@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/01 10:11:34 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/01 16:16:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_data
 {
 	char			*cmd_name;
+	
 	char			**cmd_line;
 	char			operator;
 	bool			pipe;
@@ -55,10 +56,9 @@ typedef struct s_koopa
 /// @return Returns 0 if the directory is changed, non-zero otherwise
 int		ft_cd(t_koopa *shell, char *path);
 /// @brief		Display a line of text
-/// @param shell Main struct
 /// @param cmd_line the complete command
 /// @return Returns success
-int		ft_echo(t_koopa *shell, char **cmd_line);
+int		ft_echo(char **cmd_line);
 /// @brief		Display the environment list
 /// @param shell Main struct
 /// @return Returns 0 on success, non-zero otherwise
@@ -89,7 +89,7 @@ int		ft_unset(t_koopa *shell, char *variable);
 /// @param shell Main struct
 /// @param data cmd/builtin struct to be executed
 /// @return On success return 0, otherwise non-zero
-int		ft_execute_builtins(t_koopa *shell, t_data *data);
+int		ft_execute_builtin(t_koopa *shell, t_data *data);
 /// @brief		Execute command
 /// @param shell Main struct
 /// @param data cmd/builtin struct to be executed
@@ -99,6 +99,10 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data);
 /// @param data cmd/builtin struct to be executed
 /// @return returns the last execution status
 int		ft_execute(t_koopa *shell, t_data *data);
+/// @brief 
+/// @param shell 
+/// @param data 
+void	ft_redirection(t_koopa *shell, t_data *data);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////

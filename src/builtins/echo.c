@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:47 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/30 12:09:01 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/01 16:02:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h" // ft_stcmp
 #include <stdio.h> // printf
 
-int	ft_echo(t_koopa *shell, char **cmd_line)
+int	ft_echo(char **cmd_line)
 {
 	int	n_flag;
 

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/30 19:27:55 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/01 16:16:45 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_execute_builtins(t_koopa *shell, t_data *data)
+int	ft_execute_builtin(t_koopa *shell, t_data *data)
 {
 	if (ft_strcmp(data->cmd_name, "cd"))
 		shell->exit_status = ft_cd(shell, data->cmd_line[1]);
 	else if (ft_strcmp(data->cmd_name, "echo"))
-		shell->exit_status = ft_echo(shell, data->cmd_line);
+		shell->exit_status = ft_echo(data->cmd_line);
 	else if (ft_strcmp(data->cmd_name, "env"))
 		shell->exit_status = ft_env(shell);
 	else if (ft_strcmp(data->cmd_name, "exit"))
