@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/30 12:12:26 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/01 16:04:26 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h> // getenv
 #include <limits.h> // [PATH_MAX]
 
-static void	update_pwd(t_koopa *shell)
+static int	update_pwd(t_koopa *shell)
 {
 	char	*pwd;
 	char	*oldpwd;
@@ -44,7 +44,7 @@ int	ft_cd(t_koopa *shell, char *path)
 	{
 		if (!chdir(getenv("HOME")))
 		{
-			print_error();
+			//print_error();
 			return (1);
 		}		
 	}
@@ -52,7 +52,7 @@ int	ft_cd(t_koopa *shell, char *path)
 	{
 		if (!chdir(path))
 		{
-			print_error();
+			//print_error();
 			return (1);
 		}	
 	}

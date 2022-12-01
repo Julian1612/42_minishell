@@ -6,13 +6,13 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/30 11:48:23 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/01 16:12:07 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	var_check(t_koopa *shell, char *variable)
+static int	var_checker(t_koopa *shell, char *variable)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ int	ft_unset(t_koopa *shell, char *variable)
 		}
 	}
 	tmp_envp[i] = NULL;
-	free_evnp(shell);
+	free_envp(shell);
 	shell->envp = tmp_envp;
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/30 20:49:20 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/01 11:53:13 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_koopa	*shell;
 
-	init_envp(shell, envp);
 	init_koopa_shell(shell);
+	init_envp(shell, envp);
 	argc = 0;
 	argv = NULL;
 	envp = NULL;
