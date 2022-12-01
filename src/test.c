@@ -104,9 +104,9 @@ int	main(int argc, char **argv, char **envp)
 	init_cmd(data);
 	put_input(data);
 	ft_execute(shell, data);
-	argc = 0;
-	argv = NULL;
-	envp = NULL;
+	argc++;
+	(void) argv;
+	(void)envp;
 	return (0);
 }
 
