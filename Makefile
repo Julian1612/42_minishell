@@ -6,20 +6,19 @@
 #    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/03 11:25:12 by jschneid         ###   ########.fr        #
+#    Updated: 2022/12/03 11:27:30 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-VPATH		= src: src/builtins: src/execution: src/utils: src/signals:
+VPATH		= src: src/builtins: src/execution: src/utils:
 
 LIBFT		= libft/libft.a
 
 SRC			= echo.c cd.c pwd.c export.c env.c exit.c unset.c \
 			  execute_builtin.c execute_cmd.c execution.c redirection.c \
-			  utils.c \
-			  signals.c
+			  utils.c
 
 OBJ_DIR		= ./obj/
 
@@ -29,9 +28,9 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -g
 
-INCLUDES	= -I./includes -I./libft/includes
+INCLUDES	= -I./includes -I./libft/includes -I /Users/$(USER)/goinfre/.brew/opt/readline/include
 
-LINCLUDES	= -L./libft -lft
+LINCLUDES	= -L./libft -lft -L /Users/$(USER)/goinfre/.brew/opt/readline/lib
 
 g			= \033[1;32m
 de 			= \033[0m
