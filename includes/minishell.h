@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/01 16:16:38 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/03 10:56:06 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 typedef struct s_data
 {
 	char			*cmd_name;
-	
 	char			**cmd_line;
 	char			operator;
 	bool			pipe;

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/01 16:50:26 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/03 11:23:10 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data)
 	pid = fork();
 	if (pid == 0)
 	{
-		dup2(shell->fd[1], STDOUT_FILENO);
+		dup2(shell->fd[1], shell->tmp_fd);
 		close(shell->fd[0]);
 		close(shell->fd[1]);
 		prepare_execution(shell, data);
@@ -64,7 +64,7 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data)
 	}
 	else
 	{
-		dup2(shell->fd[0], STDIN_FILENO);
+		dup2(shell->fd[0], shell->tmp_fd);
 		close(shell->fd[0]);
 		close(shell->fd[1]);
 	}
