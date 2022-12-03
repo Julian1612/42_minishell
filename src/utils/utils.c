@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/03 11:10:37 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/03 11:31:04 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_getenv(t_koopa *shell, char *name)
 	return (NULL);
 }
 
-void	dfree_envp(t_koopa *shell)
+void	free_envp(t_koopa *shell)
 {
 	int	i;
 
