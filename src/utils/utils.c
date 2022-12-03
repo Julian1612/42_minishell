@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/01 16:21:29 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/03 11:10:37 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_getenv(t_koopa *shell, char *name)
 	return (NULL);
 }
 
-void	free_envp(t_koopa *shell)
+void	dfree_envp(t_koopa *shell)
 {
 	int	i;
 

@@ -3,23 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/01 16:17:50 by dgross           ###   ########.fr        #
+#    Updated: 2022/12/03 11:25:12 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-VPATH		= src: src/builtins: src/execution: src/utils:
+VPATH		= src: src/builtins: src/execution: src/utils: src/signals:
 
 LIBFT		= libft/libft.a
 
-SRC			= test.c \
-			  echo.c cd.c pwd.c export.c env.c exit.c unset.c \
+SRC			= echo.c cd.c pwd.c export.c env.c exit.c unset.c \
 			  execute_builtin.c execute_cmd.c execution.c redirection.c \
-			  utils.c
+			  utils.c \
+			  signals.c
 
 OBJ_DIR		= ./obj/
 
@@ -88,6 +88,6 @@ re: fclean all
 	@echo "$(b)▀▄$(wb)          ▄▄$(de)$(b)██████$(brb)▌░░░░░░░░░░░░$(b)█$(de)$(w)      ██  ██  ██ ██ ██  ██ ██ ██      ██ ██   ██ ██      ██      ██    $(de)"
 	@echo "  $(b)▀▀█████████$(brb)▀░░░░$(b)$(brb)▀▀█$(brb)▄░░░░$(b)$(brb)▀▄$(br)░░░░$(b)█$(de)$(w)       ██      ██ ██ ██   ████ ██ ███████ ██   ██ ███████ ███████ ███████$(de)"
 	@echo "      $(b)▀█$(brb)▄░░░░░░░$(br)░░░░░$(b)$(brb)▀▀▄▄▄$(br)░░$(b)$(brb)▀█$(b)▀▀▀$(de)"
-	@echo "        $(b)▀▀██$(brb)▄$(br)░░░$(b)$(brb)▀▄$(br)░░░░░░$(b)$(brb)▄█$(de)$(b)▀▀▀$(de)" 
+	@echo "        $(b)▀▀██$(brb)▄$(br)░░░$(b)$(brb)▀▄$(br)░░░░░░$(b)$(brb)▄█$(de)$(b)▀▀▀$(de)"
 	@echo "           $(b) ▀▀▀▀███▀▀▀▀▀$(de)"
 	@echo "$(w)-----------------------------------------------------------------------------------------------------------$(de)"

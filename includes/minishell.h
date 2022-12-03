@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/01 16:16:38 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/03 11:23:17 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 typedef struct s_data
 {
 	char			*cmd_name;
-	
+
 	char			**cmd_line;
 	char			operator;
 	bool			pipe;
@@ -99,9 +99,9 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data);
 /// @param data cmd/builtin struct to be executed
 /// @return returns the last execution status
 int		ft_execute(t_koopa *shell, t_data *data);
-/// @brief 
-/// @param shell 
-/// @param data 
+/// @brief
+/// @param shell
+/// @param data
 void	ft_redirection(t_koopa *shell, t_data *data);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
@@ -120,5 +120,17 @@ char	*ft_getenv(t_koopa *shell, char *name);
 /// @brief Free's the enviroment pointer
 /// @param shell Main struct
 void	free_envp(t_koopa *shell);
+
+////////////////////////////////////////
+////////		 SIGNALS  		////////
+////////////////////////////////////////
+struct siginfo_t *siginfo;
+
+
+/// @brief Handles siganls in the programm
+/// @param sig
+/// @param siginfo
+/// @param ignore
+void ft_signal_handler(int sig);
 
 #endif
