@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/03 11:27:55 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/03 11:36:54 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "stdbool.h"
+# include <signal.h>
 
 # define TRUE 1
 # define FALSE 0
@@ -124,13 +125,15 @@ void	free_envp(t_koopa *shell);
 ////////////////////////////////////////
 ////////		 SIGNALS  		////////
 ////////////////////////////////////////
-struct siginfo_t *siginfo;
-
 
 /// @brief Handles siganls in the programm
 /// @param sig
 /// @param siginfo
 /// @param ignore
-void ft_signal_handler(int sig);
+void ft_signal_handler(int sig, siginfo_t *siginfo, void *ignore);
+
+/// @brief
+/// @param
+void ft_set_termianl(void);
 
 #endif

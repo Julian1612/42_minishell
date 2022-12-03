@@ -10,7 +10,7 @@
 #include <readline/history.h>
 #include <termios.h>
 
-static void    set_termianl(void)
+void    ft_set_termianl(void)
 {
     struct termios    new_settings;
 
@@ -21,10 +21,10 @@ static void    set_termianl(void)
         perror("minishell: tcsetattr");
 }
 
-void ft_signal_handler(int sig)
+void ft_signal_handler(int sig, siginfo_t *siginfo, void *ignore)
 {
-   // (void) siginfo;
-   // (void) ignore;
+   (void) siginfo;
+   (void) ignore;
 
    if (sig == 2)
    {
