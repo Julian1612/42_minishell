@@ -46,7 +46,7 @@ static int	init_cmd(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 3)
+	while (i < 4)
 	{
 		add_back(&data, ft_newlist());
 		i++;
@@ -64,31 +64,31 @@ static t_data	*ft_newlist(void)
 	data->cmd_name = NULL;
 	data->cmd_line = NULL;
 	data->operator = 0;
-	data->pipe = false;
-	data->argc = 0;
 	data->next = NULL;
 	return (data);
 }
 
 static int put_input(t_data *data)
 {
-	data->cmd_name = NULL;
+	data->cmd_name = "Makefile";
 	data->cmd_line = ft_split("Makefile", ' ');
-	data->operator = '<';
-	data->pipe = false;
-	data->argc = 1;
+	data->operator = IN;
 	data = data->next;
 	data->cmd_name = "cat";
 	data->cmd_line = ft_split("cat", ' ');
-	data->operator = '|';
-	data->pipe = true;
-	data->argc = 1;
+	data->operator = PIPE;
 	data = data->next;
 	data->cmd_name = "grep";
 	data->cmd_line = ft_split("grep @", ' ');
-	data->operator = 9;
-	data->pipe = true;
-	data->argc = 1;
+	data->operator = CMD;
+	data = data->next;
+	data->cmd_name = "out2";
+	data->cmd_line = ft_split("out2", ' ');
+	data->operator = OUT;
+	data = data->next;
+	data->cmd_name = "out3";
+	data->cmd_line = ft_split("out3", ' ');
+	data->operator = APPEND;
 	data = data->next;
 	return (0);
 }
@@ -109,5 +109,3 @@ int	main(int argc, char **argv, char **envp)
 	(void)envp;
 	return (0);
 }
-
-//< Makefile cat | grep @ > out
