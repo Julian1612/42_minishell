@@ -3,36 +3,6 @@
 #include <stdlib.h>
 #include "/Users/jschneid/42_Projects/minishell/42_minishell/includes/minishell.h"
 
-#include <stdio.h>
-#include <string.h>
-size_t	ft_strlen(const char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	char	i;
-	int		b;
-	int		j;
-
-	j = 0;
-	i = c;
-	b = ft_strlen(s);
-	while (j <= b)
-	{
-		if (s[j] == i)
-			return ((char *)s + j);
-		j++;
-	}
-	return (NULL);
-}
-
 size_t ft_strspn(const char *str, const char *accept)
 {
 	size_t count;
@@ -73,22 +43,35 @@ int nbr_of_tokens(char *str)
 	char *p = str;
 	while (*p)
 	{
-	if (ft_strchr("<>|", *p) != NULL)
-	{
-		nbr++;
-		p++;
+		printf("%c\n", *p);
+		if (*p == 34 || *p == 39)
+		{
+			p++;
+			nbr++;
+			while (*p != 34 && *p != 39)
+			{
+				printf("chille hier\n");
+				p++;
+			}
+		}
+		else if (*p == '>' || *p == '<' || *p == '|')
+		{
+			nbr++;
+			p++;
+		}
+		else if (*p == ' ')
+		{
+			while (*p == ' ' && *p != '\0')
+				p++;
+		}
+		else
+		{
+			while (*p > 'A' && *p < 'z')
+				p++;
+		}
+		printf("%c\n", *p);
 	}
-	else if (*p == ' ')
-	{
-		p += ft_strspn(p, " ");
-	}
-	else
-	{
-		nbr++;
-		p += ft_strcspn(p, "<>| ");
-	}
-	}
-	printf("nbr of tokens: %d", nbr);
+	printf("nbr of tokens: %d\n", nbr);
 	return nbr;
 }
 

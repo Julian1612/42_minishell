@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2022/12/05 16:00:03 by jschneid         ###   ########.fr        #
-=======
-#    Updated: 2022/12/05 13:41:53 by dgross           ###   ########.fr        #
->>>>>>> 8a5a99c698573f00de803e2a591a23be244f6a09
+#    Updated: 2022/12/05 16:05:18 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +20,7 @@ SRC			= main.c echo.c cd.c pwd.c export.c env.c exit.c unset.c \
 			  execute_builtin.c execute_cmd.c execution.c redirection.c \
 			  utils.c \
 			  signals.c \
-			  lexer.c
+			  lexer.c \
 
 OBJ_DIR		= ./obj/
 

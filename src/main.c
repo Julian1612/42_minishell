@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/12/05 15:59:20 by jschneid         ###   ########.fr       */
-=======
-/*   Updated: 2022/12/05 13:37:46 by dgross           ###   ########.fr       */
->>>>>>> 8a5a99c698573f00de803e2a591a23be244f6a09
+/*   Updated: 2022/12/05 16:18:05 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +51,7 @@ int	main(int argc, char **argv, char **envp)
 	// shell = NULL;
 	// init_koopa_shell(shell);
 	// init_envp(shell, envp);
+	ft_set_termianl();
 	act.sa_flags = SA_SIGINFO;
 	act.sa_sigaction = ft_signal_handler;
 	sigaction(SIGQUIT, &act, 0);
@@ -69,6 +66,6 @@ int	main(int argc, char **argv, char **envp)
 		exit(0);
 		tokenizer(cmd);
 		free(cmd);
-   }
+	}
 	return (0);
 }
