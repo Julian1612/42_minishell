@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/03 11:23:10 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/05 13:17:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,29 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 		shell->file = data->cmd_line[0];
 }
 
+static void	write_to(t_koopa *shell, t_data *data)
+{
+	if (data->next->operator == OUT || data->next->operator == APPEND)
+	{
+		dup2(shell->out, STDOUT_FILENO);
+		close(shell->out);
+	}
+	else
+	{
+		dup2(shell->fd[1], STDOUT_FILENO);
+	}
+}
+
 void	ft_execute_cmd(t_koopa *shell, t_data *data)
 {
 	int	pid;
 
-	if (data->pipe == true)
-		pipe(shell->fd);
+	if (pipe(shell->fd) == -1)
+		printf("ERROR\n");
 	pid = fork();
+	write_to(shell, data);
 	if (pid == 0)
 	{
-		dup2(shell->fd[1], shell->tmp_fd);
 		close(shell->fd[0]);
 		close(shell->fd[1]);
 		prepare_execution(shell, data);

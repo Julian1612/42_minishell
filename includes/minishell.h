@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/05 15:59:02 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:02:53 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 
 # define TRUE 1
 # define FALSE 0
+# define ERROR -1
+
+# define CMD 0
+# define PIPE 1
+# define IN 2
+# define OUT 3
+# define APPEND 4
+# define HERE_DOC 5
 
 /// @brief cmd/builtin linked list
 typedef struct s_data
@@ -37,8 +45,8 @@ typedef struct s_koopa
 	int			exit_status;
 	char		**envp;
 	char		*file;
-	int			infile;
-	int			outfile;
+	int			in;
+	int			out;
 	char		**path;
 	int			tmp_fd;
 	t_data		*data;
@@ -127,11 +135,11 @@ void	free_envp(t_koopa *shell);
 /// @param sig
 /// @param siginfo
 /// @param ignore
-void ft_signal_handler(int sig, siginfo_t *siginfo, void *ignore);
+void	ft_signal_handler(int sig, siginfo_t *siginfo, void *ignore);
 
 /// @brief
 /// @param
-void ft_set_termianl(void);
+void	ft_set_termianl(void);
 
 ////////////////////////////////////////
 ////////		 LEXER	 		////////
