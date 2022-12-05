@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/03 11:40:07 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/03 16:00:01 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	main(int argc, char **argv, char **envp)
 	act.sa_sigaction = ft_signal_handler;
 	sigaction(SIGQUIT, &act, 0);
 	sigaction(SIGINT, &act, 0);
-	ft_set_termianl();
 	argc = 0;
 	argv = NULL;
 	envp = NULL;

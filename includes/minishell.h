@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/03 11:36:54 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/05 10:14:28 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@
 /// @brief cmd/builtin linked list
 typedef struct s_data
 {
-	char			*cmd_name;
-
-	char			**cmd_line;
-	char			operator;
-	bool			pipe;
-	int				argc;
+	char			*cmd_name;	// Name of the function (example: echo)
+	char			**cmd_line;	// The function with argument (example: echo hallo)
+	int				operator;	// Specifies the following operator (example: | or < or > or << or >>)
 	struct s_data	*next;
 }t_data;
 
