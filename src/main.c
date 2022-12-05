@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/03 16:00:01 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:59:20 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	// t_koopa	*shell;
 	struct	sigaction act;
-	char	*str;
+	char	*cmd;
 
 	// shell = NULL;
 	// init_koopa_shell(shell);
@@ -60,10 +60,11 @@ int	main(int argc, char **argv, char **envp)
 	envp = NULL;
 	while (1)
 	{
-		str = readline("👉 ");
-		if (str == NULL)
+		cmd = readline("👉 ");
+		if (cmd == NULL)
 		exit(0);
-		free(str);
+		tokenizer(cmd);
+		free(cmd);
    }
 	return (0);
 }
