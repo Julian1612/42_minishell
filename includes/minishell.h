@@ -6,14 +6,14 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/05 10:14:28 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:59:02 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
+# include "/Users/jschneid/42_Projects/minishell/42_minishell/libft/includes/libft.h"
 # include "stdbool.h"
 # include <signal.h>
 
@@ -132,5 +132,11 @@ void ft_signal_handler(int sig, siginfo_t *siginfo, void *ignore);
 /// @brief
 /// @param
 void ft_set_termianl(void);
+
+////////////////////////////////////////
+////////		 LEXER	 		////////
+////////////////////////////////////////
+
+char **tokenizer(char *str);
 
 #endif
