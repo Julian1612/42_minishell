@@ -6,45 +6,62 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/01 16:18:29 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/05 13:17:13 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <fcntl.h> // open
 #include <unistd.h> // close
+#include <stdio.h>
 
 static int	ft_redirect_infile(t_koopa *shell, t_data *data)
 {
-	shell->infile = open(data->cmd_line[0], O_RDONLY);
-	if (shell->infile == -1)
-		;//print_error();
-	close(shell->tmp_fd);
-	dup2(shell->tmp_fd, shell->infile);
-	close(shell->infile);
+	shell->in = open(data->cmd_name, O_RDONLY);
+	if (shell->in == -1)
+	{
+		printf("ERROR\n");
+		return (ERROR);	
+	}
+	dup2(shell->in, STDIN_FILENO);
+	close(shell->in);
 	return (0);
 }
 
 static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 {
-	shell->outfile = open(data->cmd_line[0], O_RDWR | O_CREAT | O_TRUNC, 0777);
-	if (shell->outfile == -1)
-		;//print_error();
+	shell->out = open(data->cmd_line[0], O_RDWR | O_CREAT | O_TRUNC, 0777);
+	if (shell->out == -1)
+	{
+		printf("ERROR\n");
+		return (ERROR);	
+	}
+	return (0);
+}
+
+static int	ft_append_outfile(t_koopa *shell, t_data *data)
+{
+	shell->out = open(data->cmd_line[0], O_CREAT | O_RDWR | O_APPEND, 0777);
+	if (shell->out == -1)
+	{
+		printf("ERROR\n");
+		return (ERROR);
+	}
 	return (0);
 }
 
 void	ft_redirection(t_koopa *shell, t_data *data)
 {
-	if (data->operator == 'h')
+	while (data != NULL)
 	{
-		;//ft_here_doc(shell, data);
-	}
-	else if (data->operator == '<')
-	{
-		ft_redirect_infile(shell, data);
-	}
-	else if (data->operator == '>')
-	{
-		ft_redirect_outfile(shell, data);
+		if (data->operator == HERE_DOC)
+			;//ft_here_doc(shell, data);
+		else if (data->operator == IN)
+			ft_redirect_infile(shell, data);
+		else if (data->operator == OUT)
+			ft_redirect_outfile(shell, data);
+		else if (data->operator == APPEND)
+			ft_append_outfile(shell, data);
+		data = data->next;
 	}
 }
