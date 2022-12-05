@@ -1,3 +1,13 @@
+ls -la | grep ".txt" > files.txt
+cat example.txt | grep "hello" | wc -l
+cat input.txt > output.txt
+echo "Hello world!" | tee -a output.txt
+grep "ERROR" logfile.txt > errors.txt
+cat data.csv | sort | uniq > unique.txt
+cat input.txt | tr '[a-z]' '[A-Z]' > uppercase.txt
+cat logfile.txt | tail -n 10
+cat data.txt | awk '{print $1}' > column1.txt
+cat data.txt | awk -F"," '{print $2}' > column2.txt ---> wie viele token ?
 echo -n hello ---> hello$
 echo - n hello ---> n hello
 
