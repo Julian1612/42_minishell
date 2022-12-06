@@ -28,7 +28,7 @@ void	ft_signal_handler(int sig, siginfo_t *siginfo, void *ignore)
       rl_on_new_line();
       rl_clear_history();
       rl_replace_line("", 0);
-       rl_redisplay();
+      rl_redisplay();
   }
   else if(sig == 3)
      rl_redisplay();
