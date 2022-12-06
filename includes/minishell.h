@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/05 16:02:53 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:07:26 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "/Users/jschneid/42_Projects/minishell/42_minishell/libft/includes/libft.h"
+//# include "/Users/jschneid/42_Projects/minishell/42_minishell/libft/includes/libft.h"
+#include "libft.h"
 # include "stdbool.h"
 # include <signal.h>
 
@@ -47,6 +48,7 @@ typedef struct s_koopa
 	char		*file;
 	int			in;
 	int			out;
+	int 		stdout1;
 	char		**path;
 	int			tmp_fd;
 	t_data		*data;
@@ -63,8 +65,9 @@ typedef struct s_koopa
 int		ft_cd(t_koopa *shell, char *path);
 /// @brief		Display a line of text
 /// @param cmd_line the complete command
+/// @param fd
 /// @return Returns success
-int		ft_echo(char **cmd_line);
+int		ft_echo(char **cmd_line, int fd);
 /// @brief		Display the environment list
 /// @param shell Main struct
 /// @return Returns 0 on success, non-zero otherwise
@@ -109,6 +112,7 @@ int		ft_execute(t_koopa *shell, t_data *data);
 /// @param shell
 /// @param data
 void	ft_redirection(t_koopa *shell, t_data *data);
+void	write_to(t_koopa *shell, t_data *data);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
