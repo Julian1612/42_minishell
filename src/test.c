@@ -33,7 +33,10 @@ static void	add_back(t_data **lst, t_data *list)
 
 	b = NULL;
 	if (*lst == NULL)
+	{
+		printf("soos\n");
 		*lst = list;
+	}
 	else
 	{
 		b = lastnode(*lst);
@@ -46,7 +49,7 @@ static int	init_cmd(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i != 1)
 	{
 		add_back(&data, ft_newlist());
 		i++;
@@ -58,7 +61,7 @@ static t_data	*ft_newlist(void)
 {
 	t_data	*data;
 
-	data = malloc(sizeof(t_data));
+	data = ft_calloc(1, sizeof(t_data));
 	if (data == NULL)
 		return (NULL);
 	data->cmd_name = NULL;
@@ -70,25 +73,13 @@ static t_data	*ft_newlist(void)
 
 static int put_input(t_data *data)
 {
-	data->cmd_name = "Makefile";
-	data->cmd_line = ft_split("Makefile", ' ');
-	data->operator = IN;
-	data = data->next;
-	data->cmd_name = "cat";
-	data->cmd_line = ft_split("cat", ' ');
+	data->cmd_name = "echo";
+	data->cmd_line = ft_split("echo hi", ' ');
 	data->operator = PIPE;
 	data = data->next;
-	data->cmd_name = "grep";
-	data->cmd_line = ft_split("grep @", ' ');
+	data->cmd_name = "cat";
+	data->cmd_line = ft_split("cat -e", ' ');
 	data->operator = CMD;
-	data = data->next;
-	data->cmd_name = "out2";
-	data->cmd_line = ft_split("out2", ' ');
-	data->operator = OUT;
-	data = data->next;
-	data->cmd_name = "out3";
-	data->cmd_line = ft_split("out3", ' ');
-	data->operator = APPEND;
 	data = data->next;
 	return (0);
 }
@@ -98,8 +89,8 @@ int	main(int argc, char **argv, char **envp)
 	t_koopa	*shell;
 	t_data	*data;
 
-	shell = malloc(sizeof(t_koopa));
-	data = malloc(sizeof(t_data));
+	shell = ft_calloc(1, sizeof(t_koopa));
+	data = ft_calloc(1, sizeof(t_data));
 	init_envp(shell, envp);
 	init_cmd(data);
 	put_input(data);
