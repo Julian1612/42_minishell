@@ -16,6 +16,7 @@ cat data.txt | awk '{print $1}' > column1.txt
 cat data.txt | awk -F"," '{print $2}' > column2.txt			---> wie viele token ?
 echo -n hello												---> hello$
 echo - n hello												---> n hello
+cd -
 
 <Makefile cat -e | wc - l > out.txt  | echo hi | cat -e
 < in > out
