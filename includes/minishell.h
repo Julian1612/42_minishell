@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/07 14:38:47 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:47:54 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,15 +149,50 @@ void	ft_set_termianl(void);
 ////////		 LEXER	 		////////
 ////////////////////////////////////////
 
-char **tokenizer(char *str);
-int token_count(char *str);
+/// @brief
+/// @param str
+/// @return
+int tokenizer(char *str);
+/// @brief
+/// @param str
+/// @return
+int token_counter(char *str);
+/// @brief
+/// @param i
+/// @param counter
 void skip_opperator(int *i, int *counter);
+/// @brief
+/// @param str
+/// @param i
+/// @param counter
 void skip_flags(char *str, int *i, int *counter);
+/// @brief
+/// @param str
+/// @param i
+/// @param counter
 void skip_dqoutes(char *str, int *i, int *counter);
+/// @brief
+/// @param str
+/// @param i
+/// @param counter
 void skip_sqoutes(char *str, int *i, int *counter);
+/// @brief
+/// @param str
+/// @param i
+/// @param counter
 void skip_backslash(char *str, int *i, int *counter);
+/// @brief
+/// @param str
+/// @param i
+/// @param counter
 void skip_nbrs(char *str, int *i, int *counter);
+/// @brief
+/// @param str
+/// @param i
 void skip_whitespace(char *str, int *i);
+/// @brief
+/// @param str
+/// @param i
 void skip_str(char *str, int *i, int *counter);
 
 #endif

@@ -23,13 +23,13 @@ echo aaaa"bbbb" = 2
 echo aaaaa"bbbbb"cccc = 2
 echo "aaaa""bbbb" = 3
 echo ok"'hello'"ok1"hello1"ok2 = 2
-echo ''''''''''$USER'''''''''' -----> wie viele tooken ?
-echo """"""""$USER""""""""
+echo ''''''''''$USER'''''''''' = 2
+echo """"""""$USER"""""""" = 2
 <Makefile cat -e | wc - l > out.txt  | echo hi | cat -e = 16
-echo test
+echo test = 2
 ec"ho test"
-echo test       test
-echo test"     "test
+echo test       test = 3
+echo test"     "test = 2
 export S="s -a"
 l$S"l"
 echo """""""-n"$USER"-n"""""""
