@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/05 16:18:05 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:42:32 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,12 @@ int	main(int argc, char **argv, char **envp)
 	{
 		cmd = readline("👉 ");
 		if (cmd == NULL)
-		exit(0);
-		tokenizer(cmd);
+			return (0);
+		if(tokenizer(cmd))
+		{
+			perror("jminishell: malloc failed\n");
+			return (1);
+		}
 		free(cmd);
 	}
 	return (0);
