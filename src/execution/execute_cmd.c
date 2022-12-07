@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/06 15:03:22 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/07 15:35:00 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,22 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 		shell->file = data->cmd_line[0];
 }
 
+void	ft_cmd(t_koopa *shell, t_data *data)
+{
+	close(shell->fd[0]);
+	close(shell->fd[1]);
+	prepare_execution(shell, data);
+	if (execve(shell->file, data->cmd_line, shell->envp))
+		;//printf_error();	
+}
+
 void	ft_execute_cmd(t_koopa *shell, t_data *data)
 {
-	int	pid;
+	int pid;
 
 	pid = fork();
 	if (pid == 0)
 	{
-		if (data->operator == PIPE)
-		{
-			close(shell->fd[0]);
-			close(shell->fd[1]);
-		}
 		prepare_execution(shell, data);
 		if (execve(shell->file, data->cmd_line, shell->envp))
 			;//printf_error();	
