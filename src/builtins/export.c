@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/01 16:09:22 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/07 16:18:34 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,3 +61,5 @@ int	ft_export(t_koopa *shell, char *variable)
 	shell->envp = tmp_envp;
 	return (0);
 }
+
+// kann nicht ohne front end getested werden (oder brauche ne while loop)
