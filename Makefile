@@ -3,24 +3,24 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/06 13:08:23 by dgross           ###   ########.fr        #
+#    Updated: 2022/12/07 09:33:54 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-VPATH		= src: src/builtins: src/execution: src/utils: src/signals: #src/lexer:
+VPATH		= src: src/builtins: src/execution: src/utils: src/signals: src/lexer:
 
 LIBFT		= libft/libft.a
 
-SRC			= test.c echo.c cd.c pwd.c export.c env.c exit.c unset.c \
+SRC			= main.c echo.c cd.c pwd.c export.c env.c exit.c unset.c \
 			  execute_builtin.c execute_cmd.c execution.c redirection.c \
 			  utils.c \
 			  signals.c \
-			  #lexer.c \
+			  lexer.c \
 
 OBJ_DIR		= ./obj/
 

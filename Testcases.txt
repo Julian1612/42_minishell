@@ -1,22 +1,27 @@
-ls -la | grep ".txt" > files.txt
-< Testcases.txt grep a | wc -l > out.txt
-echo "'***hello***'" 										!-> not working
-echo '$USER'												-> $USER
-echo "$USER"												-> jschneid
-echo "o""k       "hellook1 == echo 'o''k       'hellook1	!->
-echo -n"-n -n -n"-n hallo hallo hallo
-cat example.txt | grep "hello" | wc -l
-cat input.txt > output.txt
-echo "Hello world!" | tee -a output.txt
-grep "ERROR" logfile.txt > errors.txt
-cat data.csv | sort | uniq > unique.txt
-cat input.txt | tr '[a-z]' '[A-Z]' > uppercase.txt
-cat logfile.txt | tail -n 10
-cat data.txt | awk '{print $1}' > column1.txt
-cat data.txt | awk -F"," '{print $2}' > column2.txt			---> wie viele token ?
-echo -n hello												---> hello$
-echo - n hello												---> n hello
+ls -la | grep ".txt" > files.txt = 7
+< Testcases.txt grep a | wc -l > out.txt = 9
+echo "'***hello***'" = 2										!-> not working
+echo '$USER'	= 2											-> $USER
+echo "$USER"	= 2											-> jschneid
+echo "o""k       "hellook1 == echo 'o''k       'hellook1 = 7	!->
+echo -n"-n -n -n"-n hallo hallo hallo = 5
+cat example.txt | grep "hello" | wc -l = 8
+cat input.txt > output.txt = 4
+echo "Hello world!" | tee -a output.txt = 6
+grep "ERROR" logfile.txt > errors.txt = 5
+cat data.csv | sort | uniq > unique.txt = 8
+cat input.txt | tr '[a-z]' '[A-Z]' > uppercase.txt = 8
+cat logfile.txt | tail -n 10 = 6
+cat data.txt | awk '{print $1}' > column1.txt = 7
+cat data.txt | awk -F"," '{print $2}' > column2.txt	= 8		!---> wie viele token ?
+echo -n hello	= 3											---> hello$
+echo - n hello	= 4											---> n hello
 cd -
+./
+echo "aaaa"bbbb = 2
+echo aaaa"bbbb" = 2
+echo aaaaa"bbbbb"cccc = 2
+echo "aaaa""bbbb" = 3
 
 <Makefile cat -e | wc - l > out.txt  | echo hi | cat -e
 < in > out

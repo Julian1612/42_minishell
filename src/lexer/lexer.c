@@ -3,34 +3,59 @@
 #include <stdlib.h>
 #include "/Users/jschneid/42_Projects/minishell/42_minishell/includes/minishell.h"
 
-void skip_str(char *str, int *i, int *counter)
+// ./ muss auch abgefangen werden --> endlos loop
+
+static void skip_str(char *str, int *i, int *counter)
 {
-	printf("skip_str\n");
 	(*counter)++;
-	while (((str[*i] >= 'a' && str[*i] <= 'z')
-		|| (str[*i] >= 'A' && str[*i] <= 'Z'))
-		&& str[*i] != '\0')
+	while (str[*i] >= '!' && str[*i] <= '~' && str[*i] != '\0')
 		(*i)++;
+	printf("%d--skip_str\n", *counter);
 }
 
-void skip_whitespace(char *str, int *i)
+static void skip_whitespace(char *str, int *i)
 {
-	printf("skip_whitespace\n");
  	while (str[*i] == ' ' || str[*i] == '\t')
 		(*i)++;
+	printf("skip_whitespace\n");
 }
 
-void skip_nbrs(char *str, int *i, int *counter)
+static void skip_nbrs(char *str, int *i, int *counter)
 {
-	printf("skip_nbrs\n");
 	(*counter)++;
 	while (str[*i] >= '0' && str[*i] <= '9')
 		(*i)++;
+	printf("%d--skip_nbrs\n", *counter);
 }
 
-void skip_qoutes(char *str, int *i, int *counter)
+static void skip_sqoutes(char *str, int *i, int *counter)
 {
-	printf("skip_qoutes\n");
+	(*counter)++;
+	(*i)++;
+	while (str[*i] != 39 && str[*i] != '\0')
+	{
+		printf("str[%d] = %c\n", (*i), str[*i]);
+		(*i)++;
+	}
+	printf("str[%d] = %c\n", (*i), str[*i]);
+	if (str[*i + 1] == 39)
+	{
+		(*i)++;
+		printf("%d--skip_sqoutes\n", *counter);
+		return ;
+	}
+	if (str[*i + 1] != ' ')
+	{
+		while (str[*i] >= '!' && str[*i] <= '~' && str[*i] != '\0')
+		(*i)++;
+	}
+	else
+		(*i)++;
+	printf("%d--skip_sqoutes\n", *counter);
+}
+
+static void skip_dqoutes(char *str, int *i, int *counter)
+{
 	(*counter)++;
 	(*i)++;
 	while (str[*i] != '"' && str[*i] != '\0')
@@ -38,17 +63,54 @@ void skip_qoutes(char *str, int *i, int *counter)
 		printf("str[%d] = %c\n", (*i), str[*i]);
 		(*i)++;
 	}
-	(*i)++;
+	printf("str[%d] = %c\n", (*i), str[*i]);
+	if (str[*i + 1] == '"')
+	{
+		(*i)++;
+		printf("%d--skip_sqoutes\n", *counter);
+		return ;
+	}
+	if (str[*i + 1] != ' ')
+	{
+		while (str[*i] >= '!' && str[*i] <= '~' && str[*i] != '\0')
+		(*i)++;
+	}
+	else
+		(*i)++;
+	printf("%d--skip_dqoutes\n", *counter);
 }
 
-void skip_flags(char *str, int *i, int *counter)
+static void skip_flags(char *str, int *i, int *counter)
 {
-	printf("skip_flags\n");
 	(*counter)++;
 	(*i)++;
-	skip_str(str, i, counter);
+	while (((str[*i] >= 'a' && str[*i] <= 'z')
+			|| (str[*i] >= 'A' && str[*i] <= 'Z'))
+			&&str[*i] != '\0')
+	{
+		if (str[*i + 1] == '"' || str[*i + 1] == 39)
+		{
+			(*i) += 2;
+			while (str[*i] != '"' && str[*i] != '\0')
+			{
+				printf("str[%d] = %c\n", (*i), str[*i]);
+				(*i)++;
+			}
+			(*i)++;
+		}
+		(*i)++;
+	}
+	printf("%d--skip_flags\n", *counter);
 }
 
+static void skip_opperator(int *i, int *counter)
+{
+	(*i)++;
+	(*counter)++;
+	printf("%d--skip_operator\n", *counter);
+}
+
+// Qoutes in einer funktion zusammen fassen
 static int token_count(char *str)
 {
 	int	i;
@@ -63,20 +125,16 @@ static int token_count(char *str)
 			skip_whitespace(str, &i);
 		else if (str[i] == '-')
 			skip_flags(str, &i, &count);
-		else if (str[i] == '"' || str[i] == '\'')
-			skip_qoutes(str, &i, &count);
+		else if (str[i] == 39)
+			skip_sqoutes(str, &i, &count);
+		else if (str[i] == '"')
+			skip_dqoutes(str, &i, &count);
 		else if (str[i] >= '0' && str[i] <= '9')
 			skip_nbrs(str, &i, &count);
-		else if ((str[i] >= 'A' && str[i] <= 'Z')
-			|| (str[i] >= 'a' && str[i] <= 'z'))
+		else if (str[i] >= '!' && str[i] <= '~')
 			skip_str(str, &i, &count);
 		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
-		{
-			i++;
-			count++;
-		}
-		// if (str[i] != '\0')
-		// 	i++;
+			skip_opperator(&i, &count);
 	}
 	printf("count: %d\n", count);
 	return (count);
@@ -96,137 +154,3 @@ char **tokenizer(char *str)
 	return (tokens);
 }
 
-// size_t ft_strspn(const char *str, const char *accept)
-// {
-// 	size_t count;
-// 	const char *p;
-
-// 	count = 0;
-// 	p = str;
-// 	while(*p)
-// 	{
-// 		if (ft_strchr(accept, *p) == NULL)
-// 			return (count);
-// 		count++;
-// 		p++;
-// 	}
-// 	return count;
-// }
-
-// size_t ft_strcspn(const char *str, const char *reject)
-// {
-// 	size_t count = 0;
-// 	const char *p;
-
-// 	p = str;
-// 	while(*p)
-// 	{
-// 		if (ft_strchr(reject, *p) != NULL)
-// 			return (count);
-// 		count++;
-// 		p++;
-// 	}
-// 	return count;
-// }
-
-// int nbr_of_tokens(char *str)
-// {
-// 	int nbr = 0;
-
-// 	char *p = str;
-// 	while (*p)
-// 	{
-// 		printf("%c\n", *p);
-// 		if (*p == 34 || *p == 39)
-// 		{
-// 			p++;
-// 			nbr++;
-// 			while (*p != 34 &&  *p != 39)
-// 			{
-// 				printf("chille hier\n");
-// 				p++;
-// 			}
-// 		}
-// 		else if (*p == '>' || *p == '<' || *p == '|')
-// 		{
-// 			nbr++;
-// 			p++;
-// 		}
-// 		else if (*p == ' ')
-// 		{
-// 			while (*p == ' ' && *p != '\0')
-// 				p++;
-// 		}
-// 		else
-// 		{
-// 			while (*p > 'A' && *p < 'z')
-// 				p++;
-// 		}
-// 		printf("%c\n", *p);
-// 	}
-// 	printf("nbr of tokens: %d\n", nbr);
-// 	return nbr;
-// }
-
-// static int token_count(char *str)
-// {
-// 	int	i;
-// 	int count;
-
-// 	i = 0;
-// 	count = 0;
-// 	while (str[i] != '\0')
-// 	{
-// 		printf("Start: c[%d]= %c\n", i, str[i]);
-// 		if (str[i] == ' ')
-// 		{
-// 			printf("a\n");
-// 			while (str[i] <= '!' && str[i] >= '~'&& str[i] != '\0')
-// 				i++;
-// 		}
-// 		else if (str[i] == '"' || str[i] == '\'')
-// 		{
-// 			printf("b\n");
-// 			count++;
-// 			i++;
-// 			while (str[i] != '"' && str[i] != '\'' && str[i] != '\0')
-// 				i++;
-// 		}
-// 		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
-// 		{
-// 			printf("c\n");
-// 			count++;
-// 		}
-// 		else if (str[i] >= '0' && str[i] <= '9')
-// 		{
-// 			printf("d\n");
-// 			count++;
-// 			while (str[i] >= '0' && str[i] <= '9' && str[i] != '\0')
-// 				i++;
-// 		}
-// 		else if (str[i] >= 'A' && str[i] <= 'z')
-// 		{
-// 			printf("e\n");
-// 			count++;
-// 			while (str[i] >= '!' && str[i] <= '~' && str[i] != '\0')
-// 				i++;
-// 		}
-// 		else if (str[i] == '-')
-// 		{
-// 			printf("f\n");
-// 			count++;
-// 			i++;
-// 			while (str[i] >= '!' && str[i] <= '~' && str[i] != '\0')
-// 			{
-// 				// printf("%c\n", str[i]);
-// 				skip_str(&str[i], &i, &count);
-// 				i++;
-// 			}
-// 		}
-// 		if (str[i] != '\0')
-// 			i++;
-// 		printf("End: c[%d]= %c\n", i, str[i]);
-// 	}
-// 	printf("count: %d\n", count);
-// 	return (count);
-// }
