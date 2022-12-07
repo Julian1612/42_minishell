@@ -22,6 +22,9 @@ echo "aaaa"bbbb = 2
 echo aaaa"bbbb" = 2
 echo aaaaa"bbbbb"cccc = 2
 echo "aaaa""bbbb" = 3
+echo ''''''''''$USER'''''''''' -----> wie viele tooken ?
+echo """"""""$USER""""""""
+<Makefile cat -e | wc - l > out.txt  | echo hi | cat -e
 
 <Makefile cat -e | wc - l > out.txt  | echo hi | cat -e
 < in > out

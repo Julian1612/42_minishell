@@ -127,14 +127,14 @@ static int token_count(char *str)
 			skip_flags(str, &i, &count);
 		else if (str[i] == 39)
 			skip_sqoutes(str, &i, &count);
+		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
+			skip_opperator(&i, &count);
 		else if (str[i] == '"')
 			skip_dqoutes(str, &i, &count);
 		else if (str[i] >= '0' && str[i] <= '9')
 			skip_nbrs(str, &i, &count);
 		else if (str[i] >= '!' && str[i] <= '~')
 			skip_str(str, &i, &count);
-		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
-			skip_opperator(&i, &count);
 	}
 	printf("count: %d\n", count);
 	return (count);
