@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/06 16:07:26 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/07 14:38:47 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,14 @@ void	ft_set_termianl(void);
 ////////////////////////////////////////
 
 char **tokenizer(char *str);
+int token_count(char *str);
+void skip_opperator(int *i, int *counter);
+void skip_flags(char *str, int *i, int *counter);
+void skip_dqoutes(char *str, int *i, int *counter);
+void skip_sqoutes(char *str, int *i, int *counter);
+void skip_backslash(char *str, int *i, int *counter);
+void skip_nbrs(char *str, int *i, int *counter);
+void skip_whitespace(char *str, int *i);
+void skip_str(char *str, int *i, int *counter);
 
 #endif
