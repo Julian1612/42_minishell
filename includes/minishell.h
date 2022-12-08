@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/07 16:47:54 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:57:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,8 @@ typedef struct s_koopa
 int		ft_cd(t_koopa *shell, char *path);
 /// @brief		Display a line of text
 /// @param cmd_line the complete command
-/// @param fd
 /// @return Returns success
-int		ft_echo(char **cmd_line, int fd);
+int		ft_echo(char **cmd_line);
 /// @brief		Display the environment list
 /// @param shell Main struct
 /// @return Returns 0 on success, non-zero otherwise
@@ -113,6 +112,7 @@ int		ft_execute(t_koopa *shell, t_data *data);
 /// @param data
 void	ft_redirection(t_koopa *shell, t_data *data);
 void	write_to(t_koopa *shell, t_data *data);
+void	ft_cmd(t_koopa *shell, t_data *data);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////

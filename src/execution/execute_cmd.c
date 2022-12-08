@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/07 15:35:00 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/08 18:52:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	ft_cmd(t_koopa *shell, t_data *data)
 	close(shell->fd[1]);
 	prepare_execution(shell, data);
 	if (execve(shell->file, data->cmd_line, shell->envp))
-		;//printf_error();	
+		printf("ERROR\n");
+	shell->exit_status = 127;
 }
 
 void	ft_execute_cmd(t_koopa *shell, t_data *data)

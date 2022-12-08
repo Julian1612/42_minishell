@@ -1,3 +1,4 @@
+
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h> // malloc
@@ -49,7 +50,7 @@ static int	init_cmd(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i != 2)
+	while (i != 0)
 	{
 		add_back(&data, ft_newlist());
 		i++;
@@ -71,24 +72,35 @@ static t_data	*ft_newlist(void)
 	return (data);
 }
 
-static int put_input(t_data *data)
+static int put_input1(t_data *data)
 {
-	data->cmd_name = "cat";
-	data->cmd_line = ft_split("cat /dev/urandom", ' ');
-	data->operator = PIPE;
-	data = data->next;
-	data->cmd_name = "lsof";
-	data->cmd_line = ft_split("lsof -c cat", ' ');
-	data->operator = PIPE;
-	data = data->next;
-	data->cmd_name = "wc";
-	data->cmd_line = ft_split("wc -l", ' ');
+	data->cmd_name = "cd";
+	data->cmd_line = ft_split("cd src", ' ');
 	data->operator = CMD;
-	data = data->next;
-	//data->cmd_name = "Makefile";
-	//data->cmd_line = ft_split("Makefile", ' ');
-	//data->operator = IN;
-	//data = data->next;
+	return (0);
+}
+
+static int put_input2(t_data *data)
+{
+	data->cmd_name = "pwd";
+	data->cmd_line = ft_split("pwd", ' ');
+	data->operator = CMD;
+	return (0);
+}
+
+static int put_input3(t_data *data)
+{
+	data->cmd_name = "env";
+	data->cmd_line = ft_split("env", ' ');
+	data->operator = CMD;
+	return (0);
+}
+
+static int put_input4(t_data *data)
+{
+	data->cmd_name = "env";
+	data->cmd_line = ft_split("env", ' ');
+	data->operator = CMD;
 	return (0);
 }
 
@@ -101,7 +113,16 @@ int	main(int argc, char **argv, char **envp)
 	data = ft_calloc(1, sizeof(t_data));
 	init_envp(shell, envp);
 	init_cmd(data);
-	put_input(data);
+	put_input1(data);
+	ft_execute(shell, data);
+	printf("-----------------------------------------------------------\n");
+	put_input2(data);
+	ft_execute(shell, data);
+	printf("-----------------------------------------------------------\n");
+	put_input3(data);
+	ft_execute(shell, data);
+	printf("-----------------------------------------------------------\n");
+	put_input4(data);
 	ft_execute(shell, data);
 	argc++;
 	(void) argv;
