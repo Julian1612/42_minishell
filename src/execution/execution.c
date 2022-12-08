@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/07 16:07:05 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/08 14:57:02 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ int	ft_execute(t_koopa *shell, t_data *data)
 		}
 		data = data->next;
 	}
-	waitpid(0, &shell->exit_status, 0);
+	while (waitpid(0, &shell->exit_status, 0) > 0)
+		;
 	close(shell->out);
 	return (0);
 }
