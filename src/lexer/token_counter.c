@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:38 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/08 16:45:52 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:26:52 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,17 @@ int token_counter(char *str)
 	{
 		// printf("istr[%d] = %c\n", i, str[i]);
 		if (str[i] == ' ')
-			skip_whitespace(str, &i);
+			skip_whitespace(str, &i);//
 		else if (str[i] == '-')
-			skip_flags(str, &i, &count);
+			skip_flags(str, &i, &count);//
 		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
-			skip_opperator(&i, &count);
+			skip_opperator(&i, &count);//
 		else if (str[i] == 39 || str[i] == '"')
-			skip_qoutes(str, &i, &count);
+			skip_qoutes(str, &i, &count);//
 		else if (str[i] >= '0' && str[i] <= '9')
 			skip_nbrs(str, &i, &count);
 		else if (str[i] >= '!' && str[i] <= '~')
-			skip_str(str, &i, &count);
+			skip_str(str, &i, &count);//
 	}
 	// printf("count: %d\n", count);
 	return (count);

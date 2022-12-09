@@ -30,13 +30,33 @@ void counter_flag_len(char *str, int *j, int *token_len)
 			{
 				// printf("str[%d] = %c\n", (*i), str[*i]);
 				(*j)++;
+				(*token_len)++;
 			}
 			(*j)++;
+			(*token_len)++;
 		}
 		(*j)++;
 		(*token_len)++;
 	}
 }
+
+void counter_opp_len(int *j, int *token_len)
+{
+	(*j)++;
+	(*token_len)++;
+}
+
+void counter_nbrs_len(char *str, int *i, int *token_len)
+{
+	(*token_len)++;
+	while (str[*i] >= '0' && str[*i] <= '9')
+	{
+		(*token_len)++;
+		(*i)++;
+	}
+	// printf("%d--skip_nbrs\n", *counter);
+}
+
 
 int	get_token_length(char *str, int *j)
 {
@@ -47,14 +67,24 @@ int	get_token_length(char *str, int *j)
 	{
 		if (str[*j] == ' ')
 			skip_whitespace(str, j);
-		else if (str[*j] == '"')
+		else if (str[*j] == '-')
+		{
+			counter_flag_len(str, j, &token_len);
+			return (token_len);
+		}
+		else if (str[*j] == '|' || str[*j] == '<' || str[*j] == '>')
+		{
+			counter_opp_len(j, &token_len);
+			return (token_len);
+		}
+		else if (str[*j] == '"' || str[*j] == 39)
 		{
 			counter_quote_len(str, j, &token_len);
 			return (token_len);
 		}
-		else if (str[*j] == '-')
+		else if (str[*j] >= '0' && str[*j] <= '9')
 		{
-			counter_flag_len(str, j, &token_len);
+			counter_nbrs_len(str, j, &token_len);
 			return (token_len);
 		}
 		else if (str[*j] >= '!' && str[*j] <= '~')
@@ -130,7 +160,6 @@ void	counter_sqoutes_len(char *str, int *j, int *token_len)
 	{
 		(*token_len)++;
 		(*j)++;
-		printf("str[%d] = %c\n", (*j), str[*j]);
 	}
 	if (str[*j + 1] == 39)
 	{
@@ -171,7 +200,6 @@ int tokenizer(char *str)
 	int		start_copy;
 
 	token_count = token_counter(str);
-	printf("token_count = %d\n", token_count);
 	token_arr = (char **) malloc(sizeof(char *) * (token_count + 1));
 	if (token_arr == NULL)
 	{
@@ -186,7 +214,6 @@ int tokenizer(char *str)
 		token_len = get_token_length(str, &j);
 		if (token_len == -1)
 		{
-			printf("hier\n");
 			return (1);
 		}
 		token_arr[i] = (char *) malloc(sizeof(char) * token_len + 1);
@@ -196,9 +223,6 @@ int tokenizer(char *str)
 			return (1);
 		}
 		skip_whitespace(str, &start_copy);
-		printf("start_cpy = %d\n", start_copy);
-		printf("toke_length = %d\n", token_len);
-		// Hier muss dann der token erstellt werden in einer funktion
 		cpy_token(str, token_arr[i], token_len, start_copy);
 		token_arr[i][token_len] = '\0';
 		i++;
