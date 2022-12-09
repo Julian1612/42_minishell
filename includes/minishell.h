@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/07 16:47:54 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:09:22 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,28 +62,28 @@ typedef struct s_koopa
 /// @param shell Main struct
 /// @param path directory to change to, otherwise change to HOME
 /// @return Returns 0 if the directory is changed, non-zero otherwise
-int		ft_cd(t_koopa *shell, char *path);
+// int		ft_cd(t_koopa *shell, char *path);
 /// @brief		Display a line of text
 /// @param cmd_line the complete command
 /// @param fd
 /// @return Returns success
-int		ft_echo(char **cmd_line, int fd);
+// int		ft_echo(char **cmd_line, int fd);
 /// @brief		Display the environment list
 /// @param shell Main struct
 /// @return Returns 0 on success, non-zero otherwise
-int		ft_env(t_koopa *shell);
+// int		ft_env(t_koopa *shell);
 /// @brief		Exit the minishell
 /// @param shell Main struct
-void	ft_exit(t_koopa *shell);
+// void	ft_exit(t_koopa *shell);
 /// @brief		Export variables to the environment list
 /// @param shell Main struct
 /// @param variable the variable to export
 /// @return Returns 0 on success, non-zero otherwise
-int		ft_export(t_koopa *shell, char *variable);
+// int		ft_export(t_koopa *shell, char *variable);
 /// @brief		Print the name of the current working directory
 /// @param nothing
 /// @return Returns 0 unless the current directory cannot be read.
-int		ft_pwd(void);
+// int		ft_pwd(void);
 /// @brief		Unset variable of the enviroment list
 /// @param shell Main struct
 /// @param variable the variable to unset
@@ -98,21 +98,21 @@ int		ft_unset(t_koopa *shell, char *variable);
 /// @param shell Main struct
 /// @param data cmd/builtin struct to be executed
 /// @return On success return 0, otherwise non-zero
-int		ft_execute_builtin(t_koopa *shell, t_data *data);
+// int		ft_execute_builtin(t_koopa *shell, t_data *data);
 /// @brief		Execute command
 /// @param shell Main struct
 /// @param data cmd/builtin struct to be executed
-void	ft_execute_cmd(t_koopa *shell, t_data *data);
+// void	ft_execute_cmd(t_koopa *shell, t_data *data);
 /// @brief		Execute the command line
 /// @param shell Main struct
 /// @param data cmd/builtin struct to be executed
 /// @return returns the last execution status
-int		ft_execute(t_koopa *shell, t_data *data);
+// int		ft_execute(t_koopa *shell, t_data *data);
 /// @brief
 /// @param shell
 /// @param data
-void	ft_redirection(t_koopa *shell, t_data *data);
-void	write_to(t_koopa *shell, t_data *data);
+// void	ft_redirection(t_koopa *shell, t_data *data);
+// void	write_to(t_koopa *shell, t_data *data);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
@@ -169,13 +169,7 @@ void skip_flags(char *str, int *i, int *counter);
 /// @brief
 /// @param str
 /// @param i
-/// @param counter
-void skip_dqoutes(char *str, int *i, int *counter);
-/// @brief
-/// @param str
-/// @param i
-/// @param counter
-void skip_sqoutes(char *str, int *i, int *counter);
+void skip_qoutes(char *str, int *i, int *counter);
 /// @brief
 /// @param str
 /// @param i

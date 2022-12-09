@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:38 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/07 16:56:07 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:45:52 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,13 @@ int token_counter(char *str)
 			skip_flags(str, &i, &count);
 		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
 			skip_opperator(&i, &count);
-		else if (str[i] == 39)
-			skip_sqoutes(str, &i, &count);
-		else if (str[i] == '"')
-			skip_dqoutes(str, &i, &count);
+		else if (str[i] == 39 || str[i] == '"')
+			skip_qoutes(str, &i, &count);
 		else if (str[i] >= '0' && str[i] <= '9')
 			skip_nbrs(str, &i, &count);
 		else if (str[i] >= '!' && str[i] <= '~')
 			skip_str(str, &i, &count);
 	}
 	// printf("count: %d\n", count);
-	return (count + 1);
+	return (count);
 }

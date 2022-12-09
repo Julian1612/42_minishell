@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:47 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/07 16:16:18 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/08 09:38:54 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_echo(char **cmd_line)
 	while (cmd_line[i] != NULL)
 	{
 		printf("%s", cmd_line[i]);
-		i++;	
+		i++;
 		if (cmd_line[i] != NULL)
 			printf(" ");
 	}
