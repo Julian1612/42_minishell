@@ -74,24 +74,25 @@ static t_data	*ft_newlist(void)
 
 static int put_input1(t_data *data)
 {
+	data->cmd_name = "env";
+	data->cmd_line = ft_split("env", ' ');
+	data->operator = CMD;
+	data = data->next;
+	return (0);
+}
+
+static int put_input2(t_data *data)
+{
 	data->cmd_name = "cd";
 	data->cmd_line = ft_split("cd src", ' ');
 	data->operator = CMD;
 	return (0);
 }
 
-static int put_input2(t_data *data)
-{
-	data->cmd_name = "pwd";
-	data->cmd_line = ft_split("pwd", ' ');
-	data->operator = CMD;
-	return (0);
-}
-
 static int put_input3(t_data *data)
 {
-	data->cmd_name = "env";
-	data->cmd_line = ft_split("env", ' ');
+	data->cmd_name = "cd";
+	data->cmd_line = ft_split("cd builtins", ' ');
 	data->operator = CMD;
 	return (0);
 }
@@ -103,6 +104,14 @@ static int put_input4(t_data *data)
 	data->operator = CMD;
 	return (0);
 }
+
+// static int put_input4(t_data *data)
+// {
+// 	data->cmd_name = "out";
+// 	data->cmd_line = ft_split("out", ' ');
+// 	data->operator = OUT;
+// 	return (0);
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
