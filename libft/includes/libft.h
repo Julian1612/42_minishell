@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 13:00:11 by dgross            #+#    #+#             */
-/*   Updated: 2022/11/26 22:32:13 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/08 15:56:41 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char		*ft_itoa(int n);
 char		**ft_split(char const *s, char c);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_strjoin(char const *s1, char const *s2);
-int			ft_strcmp(char *s1, char *s2);
+int			ft_strcmp(const char *s1, const char *s2);
 int			*ft_int_strdup(const int *s, int len);
 void		*ft_int_memcpy(void *dst, const void *src, size_t n);
 int			ft_atoi_base(const char *str, int base);

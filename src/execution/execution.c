@@ -6,7 +6,11 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/12/08 09:38:43 by jschneid         ###   ########.fr       */
+=======
+/*   Updated: 2022/12/08 14:57:02 by dgross           ###   ########.fr       */
+>>>>>>> 5f3c3a5b01b087a24c24f0b5b87c89c75a95cf13
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +86,8 @@ int	ft_execute(t_koopa *shell, t_data *data)
 		}
 		data = data->next;
 	}
-	waitpid(0, &shell->exit_status, 0);
+	while (waitpid(0, &shell->exit_status, 0) > 0)
+		;
 	close(shell->out);
 	return (0);
 }
