@@ -1,194 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/09 16:51:45 by jschneid          #+#    #+#             */
+/*   Updated: 2022/12/09 17:32:45 by jschneid         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "minishell.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "minishell.h"
-
-void counter_dqoute_len(char *str, int *j, int *token_len);
-void counter_quote_len(char *str, int *j, int *token_len);
-
-void count_str_len(char *str, int *j, int *token_len)
-{
-	while ((str[*j] >= '!' && str[*j] <= '~') && str[*j] != '\0')
-	{
-		(*j)++;
-		(*token_len)++;
-	}
-}
-
-void counter_flag_len(char *str, int *j, int *token_len)
-{
-	(*j)++;
-	(*token_len)++;
-	while (((str[*j] >= 'a' && str[*j] <= 'z')
-			|| (str[*j] >= 'A' && str[*j] <= 'Z'))
-			&&str[*j] != '\0')
-	{
-		if (str[*j + 1] == '"' || str[*j + 1] == 39)
-		{
-			(*j) += 2;
-			while (str[*j] != '"' && str[*j] != '\0')
-			{
-				// printf("str[%d] = %c\n", (*i), str[*i]);
-				(*j)++;
-				(*token_len)++;
-			}
-			(*j)++;
-			(*token_len)++;
-		}
-		(*j)++;
-		(*token_len)++;
-	}
-}
-
-void counter_opp_len(int *j, int *token_len)
-{
-	(*j)++;
-	(*token_len)++;
-}
-
-void counter_nbrs_len(char *str, int *i, int *token_len)
-{
-	(*token_len)++;
-	while (str[*i] >= '0' && str[*i] <= '9')
-	{
-		(*token_len)++;
-		(*i)++;
-	}
-	// printf("%d--skip_nbrs\n", *counter);
-}
-
-
-int	get_token_length(char *str, int *j)
-{
-	int token_len;
-
-	token_len = 0;
-	while (str[*j] != '\0')
-	{
-		if (str[*j] == ' ')
-			skip_whitespace(str, j);
-		else if (str[*j] == '-')
-		{
-			counter_flag_len(str, j, &token_len);
-			return (token_len);
-		}
-		else if (str[*j] == '|' || str[*j] == '<' || str[*j] == '>')
-		{
-			counter_opp_len(j, &token_len);
-			return (token_len);
-		}
-		else if (str[*j] == '"' || str[*j] == 39)
-		{
-			counter_quote_len(str, j, &token_len);
-			return (token_len);
-		}
-		else if (str[*j] >= '0' && str[*j] <= '9')
-		{
-			counter_nbrs_len(str, j, &token_len);
-			return (token_len);
-		}
-		else if (str[*j] >= '!' && str[*j] <= '~')
-		{
-			count_str_len(str, j, &token_len);
-			return (token_len);
-		}
-	}
-	if (str[*j] == '\0')
-			return (token_len);
-	else
-		return (-1);
-}
-
-void cpy_token(char *str, char *token_arr, int token_len, int start_copy)
-{
-	int i;
-
-	i = 0;
-	while (i < token_len)
-	{
-		token_arr[i] = str[start_copy];
-		i++;
-		start_copy++;
-	}
-}
-
-void counter_dqoutes_len(char *str, int *j, int *token_len)
-{
-	if (str[*j] == '"' && str[*j + 1] == '"')
-	{
-		(*j) += 2;
-		return ;
-	}
-	(*token_len)++;
-	(*j)++;
-	while (str[*j] != '"' && str[*j] != '\0')
-	{
-		(*token_len)++;
-		(*j)++;
-	}
-	if (str[*j + 1] == '"')
-	{
-		(*token_len)++;
-		(*j)++;
-		return ;
-	}
-	if (str[*j + 1] != ' ')
-	{
-		while (str[*j] >= '!' && str[*j] <= '~' && str[*j] != '\0')
-		{
-			(*token_len)++;
-			(*j)++;
-		}
-	}
-	else
-	{
-		(*token_len)++;
-		(*j)++;
-	}
-}
-
-void	counter_sqoutes_len(char *str, int *j, int *token_len)
-{
-	if (str[*j] == 39 && str[*j + 1] == 39)
-	{
-		(*j) += 2;
-		return ;
-	}
-	(*token_len)++;
-	(*j)++;
-	while (str[*j] != 39 && str[*j] != '\0')
-	{
-		(*token_len)++;
-		(*j)++;
-	}
-	if (str[*j + 1] == 39)
-	{
-		(*token_len)++;
-		(*j)++;
-		return ;
-	}
-	if (str[*j + 1] != ' ')
-	{
-		while (str[*j] >= '!' && str[*j] <= '~' && str[*j] != '\0')
-		{
-			(*token_len)++;
-			(*j)++;
-		}
-	}
-	else
-	{
-		(*token_len)++;
-		(*j)++;
-	}
-}
-
-void counter_quote_len(char *str, int *j, int *token_len)
-{
-	if (str[*j] == 39)
-		counter_sqoutes_len(str, j, token_len);
-	else if (str[*j] == '"')
-		counter_dqoutes_len(str, j, token_len);
-}
 
 int tokenizer(char *str)
 {
@@ -228,13 +53,13 @@ int tokenizer(char *str)
 		i++;
 	}
 	token_arr[token_count] = NULL;
-	// Test ///
+	// // Test ///
 	i = 0;
 	while (token_arr[i] != NULL)
 	{
 		printf("token_arr[%d] = %s\n", i, token_arr[i]);
 		i++;
 	}
-	// Test ///
+	// // Test ///
 	return (0);
 }

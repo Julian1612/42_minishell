@@ -6,16 +6,17 @@
 #    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/09 11:32:35 by jschneid         ###   ########.fr        #
+#    Updated: 2022/12/09 17:32:13 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 VPATH		= src: src/builtins: \
- 			src/utils: src/signals: src/lexer: \
-			src/token_counter: src/utils_token_counter: \
-			# src/execution:
+ 			src/utils: src/signals: \
+			src/lexer: src/token_counter: src/utils_token_counter: \
+			src/token_array_creator: src/utils_token_array: \
+# src/execution:
 
 LIBFT		= libft/libft.a
 
@@ -23,8 +24,9 @@ SRC			= main.c \
 			utils.c \
 			signals.c \
 			lexer.c token_counter.c utils_token_counter.c \
-			# execute_builtin.c execute_cmd.c execution.c redirection.c \
-			# echo.c cd.c pwd.c export.c env.c exit.c unset.c \
+			token_array_creator.c utils_token_array.c \
+# execute_builtin.c execute_cmd.c execution.c redirection.c
+# echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/
 
