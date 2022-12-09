@@ -28,7 +28,7 @@ echo ''''''''''$USER'''''''''' = 2
 echo """"""""$USER"""""""" = 2
 <Makefile cat -e | wc - l > out.txt  | echo hi | cat -e = 16
 echo test = 2
-ec"ho test"
+ec"ho test"    ??????????????
 echo test       test = 3
 echo test"     "test = 2
 export S="s -a"
