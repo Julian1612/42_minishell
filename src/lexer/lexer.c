@@ -5,20 +5,11 @@
 
 void count_str_len(char *str, int *j, int *token_length)
 {
-	(*token_length)++;
 	while ((str[*j] >= '!' && str[*j] <= '~') && str[*j] != '\0')
 	{
-		printf("istr[%d] = %c\n", (*j), str[*j]);
 		(*j)++;
 		(*token_length)++;
 	}
-}
-
-void skip_whitespace(char *str, int *i)
-{
- 	while (str[*i] == ' ' || str[*i] == '\t')
-		(*i)++;
-	// printf("skip_whitespace\n");
 }
 
 // Hier wird dann i immer weiter hoch gezählt um durch den string zu gehen
@@ -32,15 +23,30 @@ int	get_token_length(char *str, int *j)
 	int token_length;
 
 	token_length = 0;
-	if (str[*j] == ' ')
-		skip_whitespace(str, j);
-	if (str[*j] >= '!' && str[*j] <= '~')
+	while (str[*j] != '\0')
 	{
-		count_str_len(str, j, &token_length);
-		return (token_length);
+		if (str[*j] == ' ')
+			skip_whitespace(str, j);
+		else if (str[*j] >= '!' && str[*j] <= '~')
+		{
+			count_str_len(str, j, &token_length);
+			return (token_length);
+		}
 	}
-	printf("token_length = %d\n", token_length);
 	return (-1);
+}
+
+void cpy_token(char *str, char *token_arr, int token_length, int start_copy)
+{
+	int i;
+
+	i = 0;
+	while (i < token_length)
+	{
+		token_arr[i] = str[start_copy];
+		i++;
+		start_copy++;
+	}
 }
 
 int tokenizer(char *str)
@@ -50,6 +56,7 @@ int tokenizer(char *str)
 	int		token_length;
 	int		i;
 	int		j;
+	int		start_copy;
 
 	token_count = token_counter(str);
 	token_arr = (char **) malloc(sizeof(char *) * (token_count + 1));
@@ -62,18 +69,32 @@ int tokenizer(char *str)
 	j = 0;
 	while (i < token_count)
 	{
+		start_copy = j;
 		token_length = get_token_length(str, &j);
+		if (token_length == -1)
+			return (1);
+		printf("token_length = %d\n", token_length);
 		token_arr[i] = (char *) malloc(sizeof(char) * token_length + 1);
 		if (token_arr[i] == NULL)
 		{
 			perror("minishell: malloc failed\n");
 			return (1);
 		}
+		skip_whitespace(str, &start_copy);
+		printf("start_cpy = %d\n", start_copy);
 		// Hier muss dann der token erstellt werden in einer funktion
-		// cpy_token();
+		cpy_token(str, token_arr[i], token_length, start_copy);
 		token_arr[i][token_length] = '\0';
 		i++;
 	}
+	// Test ///
+	i = 0;
+	while (token_arr[i] != NULL)
+	{
+		printf("token_arr[%d] = %s\n", i, token_arr[i]);
+		i++;
+	}
+	// Test ///
 	token_arr[token_count] = NULL;
 	return (0);
 }

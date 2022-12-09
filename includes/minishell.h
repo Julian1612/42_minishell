@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/12/08 17:09:22 by jschneid         ###   ########.fr       */
-=======
-/*   Updated: 2022/12/08 12:57:58 by dgross           ###   ########.fr       */
->>>>>>> 5f3c3a5b01b087a24c24f0b5b87c89c75a95cf13
+/*   Updated: 2022/12/09 11:32:57 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +66,7 @@ typedef struct s_koopa
 /// @brief		Display a line of text
 /// @param cmd_line the complete command
 /// @return Returns success
-<<<<<<< HEAD
 // int		ft_echo(char **cmd_line, int fd);
-=======
-int		ft_echo(char **cmd_line);
->>>>>>> 5f3c3a5b01b087a24c24f0b5b87c89c75a95cf13
 /// @brief		Display the environment list
 /// @param shell Main struct
 /// @return Returns 0 on success, non-zero otherwise
@@ -118,14 +110,8 @@ int		ft_unset(t_koopa *shell, char *variable);
 /// @brief
 /// @param shell
 /// @param data
-<<<<<<< HEAD
 // void	ft_redirection(t_koopa *shell, t_data *data);
 // void	write_to(t_koopa *shell, t_data *data);
-=======
-void	ft_redirection(t_koopa *shell, t_data *data);
-void	write_to(t_koopa *shell, t_data *data);
-void	ft_cmd(t_koopa *shell, t_data *data);
->>>>>>> 5f3c3a5b01b087a24c24f0b5b87c89c75a95cf13
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
