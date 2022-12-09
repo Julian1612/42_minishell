@@ -6,7 +6,11 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:47 by dgross            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/12/08 09:38:54 by jschneid         ###   ########.fr       */
+=======
+/*   Updated: 2022/12/08 16:00:51 by dgross           ###   ########.fr       */
+>>>>>>> 5f3c3a5b01b087a24c24f0b5b87c89c75a95cf13
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +27,7 @@ int	ft_echo(char **cmd_line)
 
 	i = 1;
 	n_flag = FALSE;
-	if (ft_strcmp(cmd_line[1], "-n") == TRUE)
+	if (!ft_strcmp(cmd_line[i], "-n"))
 	{
 		n_flag = TRUE;
 		i++;

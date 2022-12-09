@@ -3,10 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/12/08 10:11:51 by jschneid         ###   ########.fr        #
+=======
+#    Updated: 2022/12/08 19:47:06 by dgross           ###   ########.fr        #
+>>>>>>> 5f3c3a5b01b087a24c24f0b5b87c89c75a95cf13
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +59,7 @@ obj:
 obj/%.o: %.c
 	@echo "$(g)Compiling  $(w)$<$(de)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
+	
 $(NAME): --minishell_img obj $(OBJ)
 	@$(MAKE) -C ./libft
 	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(LIBFT) $(LINCLUDES) -lreadline -o $(NAME)
