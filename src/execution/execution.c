@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/08 14:57:02 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/09 13:52:49 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	write_to(t_koopa *shell, t_data *data)
 
 static void	pipe_cmd(t_koopa *shell, t_data *data)
 {
-	int pid;
+	int	pid;
 
 	pid = fork();
 	if (pid == 0)

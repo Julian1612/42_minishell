@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/08 18:52:54 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/09 23:23:55 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 	{
 		shell->path = ft_split(ft_getenv(shell, "PATH") + 5, ':');
 		if (shell->path == NULL)
-			;//print_error();
+			printf("Error\n");
 		shell->file = create_path(shell, data->cmd_name);
-		if (shell->file == NULL)
-			;//printf_error();
 	}
 	else
+	{
 		shell->file = data->cmd_line[0];
+	}
 }
 
 void	ft_cmd(t_koopa *shell, t_data *data)
@@ -51,21 +51,21 @@ void	ft_cmd(t_koopa *shell, t_data *data)
 	close(shell->fd[0]);
 	close(shell->fd[1]);
 	prepare_execution(shell, data);
-	if (execve(shell->file, data->cmd_line, shell->envp))
-		printf("ERROR\n");
-	shell->exit_status = 127;
+	execve(shell->file, data->cmd_line, shell->envp);
+	printf("ERROR\n");
+	exit(127);
 }
 
 void	ft_execute_cmd(t_koopa *shell, t_data *data)
 {
-	int pid;
+	int	pid;
 
 	pid = fork();
 	if (pid == 0)
 	{
 		prepare_execution(shell, data);
 		if (execve(shell->file, data->cmd_line, shell->envp))
-			;//printf_error();	
+			printf("Error\n");
+		exit(127);
 	}
 }
-

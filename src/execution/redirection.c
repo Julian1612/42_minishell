@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/05 13:17:13 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/10 00:27:22 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_redirect_infile(t_koopa *shell, t_data *data)
 	if (shell->in == -1)
 	{
 		printf("ERROR\n");
-		return (ERROR);	
+		return (ERROR);
 	}
 	dup2(shell->in, STDIN_FILENO);
 	close(shell->in);
@@ -34,7 +34,7 @@ static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 	if (shell->out == -1)
 	{
 		printf("ERROR\n");
-		return (ERROR);	
+		return (ERROR);
 	}
 	return (0);
 }

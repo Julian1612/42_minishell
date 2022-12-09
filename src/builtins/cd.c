@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/08 19:46:44 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/10 00:22:32 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,22 @@
 #include <stdlib.h> // getenv
 #include <limits.h> // [PATH_MAX]
 #include <stdio.h>
+
 static int	update_pwd(t_koopa *shell)
 {
-	char	*pwd;
+	char	buf[PATH_MAX];
 	char	*oldpwd;
+	char	*pwd;
 
-	pwd = getcwd(NULL, 0);
+	pwd = getcwd(buf, PATH_MAX);
 	if (pwd == NULL)
 		return (1);
 	else
 	{
-		pwd = ft_strjoin("PWD=", pwd);
-		ft_export(shell, pwd);
 		oldpwd = ft_strjoin("OLDPWD=", ft_getenv(shell, "PWD") + 4);
 		ft_export(shell, oldpwd);
+		pwd = ft_strjoin("PWD=", buf);
+		ft_export(shell, pwd);
 		free(oldpwd);
 		free(pwd);
 		oldpwd = NULL;
@@ -44,6 +46,7 @@ int	ft_cd(t_koopa *shell, char *path)
 	{
 		if (chdir(getenv("HOME")))
 		{
+			perror("HOME");
 			return (1);
 		}		
 	}

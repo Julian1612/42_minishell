@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:57 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/01 16:06:36 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/10 00:26:31 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_pwd(void)
 
 	if (getcwd(buf, PATH_MAX))
 		printf("%s\n", buf);
-	else ;
-		//print_error();
+	else
+		printf("ERROR");
 	return (0);
 }

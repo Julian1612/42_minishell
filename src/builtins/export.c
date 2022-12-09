@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/08 19:03:35 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/09 13:45:10 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h> // free
 #include <stdio.h>
+
 static int	print_env(t_koopa *shell, char *variable)
 {
 	if (variable == NULL)
@@ -52,7 +53,7 @@ int	ft_export(t_koopa *shell, char *variable)
 		return (0);
 	tmp_envp = ft_calloc(ft_ptrcnt(shell->envp) + 2, sizeof(char *));
 	if (tmp_envp == NULL)
-		printf("Error\n");
+		perror("malloc");
 	while (shell->envp[++i] != NULL)
 		tmp_envp[i] = ft_strdup(shell->envp[i]);
 	tmp_envp[i++] = ft_strdup(variable);
