@@ -3,25 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/08 19:47:06 by dgross           ###   ########.fr        #
+#    Updated: 2022/12/09 17:32:13 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-VPATH		= src: src/builtins: src/execution: src/utils: src/signals: src/lexer: \
-			src/token_counter: src/utils_token_counter:
+VPATH		= src: src/builtins: \
+ 			src/utils: src/signals: \
+			src/lexer: src/token_counter: src/utils_token_counter: \
+			src/token_array_creator: src/utils_token_array: \
+# src/execution:
 
 LIBFT		= libft/libft.a
 
-SRC			= main.c echo.c cd.c pwd.c export.c env.c exit.c unset.c \
-			  execute_builtin.c execute_cmd.c execution.c redirection.c \
-			  utils.c \
-			  signals.c \
-			  lexer.c token_counter.c utils_token_counter.c \
+SRC			= main.c \
+			utils.c \
+			signals.c \
+			lexer.c token_counter.c utils_token_counter.c \
+			token_array_creator.c utils_token_array.c \
+# execute_builtin.c execute_cmd.c execution.c redirection.c
+# echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/
 
@@ -52,7 +57,7 @@ obj:
 obj/%.o: %.c
 	@echo "$(g)Compiling  $(w)$<$(de)"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	
+
 $(NAME): --minishell_img obj $(OBJ)
 	@$(MAKE) -C ./libft
 	@$(CC) $(OBJ) $(CFLAGS) $(INCLUDES) $(LIBFT) $(LINCLUDES) -lreadline -o $(NAME)
