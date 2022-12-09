@@ -6,14 +6,14 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:09 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/08 10:21:27 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/09 17:29:53 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "minishell.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "minishell.h"
 
 void skip_str(char *str, int *i, int *counter)
 {
