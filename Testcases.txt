@@ -48,6 +48,7 @@ export S="s -a"
 l$S"l"
 echo """""""-n"$USER"-n"""""""
 echo "-n"$USER-n "kek"
+<<<<<<< HEAD
 <Makefile cat -e | wc - l > out.txt  | echo hi | cat -e
 < in > out
 env > out
@@ -61,6 +62,22 @@ echo $PWD
 echo pathis$PWD
 echo -nnnn bonjour
 cd $PWD/file_tests
+=======
+
+< Makefile cat -e | wc -l > out.txt | echo hi | cat -e				--> works (execution only)
+< in > out															--> works (execution only)
+env > out															--> works (execution only)
+ls -l | cat -e > out > out2 > out3 > out4							--> works (execution only)
+< in1 < in2 < in3 env | grep PWD | cat -e							-->
+and all the shit whithous spaces									-->
+echo -n -k -f suckmydick											-->
+echo $?																-->
+echo this is: $?exitcode											-->
+echo $PWD															-->
+echo pathis$PWD														-->
+echo -nnnn bonjour													-->
+cd $PWD/file_tests													-->
+>>>>>>> f758c7726a912c18261ee70655af00d54f2b0622
 
 CD:
 
@@ -151,58 +168,58 @@ echo $PWD															-->
 
 EXIT:
 
-exit 0 0
-exit 42 42
-exit -42 -24
-exit 42
-exit 42 53 68
-exit 259
-exit -12030
-exit --1239312
-exit ++++1203020103
-exit +0
-exit ++++++0
-exit -----0
-exit azerty
-exit kewkwqke
-exit a
-exit z
-exit "1"
-exit "2"
-exit "+102"
-exit "1230"
-exit "+++1230"
-exit "1"23
-exit "2"32"32"
-exit "'42'"
-exit '42'"42"42
-exit +'42'"42"42
-exit -'42'"42"42
-exit 9223372036854775807
-exit 9223372036854775808
-exit -4
-exit wrong
-exit wrong_command
-exit something
-exit 1
-exit -1
-exit 42
-exit 0
-exit --000
-exit +++++++000
-exit ++++3193912939
-exit ---31232103012
-exit "something"
-exit q
-exit help
-exit export
-exit echo
-exit cd ..
-exit 0 0
-exit something somethingv2
-exit 42 42 42 42 42
-exit echo something
-exit exit
+exit 0 0							-->
+exit 42 42							-->
+exit -42 -24						-->												
+exit 42								-->
+exit 42 53 68						-->
+exit 259							-->
+exit -12030							-->
+exit --1239312						-->
+exit ++++1203020103					-->
+exit +0								-->
+exit ++++++0						-->
+exit -----0							-->
+exit azerty							-->
+exit kewkwqke						-->
+exit a								-->
+exit z								-->
+exit "1"							-->
+exit "2"							-->
+exit "+102"							-->
+exit "1230"							-->
+exit "+++1230"						-->
+exit "1"23							-->
+exit "2"32"32"						-->
+exit "'42'"							-->
+exit '42'"42"42						-->
+exit +'42'"42"42					-->
+exit -'42'"42"42					-->
+exit 9223372036854775807			-->
+exit 9223372036854775808			-->
+exit -4								-->
+exit wrong							-->
+exit wrong_command					-->
+exit something						-->
+exit 1								-->
+exit -1								-->
+exit 42								-->
+exit 0								-->
+exit --000							-->
+exit +++++++000						-->
+exit ++++3193912939					-->
+exit ---31232103012					-->
+exit "something"					-->
+exit q								-->
+exit help							-->
+exit export							-->
+exit echo							-->
+exit cd ..							-->
+exit 0 0							-->
+exit something somethingv2			-->
+exit 42 42 42 42 42					-->
+exit echo something					-->
+exit exit							-->
 
 EXPORT:
 

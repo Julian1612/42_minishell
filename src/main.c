@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/07 16:42:32 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/10 12:18:30 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	main(int argc, char **argv, char **envp)
 	act.sa_sigaction = ft_signal_handler;
 	sigaction(SIGQUIT, &act, 0);
 	sigaction(SIGINT, &act, 0);
-	argc = 0;
-	argv = NULL;
-	envp = NULL;
+	argc++;
+	(void)argv;
+	(void)envp;
 	while (1)
 	{
 		cmd = readline("👉 ");
