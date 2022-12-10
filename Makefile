@@ -3,30 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/09 17:32:13 by jschneid         ###   ########.fr        #
+#    Updated: 2022/12/10 15:24:12 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
-VPATH		= src: src/builtins: \
- 			src/utils: src/signals: \
-			src/lexer: src/token_counter: src/utils_token_counter: \
-			src/token_array_creator: src/utils_token_array: \
-# src/execution:
+VPATH		= src: src/builtins: src/utils: src/signals: \
+			  src/lexer: src/token_counter: src/utils_token_counter: \
+			  src/token_array_creator: src/utils_token_array: \
+			  src/execution:
 
 LIBFT		= libft/libft.a
 
-SRC			= main.c \
-			utils.c \
-			signals.c \
-			lexer.c token_counter.c utils_token_counter.c \
-			token_array_creator.c utils_token_array.c \
-# execute_builtin.c execute_cmd.c execution.c redirection.c
-# echo.c cd.c pwd.c export.c env.c exit.c unset.c
+SRC			= test.c \
+			  utils.c \
+			  signals.c \
+			  lexer.c token_counter.c utils_token_counter.c \
+			  token_array_creator.c utils_token_array.c \
+			  execution.c execute_builtin.c execute_cmd.c \
+			  heredoc.c redirection.c expansion.c \
+			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/
 

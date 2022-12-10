@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/10 13:35:43 by dgross           ###   ########.fr       */
+/*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
+/*   Updated: 2022/12/10 15:24:23 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h> // exit
 
-void	ft_exit(t_koopa *shell)
+// remove quots
+// variable expansion
+// tilde expansion
+// substitution
+
+int ft_expand(t_koopa *shell, t_data *data)
 {
 	(void)shell;
-	exit(0);
+	(void)data;
+	return (0);
 }
