@@ -50,7 +50,7 @@ static int	init_cmd(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i != 0)
+	while (i != 6)
 	{
 		add_back(&data, ft_newlist());
 		i++;
@@ -74,36 +74,60 @@ static t_data	*ft_newlist(void)
 
 static int put_input1(t_data *data)
 {
-	data->cmd_name = "env";
-	data->cmd_line = ft_split("env", ' ');
+	data->cmd_name = "ls";
+	data->cmd_line = ft_split("ls -l", ' ');
+	data->operator = PIPE;
+	data = data->next;
+	data->cmd_name = "cat";
+	data->cmd_line = ft_split("cat -e", ' ');
 	data->operator = CMD;
+	data = data->next;
+	data->cmd_name = "out";
+	data->cmd_line = ft_split("out", ' ');
+	data->operator = OUT;
+	data = data->next;
+	data->cmd_name = "out1";
+	data->cmd_line = ft_split("out1", ' ');
+	data->operator = OUT;
+	data = data->next;
+	data->cmd_name = "out2";
+	data->cmd_line = ft_split("out2", ' ');
+	data->operator = OUT;
+	data = data->next;
+	data->cmd_name = "out3";
+	data->cmd_line = ft_split("out3", ' ');
+	data->operator = OUT;
+	data = data->next;
+	data->cmd_name = "out4";
+	data->cmd_line = ft_split("out4", ' ');
+	data->operator = OUT;
 	data = data->next;
 	return (0);
 }
 
-static int put_input2(t_data *data)
-{
-	data->cmd_name = "cd";
-	data->cmd_line = ft_split("cd src", ' ');
-	data->operator = CMD;
-	return (0);
-}
+//static int put_input2(t_data *data)
+//{
+//	data->cmd_name = "cd";
+//	data->cmd_line = ft_split("cd src", ' ');
+//	data->operator = CMD;
+//	return (0);
+//}
 
-static int put_input3(t_data *data)
-{
-	data->cmd_name = "cd";
-	data->cmd_line = ft_split("cd builtins", ' ');
-	data->operator = CMD;
-	return (0);
-}
+//static int put_input3(t_data *data)
+//{
+//	data->cmd_name = "cd";
+//	data->cmd_line = ft_split("cd builtins", ' ');
+//	data->operator = CMD;
+//	return (0);
+//}
 
-static int put_input4(t_data *data)
-{
-	data->cmd_name = "env";
-	data->cmd_line = ft_split("env", ' ');
-	data->operator = CMD;
-	return (0);
-}
+//static int put_input4(t_data *data)
+//{
+//	data->cmd_name = "env";
+//	data->cmd_line = ft_split("env", ' ');
+//	data->operator = CMD;
+//	return (0);
+//}
 
 // static int put_input4(t_data *data)
 // {
@@ -124,15 +148,15 @@ int	main(int argc, char **argv, char **envp)
 	init_cmd(data);
 	put_input1(data);
 	ft_execute(shell, data);
-	printf("-----------------------------------------------------------\n");
-	put_input2(data);
-	ft_execute(shell, data);
-	printf("-----------------------------------------------------------\n");
-	put_input3(data);
-	ft_execute(shell, data);
-	printf("-----------------------------------------------------------\n");
-	put_input4(data);
-	ft_execute(shell, data);
+	//printf("-----------------------------------------------------------\n");
+	//put_input2(data);
+	//ft_execute(shell, data);
+	//printf("-----------------------------------------------------------\n");
+	//put_input3(data);
+	//ft_execute(shell, data);
+	//printf("-----------------------------------------------------------\n");
+	//put_input4(data);
+	//ft_execute(shell, data);
 	argc++;
 	(void) argv;
 	(void)envp;
