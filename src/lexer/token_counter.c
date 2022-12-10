@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:38 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/09 17:29:31 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/10 11:00:40 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,15 @@ void	skip_flags(char *str, int *i, int *counter)
 	}
 }
 
-void	skip_opperator(int *i, int *counter)
+void	skip_opperator(char *str, int *i, int *counter)
 {
+	if ((str[*i] == '>' && str[*i + 1] == '>')
+		|| (str[*i] == '<' && str[*i + 1] == '<'))
+	{
+		(*i) += 2;
+		(*counter) ++;
+		return ;
+	}
 	(*i)++;
 	(*counter)++;
 }
@@ -55,7 +62,7 @@ int	token_counter(char *str)
 		else if (str[i] == '-')
 			skip_flags(str, &i, &count);
 		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
-			skip_opperator(&i, &count);
+			skip_opperator(str, &i, &count);
 		else if (str[i] == 39 || str[i] == '"')
 			skip_qoutes(str, &i, &count);
 		else if (str[i] >= '0' && str[i] <= '9')

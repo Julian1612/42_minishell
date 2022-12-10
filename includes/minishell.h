@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/09 17:12:14 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/10 14:55:17 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@
 # define HERE_DOC 5
 
 /// @brief cmd/builtin linked list
-typedef struct s_data
+typedef struct	s_data
 {
 	char			*cmd_name;	// Name of the function (example: echo)
-	char			**cmd_line;	// The function with argument (example: echo hallo)
+	char			**cmd_line;	// The function with argument (example: 'echo' 'hallo')
 	int				operator;	// Specifies the following operator (example: | or < or > or << or >>)
 	struct s_data	*next;
-}t_data;
+}				t_data;
 
 /// @brief Main stuct
 typedef struct s_koopa
@@ -159,7 +159,7 @@ int		token_counter(char *str);
 /// @brief
 /// @param i
 /// @param counter
-void	skip_opperator(int *i, int *counter);
+void	skip_opperator(char *str, int *i, int *counter);
 /// @brief
 /// @param str
 /// @param i
@@ -198,7 +198,7 @@ void	counter_flag_len(char *str, int *j, int *token_len);
 /// @brief
 /// @param str
 /// @param i
-void	counter_opp_len(int *j, int *token_len);
+void	counter_opp_len(char *str, int *j, int *token_len);
 /// @brief
 /// @param str
 /// @param i
