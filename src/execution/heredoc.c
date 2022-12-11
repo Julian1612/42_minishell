@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/11 08:48:26 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/11 18:53:16 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_heredoc(t_koopa *shell, t_data *data)
 		input = readline("> ");
 		if (!input)
 		{
-			printf("ERROR\n");	
+			printf("ERROR\n");
 			break ;
 		}
 		if (ft_strncmp(input, data->cmd_name, ft_strlen(data->cmd_name) == 0))
@@ -41,7 +41,7 @@ int	ft_heredoc(t_koopa *shell, t_data *data)
 	}
 	close(shell->in);
 	free(input);
-	shell->in = open("here_doc", O_RDONLY);
+	shell->in = open("heredoc", O_RDONLY);
 	dup2(shell->in, STDIN_FILENO);
 	close(shell->in);
 	return (0);
