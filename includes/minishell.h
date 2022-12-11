@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/11 08:50:06 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/11 18:05:07 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,80 +151,26 @@ void	ft_set_termianl(void);
 ////////		 LEXER	 		////////
 ////////////////////////////////////////
 
-/// @brief
-/// @param str
-/// @return
 int		tokenizer(char *str);
-/// @brief
-/// @param str
-/// @return
 int		token_counter(char *str);
-/// @brief
-/// @param i
-/// @param counter
 void	skip_opperator(char *str, int *i, int *counter);
-/// @brief
-/// @param str
-/// @param i
-/// @param counter
 void	skip_flags(char *str, int *i, int *counter);
-/// @brief
-/// @param str
-/// @param i
 void	skip_qoutes(char *str, int *i, int *counter);
-/// @brief
-/// @param str
-/// @param i
-/// @param counter
+void	skip_sqoutes(char *str, int *i, int *counter);
+void	skip_dqoutes(char *str, int *i, int *counter);
 void	skip_backslash(char *str, int *i, int *counter);
-/// @brief
-/// @param str
-/// @param i
-/// @param counter
 void	skip_nbrs(char *str, int *i, int *counter);
-/// @brief
-/// @param str
-/// @param i
 void	skip_whitespace(char *str, int *i);
-/// @brief
-/// @param str
-/// @param i
 void	skip_str(char *str, int *i, int *counter);
-/// @brief
-/// @param str
-/// @param i
-void	counter_str_len(char *str, int *j, int *token_len);
-/// @brief
-/// @param str
-/// @param i
-void	counter_flag_len(char *str, int *j, int *token_len);
-/// @brief
-/// @param str
-/// @param i
-void	counter_opp_len(char *str, int *j, int *token_len);
-/// @brief
-/// @param str
-/// @param i
-void	counter_nbrs_len(char *str, int *i, int *token_len);
-/// @brief
-/// @param str
-/// @param i
+int		counter_str_len(char *str, int *j);
+int		counter_flag_len(char *str, int *j);
+int		counter_opp_len(char *str, int *j);
+int		counter_nbrs_len(char *str, int *i);
 int		get_token_length(char *str, int *j);
-/// @brief
-/// @param str
-/// @param i
-void	counter_dqoutes_len(char *str, int *j, int *token_len);
-/// @brief
-/// @param str
-/// @param i
+int		counter_dqoutes_len(char *str, int *j);
 void	cpy_token(char *str, char *token_arr, int token_len, int start_copy);
-/// @brief
-/// @param str
-/// @param i
-void	counter_sqoutes_len(char *str, int *j, int *token_len);
-/// @brief
-/// @param str
-/// @param i
-void	counter_quote_len(char *str, int *j, int *token_len);
+int		counter_sqoutes_len(char *str, int *j);
+int		counter_quote_len(char *str, int *j);
+int		init_arr(char **token_arr, char *str, int *j, int *i);
 
 #endif
