@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/11 08:50:06 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/11 15:16:02 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-//# include "/Users/jschneid/42_Projects/minishell/42_minishell/libft/includes/libft.h"
 #include "libft.h"
 # include "stdbool.h"
 # include <signal.h>
@@ -27,7 +26,14 @@
 # define IN 2
 # define OUT 3
 # define APPEND 4
-# define HERE_DOC 5
+# define HEREDOC 5
+
+typedef struct s_exp
+{
+	char 	*line;
+	int		quote_typ;
+	int 	expand;
+}			t_exp;
 
 /// @brief cmd/builtin linked list
 typedef struct	s_data

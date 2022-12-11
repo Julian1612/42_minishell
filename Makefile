@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/11 09:19:33 by dna              ###   ########.fr        #
+#    Updated: 2022/12/11 12:04:29 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC			= test.c \
 			  lexer.c token_counter.c utils_token_counter.c \
 			  token_array_creator.c utils_token_array.c \
 			  execution.c execute_builtin.c execute_cmd.c \
-			  heredoc.c redirection.c\
+			  heredoc.c redirection.c expansion.c\
 			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/

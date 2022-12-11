@@ -50,7 +50,7 @@ static int	init_cmd(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i != 6)
+	while (i != 1)
 	{
 		add_back(&data, ft_newlist());
 		i++;
@@ -71,11 +71,11 @@ static t_data	*ft_newlist(void)
 	data->next = NULL;
 	return (data);
 }
-
+//"sos $PATH '$PATH' kek" "sooos"
 static int put_input1(t_data *data)
 {
-	data->cmd_name = "ls";
-	data->cmd_line = ft_split("ls -l", ' ');
+	data->cmd_name = "echo";
+	data->cmd_line = ft_split("echo \"sos $KEK \'$PATH\' kek\" \"soos\"", ' ');
 	data->operator = PIPE;
 	data = data->next;
 	data->cmd_name = "cat";
