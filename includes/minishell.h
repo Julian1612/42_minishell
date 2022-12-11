@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/10 17:54:27 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/11 08:50:06 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	ft_redirection(t_koopa *shell, t_data *data);
 void	write_to(t_koopa *shell, t_data *data);
 void	ft_cmd(t_koopa *shell, t_data *data);
 int		ft_expand(t_koopa *shell, t_data *data);
+int		ft_heredoc(t_koopa *shell, t_data *data);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
