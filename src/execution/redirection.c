@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/10 15:36:04 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/11 08:49:17 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_redirection(t_koopa *shell, t_data *data)
 	while (data != NULL)
 	{
 		if (data->operator == HERE_DOC)
-			;//ft_heredoc(shell, data);
+			ft_heredoc(shell, data);
 		else if (data->operator == IN)
 			ft_redirect_infile(shell, data);
 		else if (data->operator == OUT)

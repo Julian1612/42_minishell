@@ -48,7 +48,6 @@ export S="s -a"
 l$S"l"
 echo """""""-n"$USER"-n"""""""
 echo "-n"$USER-n "kek"
-<<<<<<< HEAD
 <Makefile cat -e | wc - l > out.txt  | echo hi | cat -e
 < in > out
 env > out
@@ -62,22 +61,6 @@ echo $PWD
 echo pathis$PWD
 echo -nnnn bonjour
 cd $PWD/file_tests
-=======
-
-< Makefile cat -e | wc -l > out.txt | echo hi | cat -e				--> works (execution only)
-< in > out															--> works (execution only)
-env > out															--> works (execution only)
-ls -l | cat -e > out > out2 > out3 > out4							--> works (execution only)
-< in1 < in2 < in3 env | grep PWD | cat -e							-->
-and all the shit whithous spaces									-->
-echo -n -k -f suckmydick											-->
-echo $?																-->
-echo this is: $?exitcode											-->
-echo $PWD															-->
-echo pathis$PWD														-->
-echo -nnnn bonjour													-->
-cd $PWD/file_tests													-->
->>>>>>> f758c7726a912c18261ee70655af00d54f2b0622
 
 CD:
 

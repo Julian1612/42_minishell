@@ -81,27 +81,6 @@ static int put_input1(t_data *data)
 	data->cmd_name = "cat";
 	data->cmd_line = ft_split("cat -e", ' ');
 	data->operator = CMD;
-	data = data->next;
-	data->cmd_name = "out";
-	data->cmd_line = ft_split("out", ' ');
-	data->operator = OUT;
-	data = data->next;
-	data->cmd_name = "out1";
-	data->cmd_line = ft_split("out1", ' ');
-	data->operator = OUT;
-	data = data->next;
-	data->cmd_name = "out2";
-	data->cmd_line = ft_split("out2", ' ');
-	data->operator = OUT;
-	data = data->next;
-	data->cmd_name = "out3";
-	data->cmd_line = ft_split("out3", ' ');
-	data->operator = OUT;
-	data = data->next;
-	data->cmd_name = "out4";
-	data->cmd_line = ft_split("out4", ' ');
-	data->operator = OUT;
-	data = data->next;
 	return (0);
 }
 
