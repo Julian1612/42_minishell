@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:51:45 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/11 17:40:08 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/12 10:04:46 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-int	tokenizer(char *str)
+char	**tokenizer(char *str)
 {
 	char	**token_arr;
 	int		token_count;
@@ -27,23 +27,15 @@ int	tokenizer(char *str)
 	token_count = token_counter(str);
 	token_arr = (char **) malloc(sizeof(char *) * (token_count + 1));
 	if (token_arr == NULL)
-		return (1);
+		return (NULL);
 	while (i < token_count)
 	{
 		if (init_arr(token_arr, str, &j, &i) == 1)
-			return (1);
+			return (NULL);
 		i++;
 	}
 	token_arr[token_count] = NULL;
-	// Test //
-	int x = 0;
-	while (token_arr[x] != NULL)
-	{
-		printf("%s\n", token_arr[x]);
-		x++;
-	}
-	// Test //
-	return (0);
+	return (token_arr);
 }
 
 int	init_arr(char **token_arr, char *str, int *j, int *i)
