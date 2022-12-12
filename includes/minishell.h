@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/11 19:01:10 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/12 10:20:07 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include "libft.h"
+# include "libft.h"
 # include "stdbool.h"
 # include <signal.h>
 
@@ -30,9 +30,9 @@
 
 typedef struct s_exp
 {
-	char 	*line;
+	char	*line;
 	int		quote_typ;
-	int 	expand;
+	int		expand;
 }			t_exp;
 
 /// @brief cmd/builtin linked list
@@ -157,7 +157,7 @@ void	ft_set_termianl(void);
 ////////		 LEXER	 		////////
 ////////////////////////////////////////
 
-int		tokenizer(char *str);
+char	**tokenizer(char *str);
 int		token_counter(char *str);
 void	skip_opperator(char *str, int *i, int *counter);
 void	skip_flags(char *str, int *i, int *counter);
@@ -178,5 +178,18 @@ void	cpy_token(char *str, char *token_arr, int token_len, int start_copy);
 int		counter_sqoutes_len(char *str, int *j);
 int		counter_quote_len(char *str, int *j);
 int		init_arr(char **token_arr, char *str, int *j, int *i);
+
+////////////////////////////////////////
+////////		PARSER	 		////////
+////////////////////////////////////////
+
+t_data	*parser(char **token_arr);
+void	init_node_null(t_data *node);
+void	init_list(t_data *head, char **token_arr);
+t_data	*create_list(const int nbr_cmd);
+int		cmd_counter(char **token_arr);
+t_data	*create_list(const int nbr_cmd);
+void	init_node_null(t_data *node);
+t_data	*create_head(void);
 
 #endif
