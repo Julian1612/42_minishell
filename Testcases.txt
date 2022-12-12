@@ -62,6 +62,7 @@ echo pathis$PWD
 echo -nnnn bonjour
 cd $PWD/file_tests
 
+../bin/ls soll bash: ../bin/ls: No such file or directory ausgeben --> geht nicht
 CD:
 
 cd 								-->

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/11 15:35:50 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/12 10:50:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ char	*ft_getenv(t_koopa *shell, char *name)
 	return (NULL);
 }
 
-void	free_envp(t_koopa *shell)
+void	free_double(char **double_pointer)
 {
 	int	i;
 
 	i = -1;
-	while (shell->envp[++i] != NULL)
-		free(shell->envp[i]);
-	free(shell->envp);
+	while (double_pointer[++i] != NULL)
+		free(double_pointer[i]);
+	free(double_pointer);
 }
