@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/11 12:28:16 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/12 11:13:25 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	main(int argc, char **argv, char **envp)
 	// t_koopa	*shell;
 	struct	sigaction act;
 	char	*cmd;
+	char	**token_arr;
+	t_data	*cmd_list;
 
 	// shell = NULL;
 	// init_koopa_shell(shell);
@@ -64,11 +66,27 @@ int	main(int argc, char **argv, char **envp)
 		cmd = readline("👉 ");
 		if (cmd == NULL)
 			return (0);
-		if (tokenizer(cmd))
-		{
-			perror("minishell: malloc failed\n");
+		token_arr = tokenizer(cmd);
+		if (token_arr == NULL)
 			return (1);
+		// Test //
+		int x = 0;
+		while (token_arr[x] != NULL)
+		{
+			printf("%s\n", token_arr[x]);
+			x++;
 		}
+		// Test //
+		cmd_list = parser(token_arr);
+		// TESTER //
+		t_data	*cur = cmd_list;
+		while (cur != NULL)
+		{
+			printf("%s\n", cur->cmd_name);
+			printf("%d\n", cur->operator);
+			cur = cur->next;
+		}
+		// TESTER //
 		free(cmd);
 	}
 	return (0);
