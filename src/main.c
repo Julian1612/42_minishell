@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/13 10:51:53 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/13 11:22:29 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,13 @@ int	main(int argc, char **argv, char **envp)
 		cmd_list = parser(token_arr);
 		// TESTER //
 		t_data	*cur = cmd_list;
+		int g = 1;
 		while (cur != NULL)
 		{
-			printf("%s\n", cur->cmd_name);
+			printf("%d. node: %s\n", g, cur->cmd_name);
 			// printf("%d\n", cur->operator);
 			cur = cur->next;
+			g++;
 		}
 		// TESTER //
 		free(cmd);
