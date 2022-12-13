@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 20:35:43 by dgross            #+#    #+#             */
-/*   Updated: 2022/05/01 19:08:41 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/13 14:59:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ static int	ft_len(int n)
 	return (i);
 }
 
+/// @brief	Allocates (with malloc(3)) and returns a string
+///			representing the integer received as an argument.
+///			Negative numbers must be handled.
+/// @param n 	the integer to convert.
+/// @return	The string representing the integer.
+///			NULL if the allocation fails.
 char	*ft_itoa(int n)
 {
 	char		*str;

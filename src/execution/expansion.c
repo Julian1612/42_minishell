@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/13 12:22:38 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/13 13:33:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ static void	exec_expand(t_koopa *shell, t_exp *exp, int *idx)
 {
 	char	*variable;
 	char	*content;
+	char	*new_str;
 
 	variable = get_variable(exp, idx);
 	content = ft_getenv(shell, variable) + ft_name_len(variable);
+	new_str = ft_substr();
 	ft_strlen(content);
 }
 

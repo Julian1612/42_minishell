@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 12:52:42 by dgross            #+#    #+#             */
-/*   Updated: 2022/05/01 19:24:30 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/13 14:58:45 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 #include <stddef.h> // size_t NULL
 #include <stdlib.h> // malloc
 
+/// @brief	Allocates (with malloc(3)) and returns a new
+///			string, which is the result of the concatenation
+///			of ’s1’ and ’s2’.
+/// @param s1 	The prefix string.
+/// @param s2 	The suffix string.
+/// @return	The new string.
+///			NULL if the allocation fails.
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*new_string;

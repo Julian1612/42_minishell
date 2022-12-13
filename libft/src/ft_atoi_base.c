@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 14:13:27 by dgross            #+#    #+#             */
-/*   Updated: 2022/10/04 18:00:50 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/13 15:35:20 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ static int	ft_isdigit_base(char c, int base)
 	return (-1);
 }
 
+/// @brief	 Converts the initial portion of the string pointed to
+///   		 by str to base representation.
+/// @param str 	pointer to the null-terminated byte string to be interpreted
+///	@param base 	Specifies the radix to use for the conversion.
+/// @return Integer value corresponding to the contents of str on success.
+///			If no conversion can be performed, ​0​ is returned.
 int	ft_atoi_base(const char *str, int base)
 {
 	unsigned long	result;
