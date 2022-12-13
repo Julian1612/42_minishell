@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/12 19:12:28 by dgross           ###   ########.fr        #
+#    Updated: 2022/12/13 11:12:47 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ VPATH		= src: src/builtins: src/utils: src/signals: \
 
 LIBFT		= libft/libft.a
 
-SRC			= test.c \
+SRC			= main.c \
 			  utils.c \
 			  signals.c \
 			  lexer.c token_counter.c token_length.c \
