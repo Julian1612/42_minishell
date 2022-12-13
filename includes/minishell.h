@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/12 19:13:06 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/13 12:01:00 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@
 # define OUT 3
 # define APPEND 4
 # define HEREDOC 5
-# define EXPAND 6
-# define SKIP 7
 
 typedef struct s_exp
 {
 	char	*line;
-	int		quote_typ;
-	int		status;
+	int		squo;
+	int		dquo;
 }			t_exp;
 
 /// @brief cmd/builtin linked list
