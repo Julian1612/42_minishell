@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/12 17:57:04 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/13 12:10:23 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ char	*double_to_str(t_data *data)
 void	init_exp(t_exp *exp, t_data *data)
 {
 	exp->line = double_to_str(data);
-	exp->quote_typ = -1;
-	exp->status = EXPAND;
+	exp->squo = -1;
+	exp->dquo = -1;
 }
 
 int	ft_isspace(int c)
