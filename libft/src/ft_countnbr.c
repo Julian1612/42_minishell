@@ -6,12 +6,15 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 20:00:42 by dgross            #+#    #+#             */
-/*   Updated: 2022/09/09 13:43:37 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/13 16:18:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// counts the length of digit
+
+/// @brief	Counts the length of digit
+/// @param digit the number to count
+/// @return length of digit
 int	ft_countnbr(int digit)
 {
 	int	i;

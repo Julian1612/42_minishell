@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 14:46:55 by dgross            #+#    #+#             */
-/*   Updated: 2022/05/03 17:25:47 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/13 14:58:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ static char	*ft_tester(char **new_str, size_t i, char const *s, char c)
 	return (new_str[i]);
 }
 
+/// @brief	Allocates (with malloc(3)) and returns an array
+///			of strings obtained by splitting ’s’ using the
+///			character ’c’ as a delimiter. The array must end
+///			with a NULL pointer.
+/// @param s 	The string to be split.
+/// @param c 	The delimiter character.
+/// @return		The array of new strings resulting from the split.
+///				NULL if the allocation fails.
 char	**ft_split(char const *s, char c)
 {
 	char	**new_str;
