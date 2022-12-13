@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/12 10:20:07 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:13:06 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@
 # define OUT 3
 # define APPEND 4
 # define HEREDOC 5
+# define EXPAND 6
+# define SKIP 7
 
 typedef struct s_exp
 {
 	char	*line;
 	int		quote_typ;
-	int		expand;
+	int		status;
 }			t_exp;
 
 /// @brief cmd/builtin linked list
@@ -121,6 +123,9 @@ void	write_to(t_koopa *shell, t_data *data);
 void	ft_cmd(t_koopa *shell, t_data *data);
 int		ft_expand(t_koopa *shell, t_data *data);
 int		ft_heredoc(t_koopa *shell, t_data *data);
+int		ft_isspace(int c);
+void	init_exp(t_exp *exp, t_data *data);
+char	*double_to_str(t_data *data);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
@@ -137,7 +142,7 @@ int		ft_name_len(char *variable);
 char	*ft_getenv(t_koopa *shell, char *name);
 /// @brief Free's the enviroment pointer
 /// @param shell Main struct
-void	free_envp(t_koopa *shell);
+void	free_double(char **double_pointer);
 
 ////////////////////////////////////////
 ////////		 SIGNALS  		////////

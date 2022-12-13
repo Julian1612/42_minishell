@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/08 17:00:57 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/12 10:49:11 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	ft_unset(t_koopa *shell, char *variable)
 		}
 	}
 	tmp_envp[k] = NULL;
-	free_envp(shell);
+	free_double(shell->envp);
 	shell->envp = tmp_envp;
 	return (0);
 }
