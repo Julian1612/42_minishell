@@ -3,25 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/12 19:05:00 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/13 12:22:38 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-//static void	remove_quotes(t_exp *exp, int *i)
-//{
-//	exp->quote_typ = exp->line[*i];
-//	if (exp->line[*i] == '\'')
-//		exp->status = SKIP;
-//	else
-//		exp->status = EXPAND;
-//}
 
 static char	*get_variable(t_exp *exp, int *idx)
 {
@@ -62,9 +53,11 @@ int	ft_expand(t_koopa *shell, t_data *data)
 	init_exp(&exp, data);
 	while (exp.line[++i] != '\0')
 	{
-		if (exp.line[i] == '\'' || exp.line[i] == '\"')
-			;//remove_quots(&exp, &i);
-		else if (exp.line[i] == '$')
+		if (exp.line[i] == '\'' && exp.dquo < 0)
+			exp.squo *= -1;
+		if (exp.line[i] == '\"' && exp.squo < 0)
+			exp.dquo *= -1;
+		if (exp.line[i] == '$' && exp.dquo == 1)
 			exec_expand(shell, &exp, &i);
 	}
 	return (0);
