@@ -74,8 +74,8 @@ static t_data	*ft_newlist(void)
 //"sos $PATH '$PATH' kek" "sooos"
 static int put_input1(t_data *data)
 {
-	data->cmd_name = "ls";
-	data->cmd_line = ft_split("ls", ' ');
+	data->cmd_name = "echo";
+	data->cmd_line = ft_split("echo \"$USER \'$USER\' $USER\" \"HALLO\"", ' ');
 	data->operator = CMD;
 	data = data->next;
 	//data->cmd_name = "cat";
