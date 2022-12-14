@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:07:16 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/14 15:43:48 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/14 22:30:44 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	**init_cmd_line(char **token_arr, int *i)
 
 int	get_following_operator(char **token_arr, int i)
 {
-	printf("i: %d\n", i);
+	// printf("i: %d\n", i);
 	while (token_arr[i] != NULL) // anderen opperatoren einfügen >>, <<, ||
 	{
 		if (token_arr[i][0] == '|')

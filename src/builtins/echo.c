@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:47 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/11 18:53:38 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/14 23:00:08 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_echo(char **cmd_line)
 
 	i = 1;
 	n_flag = FALSE;
-	if (!ft_strcmp(cmd_line[i], "-n"))
+	if (cmd_line[i] != NULL && ft_strcmp(cmd_line[i], "-n") == 0)
 	{
 		n_flag = TRUE;
 		i++;
