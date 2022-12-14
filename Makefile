@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/14 09:20:36 by jschneid         ###   ########.fr        #
+#    Updated: 2022/12/14 15:48:26 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,16 @@ VPATH		= src: src/builtins: src/utils: src/signals: \
 
 LIBFT		= libft/libft.a
 
-SRC			= main.c \
+SRC			= test.c \
 			  utils.c \
 			  signals.c \
 			  lexer.c token_counter.c token_length.c \
 			  utils_token_counter00.c utils_token_counter01.c \
 			  utils_token_length00.c utils_token_length01.c utils_token_length02.c \
 			  parser.c create_list.c \
-			#   execution.c execute_builtin.c execute_cmd.c \
-			#   heredoc.c redirection.c expansion.c edit_line.c \
-			#   echo.c cd.c pwd.c export.c env.c exit.c unset.c
+			  execution.c execute_builtin.c execute_cmd.c \
+			  heredoc.c redirection.c expansion.c edit_line.c \
+			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/
 

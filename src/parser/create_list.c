@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:07:16 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/14 15:37:50 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:43:48 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	get_following_operator(char **token_arr, int i)
 			return (PIPE);
 		i++;
 	}
-	return (-1);
+	return (CMD);
 }
 
 void	init_list(t_data *head, char **token_arr)

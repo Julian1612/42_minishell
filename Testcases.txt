@@ -402,3 +402,5 @@ EXPAND
 
 $? = exitstatus
 $$ = Prozess ID
+Note vllt. access auf X_OK stellen statt F_OK
+cat | cat > out < in     --> funktioniert nicht genua wie bash

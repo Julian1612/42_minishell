@@ -50,7 +50,7 @@ static int	init_cmd(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i != 0)
+	while (i != 3)
 	{
 		add_back(&data, ft_newlist());
 		i++;
@@ -74,13 +74,21 @@ static t_data	*ft_newlist(void)
 //"sos $PATH '$PATH' kek" "sooos"
 static int put_input1(t_data *data)
 {
-	data->cmd_name = "echo";
-	data->cmd_line = ft_split("echo \"$USER \'$USER\' $USER\" \'$USER\'", ' ');
+	data->cmd_name = "cat";
+	data->cmd_line = ft_split("cat", ' ');
+	data->operator = PIPE;
+	data = data->next;
+	data->cmd_name = "cat";
+	data->cmd_line = ft_split("cat", ' ');
 	data->operator = CMD;
 	data = data->next;
-	//data->cmd_name = "cat";
-	//data->cmd_line = ft_split("cat -e", ' ');
-	//data->operator = CMD;
+	data->cmd_name = "out";
+	data->cmd_line = ft_split("out", ' ');
+	data->operator = OUT;
+	data = data->next;
+	data->cmd_name = "Makefile";
+	data->cmd_line = ft_split("Makefile", ' ');
+	data->operator = IN;
 	return (0);
 }
 

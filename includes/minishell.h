@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 12:09:12 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/14 18:37:34 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ void	ft_cmd(t_koopa *shell, t_data *data);
 int		ft_expand(t_koopa *shell, t_data *data);
 int		ft_heredoc(t_koopa *shell, t_data *data);
 int		ft_isspace(int c);
-void	init_exp(t_exp *exp, t_data *data);
+int		init_exp(t_exp *exp, t_data *data);
 char	*double_to_str(t_data *data);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
