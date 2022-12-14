@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:38:30 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/11 18:00:09 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:17:25 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 void	skip_qoute(char *str, int *j, int *token_len)
 {
-	while ((str[*j] != 39 || str[*j] != '"') && str[*j] != '\0')
+	while ((str[*j] != '"' && str[*j] != 39) && str[*j] != '\0')
 	{
-		token_len++;
+		(*token_len)++;
 		(*j)++;
 	}
 }
@@ -28,7 +28,7 @@ void	skip_char(char *str, int *j, int *token_len)
 {
 	while (str[*j] >= '!' && str[*j] <= '~' && str[*j] != '\0')
 	{
-		token_len++;
+		(*token_len)++;
 		(*j)++;
 	}
 }
