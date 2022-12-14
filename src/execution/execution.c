@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/13 12:16:00 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/14 23:09:27 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int	ft_execute(t_koopa *shell, t_data *data)
 	}
 	while (waitpid(0, &shell->exit_status, 0) > 0)
 		;
-	close(shell->out);
+	// close(shell->out);
 	return (0);
 }
