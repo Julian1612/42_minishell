@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/13 12:10:23 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/14 12:09:26 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_exp(t_exp *exp, t_data *data)
 	exp->line = double_to_str(data);
 	exp->squo = -1;
 	exp->dquo = -1;
+	exp->len = 0;
 }
 
 int	ft_isspace(int c)

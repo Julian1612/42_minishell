@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/13 12:01:00 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/14 12:09:12 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_exp
 	char	*line;
 	int		squo;
 	int		dquo;
+	int		len;
 }			t_exp;
 
 /// @brief cmd/builtin linked list
