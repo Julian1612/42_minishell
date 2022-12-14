@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/13 11:22:29 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/14 11:53:02 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,21 @@ int	main(int argc, char **argv, char **envp)
 		// TESTER //
 		t_data	*cur = cmd_list;
 		int g = 1;
+		int y = 0;
 		while (cur != NULL)
 		{
 			printf("%d. node: %s\n", g, cur->cmd_name);
+			printf("cmd: %s\n", cur->cmd_name);
+			while (cur->cmd_line[y] != NULL)
+			{
+				printf("%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
+				y++;
+			}
+			y = 0;
 			// printf("%d\n", cur->operator);
 			cur = cur->next;
 			g++;
+			printf("----------------------\n");
 		}
 		// TESTER //
 		free(cmd);
