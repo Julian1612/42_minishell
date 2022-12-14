@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   edit_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 12:09:26 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/14 18:45:12 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+#include <stdio.h>
 char	*double_to_str(t_data *data)
 {
 	char	*str;
@@ -27,12 +27,17 @@ char	*double_to_str(t_data *data)
 	return (str);
 }
 
-void	init_exp(t_exp *exp, t_data *data)
+int	init_exp(t_exp *exp, t_data *data)
 {
-	exp->line = double_to_str(data);
-	exp->squo = -1;
-	exp->dquo = -1;
-	exp->len = 0;
+	if (data->operator == PIPE || data->operator == CMD)
+	{
+		exp->line = double_to_str(data);
+		exp->squo = -1;
+		exp->dquo = -1;
+		exp->len = 0;
+		return (0);
+	}
+	return (1);
 }
 
 int	ft_isspace(int c)
