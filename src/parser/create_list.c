@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:07:16 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/13 11:21:11 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/14 11:53:55 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,20 @@ t_data	*create_head(void)
 	return (head);
 }
 
-int	count_cmd(char **token_arr, int *i)
+int	count_cmd(char **token_arr, int i)
 {
 	int	count;
 
 	count = 0;
-	while (ft_strchr(token_arr[*i], '|') && token_arr[*i] != NULL) // anderen opperatoren einfügen >>, <<, ||
+	while (token_arr[i] != NULL) // anderen opperatoren einfügen >>, <<, ||
 	{
+		if (token_arr[i][0] == '|')
+			break ;
 		count++;
-		(*i)++;
+		i++;
 	}
-	return (0);
+	printf("count: %d\n", count);
+	return (count);
 }
 
 char	**init_cmd_line(char **token_arr, int *i)
@@ -75,15 +78,12 @@ char	**init_cmd_line(char **token_arr, int *i)
 	int		cmd_count;
 	int		j;
 
-	cmd_count = count_cmd(token_arr, i);
-	arr = (char **) malloc(sizeof(char *) * cmd_count); // 100 ist nur ein Platzhalter
+	cmd_count = count_cmd(token_arr, *i);
+	arr = (char **) malloc(sizeof(char *) * (cmd_count + 1)); // 100 ist nur ein Platzhalter
 	if (arr == NULL)
-	{
-		perror("minishell: malloc failed\n");
 		return (NULL);
-	}
 	j = 0;
-	while (ft_strchr(token_arr[*i], '|') && token_arr[*i][0] != '\0') // anderen opperatoren einfügen >>, <<, ||
+	while (j < cmd_count)
 	{
 		arr[j] = ft_strdup(token_arr[*i]);
 		j++;
@@ -101,7 +101,6 @@ void	init_list(t_data *head, char **token_arr)
 	tmp = head;
 	while (token_arr[i] != NULL && tmp != NULL)
 	{
-		printf("token_arr[i]: %s\n", token_arr[i]);
 		tmp->cmd_name = ft_strdup(token_arr[i]);
 		tmp->cmd_line = init_cmd_line(token_arr, &i);
 		// // tmp->operator = get_following_operator(token_arr[i]);
