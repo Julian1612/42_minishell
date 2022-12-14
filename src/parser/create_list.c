@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:07:16 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/14 11:53:55 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:37:50 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	count_cmd(char **token_arr, int i)
 		count++;
 		i++;
 	}
-	printf("count: %d\n", count);
 	return (count);
 }
 
@@ -89,7 +88,20 @@ char	**init_cmd_line(char **token_arr, int *i)
 		j++;
 		(*i)++;
 	}
+	arr[j] = NULL;
 	return (arr);
+}
+
+int	get_following_operator(char **token_arr, int i)
+{
+	printf("i: %d\n", i);
+	while (token_arr[i] != NULL) // anderen opperatoren einfügen >>, <<, ||
+	{
+		if (token_arr[i][0] == '|')
+			return (PIPE);
+		i++;
+	}
+	return (-1);
 }
 
 void	init_list(t_data *head, char **token_arr)
@@ -103,7 +115,7 @@ void	init_list(t_data *head, char **token_arr)
 	{
 		tmp->cmd_name = ft_strdup(token_arr[i]);
 		tmp->cmd_line = init_cmd_line(token_arr, &i);
-		// // tmp->operator = get_following_operator(token_arr[i]);
+		tmp->operator = get_following_operator(token_arr, i);
 		tmp = tmp->next;
 		i++;
 	}

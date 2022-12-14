@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 11:53:02 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/14 15:38:18 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,39 @@ int	init_envp(t_koopa *shell, char **envp)
 // 	return (0);
 // }
 
+void list_test(t_data *cmd_list)
+{
+	t_data	*cur = cmd_list;
+	int g = 1;
+	int y = 0;
+
+	while (cur != NULL)
+	{
+		printf("%d. node: %s\n", g, cur->cmd_name);
+		printf("cmd: %s\n", cur->cmd_name);
+		while (cur->cmd_line[y] != NULL)
+		{
+			printf("%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
+			y++;
+		}
+		y = 0;
+		printf("operator: %d\n", cur->operator);
+		cur = cur->next;
+		g++;
+		printf("----------------------\n");
+	}
+}
+
+void	arr_test(char **arr)
+{
+	int i = 0;
+	while (arr[i] != NULL)
+	{
+		printf("%d. %s\n", i, arr[i]);
+		i++;
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	// t_koopa	*shell;
@@ -67,29 +100,11 @@ int	main(int argc, char **argv, char **envp)
 		if (cmd == NULL)
 			return (0);
 		token_arr = tokenizer(cmd);
+		// arr_test(token_arr);
 		if (token_arr == NULL)
 			return (1);
 		cmd_list = parser(token_arr);
-		// TESTER //
-		t_data	*cur = cmd_list;
-		int g = 1;
-		int y = 0;
-		while (cur != NULL)
-		{
-			printf("%d. node: %s\n", g, cur->cmd_name);
-			printf("cmd: %s\n", cur->cmd_name);
-			while (cur->cmd_line[y] != NULL)
-			{
-				printf("%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
-				y++;
-			}
-			y = 0;
-			// printf("%d\n", cur->operator);
-			cur = cur->next;
-			g++;
-			printf("----------------------\n");
-		}
-		// TESTER //
+		// list_test(cmd_list);
 		free(cmd);
 	}
 	return (0);
