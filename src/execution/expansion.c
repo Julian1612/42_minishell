@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/13 13:33:38 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/14 12:50:25 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,14 @@
 static char	*get_variable(t_exp *exp, int *idx)
 {
 	int		i;
-	int		len;
-	int		j;
 	char	*variable;
 
-	i = *idx;
-	j = -1;
-	len = 0;
-	while (exp->line[++i] != '\0' && !ft_isspace(exp->line[i]))
-		len++;
-	variable = ft_calloc(len + 1, sizeof(char));
+	exp->len = 0;
 	i = *idx;
 	while (exp->line[++i] != '\0' && !ft_isspace(exp->line[i]))
-		variable[++j] = exp->line[i];
-	variable[++j] = '\0';
+		exp->len++;
+	i = *idx;
+	variable = ft_substr(exp->line, ++i, exp->len);
 	return (variable);
 }
 
@@ -38,12 +32,18 @@ static void	exec_expand(t_koopa *shell, t_exp *exp, int *idx)
 {
 	char	*variable;
 	char	*content;
-	char	*new_str;
+	char	*start;
+	char	*mid;
+	char	*end;
 
 	variable = get_variable(exp, idx);
 	content = ft_getenv(shell, variable) + ft_name_len(variable);
-	new_str = ft_substr();
-	ft_strlen(content);
+	start = ft_substr(exp->line, 0, *idx);
+	mid = ft_strjoin(start, content);
+	*idx += exp->len;
+	end = ft_substr(exp->line, *idx + 1, ft_strlen(exp->line));
+	free(exp->line);
+	exp->line = ft_strjoin(mid, end);
 }
 
 int	ft_expand(t_koopa *shell, t_data *data)
@@ -59,10 +59,13 @@ int	ft_expand(t_koopa *shell, t_data *data)
 			exp.squo *= -1;
 		if (exp.line[i] == '\"' && exp.squo < 0)
 			exp.dquo *= -1;
-		if (exp.line[i] == '$' && exp.dquo == 1)
+		if (exp.line[i] == '$' && exp.squo != 1)
 			exec_expand(shell, &exp, &i);
 	}
+	free_double(data->cmd_line);
+	data->cmd_line = ft_split(exp.line, '\n');
 	return (0);
 }
 
-//// echo $USER test "$USER '$USER' soos"
+// echo "$USER '$USER' $USER" '$USER'
+// echo "dna

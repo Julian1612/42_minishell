@@ -75,7 +75,7 @@ static t_data	*ft_newlist(void)
 static int put_input1(t_data *data)
 {
 	data->cmd_name = "echo";
-	data->cmd_line = ft_split("echo \"$USER \'$USER\' $USER\" \"HALLO\"", ' ');
+	data->cmd_line = ft_split("echo \"$USER \'$USER\' $USER\" \'$USER\'", ' ');
 	data->operator = CMD;
 	data = data->next;
 	//data->cmd_name = "cat";
