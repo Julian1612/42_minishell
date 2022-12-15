@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:07:16 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/14 15:37:50 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:17:35 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,6 @@ t_data	*create_list(const int nbr_cmd)
 	return (head);
 }
 
-void	init_node_null(t_data *node)
-{
-	node->cmd_name = NULL;
-	node->cmd_line = NULL;
-	node->operator = -1;
-	node->next = NULL;
-}
-
 t_data	*create_head(void)
 {
 	t_data	*head;
@@ -54,21 +46,6 @@ t_data	*create_head(void)
 	}
 	init_node_null(head);
 	return (head);
-}
-
-int	count_cmd(char **token_arr, int i)
-{
-	int	count;
-
-	count = 0;
-	while (token_arr[i] != NULL) // anderen opperatoren einfügen >>, <<, ||
-	{
-		if (token_arr[i][0] == '|')
-			break ;
-		count++;
-		i++;
-	}
-	return (count);
 }
 
 char	**init_cmd_line(char **token_arr, int *i)
@@ -94,7 +71,6 @@ char	**init_cmd_line(char **token_arr, int *i)
 
 int	get_following_operator(char **token_arr, int i)
 {
-	printf("i: %d\n", i);
 	while (token_arr[i] != NULL) // anderen opperatoren einfügen >>, <<, ||
 	{
 		if (token_arr[i][0] == '|')
