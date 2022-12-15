@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 22:31:46 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/15 17:03:14 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,21 @@ void	arr_test(char **arr)
 	}
 }
 
+static void	free_all(t_koopa *shell, t_data *data)
+{
+	while (data != NULL)
+	{
+		free_double(data->cmd_line);
+		free(data->cmd_name);
+		data = data->next;
+	}
+	free(data);
+	free_double(shell->envp);
+	free(shell->file);
+	free(shell->line);
+	free(shell);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_koopa				*shell;
@@ -91,7 +106,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		cmd = readline("👉 ");
 		if (cmd == NULL)
-			return (0);
+			break ;
 		token_arr = tokenizer(cmd);
 		// arr_test(token_arr);
 		if (token_arr == NULL)
@@ -100,7 +115,7 @@ int	main(int argc, char **argv, char **envp)
 		// list_test(data);
 		ft_execute(shell, data);
 		free(cmd);
+		free_all(shell, data);
 	}
-	printf("test\n");
 	return (0);
 }
