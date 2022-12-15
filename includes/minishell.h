@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 18:37:34 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/15 15:42:46 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_koopa
 	int 		stdout1;
 	char		**path;
 	int			tmp_fd;
+	int			error;
 	t_data		*data;
 }t_koopa;
 
@@ -125,6 +126,7 @@ int		ft_heredoc(t_koopa *shell, t_data *data);
 int		ft_isspace(int c);
 int		init_exp(t_exp *exp, t_data *data);
 char	*double_to_str(t_data *data);
+int		replace(t_data *data, t_exp *exp);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////

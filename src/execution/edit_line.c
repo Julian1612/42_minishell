@@ -6,23 +6,28 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 18:45:12 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/15 16:39:41 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
+#include <stdio.h> // perror
+#include <stdlib.h>
+
 char	*double_to_str(t_data *data)
 {
 	char	*str;
+	char	*tmp;
 	int		i;
 
 	i = -1;
 	str = ft_calloc(1, sizeof(char));
 	while (data->cmd_line[++i] != NULL)
 	{
-		str = ft_strjoin(str, data->cmd_line[i]);
-		str = ft_strjoin(str, "\n");
+		tmp = ft_strjoin(str, data->cmd_line[i]);
+		free(str);
+		str = ft_strjoin(tmp, "\n");
+		free(tmp);
 	}
 	return (str);
 }
@@ -45,4 +50,14 @@ int	ft_isspace(int c)
 	return (c == '\f' || c == '\n' || c == '\r' \
 	|| c == '\t' || c == '\v' || c == ' '\
 	|| c == '\'' || c == '\"');
+}
+
+int	replace(t_data *data, t_exp *exp)
+{
+	free_double(data->cmd_line);
+	data->cmd_line = ft_split(exp->line, '\n');
+	if (data->cmd_line == NULL)
+		perror("malloc fail\n");
+	free(exp->line);
+	return (0);
 }

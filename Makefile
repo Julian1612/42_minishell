@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/14 22:12:31 by dna              ###   ########.fr        #
+#    Updated: 2022/12/15 15:26:06 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,9 +40,9 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -g
 
-INCLUDES	= -I./includes -I./libft/includes -I /Users/$(USER)/goinfre/.brew/opt/readline/include
+INCLUDES	= -I./includes -I./libft/includes -I /Users/$(USER)/goinfre/.brew/opt/readline/include -Wno-gnu-include-next -ILeaksanitizer/include
 
-LINCLUDES	= -L./libft -lft -L /Users/$(USER)/goinfre/.brew/opt/readline/lib
+LINCLUDES	= -L./libft -lft -L /Users/$(USER)/goinfre/.brew/opt/readline/lib -LLeaksanitizer -llsan -lc++
 
 g			= \033[1;32m
 de 			= \033[0m
