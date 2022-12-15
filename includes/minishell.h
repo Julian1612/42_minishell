@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 12:09:12 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/15 16:20:27 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,5 +195,7 @@ int		cmd_counter(char **token_arr);
 t_data	*create_list(const int nbr_cmd);
 void	init_node_null(t_data *node);
 t_data	*create_head(void);
+int		count_cmd(char **token_arr, int i);
+void	init_node_null(t_data *node);
 
 #endif
