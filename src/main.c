@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/15 16:27:30 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:35:05 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,13 @@ int	init_envp(t_koopa *shell, char **envp)
 	sigaction(SIGINT, &s_sigaction, NULL); // ctrl - c
 	sigaction(SIGQUIT, &s_sigaction, NULL); // ctrl - d
 	shell->envp = ft_calloc(ft_ptrcnt(envp) + 1, sizeof(char *));
-	// if (shell->envp == NULL)
-		// print_error();
+	if (shell->envp == NULL)
+		return (-1);
 	while (envp[++i] != NULL)
 		shell->envp[i] = ft_strdup(envp[i]);
 	shell->envp[i] = NULL;
 	return (0);
 }
-
-// static int	init_koopa_shell(t_koopa *shell)
-// {
-// 	shell = malloc(sizeof(t_koopa));
-// 	return (0);
-// }
 
 void list_test(t_data *cmd_list)
 {
@@ -77,15 +71,14 @@ void	arr_test(char **arr)
 
 int	main(int argc, char **argv, char **envp)
 {
-	// t_koopa	*shell;
+	t_koopa				*shell;
 	struct sigaction	act;
 	char				*cmd;
 	char				**token_arr;
-	t_data				*cmd_list;
+	t_data				*data;
 
-	// shell = NULL;
-	// init_koopa_shell(shell);
-	// init_envp(shell, envp);
+	shell = ft_calloc(1, sizeof(t_koopa));
+	init_envp(shell, envp);
 	ft_set_termianl();
 	act.sa_flags = SA_SIGINFO;
 	act.sa_sigaction = ft_signal_handler;
@@ -103,8 +96,9 @@ int	main(int argc, char **argv, char **envp)
 		// arr_test(token_arr);
 		if (token_arr == NULL)
 			return (1);
-		cmd_list = parser(token_arr);
-		// list_test(cmd_list);
+		data = parser(token_arr);
+		// list_test(data);
+		ft_execute(shell, data);
 		free(cmd);
 	}
 	return (0);
