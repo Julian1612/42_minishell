@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 23:09:27 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/15 12:11:15 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int	ft_execute(t_koopa *shell, t_data *data)
 	}
 	while (waitpid(0, &shell->exit_status, 0) > 0)
 		;
-	// close(shell->out);
+	shell->exit_status = WEXITSTATUS(shell->exit_status);
 	return (0);
 }

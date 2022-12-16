@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 18:29:15 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/15 17:10:27 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 	{
 		shell->path = ft_split(ft_getenv(shell, "PATH") + 5, ':');
 		if (shell->path == NULL)
+		{
+			free_double(shell->path);
 			printf("Error\n");
+		}
 		shell->file = create_path(shell, data->cmd_name);
 	}
 	else
@@ -64,8 +67,8 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data)
 	if (pid == 0)
 	{
 		prepare_execution(shell, data);
-		if (execve(shell->file, data->cmd_line, shell->envp))
-			printf("Error\n");
+		execve(shell->file, data->cmd_line, shell->envp);
+		printf("Error\n");
 		exit(127);
 	}
 }
