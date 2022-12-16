@@ -92,28 +92,28 @@ cd $OLDPWD/builtins				-->
 
 ECHO:
 
-echo																-->
-echo echo															-->
-eCho																-->
-eChO																-->
-eCHO																-->
-echo $																-->
-echo $ $															-->
-ECHO																-->
-echo rhobebou														-->
-echo stop barking													-->
-echo "bonjour"														-->
-echo bonjour														-->
-echo 'bonjour'														-->
-echo -n bonjour														-->
-echo -nn bonjour													-->
+echo																--> funktioniert
+echo echo															--> funktioniert
+eCho																--> funktioniert
+eChO																--> funktioniert
+eCHO																--> funktioniert
+echo $																--> 
+echo $ $															--> 
+ECHO																--> funktioniert
+echo rhobebou														--> funktioniert
+echo stop barking													--> funktioniert
+echo "bonjour"														--> funktioniert
+echo bonjour														--> funktioniert
+echo 'bonjour'														--> funktioniert
+echo -n bonjour														--> funktioniert
+echo -nn bonjour													--> 
 echo -n -n -n bonjour												-->
-echo "-n" bonjour													-->
-echo -n"-n" bonjour													-->
+echo "-n" bonjour													--> funktioniert
+echo -n"-n" bonjour													--> funktioniert
 echo "-nnnn" bonjour												-->
-echo "-nnnn" -n bonjour												-->
-echo "-n -n -n"-n bonjour											-->
-echo "-n '-n'" bonjour												-->
+echo "-nnnn" -n bonjour												--> infinit loop
+echo "-n -n -n"-n bonjour											--> funktioniert
+echo "-n '-n'" bonjour												--> funktioniert
 echo $USER															-->
 echo "$USER"														-->
 echo "'$USER'"														-->
@@ -404,3 +404,6 @@ $? = exitstatus
 $$ = Prozess ID
 Note vllt. access auf X_OK stellen statt F_OK
 cat | cat > out < in     --> funktioniert nicht genua wie bash
+minishell in minshell aufrufen geht nicht
+cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht 
+probleme mit pipes und readline -> bricht nach der executen ab 

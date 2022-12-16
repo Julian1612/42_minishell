@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 18:38:12 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/15 15:58:01 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*get_variable(t_exp *exp, int *idx)
 	return (variable);
 }
 
-static void	exec_expand(t_koopa *shell, t_exp *exp, int *idx)
+static void	exec_expand(t_koopa *shell, t_exp *exp, int *idx, int *j)
 {
 	char	*variable;
 	char	*content;
@@ -63,13 +63,19 @@ static void	exec_expand(t_koopa *shell, t_exp *exp, int *idx)
 	char	*end_tmp;
 
 	variable = get_variable(exp, idx);
-	content = ft_getenv(shell, variable) + ft_name_len(variable);
+	content = ft_strdup(ft_getenv(shell, variable) + ft_name_len(variable));
+	free(variable);
 	start_tmp = ft_substr(exp->line, 0, *idx);
 	mid_tmp = ft_strjoin(start_tmp, content);
+	free(content);
+	free(start_tmp);
 	*idx += exp->len;
 	end_tmp = ft_substr(exp->line, *idx + 1, ft_strlen(exp->line));
 	free(exp->line);
 	exp->line = ft_strjoin(mid_tmp, end_tmp);
+	free(mid_tmp);
+	free(end_tmp);
+	*j += exp->len - 1;
 }
 
 int	ft_expand(t_koopa *shell, t_data *data)
@@ -89,15 +95,13 @@ int	ft_expand(t_koopa *shell, t_data *data)
 		else if (exp.line[i] == '\"' && exp.squo < 0)
 			exp.dquo *= -1;
 		else if (exp.line[i] == '$' && exp.squo != 1)
-		{
-			exec_expand(shell, &exp, &i);
-			j += exp.len - 1;
-		}
+			exec_expand(shell, &exp, &i, &j);
 		else
 			j++;
 	}
 	remove_quots(&exp, j);
-	free_double(data->cmd_line);
-	data->cmd_line = ft_split(exp.line, '\n');
+	replace(data, &exp);
 	return (0);
 }
+
+// echo "$USER '$USER' $USER" '$USER'

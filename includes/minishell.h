@@ -6,7 +6,11 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/12/15 16:30:14 by jschneid         ###   ########.fr       */
+=======
+/*   Updated: 2022/12/15 15:42:46 by dgross           ###   ########.fr       */
+>>>>>>> db557e45a69abe3ab56e241d841da52e775e99d3
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +62,7 @@ typedef struct s_koopa
 	int 		stdout1;
 	char		**path;
 	int			tmp_fd;
+	int			error;
 	t_data		*data;
 }t_koopa;
 
@@ -125,6 +130,7 @@ int		ft_heredoc(t_koopa *shell, t_data *data);
 int		ft_isspace(int c);
 int		init_exp(t_exp *exp, t_data *data);
 char	*double_to_str(t_data *data);
+int		replace(t_data *data, t_exp *exp);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
