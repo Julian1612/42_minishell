@@ -6,7 +6,7 @@
 #    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/15 16:19:14 by jschneid         ###   ########.fr        #
+#    Updated: 2022/12/15 16:31:17 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,9 @@ SRC			= main.c \
 			  utils_token_counter00.c utils_token_counter01.c \
 			  utils_token_length00.c utils_token_length01.c utils_token_length02.c \
 			  parser.c create_list.c utils_create_list00.c \
-			#   execution.c execute_builtin.c execute_cmd.c \
-			#   heredoc.c redirection.c expansion.c edit_line.c \
-			#   echo.c cd.c pwd.c export.c env.c exit.c unset.c
+			  execution.c execute_builtin.c execute_cmd.c \
+			  heredoc.c redirection.c expansion.c edit_line.c \
+			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/
 

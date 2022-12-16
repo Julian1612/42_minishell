@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:07:16 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/15 16:17:35 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:30:25 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	get_following_operator(char **token_arr, int i)
 			return (PIPE);
 		i++;
 	}
-	return (-1);
+	return (CMD);
 }
 
 void	init_list(t_data *head, char **token_arr)

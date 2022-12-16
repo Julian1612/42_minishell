@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/12 10:49:11 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/14 23:03:42 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
-#include <string.h>
+
 static int	var_checker(t_koopa *shell, char *variable)
 {
 	int	i;
 
 	i = -1;
+	if (variable == NULL)
+		return (0);
 	while (shell->envp[++i] != NULL)
 	{
 		if (ft_strncmp(shell->envp[i], variable, ft_name_len(variable)))
