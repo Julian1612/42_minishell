@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/17 16:58:58 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:31:15 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 		printf("ERROR\n");
 		return (ERROR);
 	}
+	dup2(shell->out, STDOUT_FILENO);
+	close(shell->out);
 	return (0);
 }
 

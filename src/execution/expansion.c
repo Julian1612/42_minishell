@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/17 13:42:48 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:15:13 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int	ft_expand(t_koopa *shell, t_data *data)
 			exec_expand(shell, &exp, &i, &j);
 		else
 			j++;
-		//printf("i = %i\n", i);
 	}
 	remove_quots(&exp, j);
 	replace(data, &exp);
