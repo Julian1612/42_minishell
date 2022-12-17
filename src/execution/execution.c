@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/15 12:11:15 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/17 18:45:41 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,16 @@ static void	pipe_cmd(t_koopa *shell, t_data *data)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (ft_execute_builtin(shell, data) == 1)
+		if (ft_execute_builtin(shell, data) == 0)
+			exit(0);
+		else
 			ft_cmd(shell, data);
-		exit(0);
 	}
 }
 
 int	ft_execute(t_koopa *shell, t_data *data)
 {
-	shell->stdout1 = dup(STDOUT_FILENO);
+	shell->stdout1 = dup2(shell->stdout1);
 	ft_redirection(shell, data);
 	while (data != NULL)
 	{

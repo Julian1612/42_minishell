@@ -407,3 +407,5 @@ cat | cat > out < in     --> funktioniert nicht genua wie bash
 minishell in minshell aufrufen geht nicht
 cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht 
 probleme mit pipes und readline -> bricht nach der executen ab 
+
+echo hi | echo kek -> sachen gehen nicht schnell genug durch (fds nochmal nachgucken)
