@@ -3,17 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-<<<<<<< HEAD
-#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/15 16:31:17 by jschneid         ###   ########.fr        #
-=======
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/15 15:26:06 by dgross           ###   ########.fr        #
->>>>>>> db557e45a69abe3ab56e241d841da52e775e99d3
+#    Updated: 2022/12/16 21:07:22 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +40,9 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -g
 
-INCLUDES	= -I./includes -I./libft/includes -I /Users/$(USER)/goinfre/.brew/opt/readline/include -Wno-gnu-include-next -ILeaksanitizer/include
+INCLUDES	= -I./includes -I./libft/includes -I /Users/$(USER)/goinfre/.brew/opt/readline/include #-Wno-gnu-include-next -ILeaksanitizer/include
 
-LINCLUDES	= -L./libft -lft -L /Users/$(USER)/goinfre/.brew/opt/readline/lib -LLeaksanitizer -llsan -lc++
+LINCLUDES	= -L./libft -lft -L /Users/$(USER)/goinfre/.brew/opt/readline/lib #-LLeaksanitizer -llsan -lc++
 
 g			= \033[1;32m
 de 			= \033[0m

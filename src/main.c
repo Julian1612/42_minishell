@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/15 16:35:05 by jschneid         ###   ########.fr       */
-=======
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/15 17:03:14 by dgross           ###   ########.fr       */
->>>>>>> db557e45a69abe3ab56e241d841da52e775e99d3
+/*   Updated: 2022/12/17 17:38:53 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +36,7 @@ int	init_envp(t_koopa *shell, char **envp)
 	return (0);
 }
 
-void list_test(t_data *cmd_list)
+void	list_test(t_data *cmd_list)
 {
 	t_data	*cur = cmd_list;
 	int g = 1;
@@ -74,21 +67,6 @@ void	arr_test(char **arr)
 		printf("%d. %s\n", i, arr[i]);
 		i++;
 	}
-}
-
-static void	free_all(t_koopa *shell, t_data *data)
-{
-	while (data != NULL)
-	{
-		free_double(data->cmd_line);
-		free(data->cmd_name);
-		data = data->next;
-	}
-	free(data);
-	free_double(shell->envp);
-	free(shell->file);
-	free(shell->line);
-	free(shell);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -122,7 +100,6 @@ int	main(int argc, char **argv, char **envp)
 		// list_test(data);
 		ft_execute(shell, data);
 		free(cmd);
-		free_all(shell, data);
 	}
 	return (0);
 }

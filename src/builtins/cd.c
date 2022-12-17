@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/10 00:22:32 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/17 18:13:36 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h> // chdir
 #include <stdlib.h> // getenv
 #include <limits.h> // [PATH_MAX]
+#include "libft.h"
 #include <stdio.h>
 
 static int	update_pwd(t_koopa *shell)
