@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/18 16:53:21 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/18 22:23:13 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		add_history(cmd);
 		token_arr = tokenizer(cmd);
-		//printf("%s<--", token_arr[1]);
 		//arr_test(token_arr);
 		if (token_arr == NULL)
 			return (1);
