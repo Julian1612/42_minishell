@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/17 18:15:13 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/18 16:54:50 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	remove_quots(t_exp *exp, int count)
 	int		i;
 	int		j;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	tmp = ft_calloc(count, sizeof(char));
-	while (exp->line[i++] != '\0')
+	while (exp->line[++i] != '\0')
 	{
 		if (exp->line[i] == '\'')
 			while (exp->line[++i] != '\0' && exp->line[i] != '\'')

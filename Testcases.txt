@@ -409,3 +409,4 @@ cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nic
 probleme mit pipes und readline -> bricht nach der executen ab 
 
 echo hi | echo kek -> sachen gehen nicht schnell genug durch (fds nochmal nachgucken)
+echo 42 | cat -e --> 42 $ space zu viel kp woher

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/16 20:43:37 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/18 13:28:45 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_koopa
 	char		*file;
 	int			in;
 	int			out;
-	int 		stdout1;
+	int			tmp_stdin;
 	char		**path;
 	int			tmp_fd;
 	int			error;

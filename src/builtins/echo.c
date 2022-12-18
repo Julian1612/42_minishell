@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:47 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/17 16:48:34 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/18 16:57:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	check_for_n(char *cmd_line)
 	i = 1;
 	if (cmd_line)
 	{
-		if (ft_strcmp(cmd_line, "\n") != -1)
+		if (ft_strncmp(cmd_line, "-n", 2) == 0)
 		{
 			while (cmd_line[i] == 'n')
 				i++;
