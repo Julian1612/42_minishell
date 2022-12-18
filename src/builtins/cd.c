@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/18 15:09:54 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/18 19:48:00 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	check_path(t_koopa *shell, char **path, int *check)
 {
 	if (*path == NULL)
 		return ;
-	printf("%zu\n", ft_strlen(*path));
 	if (ft_strcmp(*path, "-") == 0 || ft_strcmp(*path, "~-") == 0)
 	{
 		free(*path);
