@@ -1,3 +1,6 @@
+< Makefile < Makefile cat
+< Makefile cat -e | wc -l > out.txt | echo hi | cat -e
+echo > | sadsa --> parse error
 cat lulrich.txt | tr [:lower:] [:upper:] | sed "s/A/a/g" | tr "AEIOU" "aeiou" | rev | cut -c 1-10 | tr " " "\n" | sort | uniq -c | sort -rn | head -n 5 | awk '{print $2}' | tr "\n" "," | sed "s/,$//" > haral.txt
 echo "Hello, world" ; ls ; pwd
 ls | grep text
@@ -48,7 +51,6 @@ export S="s -a"
 l$S"l"
 echo """""""-n"$USER"-n"""""""
 echo "-n"$USER-n "kek"
-<Makefile cat -e | wc - l > out.txt  | echo hi | cat -e
 < in > out
 env > out
 ls -l | cat -e > out > out2 > out3 > out4
@@ -97,8 +99,8 @@ echo echo															--> funktioniert
 eCho																--> funktioniert
 eChO																--> funktioniert
 eCHO																--> funktioniert
-echo $																--> 
-echo $ $															--> 
+echo $																-->
+echo $ $															-->
 ECHO																--> funktioniert
 echo rhobebou														--> funktioniert
 echo stop barking													--> funktioniert
@@ -106,7 +108,7 @@ echo "bonjour"														--> funktioniert
 echo bonjour														--> funktioniert
 echo 'bonjour'														--> funktioniert
 echo -n bonjour														--> funktioniert
-echo -nn bonjour													--> 
+echo -nn bonjour													-->
 echo -n -n -n bonjour												-->
 echo "-n" bonjour													--> funktioniert
 echo -n"-n" bonjour													--> funktioniert
@@ -154,7 +156,7 @@ EXIT:
 
 exit 0 0							-->
 exit 42 42							-->
-exit -42 -24						-->												
+exit -42 -24						-->
 exit 42								-->
 exit 42 53 68						-->
 exit 259							-->
@@ -405,5 +407,5 @@ $$ = Prozess ID
 Note vllt. access auf X_OK stellen statt F_OK
 cat | cat > out < in     --> funktioniert nicht genua wie bash
 minishell in minshell aufrufen geht nicht
-cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht 
-probleme mit pipes und readline -> bricht nach der executen ab 
+cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht
+probleme mit pipes und readline -> bricht nach der executen ab
