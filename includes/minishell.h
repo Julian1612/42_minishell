@@ -6,11 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/12/15 16:30:14 by jschneid         ###   ########.fr       */
-=======
-/*   Updated: 2022/12/15 15:42:46 by dgross           ###   ########.fr       */
->>>>>>> db557e45a69abe3ab56e241d841da52e775e99d3
+/*   Updated: 2022/12/17 11:13:04 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +55,7 @@ typedef struct s_koopa
 	char		*file;
 	int			in;
 	int			out;
-	int 		stdout1;
+	int			stdout1;
 	char		**path;
 	int			tmp_fd;
 	int			error;
