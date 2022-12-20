@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/18 13:28:45 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/20 14:42:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <signal.h>
 
 # define TRUE 1
-# define FALSE 0
+# define FALSE -1
 # define ERROR -1
 
 # define CMD 0
@@ -34,6 +34,7 @@ typedef struct s_exp
 	int		squo;
 	int		dquo;
 	int		len;
+	int		content_len;
 }			t_exp;
 
 /// @brief cmd/builtin linked list
@@ -81,7 +82,7 @@ int		ft_echo(char **cmd_line);
 int		ft_env(t_koopa *shell);
 /// @brief		Exit the minishell
 /// @param shell Main struct
-void	ft_exit(t_koopa *shell);
+void	ft_exit(t_koopa *shell, char **cmd_line);
 /// @brief		Export variables to the environment list
 /// @param shell Main struct
 /// @param variable the variable to export

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/18 22:23:13 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/20 14:06:11 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int argc, char **argv, char **envp)
 	argc++;
 	(void)argv;
 	(void)envp;
-	while (1)
+	while (TRUE)
 	{
 		cmd = readline("👉 ");
 		if (cmd == NULL)
