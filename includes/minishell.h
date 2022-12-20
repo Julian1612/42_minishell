@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/17 11:13:04 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/20 11:53:04 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_exp
 }			t_exp;
 
 /// @brief cmd/builtin linked list
-typedef struct	s_data
+typedef struct s_data
 {
 	char			*cmd_name;	// Name of the function (example: echo)
 	char			**cmd_line;	// The function with argument (example: 'echo' 'hallo')
