@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/20 18:46:53 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:42:55 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int get_op(char **token_arr, int i)
 	i++;
 	while (token_arr[i])
 	{
-		printf("--->%s\n", token_arr[i]);
 		if (token_arr[i][0] == '|')
 		{
 			v = PIPE;
@@ -162,8 +161,8 @@ t_data	*parser(char **token_arr)
 	while (token_arr[i] != NULL)
 	{
 		append_node(&head, token_arr, &i);
-		if (token_arr[i] == NULL)
-			break ;
+		// if (token_arr[i] == NULL)
+		// 	break ;
 	}
 	list_test(head);
 	return (head);
