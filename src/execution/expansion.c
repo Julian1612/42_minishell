@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/18 16:54:50 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/20 17:11:18 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,22 @@ static void	exec_expand(t_koopa *shell, t_exp *exp, int *idx, int *j)
 	char	*mid_tmp;
 	char	*end_tmp;
 
+	exp->content_len = 0;
 	variable = get_variable(exp, idx);
 	content = ft_strdup(ft_getenv(shell, variable) + ft_name_len(variable));
+	exp->content_len = ft_strlen(content);
 	free(variable);
 	start_tmp = ft_substr(exp->line, 0, *idx);
 	mid_tmp = ft_strjoin(start_tmp, content);
 	free(content);
 	free(start_tmp);
-	*idx += exp->len;
-	end_tmp = ft_substr(exp->line, *idx + 1, ft_strlen(exp->line));
+	end_tmp = ft_substr(exp->line, *idx + exp->len + 1, ft_strlen(exp->line));
 	free(exp->line);
 	exp->line = ft_strjoin(mid_tmp, end_tmp);
 	free(mid_tmp);
 	free(end_tmp);
-	*j += exp->len - 1;
+	*j += exp->content_len;
+	*idx += exp->content_len - 1;
 }
 
 int	ft_expand(t_koopa *shell, t_data *data)
@@ -90,11 +92,11 @@ int	ft_expand(t_koopa *shell, t_data *data)
 		return (0);
 	while (exp.line[++i] != '\0')
 	{
-		if (exp.line[i] == '\'' && exp.dquo < 0)
+		if (exp.line[i] == '\'' && exp.dquo == FALSE)
 			exp.squo *= -1;
-		else if (exp.line[i] == '\"' && exp.squo < 0)
+		else if (exp.line[i] == '\"' && exp.squo == FALSE)
 			exp.dquo *= -1;
-		else if (exp.line[i] == '$' && exp.squo != 1)
+		else if (exp.line[i] == '$' && exp.squo != TRUE)
 			exec_expand(shell, &exp, &i, &j);
 		else
 			j++;
@@ -105,3 +107,4 @@ int	ft_expand(t_koopa *shell, t_data *data)
 }
 
 // echo "$USER '$USER' $USER" '$USER'
+// echo "$LESS '$LESS' $LESS" '$LESS'
