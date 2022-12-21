@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/21 17:53:39 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:59:07 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	get_op(char **token_arr, int i)
 		else
 			i++ ;
 	}
-	return (v);
+	return (CMD);
 }
 
 int	init_node(t_data *node, char **token_arr, int *i)
@@ -67,7 +67,6 @@ int	init_node(t_data *node, char **token_arr, int *i)
 	int	num_cmd;
 	int	j;
 
-	printf("token_arr[%d] = %s\n", *i, token_arr[*i]);
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 	{
 		node->cmd_name = ft_strdup(token_arr[*i + 1]);
@@ -145,9 +144,5 @@ t_data	*parser(char **token_arr)
 		return (NULL);
 	while (token_arr[i] != NULL)
 		append_node(&head, token_arr, &i);
-		// if (token_arr[i] == NULL)
-		// 	break ;
-	}
-	list_test(head);
 	return (head);
 }
