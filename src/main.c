@@ -42,22 +42,22 @@ void	list_test(t_data *cmd_list)
 	int g = 1;
 	int y = 0;
 
-	while (cur != NULL)
-	{
-		printf("%d. node: %s\n", g, cur->cmd_name);
-		printf("cmd: %s\n", cur->cmd_name);
-		while (cur->cmd_line[y] != NULL)
-		{
-			printf("%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
-			y++;
-		}
-		y = 0;
-		printf("operator: %d\n", cur->operator);
-		cur = cur->next;
-		g++;
-		printf("----------------------\n");
-	}
-}
+// 	while (cur != NULL)
+// 	{
+// 		printf("%d. node: %s\n", g, cur->cmd_name);
+// 		printf("cmd: %s\n", cur->cmd_name);
+// 		while (cur->cmd_line[y] != NULL)
+// 		{
+// 			printf("%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
+// 			y++;
+// 		}
+// 		y = 0;
+// 		printf("operator: %d\n", cur->operator);
+// 		cur = cur->next;
+// 		g++;
+// 		printf("----------------------\n");
+// 	}
+// }
 
 void	arr_test(char **arr)
 {
