@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/20 14:06:11 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 10:40:45 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	init_envp(t_koopa *shell, char **envp)
 	return (0);
 }
 
-void	list_test(t_data *cmd_list)
-{
-	t_data	*cur = cmd_list;
-	int g = 1;
-	int y = 0;
+//void	list_test(t_data *cmd_list)
+//{
+//	t_data	*cur = cmd_list;
+//	int g = 1;
+//	int y = 0;
 
 // 	while (cur != NULL)
 // 	{
@@ -57,7 +57,7 @@ void	list_test(t_data *cmd_list)
 // 		g++;
 // 		printf("----------------------\n");
 // 	}
-// }
+//}
 
 void	arr_test(char **arr)
 {
