@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/20 14:42:38 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 01:14:06 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ int		ft_isspace(int c);
 int		init_exp(t_exp *exp, t_data *data);
 char	*double_to_str(t_data *data);
 int		replace(t_data *data, t_exp *exp);
+int		ft_check_char(int c);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////

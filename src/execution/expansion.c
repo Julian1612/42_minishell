@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/20 17:11:18 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 01:10:07 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,40 @@ static char	*get_variable(t_exp *exp, int *idx)
 	exp->len = 0;
 	i = *idx;
 	while (exp->line[++i] != '\0' && !ft_isspace(exp->line[i]))
+	{
 		exp->len++;
+		if (exp->line[i] == '?' || exp->line[i] == '$')
+			break ;
+	}
 	i = *idx;
 	variable = ft_substr(exp->line, ++i, exp->len);
 	return (variable);
 }
 
-static void	exec_expand(t_koopa *shell, t_exp *exp, int *idx, int *j)
+static char	*get_content(t_koopa *shell, t_exp *exp, int *idx)
 {
 	char	*variable;
+	char	*content;
+
+	variable = get_variable(exp, idx);
+	if (ft_check_char(variable[0]))
+		return (NULL);
+	content = ft_strdup(ft_name_len(variable) + ft_getenv(shell, variable));
+	exp->content_len = ft_strlen(content);
+	return (content);
+}
+
+static void	exec_expand(t_koopa *shell, t_exp *exp, int *idx, int *j)
+{
 	char	*content;
 	char	*start_tmp;
 	char	*mid_tmp;
 	char	*end_tmp;
 
 	exp->content_len = 0;
-	variable = get_variable(exp, idx);
-	content = ft_strdup(ft_getenv(shell, variable) + ft_name_len(variable));
-	exp->content_len = ft_strlen(content);
-	free(variable);
+	content = get_content(shell, exp, idx);
+	if (content == NULL)
+		return ;
 	start_tmp = ft_substr(exp->line, 0, *idx);
 	mid_tmp = ft_strjoin(start_tmp, content);
 	free(content);

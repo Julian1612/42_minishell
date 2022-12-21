@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:47 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/18 16:57:31 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/20 20:16:40 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_echo(char **cmd_line)
 		if (cmd_line[i] != NULL)
 			printf(" ");
 	}
-	if (!n_flag)
+	if (n_flag == -1)
 		printf("\n");
 	return (0);
 }
