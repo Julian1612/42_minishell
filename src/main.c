@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 15:20:37 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 17:52:20 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,37 @@ void	arr_test(char **arr)
 	int	i = 0;
 	while (arr[i] != NULL)
 	{
-		printf("%d. %s\n", i, arr[i]);
+		printf("%d. (%s)\n", i, arr[i]);
 		i++;
 	}
+}
+
+// static void	free_all(t_koopa *shell, t_data *data)
+// {
+// 	while (data != NULL)
+// 	{
+// 		free_double(data->cmd_line);
+// 		free(data->cmd_name);
+// 		data = data->next;
+// 	}
+// 	free(data);
+// 	free_double(shell->envp);
+// 	free(shell->file);
+// 	free(shell->line);
+// 	free(shell);
+// }
+
+void	free_token_arr(char **token_arr)
+{
+	int	i;
+
+	i = 0;
+	while (token_arr[i] != NULL)
+	{
+		free(token_arr[i]);
+		i++;
+	}
+	free(token_arr);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -97,8 +125,9 @@ int	main(int argc, char **argv, char **envp)
 		if (token_arr == NULL)
 			return (1);
 		data = parser(token_arr);
-		//list_test(data);
+		// list_test(data);
 		ft_execute(shell, data);
+		free_token_arr(token_arr);
 		free(cmd);
 	}
 	return (0);

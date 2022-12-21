@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/21 10:59:09 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 17:53:39 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,38 +42,23 @@
 //	}
 //}
 
-int get_op(char **token_arr, int i)
-{
-	int	v;
 
-	v = 0;
+int	get_op(char **token_arr, int i)
+{
 	i++;
 	while (token_arr[i])
 	{
 		if (token_arr[i][0] == '|')
-		{
-			v = PIPE;
-			break;
-		}
+			return (PIPE);
 		else if (token_arr[i][0] == '<')
-		{
-			v = CMD;
-			break;
-		}
+			return (CMD);
 		else if (token_arr[i][0] == '>')
-		{
-			v = CMD;
-			break;
-		}
+			return (CMD);
 		else if (token_arr[i] == NULL)
-		{
-			v = CMD;
-			break;
-		}
+			return (CMD);
 		else
-			i++;
+			i++ ;
 	}
-	//printf("%d\n", v);
 	return (v);
 }
 
@@ -82,7 +67,7 @@ int	init_node(t_data *node, char **token_arr, int *i)
 	int	num_cmd;
 	int	j;
 
-	//printf("token_arr[%d] = %s\n", *i, token_arr[*i]);
+	printf("token_arr[%d] = %s\n", *i, token_arr[*i]);
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 	{
 		node->cmd_name = ft_strdup(token_arr[*i + 1]);
@@ -159,11 +144,10 @@ t_data	*parser(char **token_arr)
 	if (token_arr == NULL)
 		return (NULL);
 	while (token_arr[i] != NULL)
-	{
 		append_node(&head, token_arr, &i);
 		// if (token_arr[i] == NULL)
 		// 	break ;
 	}
-	//list_test(head);
+	list_test(head);
 	return (head);
 }
