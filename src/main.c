@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 10:40:45 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 15:20:37 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int	main(int argc, char **argv, char **envp)
 	sigaction(SIGINT, &act, 0);
 	argc++;
 	(void)argv;
-	(void)envp;
 	while (TRUE)
 	{
 		cmd = readline("👉 ");
