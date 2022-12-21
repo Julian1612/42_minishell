@@ -108,12 +108,11 @@ echo "bonjour"														--> funktioniert
 echo bonjour														--> funktioniert
 echo 'bonjour'														--> funktioniert
 echo -n bonjour														--> funktioniert
-echo -nn bonjour													-->
-echo -n -n -n bonjour												-->
+echo -n -n -n bonjour												--> funktioniert
 echo "-n" bonjour													--> funktioniert
 echo -n"-n" bonjour													--> funktioniert
-echo "-nnnn" bonjour												-->
-echo "-nnnn" -n bonjour												--> infinit loop
+echo "-nnnn" bonjour												--> funktioniert
+echo "-nnnn" -n bonjour												--> funktioniert
 echo "-n -n -n"-n bonjour											--> funktioniert
 echo "-n '-n'" bonjour												--> funktioniert
 echo $USER															-->
@@ -394,10 +393,10 @@ echo "'$USER'"
 > out																					-->
 ​
 ​
-echo "$PWD         "a
+echo "$PWD         "a																	--> funktioniert
 /Users/wollio/Desktop/projects/4/minishell         a
 ​
-echo "         $PWD"
+echo "         $PWD"																	--> funktioniert
          /Users/wollio/Desktop/projects/4/minishell
 
 EXPAND
@@ -407,5 +406,9 @@ $$ = Prozess ID
 Note vllt. access auf X_OK stellen statt F_OK
 cat | cat > out < in     --> funktioniert nicht genua wie bash
 minishell in minshell aufrufen geht nicht
-cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht
-probleme mit pipes und readline -> bricht nach der executen ab
+
+cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht 
+probleme mit pipes und readline -> bricht nach der executen ab 
+
+echo hi | echo kek -> sachen gehen nicht schnell genug durch (fds nochmal nachgucken)
+echo 42 | cat -e --> 42 $ space zu viel kp woher

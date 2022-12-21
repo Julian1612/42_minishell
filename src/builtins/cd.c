@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/10 00:22:32 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/18 19:48:00 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,27 @@
 #include <unistd.h> // chdir
 #include <stdlib.h> // getenv
 #include <limits.h> // [PATH_MAX]
+#include "libft.h"
 #include <stdio.h>
 
-static int	update_pwd(t_koopa *shell)
+static void	check_path(t_koopa *shell, char **path, int *check)
+{
+	if (*path == NULL)
+		return ;
+	if (ft_strcmp(*path, "-") == 0 || ft_strcmp(*path, "~-") == 0)
+	{
+		free(*path);
+		*path = ft_strdup(ft_getenv(shell, "OLDPWD") + 7);
+		*check = 1;
+	}
+	else if (ft_strcmp(*path, "~") == 0)
+	{
+		free(*path);
+		*path = ft_strdup(getenv("HOME"));
+	}
+}
+
+static int	update_pwd(t_koopa *shell, int check)
 {
 	char	buf[PATH_MAX];
 	char	*oldpwd;
@@ -35,6 +53,8 @@ static int	update_pwd(t_koopa *shell)
 		free(pwd);
 		oldpwd = NULL;
 		pwd = NULL;
+		if (check == 1)
+			ft_pwd();
 		return (0);
 	}
 	return (1);
@@ -42,22 +62,26 @@ static int	update_pwd(t_koopa *shell)
 
 int	ft_cd(t_koopa *shell, char *path)
 {
+	int	check;
+
+	check = 0;
+	check_path(shell, &path, &check);
 	if (path == NULL)
 	{
-		if (chdir(getenv("HOME")))
+		if (chdir(ft_getenv(shell, "HOME") + 5))
 		{
-			perror("HOME");
+			perror("minishell : cd");
 			return (1);
 		}		
 	}
 	else
-	{
+	{	
 		if (chdir(path))
 		{
-			perror("OLDPWD");
+			perror("minishell : cd");
 			return (1);
 		}	
 	}
-	update_pwd(shell);
+	update_pwd(shell, check);
 	return (0);
 }
