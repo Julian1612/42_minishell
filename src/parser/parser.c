@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/20 19:42:55 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:35:15 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,81 +42,79 @@ void	list_test(t_data *cmd_list)
 	}
 }
 
-int get_op(char **token_arr, int i)
-{
-	int	v;
 
-	v = 0;
+int	get_op(char **token_arr, int i)
+{
 	i++;
 	while (token_arr[i])
 	{
 		if (token_arr[i][0] == '|')
-		{
-			v = PIPE;
-			break;
-		}
+			return (PIPE);
 		else if (token_arr[i][0] == '<')
-		{
-			v = CMD;
-			break;
-		}
+			return (CMD);
 		else if (token_arr[i][0] == '>')
-		{
-			v = CMD;
-			break;
-		}
+			return (CMD);
 		else if (token_arr[i] == NULL)
-		{
-			v = CMD;
-			break;
-		}
+			return (CMD);
 		else
-			i++;
+			i++ ;
 	}
-	printf("%d\n", v);
-	return (v);
+	return (CMD);
 }
 
-int	init_node(t_data *node, char **token_arr, int *i)
+int	init_redirection(t_data *node, char **token_arr, int *i)
+{
+	node->cmd_name = ft_strdup(token_arr[*i + 1]);
+	node->cmd_line = (char **) malloc(sizeof(char *) * 2);
+	if (node->cmd_line == NULL)
+		return (1);
+	node->cmd_line[0] = ft_strdup(token_arr[*i + 1]);
+	node->cmd_line[1] = NULL;
+	if (token_arr[*i][0] == '<')
+		node->operator = IN;
+	else if (token_arr[*i][0] == '>')
+		node->operator = OUT;
+	node->next = NULL;
+	(*i) += 2;
+	return (0);
+}
+
+int	init_data(t_data *node, char **token_arr, int *i)
 {
 	int	num_cmd;
 	int	j;
 
-	printf("token_arr[%d] = %s\n", *i, token_arr[*i]);
+	if (token_arr[*i][0] == '|')
+		(*i)++;
+	node->operator = get_op(token_arr, *i);
+	num_cmd = count_cmd(token_arr, *i);
+	node->cmd_name = ft_strdup(token_arr[*i]);
+	node->cmd_line = (char **) malloc(sizeof(char *) * num_cmd + 1);
+	if (node->cmd_line == NULL)
+		return (1);
+	node->cmd_line[num_cmd] = NULL;
+	j = 0;
+	while (j < num_cmd)
+	{
+		node->cmd_line[j] = ft_strdup(token_arr[*i]);
+		j++;
+		(*i)++;
+	}
+	node->next = NULL;
+	return (0);
+}
+
+int	init_node(t_data *node, char **token_arr, int *i)
+{
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 	{
-		node->cmd_name = ft_strdup(token_arr[*i + 1]);
-		node->cmd_line = (char **) malloc(sizeof(char *) * 2);
-		if (node->cmd_line == NULL)
+		if (init_redirection(node, token_arr, i))
 			return (1);
-		node->cmd_line[0] = ft_strdup(token_arr[*i + 1]);
-		node->cmd_line[1] = NULL;
-		if (token_arr[*i][0] == '<')
-			node->operator = IN;
-		else if (token_arr[*i][0] == '>')
-			node->operator = OUT;
-		node->next = NULL;
-		(*i) += 2;
 	}
 	else
 	{
-		if (token_arr[*i][0] == '|')
-			(*i)++;
-		node->operator = get_op(token_arr, *i);
-		num_cmd = count_cmd(token_arr, *i);
-		node->cmd_name = ft_strdup(token_arr[*i]);
-		node->cmd_line = (char **) malloc(sizeof(char *) * num_cmd + 1);
-		if (node->cmd_line == NULL)
+		if (init_data(node, token_arr, i))
 			return (1);
-		node->cmd_line[num_cmd] = NULL;
-		j = 0;
-		while (j < num_cmd)
-		{
-			node->cmd_line[j] = ft_strdup(token_arr[*i]);
-			j++;
-			(*i)++;
-		}
-		node->next = NULL;
 	}
 	return (0);
 }
@@ -159,11 +157,7 @@ t_data	*parser(char **token_arr)
 	if (token_arr == NULL)
 		return (NULL);
 	while (token_arr[i] != NULL)
-	{
 		append_node(&head, token_arr, &i);
-		// if (token_arr[i] == NULL)
-		// 	break ;
-	}
-	list_test(head);
+	// list_test(head);
 	return (head);
 }

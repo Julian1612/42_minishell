@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/19 17:09:38 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:34:32 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	arr_test(char **arr)
 	int i = 0;
 	while (arr[i] != NULL)
 	{
-		printf("%d. %s\n", i, arr[i]);
+		printf("%d. (%s)\n", i, arr[i]);
 		i++;
 	}
 }
@@ -83,6 +83,19 @@ void	arr_test(char **arr)
 // 	free(shell->line);
 // 	free(shell);
 // }
+
+void	free_token_arr(char **token_arr)
+{
+	int	i;
+
+	i = 0;
+	while (token_arr[i] != NULL)
+	{
+		free(token_arr[i]);
+		i++;
+	}
+	free(token_arr);
+}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -113,7 +126,8 @@ int	main(int argc, char **argv, char **envp)
 			return (1);
 		data = parser(token_arr);
 		// list_test(data);
-		// ft_execute(shell, data);
+		ft_execute(shell, data);
+		free_token_arr(token_arr);
 		free(cmd);
 		// free_all(shell, data);
 	}

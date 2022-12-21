@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:09 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/11 18:02:27 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/21 14:56:49 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	skip_whitespace(char *str, int *i)
 {
-	while (str[*i] == ' ' || str[*i] == '\t')
+	while ((str[*i] == ' ' || str[*i] == '\t') && str[*i] != '\0')
 		(*i)++;
 }
 
@@ -63,9 +63,7 @@ void	skip_sqoutes(char *str, int *i, int *counter)
 	(*counter)++;
 	(*i)++;
 	while (str[*i] != 39 && str[*i] != '\0')
-	{
 		(*i)++;
-	}
 	if (str[*i + 1] == 39)
 	{
 		(*i)++;
@@ -74,7 +72,7 @@ void	skip_sqoutes(char *str, int *i, int *counter)
 	if (str[*i + 1] != ' ')
 	{
 		while (str[*i] >= '!' && str[*i] <= '~' && str[*i] != '\0')
-		(*i)++;
+			(*i)++;
 	}
 	else
 		(*i)++;
@@ -98,7 +96,7 @@ void	skip_dqoutes(char *str, int *i, int *counter)
 	}
 	if (str[*i + 1] != ' ')
 		while (str[*i] >= '!' && str[*i] <= '~' && str[*i] != '\0')
-		(*i)++;
+			(*i)++;
 	else
 		(*i)++;
 }
