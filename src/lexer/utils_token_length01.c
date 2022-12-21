@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:38:30 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/14 15:17:25 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/19 10:10:37 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,18 @@
 #include <string.h>
 #include <stdlib.h>
 
-void	skip_qoute(char *str, int *j, int *token_len)
+void	skip_sqoute(char *str, int *j, int *token_len)
 {
-	while ((str[*j] != '"' && str[*j] != 39) && str[*j] != '\0')
+	while (str[*j] != 39 && str[*j] != '\0')
+	{
+		(*token_len)++;
+		(*j)++;
+	}
+}
+
+void	skip_dqoute(char *str, int *j, int *token_len)
+{
+	while ((str[*j] != '"' && str[*j]) != '\0')
 	{
 		(*token_len)++;
 		(*j)++;
@@ -45,7 +54,7 @@ int	counter_dqoutes_len(char *str, int *j)
 	}
 	token_len++;
 	(*j)++;
-	skip_qoute(str, j, &token_len);
+	skip_dqoute(str, j, &token_len);
 	if (str[*j + 1] == '"')
 	{
 		token_len++;
@@ -74,7 +83,7 @@ int	counter_sqoutes_len(char *str, int *j)
 	}
 	token_len++;
 	(*j)++;
-	skip_qoute(str, j, &token_len);
+	skip_sqoute(str, j, &token_len);
 	if (str[*j + 1] == 39)
 	{
 		token_len++;
