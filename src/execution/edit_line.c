@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/15 16:39:41 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 01:13:37 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,11 @@ int	replace(t_data *data, t_exp *exp)
 		perror("malloc fail\n");
 	free(exp->line);
 	return (0);
+}
+
+int	ft_check_char(int c)
+{
+	return (c == '\f' || c == '\n' || c == '\r' \
+	|| c == '\t' || c == '\v' || c == ' ' || c == '$'\
+	|| c == '\'' || c == '\"' || c == '\0');
 }

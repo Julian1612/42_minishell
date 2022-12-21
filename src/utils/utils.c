@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/15 14:40:09 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 00:02:07 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h> // free
-#include <stdio.h> 
+#include <stdio.h>
+
 int	ft_name_len(char *variable)
 {
 	int	i;
@@ -35,7 +36,9 @@ char	*ft_getenv(t_koopa *shell, char *name)
 	int	i;
 
 	i = -1;
-	if (!ft_strncmp(name, "?", 1))
+	if (name == NULL)
+		return (NULL);
+	if (ft_strncmp(name, "?", 1) == 0)
 	{
 		free(name);
 		name = ft_itoa(shell->exit_status);
@@ -46,7 +49,7 @@ char	*ft_getenv(t_koopa *shell, char *name)
 		if (!ft_strncmp(shell->envp[i], name, ft_strlen(name)))
 			return (shell->envp[i]);
 	}
-	return ("\n");
+	return ("\0");
 }
 
 void	free_double(char **double_pointer)
