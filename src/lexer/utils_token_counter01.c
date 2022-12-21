@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:30:55 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/11 18:02:24 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/21 15:21:15 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void	skip_str(char *str, int *i, int *counter)
 			(*i)++;
 			while (str[*i] != '"' && str[*i] != 39 && str[*i] != '\0')
 				(*i)++;
+			if (str[*i + 1] == '\0')
+			{
+				(*i)++;
+				break ;
+			}
 			(*i)++;
 		}
 		(*i)++;

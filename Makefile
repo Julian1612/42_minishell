@@ -6,7 +6,7 @@
 #    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 16:05:50 by dgross            #+#    #+#              #
-#    Updated: 2022/12/16 09:31:23 by jschneid         ###   ########.fr        #
+#    Updated: 2022/12/21 11:58:38 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ VPATH		= src: src/builtins: src/utils: src/signals: \
 			  src/lexer: src/token_counter: src/token_length \
 			  src/utils_token_counter00: src/utils_token_counter01: \
 			  src/utils_token_length00: src/utils_token_length01: \
-			  src/parser: src/create_list: src/utils_create_list00.c: \
+			  src/parser: src/utils_create_list00.c: \
 			  src/execution:
 
 LIBFT		= libft/libft.a
@@ -27,7 +27,7 @@ SRC			= main.c \
 			  lexer.c token_counter.c token_length.c \
 			  utils_token_counter00.c utils_token_counter01.c \
 			  utils_token_length00.c utils_token_length01.c utils_token_length02.c \
-			  parser.c create_list.c utils_create_list00.c \
+			  parser.c utils_create_list00.c \
 			  execution.c execute_builtin.c execute_cmd.c \
 			  heredoc.c redirection.c expansion.c edit_line.c \
 			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
