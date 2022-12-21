@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 17:52:20 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:58:37 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,11 +121,9 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		add_history(cmd);
 		token_arr = tokenizer(cmd);
-		//arr_test(token_arr);
 		if (token_arr == NULL)
 			return (1);
 		data = parser(token_arr);
-		// list_test(data);
 		ft_execute(shell, data);
 		free_token_arr(token_arr);
 		free(cmd);
