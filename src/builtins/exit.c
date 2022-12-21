@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/20 16:59:29 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 01:19:50 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	ft_exit(t_koopa *shell, char **cmd_line)
 
 	num = 0;
 	if (cmd_line == NULL)
+	{
+		printf("kekw\n");
 		exit(0);
+	}
 	size = ft_ptrcnt(cmd_line);
 	if (check_input(cmd_line[1], size, shell) == -1)
 		return ;
