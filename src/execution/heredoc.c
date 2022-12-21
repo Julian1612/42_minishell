@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/11 18:53:16 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/20 14:19:55 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-// in heredoc auch expanden
 int	ft_heredoc(t_koopa *shell, t_data *data)
 {
 	char	*input;
+	char	*heredoc;
 
-	// handel_signals here
+	heredoc = ft_calloc(1, sizeof(char));
 	shell->in = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0777);
 	while (1)
 	{
@@ -36,7 +36,7 @@ int	ft_heredoc(t_koopa *shell, t_data *data)
 		}
 		if (ft_strncmp(input, data->cmd_name, ft_strlen(data->cmd_name) == 0))
 			break ;
-		write(shell->in, input, ft_strlen(input));
+		heredoc = ft_strjoin(heredoc, input);
 		free(input);
 	}
 	close(shell->in);

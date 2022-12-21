@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 18:01:17 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/18 13:07:53 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,20 @@ static int	ft_redirect_infile(t_koopa *shell, t_data *data)
 
 static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 {
-	shell->out = open(data->cmd_line[0], O_RDWR | O_CREAT | O_TRUNC, 0777);
+	shell->out = open(data->cmd_line[0], O_RDWR | O_CREAT | O_TRUNC, 00644);
 	if (shell->out == -1)
 	{
 		printf("ERROR\n");
 		return (ERROR);
 	}
+	dup2(shell->out, STDOUT_FILENO);
+	close(shell->out);
 	return (0);
 }
 
 static int	ft_append_outfile(t_koopa *shell, t_data *data)
 {
-	shell->out = open(data->cmd_line[0], O_CREAT | O_RDWR | O_APPEND, 0777);
+	shell->out = open(data->cmd_line[0], O_CREAT | O_RDWR | O_APPEND, 00644);
 	if (shell->out == -1)
 	{
 		printf("ERROR\n");

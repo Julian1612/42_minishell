@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/15 17:10:27 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/18 15:51:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*create_path(t_koopa *shell, char *cmd)
 	{
 		shell->path[i] = ft_strjoin(shell->path[i], "/");
 		shell->path[i] = ft_strjoin(shell->path[i], cmd);
-		if (access(shell->path[i], F_OK) == 0)	
+		if (access(shell->path[i], X_OK) == 0)
 			return (shell->path[i]);
 	}
 	return (NULL);
@@ -39,7 +39,7 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 		if (shell->path == NULL)
 		{
 			free_double(shell->path);
-			printf("Error\n");
+			printf("Error : shell->path\n");
 		}
 		shell->file = create_path(shell, data->cmd_name);
 	}
@@ -55,7 +55,7 @@ void	ft_cmd(t_koopa *shell, t_data *data)
 	close(shell->fd[1]);
 	prepare_execution(shell, data);
 	execve(shell->file, data->cmd_line, shell->envp);
-	printf("ERROR\n");
+	printf("execve error\n");
 	exit(127);
 }
 
@@ -68,7 +68,7 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data)
 	{
 		prepare_execution(shell, data);
 		execve(shell->file, data->cmd_line, shell->envp);
-		printf("Error\n");
+		printf("execve error\n");
 		exit(127);
 	}
 }

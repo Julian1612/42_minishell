@@ -3,10 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/20 11:53:04 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +17,7 @@
 # include <signal.h>
 
 # define TRUE 1
-# define FALSE 0
+# define FALSE -1
 # define ERROR -1
 
 # define CMD 0
@@ -34,6 +33,7 @@ typedef struct s_exp
 	int		squo;
 	int		dquo;
 	int		len;
+	int		content_len;
 }			t_exp;
 
 /// @brief cmd/builtin linked list
@@ -55,7 +55,7 @@ typedef struct s_koopa
 	char		*file;
 	int			in;
 	int			out;
-	int			stdout1;
+	int			tmp_stdin;
 	char		**path;
 	int			tmp_fd;
 	int			error;
@@ -81,7 +81,7 @@ int		ft_echo(char **cmd_line);
 int		ft_env(t_koopa *shell);
 /// @brief		Exit the minishell
 /// @param shell Main struct
-void	ft_exit(t_koopa *shell);
+void	ft_exit(t_koopa *shell, char **cmd_line);
 /// @brief		Export variables to the environment list
 /// @param shell Main struct
 /// @param variable the variable to export
@@ -127,6 +127,7 @@ int		ft_isspace(int c);
 int		init_exp(t_exp *exp, t_data *data);
 char	*double_to_str(t_data *data);
 int		replace(t_data *data, t_exp *exp);
+int		ft_check_char(int c);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
