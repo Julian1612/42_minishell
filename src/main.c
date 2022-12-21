@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 17:34:32 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:52:20 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	init_envp(t_koopa *shell, char **envp)
 	return (0);
 }
 
-// void list_test(t_data *cmd_list)
-// {
-// 	t_data	*cur = cmd_list;
-// 	int g = 1;
-// 	int y = 0;
+//void	list_test(t_data *cmd_list)
+//{
+//	t_data	*cur = cmd_list;
+//	int g = 1;
+//	int y = 0;
 
 // 	while (cur != NULL)
 // 	{
@@ -57,11 +57,11 @@ int	init_envp(t_koopa *shell, char **envp)
 // 		g++;
 // 		printf("----------------------\n");
 // 	}
-// }
+//}
 
 void	arr_test(char **arr)
 {
-	int i = 0;
+	int	i = 0;
 	while (arr[i] != NULL)
 	{
 		printf("%d. (%s)\n", i, arr[i]);
@@ -114,14 +114,14 @@ int	main(int argc, char **argv, char **envp)
 	sigaction(SIGINT, &act, 0);
 	argc++;
 	(void)argv;
-	(void)envp;
-	while (1)
+	while (TRUE)
 	{
 		cmd = readline("👉 ");
 		if (cmd == NULL)
 			break ;
+		add_history(cmd);
 		token_arr = tokenizer(cmd);
-		// arr_test(token_arr);
+		//arr_test(token_arr);
 		if (token_arr == NULL)
 			return (1);
 		data = parser(token_arr);
@@ -129,7 +129,6 @@ int	main(int argc, char **argv, char **envp)
 		ft_execute(shell, data);
 		free_token_arr(token_arr);
 		free(cmd);
-		// free_all(shell, data);
 	}
 	return (0);
 }
