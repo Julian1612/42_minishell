@@ -6,10 +6,10 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 10:07:16 by jschneid          #+#    #+#             */
+/*   Updated: 2022/12/21 10:38:36 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

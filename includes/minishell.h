@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 16:05:35 by dgross            #+#    #+#             */
+/*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
+/*   Updated: 2022/12/21 10:54:37 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +57,7 @@ typedef struct s_koopa
 	int			in;
 	int			out;
 	int			tmp_stdin;
+	int			tmp_stdout;
 	char		**path;
 	int			tmp_fd;
 	int			error;

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/19 19:21:55 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/21 10:59:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static void	pipe_cmd(t_koopa *shell, t_data *data)
 int	ft_execute(t_koopa *shell, t_data *data)
 {
 	shell->tmp_stdin = dup(STDIN_FILENO);
+	shell->tmp_stdout = dup(STDOUT_FILENO);
 	ft_redirection(shell, data);
 	while (data != NULL)
 	{
@@ -80,6 +81,7 @@ int	ft_execute(t_koopa *shell, t_data *data)
 		}
 		else if (data->operator == CMD)
 		{
+			write_to(shell, data);
 			if (ft_execute_builtin(shell, data) == 1)
 				ft_execute_cmd(shell, data);
 		}
@@ -87,6 +89,8 @@ int	ft_execute(t_koopa *shell, t_data *data)
 	}
 	dup2(shell->tmp_stdin, STDIN_FILENO);
 	close(shell->tmp_stdin);
+	dup2(shell->tmp_stdout, STDOUT_FILENO);
+	close(shell->tmp_stdout);
 	while (waitpid(0, &shell->exit_status, 0) > 0)
 		;
 	shell->exit_status = WEXITSTATUS(shell->exit_status);

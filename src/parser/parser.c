@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/20 19:42:55 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/21 10:59:09 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 #include <string.h>
 #include <stdlib.h>
 
-void	list_test(t_data *cmd_list)
-{
-	t_data	*cur;
-	cur = cmd_list;
-	int g = 1;
-	int y = 0;
+//void	list_test(t_data *cmd_list)
+//{
+//	t_data	*cur;
+//	cur = cmd_list;
+//	int g = 1;
+//	int y = 0;
 
-	while (cur != NULL)
-	{
-		printf("\e[37m----------------------\n");
-		printf("\e[106m----------%d-----------\e[49m\n", g);
-		printf("\e[37m----------------------\n");
-		printf("\e[32mcmd: %s\n", cur->cmd_name);
-		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
-		while (cur->cmd_line[y] != NULL)
-		{
-			printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
-			y++;
-		}
-		y = 0;
-		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
-		printf("\e[95moperator: %d\n", cur->operator);
-		cur = cur->next;
-		g++;
-	}
-}
+//	while (cur != NULL)
+//	{
+//		printf("\e[37m----------------------\n");
+//		printf("\e[106m----------%d-----------\e[49m\n", g);
+//		printf("\e[37m----------------------\n");
+//		printf("\e[32mcmd: %s\n", cur->cmd_name);
+//		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
+//		while (cur->cmd_line[y] != NULL)
+//		{
+//			printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
+//			y++;
+//		}
+//		y = 0;
+//		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
+//		printf("\e[95moperator: %d\033[0m\n", cur->operator);
+//		cur = cur->next;
+//		g++;
+//	}
+//}
 
 int get_op(char **token_arr, int i)
 {
@@ -73,7 +73,7 @@ int get_op(char **token_arr, int i)
 		else
 			i++;
 	}
-	printf("%d\n", v);
+	//printf("%d\n", v);
 	return (v);
 }
 
@@ -82,7 +82,7 @@ int	init_node(t_data *node, char **token_arr, int *i)
 	int	num_cmd;
 	int	j;
 
-	printf("token_arr[%d] = %s\n", *i, token_arr[*i]);
+	//printf("token_arr[%d] = %s\n", *i, token_arr[*i]);
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 	{
 		node->cmd_name = ft_strdup(token_arr[*i + 1]);
@@ -164,6 +164,6 @@ t_data	*parser(char **token_arr)
 		// if (token_arr[i] == NULL)
 		// 	break ;
 	}
-	list_test(head);
+	//list_test(head);
 	return (head);
 }
