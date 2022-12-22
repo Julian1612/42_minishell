@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 17:58:37 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/22 12:01:30 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,27 @@ void	free_token_arr(char **token_arr)
 	free(token_arr);
 }
 
+void	free_data(t_data *head)
+{
+	t_data	*tmp;
+	int		i;
+
+	i = 0;
+	while (head->next != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		while (tmp->cmd_line[i] != NULL)
+		{
+			free(tmp->cmd_line[i]);
+			i++;
+		}
+		i = 0;
+		free(tmp->cmd_line);
+		free(tmp);
+	}
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_koopa				*shell;
@@ -126,6 +147,7 @@ int	main(int argc, char **argv, char **envp)
 		data = parser(token_arr);
 		ft_execute(shell, data);
 		free_token_arr(token_arr);
+		free_data(data);
 		free(cmd);
 	}
 	return (0);
