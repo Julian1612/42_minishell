@@ -1,3 +1,4 @@
+echo ''''''''''$USER'''''''''' = 2 && echo """"""""$USER""""""""
 < Makefile < Makefile cat
 < Makefile cat -e | wc -l > out.txt | echo hi | cat -e
 echo > | sadsa --> parse error
@@ -407,8 +408,8 @@ Note vllt. access auf X_OK stellen statt F_OK
 cat | cat > out < in     --> funktioniert nicht genua wie bash
 minishell in minshell aufrufen geht nicht
 
-cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht 
-probleme mit pipes und readline -> bricht nach der executen ab 
+cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht
+probleme mit pipes und readline -> bricht nach der executen ab
 
 echo hi | echo kek -> sachen gehen nicht schnell genug durch (fds nochmal nachgucken)
 echo 42 | cat -e --> 42 $ space zu viel kp woher
