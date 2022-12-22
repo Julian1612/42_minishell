@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/21 18:03:25 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/22 15:37:17 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	list_test(t_data *cmd_list)
 	}
 }
 
-
 int	get_op(char **token_arr, int i)
 {
 	i++;
@@ -62,45 +61,63 @@ int	get_op(char **token_arr, int i)
 	return (CMD);
 }
 
-int	init_node(t_data *node, char **token_arr, int *i)
+int	handle_node(t_data *node, char **token_arr, int *i)
+{
+	node->cmd_name = ft_strdup(token_arr[*i + 1]);
+	node->cmd_line = (char **) malloc(sizeof(char *) * 2);
+	if (node->cmd_line == NULL)
+		return (1);
+	node->cmd_line[0] = ft_strdup(token_arr[*i + 1]);
+	node->cmd_line[1] = NULL;
+	if (token_arr[*i][0] == '<')
+		node->operator = IN;
+	else if (token_arr[*i][0] == '>')
+		node->operator = OUT;
+	node->next = NULL;
+	(*i) += 2;
+	return (0);
+}
+
+int	handle_input(t_data *node, char **token_arr, int *i)
 {
 	int	num_cmd;
 	int	j;
 
+	if (token_arr[*i][0] == '|')
+		(*i)++;
+	node->operator = get_op(token_arr, *i);
+	num_cmd = count_cmd(token_arr, *i);
+	node->cmd_name = ft_strdup(token_arr[*i]);
+	if (node->cmd_name == NULL)
+		return (1);
+	node->cmd_line = (char **) malloc(sizeof(char *) * num_cmd + 1);
+	if (node->cmd_line == NULL)
+		return (1);
+	node->cmd_line[num_cmd] = NULL;
+	j = 0;
+	while (j < num_cmd)
+	{
+		node->cmd_line[j] = ft_strdup(token_arr[*i]);
+		if (node->cmd_line[j] == NULL)
+			return (1);
+		j++;
+		(*i)++;
+	}
+	node->next = NULL;
+	return (0);
+}
+
+int	init_node(t_data *node, char **token_arr, int *i)
+{
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 	{
-		node->cmd_name = ft_strdup(token_arr[*i + 1]);
-		node->cmd_line = (char **) malloc(sizeof(char *) * 2);
-		if (node->cmd_line == NULL)
+		if (handle_node(node, token_arr, i))
 			return (1);
-		node->cmd_line[0] = ft_strdup(token_arr[*i + 1]);
-		node->cmd_line[1] = NULL;
-		if (token_arr[*i][0] == '<')
-			node->operator = IN;
-		else if (token_arr[*i][0] == '>')
-			node->operator = OUT;
-		node->next = NULL;
-		(*i) += 2;
 	}
 	else
 	{
-		if (token_arr[*i][0] == '|')
-			(*i)++;
-		node->operator = get_op(token_arr, *i);
-		num_cmd = count_cmd(token_arr, *i);
-		node->cmd_name = ft_strdup(token_arr[*i]);
-		node->cmd_line = (char **) malloc(sizeof(char *) * num_cmd + 1);
-		if (node->cmd_line == NULL)
+		if (handle_input(node, token_arr, i))
 			return (1);
-		node->cmd_line[num_cmd] = NULL;
-		j = 0;
-		while (j < num_cmd)
-		{
-			node->cmd_line[j] = ft_strdup(token_arr[*i]);
-			j++;
-			(*i)++;
-		}
-		node->next = NULL;
 	}
 	return (0);
 }
@@ -112,25 +129,32 @@ t_data	*create_node(char **token_arr, int *i)
 	new_node = (t_data *) malloc(sizeof(t_data));
 	if (new_node == NULL)
 		return (NULL);
-	init_node(new_node, token_arr, i);
+	if (init_node(new_node, token_arr, i))
+		return (NULL);
 	return (new_node);
 }
 
-void	append_node(t_data **head, char **token_arr, int *i)
+int	append_node(t_data **head, char **token_arr, int *i)
 {
-	t_data	*b;
+	t_data	*tmp;
 
+	tmp = NULL;
 	if ((*head) == NULL)
+	{
 		(*head) = create_node(token_arr, i);
+		if ((*head)->next == NULL)
+			return (1);
+	}
 	else
 	{
-		b = *head;
-		while (b->next != NULL)
-		{
-			b = b->next;
-		}
-		b->next = create_node(token_arr, i);
+		tmp = *head;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = create_node(token_arr, i);
+		if (tmp->next == NULL)
+			return (1);
 	}
+	return (0);
 }
 
 t_data	*parser(char **token_arr)
