@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 17:58:37 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/23 21:00:29 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <signal.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h> // malloc
 #include <readline/readline.h> // readline
 #include <readline/history.h> // readline
+#include <fcntl.h> 
+#include <limits.h>
 
 int	init_envp(t_koopa *shell, char **envp)
 {
@@ -23,10 +26,9 @@ int	init_envp(t_koopa *shell, char **envp)
 	struct sigaction	s_sigaction;
 
 	i = -1;
-	// s_sigaction.sa_sigaction = ;
 	s_sigaction.sa_flags = SA_SIGINFO;
-	sigaction(SIGINT, &s_sigaction, NULL); // ctrl - c
-	sigaction(SIGQUIT, &s_sigaction, NULL); // ctrl - d
+	sigaction(SIGINT, &s_sigaction, NULL);
+	sigaction(SIGQUIT, &s_sigaction, NULL);
 	shell->envp = ft_calloc(ft_ptrcnt(envp) + 1, sizeof(char *));
 	if (shell->envp == NULL)
 		return (-1);
@@ -59,15 +61,15 @@ int	init_envp(t_koopa *shell, char **envp)
 // 	}
 //}
 
-void	arr_test(char **arr)
-{
-	int	i = 0;
-	while (arr[i] != NULL)
-	{
-		printf("%d. (%s)\n", i, arr[i]);
-		i++;
-	}
-}
+// void	arr_test(char **arr)
+// {
+// 	int	i = 0;
+// 	while (arr[i] != NULL)
+// 	{
+// 		printf("%d. (%s)\n", i, arr[i]);
+// 		i++;
+// 	}
+// }
 
 // static void	free_all(t_koopa *shell, t_data *data)
 // {
@@ -84,36 +86,12 @@ void	arr_test(char **arr)
 // 	free(shell);
 // }
 
-void	free_token_arr(char **token_arr)
+static int	execute_minishell(t_koopa *shell)
 {
-	int	i;
-
-	i = 0;
-	while (token_arr[i] != NULL)
-	{
-		free(token_arr[i]);
-		i++;
-	}
-	free(token_arr);
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	t_koopa				*shell;
-	struct sigaction	act;
-	char				*cmd;
+	t_data				*tabel;
 	char				**token_arr;
-	t_data				*data;
+	char				*cmd;
 
-	shell = ft_calloc(1, sizeof(t_koopa));
-	init_envp(shell, envp);
-	ft_set_termianl();
-	act.sa_flags = SA_SIGINFO;
-	act.sa_sigaction = ft_signal_handler;
-	sigaction(SIGQUIT, &act, 0);
-	sigaction(SIGINT, &act, 0);
-	argc++;
-	(void)argv;
 	while (TRUE)
 	{
 		cmd = readline("👉 ");
@@ -123,10 +101,46 @@ int	main(int argc, char **argv, char **envp)
 		token_arr = tokenizer(cmd);
 		if (token_arr == NULL)
 			return (1);
-		data = parser(token_arr);
-		ft_execute(shell, data);
-		free_token_arr(token_arr);
+		tabel = parser(token_arr);
+		ft_execute(shell, tabel);
+		free_double(token_arr);
 		free(cmd);
 	}
+	return (0);
+}
+
+static t_koopa	*init_shell(void)
+{
+	t_koopa	*shell;
+
+	shell = ft_calloc(1, sizeof(t_koopa));
+	shell->envp = NULL;
+	shell->path = NULL;
+	shell->line = NULL;
+	shell->file = NULL;
+	shell->tmp_stdin = -1;
+	shell->tmp_stdout = -1;
+	shell->in = -1;
+	shell->out = -1;
+	shell->exit_status = -1;
+	return (shell);
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	t_koopa				*shell;
+	struct sigaction	act;
+
+	(void)argv;
+	argc++;
+	shell = init_shell();
+	init_envp(shell, envp);
+	ft_terminal(1);
+	act.sa_flags = SA_SIGINFO;
+	act.sa_sigaction = ft_signal_handler;
+	sigaction(SIGQUIT, &act, 0);
+	sigaction(SIGINT, &act, 0);
+	execute_minishell(shell);
+	ft_terminal(0);
 	return (0);
 }
