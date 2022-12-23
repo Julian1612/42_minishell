@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/23 21:00:29 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/23 21:11:21 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,27 @@ int	init_envp(t_koopa *shell, char **envp)
 // 	free(shell);
 // }
 
+void	free_data(t_data *head)
+{
+	t_data	*tmp;
+	int		i;
+
+	i = 0;
+	while (head->next != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		while (tmp->cmd_line[i] != NULL)
+		{
+			free(tmp->cmd_line[i]);
+			i++;
+		}
+		i = 0;
+		free(tmp->cmd_line);
+		free(tmp);
+	}
+}
+
 static int	execute_minishell(t_koopa *shell)
 {
 	t_data				*tabel;
@@ -104,6 +125,7 @@ static int	execute_minishell(t_koopa *shell)
 		tabel = parser(token_arr);
 		ft_execute(shell, tabel);
 		free_double(token_arr);
+		free_data(tabel);
 		free(cmd);
 	}
 	return (0);
