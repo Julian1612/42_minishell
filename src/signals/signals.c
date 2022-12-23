@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:50:35 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/21 15:46:45 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/23 19:15:12 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,18 @@
 #include <readline/history.h>
 #include <termios.h>
 
-void	ft_set_termianl(void)
+void	ft_terminal(int num)
 {
-	struct termios	new_settings;
+	struct termios	settings;
 
-	if (tcgetattr(STDIN_FILENO, &new_settings))
+	tcgetattr(STDIN_FILENO, &settings);
+	if (num == 1)
 	{
-		if(isatty(STDIN_FILENO) == 1)
-			printf("kekw\n");
+		settings.c_lflag &= ~ECHOCTL;
+		tcsetattr(STDIN_FILENO, TCSANOW, &settings);
 	}
-	new_settings.c_lflag &= ~ECHOCTL;
-	if (tcsetattr(STDIN_FILENO, TCSANOW, &new_settings))
-	{
-		//kp einfach nichts oder so kp
-	}
+	if (num == 0)
+		tcsetattr(STDIN_FILENO, TCSANOW, &settings);
 }
 
 void	ft_signal_handler(int sig, siginfo_t *siginfo, void *ignore)

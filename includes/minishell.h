@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 15:06:22 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/23 17:37:29 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,15 @@ typedef struct s_data
 typedef struct s_koopa
 {
 	int			fd[2];
-	char		*line;
-	int			exit_status;
 	char		**envp;
+	char		**path;
+	char		*line;
 	char		*file;
+	int			tmp_stdout;
+	int			tmp_stdin;
 	int			in;
 	int			out;
-	int			tmp_stdin;
-	int			tmp_stdout;
-	char		**path;
-	int			tmp_fd;
-	int			error;
-	t_data		*data;
+	int			exit_status;
 }t_koopa;
 
 ////////////////////////////////////////
@@ -160,7 +157,7 @@ void	ft_signal_handler(int sig, siginfo_t *siginfo, void *ignore);
 
 /// @brief
 /// @param
-void	ft_set_termianl(void);
+void	ft_terminal(int num);
 
 ////////////////////////////////////////
 ////////		 LEXER	 		////////
