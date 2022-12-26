@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/23 17:37:29 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/26 23:49:05 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int		ft_execute(t_koopa *shell, t_data *data);
 /// @brief
 /// @param shell
 /// @param data
-void	ft_redirection(t_koopa *shell, t_data *data);
+int		ft_redirection(t_koopa *shell, t_data *data);
 void	write_to(t_koopa *shell, t_data *data);
 void	ft_cmd(t_koopa *shell, t_data *data);
 int		ft_expand(t_koopa *shell, t_data *data);
@@ -127,6 +127,10 @@ int		init_exp(t_exp *exp, t_data *data);
 char	*double_to_str(t_data *data);
 int		replace(t_data *data, t_exp *exp);
 int		ft_check_char(int c);
+char	*get_variable(t_exp *exp, int *idx);
+char	*ft_expand_heredoc(t_koopa *shell, char *heredoc);
+char	*ft_addchar(char	*str, char c);
+void	ft_signal_heredoc(int sig, siginfo_t *siginfo, void *ignore);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////

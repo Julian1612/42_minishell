@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/23 21:16:43 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/24 21:02:03 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,19 @@ int	handle_node(t_data *node, char **token_arr, int *i)
 	node->cmd_line[0] = ft_strdup(token_arr[*i + 1]);
 	node->cmd_line[1] = NULL;
 	if (token_arr[*i][0] == '<')
-		node->operator = IN;
+	{
+		if (token_arr[*i][1] == '<')
+			node->operator = HEREDOC;
+		else
+			node->operator = IN;
+	}
 	else if (token_arr[*i][0] == '>')
-		node->operator = OUT;
+	{
+		if (token_arr[*i][1] == '>')
+			node->operator = APPEND;
+		else
+			node->operator = OUT;
+	}
 	node->next = NULL;
 	(*i) += 2;
 	return (0);
@@ -109,7 +119,7 @@ int	handle_input(t_data *node, char **token_arr, int *i)
 
 int	init_node(t_data *node, char **token_arr, int *i)
 {
-	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
+	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>' )
 	{
 		if (handle_node(node, token_arr, i))
 			return (1);

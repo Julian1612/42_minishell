@@ -6,12 +6,33 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/14 23:03:42 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/24 15:39:22 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
+
+static int	input_check(char *variable)
+{
+	int	i;
+
+	i = -1;
+	if (variable[0] == '=' || ft_isdigit(variable[0]) || variable[0] == '\0')
+		return (ERROR);
+	while (variable[++i] != '\0')
+	{
+		if (!ft_isalnum(variable[i]) && variable[i] != '_' \
+		&& variable[i] == '=')
+			break ;
+	}
+	if (variable[i] != '\0')
+	{
+		perror("minishell");
+		return (ERROR);
+	}
+	return (0);
+}
 
 static int	var_checker(t_koopa *shell, char *variable)
 {
@@ -36,6 +57,8 @@ int	ft_unset(t_koopa *shell, char *variable)
 
 	k = 0;
 	i = -1;
+	if (input_check(variable) == ERROR)
+		return (1);
 	if (!var_checker(shell, variable))
 		return (0);
 	tmp_envp = ft_calloc(ft_ptrcnt(shell->envp) + 2, sizeof(char *));

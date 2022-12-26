@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 10:59:38 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/27 00:09:13 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ int	ft_execute(t_koopa *shell, t_data *data)
 {
 	shell->tmp_stdin = dup(STDIN_FILENO);
 	shell->tmp_stdout = dup(STDOUT_FILENO);
-	ft_redirection(shell, data);
+	if (ft_redirection(shell, data) == ERROR)
+		return (ERROR);
 	while (data != NULL)
 	{
-		ft_expand(shell, data);
 		if (data->operator == PIPE)
 		{
 			open_pipe(shell);
