@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 01:19:50 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/24 20:31:21 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ void	ft_exit(t_koopa *shell, char **cmd_line)
 	if (check_input(cmd_line[1], size, shell) == -1)
 		return ;
 	num = ft_atoi(cmd_line[1]);
-	printf("exit\n");
+	write(2, "exit\n", 5);
 	exit(num);
 }

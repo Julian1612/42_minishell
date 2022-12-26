@@ -6,13 +6,30 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 00:02:07 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/25 22:18:51 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h> // free
 #include <stdio.h>
+
+char	*ft_addchar(char	*str, char c)
+{
+	char	*new_string;
+	int		i;
+
+	i = -1;
+	new_string = ft_calloc(ft_strlen(str) + 2, sizeof(char));
+	if (new_string == NULL)
+		return (NULL);
+	while (str[++i] != '\0')
+		new_string[i] = str[i];
+	new_string[i++] = c;
+	new_string[i] = '\0';
+	free(str);
+	return (new_string);
+}
 
 int	ft_name_len(char *variable)
 {

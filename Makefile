@@ -6,7 +6,7 @@
 #    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2022/12/23 16:41:34 by dna              ###   ########.fr        #
+#    Updated: 2022/12/25 21:34:43 by dna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC			= main.c \
 			  utils_token_length00.c utils_token_length01.c utils_token_length02.c \
 			  parser.c utils_create_list00.c \
 			  execution.c execute_builtin.c execute_cmd.c \
-			  heredoc.c redirection.c expansion.c edit_line.c \
+			  heredoc.c redirection.c expansion.c edit_line.c heredoc_exp.c \
 			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/

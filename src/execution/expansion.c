@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/21 01:10:07 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 00:47:50 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	remove_quots(t_exp *exp, int count)
 	free(tmp);
 }
 
-static char	*get_variable(t_exp *exp, int *idx)
+char	*get_variable(t_exp *exp, int *idx)
 {
 	int		i;
 	char	*variable;
@@ -71,7 +71,7 @@ static char	*get_content(t_koopa *shell, t_exp *exp, int *idx)
 	return (content);
 }
 
-static void	exec_expand(t_koopa *shell, t_exp *exp, int *idx, int *j)
+void	exec_expand(t_koopa *shell, t_exp *exp, int *idx, int *j)
 {
 	char	*content;
 	char	*start_tmp;
@@ -120,6 +120,3 @@ int	ft_expand(t_koopa *shell, t_data *data)
 	replace(data, &exp);
 	return (0);
 }
-
-// echo "$USER '$USER' $USER" '$USER'
-// echo "$LESS '$LESS' $LESS" '$LESS'
