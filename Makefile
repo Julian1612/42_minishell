@@ -6,7 +6,7 @@
 #    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2022/12/25 21:34:43 by dna              ###   ########.fr        #
+#    Updated: 2022/12/27 01:40:01 by dna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ VPATH		= src: src/builtins: src/utils: src/signals: \
 
 LIBFT		= libft/libft.a
 
-SRC			= main.c \
+SRC			= main.c error.c\
 			  utils.c \
 			  signals.c \
 			  lexer.c token_counter.c token_length.c \

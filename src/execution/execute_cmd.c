@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 01:07:54 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 14:29:07 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <unistd.h> // dup access fork
 #include <stdlib.h> // 
 #include <stdio.h> // 
+#include <errno.h>
+#include <string.h>
 
 static char	*create_path(t_koopa *shell, char *cmd)
 {
@@ -41,9 +43,15 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 		if (shell->path == NULL)
 		{
 			free_double(shell->path);
-			printf("Error : shell->path\n");
+			print_error(NULL, "path", "Not enough space/cannot \
+			allocate memory");
 		}
 		shell->file = create_path(shell, data->cmd_name);
+		if (shell->file == NULL)
+		{
+			print_error(data->cmd_line[0], NULL, "command not found");
+			exit(127);
+		}
 	}
 	else
 		shell->file = data->cmd_line[0];
@@ -55,7 +63,7 @@ void	ft_cmd(t_koopa *shell, t_data *data)
 	close(shell->fd[1]);
 	prepare_execution(shell, data);
 	execve(shell->file, data->cmd_line, shell->envp);
-	printf("execve error\n");
+	print_error(data->cmd_line[0], NULL, NULL);
 	exit(127);
 }
 
@@ -68,7 +76,7 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data)
 	{
 		prepare_execution(shell, data);
 		execve(shell->file, data->cmd_line, shell->envp);
-		printf("execve error\n");
+		print_error(data->cmd_line[0], NULL, NULL);
 		exit(127);
 	}
 }

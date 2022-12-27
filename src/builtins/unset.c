@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/24 15:39:22 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 14:23:11 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	input_check(char *variable)
 	}
 	if (variable[i] != '\0')
 	{
-		perror("minishell");
+		print_error("unset", variable, "not a valid identifier");
 		return (ERROR);
 	}
 	return (0);
@@ -64,7 +64,7 @@ int	ft_unset(t_koopa *shell, char *variable)
 	tmp_envp = ft_calloc(ft_ptrcnt(shell->envp) + 2, sizeof(char *));
 	while (shell->envp[++i] != NULL)
 	{
-		if (ft_strcmp(shell->envp[i], variable) == -1)
+		if (ft_strncmp(shell->envp[i], variable, ft_strlen(variable)) != 0)
 		{
 			tmp_envp[k] = ft_strdup(shell->envp[i]);
 			k++;

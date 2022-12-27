@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/25 13:19:19 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 21:47:59 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,11 @@ int	replace(t_data *data, t_exp *exp)
 	free_double(data->cmd_line);
 	data->cmd_line = ft_split(exp->line, '\n');
 	if (data->cmd_line == NULL)
-		perror("malloc fail\n");
+	{
+		print_error("cmd_line", NULL, "Not enough space/cannot \
+		allocate memory");
+		return (ERROR);
+	}
 	free(exp->line);
 	return (0);
 }

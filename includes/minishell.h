@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 00:59:20 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 21:18:56 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,118 +37,72 @@ typedef struct s_exp
 	int		content_len;
 }			t_exp;
 
-/// @brief cmd/builtin linked list
 typedef struct s_data
 {
-	char			*cmd_name;	// Name of the function (example: echo)
-	char			**cmd_line;	// The function with argument (example: 'echo' 'hallo')
-	int				operator;	// Specifies the following operator (example: | or < or > or << or >>)
+	char			*cmd_name;
+	char			**cmd_line;
+	int				operator;
 	struct s_data	*next;
 }				t_data;
 
 /// @brief Main stuct
 typedef struct s_koopa
 {
-	int			fd[2];
 	char		**envp;
 	char		**path;
 	char		*line;
 	char		*file;
+	int			fd[2];
+	int			exit_status;
 	int			tmp_stdout;
 	int			tmp_stdin;
-	int			in;
 	int			out;
-	int			exit_status;
+	int			in;
 }t_koopa;
 
 ////////////////////////////////////////
 ////////		BUILINTS		////////
 ////////////////////////////////////////
 
-/// @brief		Change the shell working directory
-/// @param shell Main struct
-/// @param path directory to change to, otherwise change to HOME
-/// @return Returns 0 if the directory is changed, non-zero otherwise
-int		ft_cd(t_koopa *shell, char *path);
-/// @brief		Display a line of text
-/// @param cmd_line the complete command
-/// @return Returns success
-int		ft_echo(char **cmd_line);
-/// @brief		Display the environment list
-/// @param shell Main struct
-/// @return Returns 0 on success, non-zero otherwise
-int		ft_env(t_koopa *shell);
-/// @brief		Exit the minishell
-/// @param shell Main struct
 void	ft_exit(t_koopa *shell, char **cmd_line);
-/// @brief		Export variables to the environment list
-/// @param shell Main struct
-/// @param variable the variable to export
-/// @return Returns 0 on success, non-zero otherwise
+int		ft_cd(t_koopa *shell, char **path);
+int		ft_echo(char **cmd_line);
+int		ft_env(t_koopa *shell);
 int		ft_export(t_koopa *shell, char *variable);
-/// @brief		Print the name of the current working directory
-/// @param nothing
-/// @return Returns 0 unless the current directory cannot be read.
 int		ft_pwd(void);
-/// @brief		Unset variable of the enviroment list
-/// @param shell Main struct
-/// @param variable the variable to unset
-/// @return Returns 0 on success, non-zero otherwise
 int		ft_unset(t_koopa *shell, char *variable);
 
 ////////////////////////////////////////
 ////////		execution		////////
 ////////////////////////////////////////
 
-/// @brief		Execute builtins
-/// @param shell Main struct
-/// @param data cmd/builtin struct to be executed
-/// @return On success return 0, otherwise non-zero
-int		ft_execute_builtin(t_koopa *shell, t_data *data);
-/// @brief		Execute command
-/// @param shell Main struct
-/// @param data cmd/builtin struct to be executed
 void	ft_execute_cmd(t_koopa *shell, t_data *data);
-/// @brief		Execute the command line
-/// @param shell Main struct
-/// @param data cmd/builtin struct to be executed
-/// @return returns the last execution status
-int		ft_execute(t_koopa *shell, t_data *data);
-/// @brief
-/// @param shell
-/// @param data
-int		ft_redirection(t_koopa *shell, t_data *data);
 void	write_to(t_koopa *shell, t_data *data);
 void	ft_cmd(t_koopa *shell, t_data *data);
+void	pipe_cmd(t_koopa *shell, t_data *data);
+void	ft_signal_heredoc(int sig, siginfo_t *siginfo, void *ignore);
+char	*double_to_str(t_data *data);
+char	*get_variable(t_exp *exp, int *idx);
+char	*ft_expand_heredoc(t_koopa *shell, char *heredoc);
+char	*ft_addchar(char	*str, char c);
+int		ft_execute_builtin(t_koopa *shell, t_data *data);
+int		ft_execute(t_koopa *shell, t_data *data);
+int		ft_redirection(t_koopa *shell, t_data *data);
 int		ft_expand(t_koopa *shell, t_data *data);
 int		ft_heredoc(t_koopa *shell, t_data *data);
 int		ft_isspace(int c);
 int		init_exp(t_exp *exp, t_data *data);
-char	*double_to_str(t_data *data);
 int		replace(t_data *data, t_exp *exp);
 int		ft_check_char(int c);
-char	*get_variable(t_exp *exp, int *idx);
-char	*ft_expand_heredoc(t_koopa *shell, char *heredoc);
-char	*ft_addchar(char	*str, char c);
-void	ft_signal_heredoc(int sig, siginfo_t *siginfo, void *ignore);
-void	pipe_cmd(t_koopa *shell, t_data *data);
+int		print_error(char *failed_cmd, char	*failed_arg, char *reason);
+
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
 
-/// @brief		Count the length of give variable name
-/// @param variable the variable to count the length from
-/// @return On Success it returns the length of the variable name,
-/// if it isn't a variable it returns -1
-int		ft_name_len(char *variable);
-/// @brief Get an environment variable
-/// @param shell Main struct
-/// @param name the name of the variable to look for
-/// @return On success it returns the variable, otherwise NULL
-char	*ft_getenv(t_koopa *shell, char *name);
-/// @brief Free's the enviroment pointer
-/// @param shell Main struct
 void	free_double(char **double_pointer);
+char	*ft_getenv(t_koopa *shell, char *name);
+int		ft_name_len(char *variable);
 
 ////////////////////////////////////////
 ////////		 SIGNALS  		////////

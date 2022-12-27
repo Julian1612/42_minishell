@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:57 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/24 11:42:10 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 21:46:02 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int	ft_pwd(void)
 	if (getcwd(buf, PATH_MAX))
 		printf("%s\n", buf);
 	else
-		printf("ERROR");
+	{
+		print_error("pwd", NULL, NULL);
+		return (ERROR);
+	}
 	return (0);
 }
