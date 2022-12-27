@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/26 23:49:05 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 00:59:20 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ char	*get_variable(t_exp *exp, int *idx);
 char	*ft_expand_heredoc(t_koopa *shell, char *heredoc);
 char	*ft_addchar(char	*str, char c);
 void	ft_signal_heredoc(int sig, siginfo_t *siginfo, void *ignore);
+void	pipe_cmd(t_koopa *shell, t_data *data);
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////

@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 00:09:13 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 01:03:19 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,16 @@ void	write_to(t_koopa *shell, t_data *data)
 	}
 }
 
-static void	pipe_cmd(t_koopa *shell, t_data *data)
+static	void	close_fd(t_koopa *shell)
 {
-	int	pid;
-
-	pid = fork();
-	if (pid == 0)
-	{
-		write_to(shell, data);
-		if (ft_execute_builtin(shell, data) == 0)
-		{
-			close(shell->fd[0]);
-			close(shell->fd[1]);
-			exit(0);
-		}
-		else
-			ft_cmd(shell, data);
-	}
+	dup2(shell->tmp_stdin, STDIN_FILENO);
+	close(shell->tmp_stdin);
+	dup2(shell->tmp_stdout, STDOUT_FILENO);
+	close(shell->tmp_stdout);
 }
 
 int	ft_execute(t_koopa *shell, t_data *data)
 {
-	shell->tmp_stdin = dup(STDIN_FILENO);
-	shell->tmp_stdout = dup(STDOUT_FILENO);
 	if (ft_redirection(shell, data) == ERROR)
 		return (ERROR);
 	while (data != NULL)
@@ -87,10 +74,7 @@ int	ft_execute(t_koopa *shell, t_data *data)
 		}
 		data = data->next;
 	}
-	dup2(shell->tmp_stdin, STDIN_FILENO);
-	close(shell->tmp_stdin);
-	dup2(shell->tmp_stdout, STDOUT_FILENO);
-	close(shell->tmp_stdout);
+	close_fd(shell);
 	while (waitpid(0, &shell->exit_status, 0) > 0)
 		;
 	shell->exit_status = WEXITSTATUS(shell->exit_status);

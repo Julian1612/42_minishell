@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 00:21:12 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 00:56:54 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static int	ft_append_outfile(t_koopa *shell, t_data *data)
 
 int	ft_redirection(t_koopa *shell, t_data *data)
 {
+	shell->tmp_stdin = dup(STDIN_FILENO);
+	shell->tmp_stdout = dup(STDOUT_FILENO);
 	while (data != NULL)
 	{
 		if (data->operator == HEREDOC)
