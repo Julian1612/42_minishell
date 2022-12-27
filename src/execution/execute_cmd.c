@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/24 12:46:14 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 01:07:54 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,9 @@ static char	*create_path(t_koopa *shell, char *cmd)
 
 static void	prepare_execution(t_koopa *shell, t_data *data)
 {
-	if (access(data->cmd_line[0], F_OK) == -1)
+	if (ft_strncmp(data->cmd_line[0], "../", 3) == 0)
+		shell->file = data->cmd_line[0];
+	else if (access(data->cmd_line[0], F_OK) == -1)
 	{
 		shell->path = ft_split(ft_getenv(shell, "PATH") + 5, ':');
 		if (shell->path == NULL)
@@ -44,9 +46,7 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 		shell->file = create_path(shell, data->cmd_name);
 	}
 	else
-	{
 		shell->file = data->cmd_line[0];
-	}
 }
 
 void	ft_cmd(t_koopa *shell, t_data *data)
@@ -70,5 +70,24 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data)
 		execve(shell->file, data->cmd_line, shell->envp);
 		printf("execve error\n");
 		exit(127);
+	}
+}
+
+void	pipe_cmd(t_koopa *shell, t_data *data)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		write_to(shell, data);
+		if (ft_execute_builtin(shell, data) == 0)
+		{
+			close(shell->fd[0]);
+			close(shell->fd[1]);
+			exit(0);
+		}
+		else
+			ft_cmd(shell, data);
 	}
 }
