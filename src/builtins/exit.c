@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/24 20:31:21 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 19:13:16 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ static int	check_input(char *arg, int size, t_koopa *shell)
 	{
 		if (ft_isdigit(arg[i]) == 0)
 		{
-			perror("minishell: exit: numeric argument required");
+			write(2, "exit\n", 5);
+			print_error("exit", arg, "numeric argument required");
 			exit(255);
 		}
 	}
 	if (size > 2)
 	{
-		perror("minishell: exit:");
-		shell->exit_status = 1;
+		write(2, "exit\n", 5);
+		print_error("exit", NULL, "too many arguments");
+		shell->exit_status = 2;
 		return (-1);
 	}
 	return (0);
@@ -44,11 +46,8 @@ void	ft_exit(t_koopa *shell, char **cmd_line)
 	int	num;
 
 	num = 0;
-	if (cmd_line == NULL)
-	{
-		printf("kekw\n");
+	if (cmd_line[1] == NULL)
 		exit(0);
-	}
 	size = ft_ptrcnt(cmd_line);
 	if (check_input(cmd_line[1], size, shell) == -1)
 		return ;

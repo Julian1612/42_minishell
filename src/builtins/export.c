@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/23 22:54:44 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/27 14:47:24 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,13 @@ static int	already_exist(t_koopa *shell, char *variable)
 	int	i;
 
 	i = -1;
-	if (check_var(variable) == ERROR)
+	if (variable == NULL)
+	{
+		print_env(shell);
 		return (0);
+	}
+	if (check_var(variable) == ERROR)
+		return (1);
 	while (shell->envp[++i] != NULL)
 	{
 		if (!ft_strncmp(shell->envp[i], variable, ft_name_len(variable)))
@@ -72,25 +77,26 @@ static int	already_exist(t_koopa *shell, char *variable)
 			return (0);
 		}
 	}
-	return (1);
+	return (ERROR);
 }
 
 int	ft_export(t_koopa *shell, char *variable)
 {
 	char	**tmp_envp;
+	int		status;
 	int		i;
 
 	i = -1;
-	if (variable == NULL)
-	{
-		print_env(shell);
-		return (0);
-	}
-	if (already_exist(shell, variable) == 0)
-		return (1);
+	status = already_exist(shell, variable);
+	if (status != ERROR)
+		return (status);
 	tmp_envp = ft_calloc(ft_ptrcnt(shell->envp) + 2, sizeof(char *));
 	if (tmp_envp == NULL)
-		perror("malloc");
+	{
+		print_error(NULL, "tmp_envp", "Not enough space/cannot \
+		allocate memory");
+		return (ERROR);
+	}
 	while (shell->envp[++i] != NULL)
 		tmp_envp[i] = ft_strdup(shell->envp[i]);
 	tmp_envp[i++] = ft_strdup(variable);

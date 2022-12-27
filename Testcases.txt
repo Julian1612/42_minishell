@@ -413,3 +413,4 @@ probleme mit pipes und readline -> bricht nach der executen ab
 
 echo hi | echo kek -> sachen gehen nicht schnell genug durch (fds nochmal nachgucken)
 echo 42 | cat -e --> 42 $ space zu viel kp woher
+echo hi hi 8ewe5esf8s 8wd ---> random leerzeichen wieder 

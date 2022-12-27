@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/18 19:48:00 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/27 21:39:06 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,33 @@
 #include "libft.h"
 #include <stdio.h>
 
-static void	check_path(t_koopa *shell, char **path, int *check)
+static int	check_path(t_koopa *shell, char ***path, int *check)
 {
-	if (*path == NULL)
-		return ;
-	if (ft_strcmp(*path, "-") == 0 || ft_strcmp(*path, "~-") == 0)
+	if (**path == NULL)
+		return (0);
+	if (ft_strcmp(**path, "-") == 0 || ft_strcmp(**path, "~-") == 0)
 	{
-		free(*path);
-		*path = ft_strdup(ft_getenv(shell, "OLDPWD") + 7);
+		free(**path);
+		**path = NULL;
+		**path = ft_strdup(ft_getenv(shell, "OLDPWD") + 7);
+		if (**path[0] == '\0')
+		{
+			print_error("cd", NULL, "OLDPWD not set");
+			return (1);
+		}
 		*check = 1;
 	}
-	else if (ft_strcmp(*path, "~") == 0)
+	else if (ft_strcmp(**path, "~") == 0)
 	{
-		free(*path);
-		*path = ft_strdup(getenv("HOME"));
+		free(**path);
+		**path = ft_strdup(ft_getenv(shell, "HOME"));
+		if (**path[0] == '\0')
+		{
+			print_error("cd", NULL, "HOME not set");
+			return (1);
+		}
 	}
+	return (0);
 }
 
 static int	update_pwd(t_koopa *shell, int check)
@@ -60,28 +72,31 @@ static int	update_pwd(t_koopa *shell, int check)
 	return (1);
 }
 
-int	ft_cd(t_koopa *shell, char *path)
+int	ft_cd(t_koopa *shell, char **path)
 {
 	int	check;
+	int	status;
 
 	check = 0;
-	check_path(shell, &path, &check);
-	if (path == NULL)
+	status = check_path(shell, &path, &check);
+	if (status != 0)
+		return (status);
+	if (*path == NULL)
 	{
 		if (chdir(ft_getenv(shell, "HOME") + 5))
 		{
-			perror("minishell : cd");
+			print_error("cd", NULL, "HOME not set");
 			return (1);
 		}		
 	}
 	else
 	{	
-		if (chdir(path))
+		if (chdir(*path))
 		{
-			perror("minishell : cd");
+			print_error(NULL, *path, NULL);
 			return (1);
 		}	
 	}
-	update_pwd(shell, check);
-	return (0);
+	status = update_pwd(shell, check);
+	return (status);
 }
