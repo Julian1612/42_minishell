@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 00:44:27 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/29 14:13:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,8 @@ static int	check_limiter(t_data *tabel)
 
 static void	heredoc_signals(void)
 {
-	struct sigaction	hc_act;
-
-	hc_act.sa_flags = SA_SIGINFO;
-	hc_act.sa_sigaction = ft_signal_heredoc;
-	sigaction(SIGINT, &hc_act, 0);
-	sigaction(SIGQUIT, &hc_act, 0);
+	signal(SIGINT, ft_signal_heredoc);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 static void	finish_heredoc(t_koopa *shell, char	*heredoc, int i)

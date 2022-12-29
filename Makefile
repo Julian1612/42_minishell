@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2022/12/27 01:40:01 by dna              ###   ########.fr        #
+#    Updated: 2022/12/29 08:59:18 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBFT		= libft/libft.a
 
 SRC			= main.c error.c\
 			  utils.c \
-			  signals.c \
+			  signals.c free.c\
 			  lexer.c token_counter.c token_length.c \
 			  utils_token_counter00.c utils_token_counter01.c \
 			  utils_token_length00.c utils_token_length01.c utils_token_length02.c \
