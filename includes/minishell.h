@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 21:18:56 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/29 14:09:40 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,9 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data);
 void	write_to(t_koopa *shell, t_data *data);
 void	ft_cmd(t_koopa *shell, t_data *data);
 void	pipe_cmd(t_koopa *shell, t_data *data);
-void	ft_signal_heredoc(int sig, siginfo_t *siginfo, void *ignore);
 char	*double_to_str(t_data *data);
 char	*get_variable(t_exp *exp, int *idx);
 char	*ft_expand_heredoc(t_koopa *shell, char *heredoc);
-char	*ft_addchar(char	*str, char c);
 int		ft_execute_builtin(t_koopa *shell, t_data *data);
 int		ft_execute(t_koopa *shell, t_data *data);
 int		ft_redirection(t_koopa *shell, t_data *data);
@@ -103,20 +101,28 @@ int		print_error(char *failed_cmd, char	*failed_arg, char *reason);
 void	free_double(char **double_pointer);
 char	*ft_getenv(t_koopa *shell, char *name);
 int		ft_name_len(char *variable);
+char	*ft_addchar(char	*str, char c);
 
 ////////////////////////////////////////
 ////////		 SIGNALS  		////////
 ////////////////////////////////////////
 
-/// @brief Handles siganls in the programm
-/// @param sig
-/// @param siginfo
-/// @param ignore
-void	ft_signal_handler(int sig, siginfo_t *siginfo, void *ignore);
-
-/// @brief
-/// @param
+void	ft_signal_handler(int sig);
+void	ft_signal_heredoc(int sig);
 void	ft_terminal(int num);
+void	ft_signals(void);
+
+////////////////////////////////////////
+////////		 ERROR	 		////////
+////////////////////////////////////////
+
+int		print_error(char *failed_cmd, char	*failed_arg, char *reason);
+
+////////////////////////////////////////
+////////		 FREE	 		////////
+////////////////////////////////////////
+
+void	free_data(t_data *head);
 
 ////////////////////////////////////////
 ////////		 LEXER	 		////////

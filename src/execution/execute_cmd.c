@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 14:29:07 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/29 14:17:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		prepare_execution(shell, data);
 		execve(shell->file, data->cmd_line, shell->envp);
 		print_error(data->cmd_line[0], NULL, NULL);
@@ -88,6 +89,7 @@ void	pipe_cmd(t_koopa *shell, t_data *data)
 	pid = fork();
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
 		write_to(shell, data);
 		if (ft_execute_builtin(shell, data) == 0)
 		{

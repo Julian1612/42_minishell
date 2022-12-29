@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 22:26:46 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/29 14:19:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,42 +82,22 @@ int	init_envp(t_koopa *shell, char **envp)
 // 	free(shell);
 // }
 
-void	free_data(t_data *head)
-{
-	t_data	*tmp;
-
-	if (head != NULL)
-	{
-		tmp = head;
-		head = head->next;
-		free_double(tmp->cmd_line);
-		free(tmp);
-	}
-}
-
 static int	execute_minishell(t_koopa *shell)
 {
 	t_data				*tabel;
 	char				**token_arr;
 	char				*cmd;
-	struct sigaction	act;
 
-	act.sa_flags = SA_SIGINFO;
-	act.sa_sigaction = ft_signal_handler;
 	while (TRUE)
 	{
-		sigaction(SIGQUIT, &act, 0);
-		sigaction(SIGINT, &act, 0);
+		signal(SIGINT, ft_signal_handler);
 		cmd = readline("👉 ");
 		if (cmd == NULL)
 			break ;
 		add_history(cmd);
 		token_arr = tokenizer(cmd);
-		if (token_arr == NULL)
-			return (1);
-		// arr_test(token_arr);
 		tabel = parser(token_arr);
-		// list_test(tabel);
+		signal(SIGINT, SIG_IGN);
 		ft_execute(shell, tabel);
 		free_double(token_arr);
 		free_data(tabel);
@@ -150,6 +130,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argv;
 	argc++;
+	signal(SIGQUIT, SIG_IGN);
 	shell = init_shell();
 	init_envp(shell, envp);
 	ft_terminal(1);
