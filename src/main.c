@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/29 14:19:03 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/29 15:35:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ static t_koopa	*init_shell(void)
 	shell->in = -1;
 	shell->out = -1;
 	shell->exit_status = 0;
+	shell->skip = 0;
 	return (shell);
 }
 

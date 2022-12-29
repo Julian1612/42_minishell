@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 21:18:27 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/29 15:45:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 
 int	ft_execute_builtin(t_koopa *shell, t_data *data)
 {
+	if (shell->skip == 1)
+		return (0);
 	if (!ft_strcmp(data->cmd_name, "cd"))
 		shell->exit_status = ft_cd(shell, &data->cmd_line[1]);
 	else if (!ft_strcmp(data->cmd_name, "echo"))

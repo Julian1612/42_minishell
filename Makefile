@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2022/12/29 08:59:18 by dgross           ###   ########.fr        #
+#    Updated: 2022/12/29 15:50:13 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,7 @@ clean:
 	@echo "$(r)Cleaning 🧹 $(w)...$(de)"
 	@$(MAKE) clean -C libft/
 	@rm -rf obj
+	@rm -rf here_doc
 
 fclean: clean
 	@$(MAKE) fclean -C libft/
