@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 21:47:59 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/29 18:19:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*double_to_str(t_data *data)
 	int		i;
 
 	i = -1;
-	str = ft_calloc(1, sizeof(char));
+	str = ft_strdup("");
 	while (data->cmd_line[++i] != NULL)
 	{
 		tmp = ft_strjoin(str, data->cmd_line[i]);
@@ -55,6 +55,7 @@ int	ft_isspace(int c)
 int	replace(t_data *data, t_exp *exp)
 {
 	free_double(data->cmd_line);
+	data->cmd_line = NULL;
 	data->cmd_line = ft_split(exp->line, '\n');
 	if (data->cmd_line == NULL)
 	{
