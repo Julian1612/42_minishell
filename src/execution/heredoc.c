@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/29 14:13:24 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/29 15:24:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,6 @@ static int	check_limiter(t_data *tabel)
 	return (i);
 }
 
-static void	heredoc_signals(void)
-{
-	signal(SIGINT, ft_signal_heredoc);
-	signal(SIGQUIT, SIG_IGN);
-}
-
 static void	finish_heredoc(t_koopa *shell, char	*heredoc, int i)
 {
 	if (i == 0)
@@ -77,6 +71,20 @@ static int	catch_crash(int fd)
 	return (0);
 }
 
+int	check_for_heredoc(t_koopa *shell, t_data *tabel)
+{
+	shell->tmp_stdin = dup(STDIN_FILENO);
+	shell->tmp_stdout = dup(STDOUT_FILENO);
+	while (tabel != NULL)
+	{
+		if (tabel->operator == HEREDOC)
+			if (ft_heredoc(shell, tabel) == ERROR)
+				return (ERROR);
+		tabel = tabel->next;
+	}
+	return (0);
+}
+
 int	ft_heredoc(t_koopa *shell, t_data *tabel)
 {
 	char	*input;
@@ -85,7 +93,8 @@ int	ft_heredoc(t_koopa *shell, t_data *tabel)
 	int		fd;
 
 	fd = dup(STDIN_FILENO);
-	heredoc_signals();
+	signal(SIGINT, ft_signal_heredoc);
+	signal(SIGQUIT, SIG_IGN);
 	heredoc = ft_strdup("");
 	i = check_limiter(tabel);
 	shell->in = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0777);

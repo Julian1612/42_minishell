@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/29 12:54:15 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/29 15:24:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ static void	close_pipe(t_koopa *shell)
 	close(shell->fd[1]);
 }
 
-void	write_to(t_koopa *shell, t_data *data)
+void	write_to(t_koopa *shell, t_data *tabel)
 {
-	if (data->next != NULL)
+	if (tabel->next != NULL)
 	{
-		if (data->next->operator == OUT || data->next->operator == APPEND)
+		if (tabel->next->operator == OUT || tabel->next->operator == APPEND)
 		{
 			dup2(shell->out, STDOUT_FILENO);
 			close(shell->out);
 		}
-		else if (data->operator == PIPE)
+		else if (tabel->operator == PIPE)
 			dup2(shell->fd[1], STDOUT_FILENO);
 	}
 }
@@ -54,25 +54,26 @@ static	void	close_fd(t_koopa *shell)
 	close(shell->tmp_stdout);
 }
 
-int	ft_execute(t_koopa *shell, t_data *data)
+int	ft_execute(t_koopa *shell, t_data *tabel)
 {
-	if (ft_redirection(shell, data) == ERROR)
+	if (check_for_heredoc(shell, tabel) == ERROR)
 		return (ERROR);
-	while (data != NULL)
+	while (tabel != NULL)
 	{
-		if (data->operator == PIPE)
+		ft_redirection(shell, tabel);
+		if (tabel->operator == PIPE)
 		{
 			open_pipe(shell);
-			pipe_cmd(shell, data);
+			pipe_cmd(shell, tabel);
 			close_pipe(shell);
 		}
-		else if (data->operator == CMD)
+		else if (tabel->operator == CMD)
 		{
-			write_to(shell, data);
-			if (ft_execute_builtin(shell, data) == 1)
-				ft_execute_cmd(shell, data);
+			write_to(shell, tabel);
+			if (ft_execute_builtin(shell, tabel) == 1)
+				ft_execute_cmd(shell, tabel);
 		}
-		data = data->next;
+		tabel = tabel->next;
 	}
 	close_fd(shell);
 	while (waitpid(0, &shell->exit_status, 0) > 0)

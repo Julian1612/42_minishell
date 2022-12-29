@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/29 10:26:54 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/29 15:43:40 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,46 @@ static int	ft_append_outfile(t_koopa *shell, t_data *data)
 	return (0);
 }
 
+//int	ft_redirection(t_koopa *shell, t_data *data)
+//{
+//	int	status;
+
+//	status = 0;
+//	while (data != NULL)
+//	{
+//		if (data->operator == HEREDOC)
+//			status = ft_heredoc(shell, data);
+//		else if (data->operator == IN)
+//			status = ft_redirect_infile(shell, data);
+//		else if (data->operator == OUT)
+//			status = ft_redirect_outfile(shell, data);
+//		else if (data->operator == APPEND)
+//			status = ft_append_outfile(shell, data);
+//		if (status != 0)
+//			return (status);
+//		ft_expand(shell, data);
+//		data = data->next;
+//	}
+//	return (0);
+//}
+
 int	ft_redirection(t_koopa *shell, t_data *data)
 {
 	int	status;
 
 	status = 0;
-	shell->tmp_stdin = dup(STDIN_FILENO);
-	shell->tmp_stdout = dup(STDOUT_FILENO);
-	while (data != NULL)
+	while (data != NULL && shell->skip == 0)
 	{
-		if (data->operator == HEREDOC)
-			status = ft_heredoc(shell, data);
-		else if (data->operator == IN)
+		if (data->operator == IN && shell->skip == 0)
 			status = ft_redirect_infile(shell, data);
-		else if (data->operator == OUT)
+		else if (data->operator == OUT && shell->skip == 0)
 			status = ft_redirect_outfile(shell, data);
-		else if (data->operator == APPEND)
+		else if (data->operator == APPEND && shell->skip == 0)
 			status = ft_append_outfile(shell, data);
-		if (status != 0)
-			return (status);
-		ft_expand(shell, data);
+		if (status == ERROR)
+			shell->skip = 1;
+		if (shell->skip == 0)
+			ft_expand(shell, data);
 		data = data->next;
 	}
 	return (0);

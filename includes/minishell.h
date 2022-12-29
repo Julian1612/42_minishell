@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/29 14:09:40 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/29 15:32:14 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_koopa
 	int			exit_status;
 	int			tmp_stdout;
 	int			tmp_stdin;
+	int			skip;
 	int			out;
 	int			in;
 }t_koopa;
@@ -93,6 +94,7 @@ int		init_exp(t_exp *exp, t_data *data);
 int		replace(t_data *data, t_exp *exp);
 int		ft_check_char(int c);
 int		print_error(char *failed_cmd, char	*failed_arg, char *reason);
+int		check_for_heredoc(t_koopa *shell, t_data *tabel);
 
 ////////////////////////////////////////
 ////////		  UTILS  		////////
