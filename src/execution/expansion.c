@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 00:47:50 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/29 17:57:27 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	remove_quots(t_exp *exp, int count)
 
 	i = -1;
 	j = 0;
-	tmp = ft_calloc(count, sizeof(char));
+	tmp = ft_calloc(count + 1, sizeof(char));
 	while (exp->line[++i] != '\0')
 	{
 		if (exp->line[i] == '\'')

@@ -1,5 +1,5 @@
 echo ''''''''''$USER'''''''''' = 2 && echo """"""""$USER""""""""
-< Makefile < Makefile cat
+< Makefile < Makefile cat												--> works
 < Makefile cat -e | wc -l > out.txt | echo hi | cat -e
 echo > | sadsa --> parse error
 cat lulrich.txt | tr [:lower:] [:upper:] | sed "s/A/a/g" | tr "AEIOU" "aeiou" | rev | cut -c 1-10 | tr " " "\n" | sort | uniq -c | sort -rn | head -n 5 | awk '{print $2}' | tr "\n" "," | sed "s/,$//" > haral.txt
@@ -100,8 +100,8 @@ echo echo															--> funktioniert
 eCho																--> funktioniert
 eChO																--> funktioniert
 eCHO																--> funktioniert
-echo $																-->
-echo $ $															-->
+echo $																--> funktioniert
+echo $ $															--> funktioniert
 ECHO																--> funktioniert
 echo rhobebou														--> funktioniert
 echo stop barking													--> funktioniert
