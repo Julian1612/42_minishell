@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/30 15:16:50 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 19:43:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,32 @@
 #include <string.h>
 #include <stdlib.h>
 
-// void	list_test(t_data *cmd_list)
-// {
-// 	t_data	*cur;
-// 	cur = cmd_list;
-// 	int g = 1;
-// 	int y = 0;
+void	list_test(t_data *cmd_list)
+{
+	t_data	*cur;
+	cur = cmd_list;
+	int g = 1;
+	int y = 0;
 
-// 	while (cur != NULL)
-// 	{
-// 		printf("\e[37m----------------------\n");
-// 		printf("\e[106m----------%d-----------\e[49m\n", g);
-// 		printf("\e[37m----------------------\n");
-// 		printf("\e[32mcmd: %s\n", cur->cmd_name);
-// 		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
-// 		while (cur->cmd_line[y] != NULL)
-// 		{
-// 			printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
-// 			y++;
-// 		}
-// 		y = 0;
-// 		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
-// 		printf("\e[95moperator: %d\033[0m\n", cur->operator);
-// 		cur = cur->next;
-// 		g++;
-// 	}
-// }
+	while (cur != NULL)
+	{
+		printf("\e[37m----------------------\n");
+		printf("\e[106m----------%d-----------\e[49m\n", g);
+		printf("\e[37m----------------------\n");
+		printf("\e[32mcmd: %s\n", cur->cmd_name);
+		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
+		while (cur->cmd_line[y] != NULL)
+		{
+			printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
+			y++;
+		}
+		y = 0;
+		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
+		printf("\e[95moperator: %d\033[0m\n", cur->operator);
+		cur = cur->next;
+		g++;
+	}
+}
 
 int	get_op(char **token_arr, int i)
 {
@@ -61,7 +61,7 @@ int	get_op(char **token_arr, int i)
 	return (CMD);
 }
 
-int	handle_node(t_data *node, char **token_arr, int *i)
+int	handle_redirection(t_data *node, char **token_arr, int *i)
 {
 	node->cmd_name = ft_strdup(token_arr[*i + 1]);
 	node->cmd_line = (char **) malloc(sizeof(char *) * 2);
@@ -88,7 +88,7 @@ int	handle_node(t_data *node, char **token_arr, int *i)
 	return (0);
 }
 
-int	handle_input(t_data *node, char **token_arr, int *i)
+int	handle_commands(t_data *node, char **token_arr, int *i)
 {
 	int	num_cmd;
 	int	j;
@@ -121,12 +121,12 @@ int	init_node(t_data *node, char **token_arr, int *i)
 {
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>' )
 	{
-		if (handle_node(node, token_arr, i))
+		if (handle_redirection(node, token_arr, i))
 			return (1);
 	}
 	else
 	{
-		if (handle_input(node, token_arr, i))
+		if (handle_commands(node, token_arr, i))
 			return (1);
 	}
 	return (0);
@@ -178,7 +178,7 @@ t_data	*parser(char **token_arr)
 		return (NULL);
 	while (token_arr[i] != NULL)
 		append_node(&head, token_arr, &i);
-	// list_test(head);
+	list_test(head);
 	free_double(token_arr);
 	return (head);
 }
