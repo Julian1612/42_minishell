@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/29 18:18:09 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 15:16:50 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	handle_input(t_data *node, char **token_arr, int *i)
 	node->cmd_name = ft_strdup(token_arr[*i]);
 	if (node->cmd_name == NULL)
 		return (1);
-	node->cmd_line = (char **) malloc(sizeof(char *) * num_cmd + 1);
+	node->cmd_line = (char **) malloc(sizeof(char *) * (num_cmd + 1));
 	if (node->cmd_line == NULL)
 		return (1);
 	node->cmd_line[num_cmd] = NULL;
@@ -179,5 +179,6 @@ t_data	*parser(char **token_arr)
 	while (token_arr[i] != NULL)
 		append_node(&head, token_arr, &i);
 	// list_test(head);
+	free_double(token_arr);
 	return (head);
 }

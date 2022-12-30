@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/29 15:24:24 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 15:22:13 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static	void	close_fd(t_koopa *shell)
 
 int	ft_execute(t_koopa *shell, t_data *tabel)
 {
+	shell->head = tabel;
 	if (check_for_heredoc(shell, tabel) == ERROR)
 		return (ERROR);
 	while (tabel != NULL)

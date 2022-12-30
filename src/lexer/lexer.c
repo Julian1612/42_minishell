@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:51:45 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/29 14:07:15 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 15:19:04 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	**tokenizer(char *str)
 			return (NULL);
 		i++;
 	}
+	free(str);
 	token_arr[token_count] = NULL;
 	return (token_arr);
 }
@@ -47,7 +48,7 @@ int	init_arr(char **token_arr, char *str, int *j, int *i)
 	token_len = get_token_length(str, j);
 	if (token_len == -1)
 		return (1);
-	token_arr[*i] = (char *) malloc(sizeof(char) * token_len + 1);
+	token_arr[*i] = (char *) malloc(sizeof(char) * (token_len + 1));
 	if (token_arr[*i] == NULL)
 		return (1);
 	skip_whitespace(str, &start_copy);
