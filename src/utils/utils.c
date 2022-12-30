@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 21:35:54 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/30 10:17:29 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void	free_double(char **double_pointer)
 	i = -1;
 	while (double_pointer[++i] != NULL)
 		free(double_pointer[i]);
+	free(double_pointer[i]);
 	free(double_pointer);
 }

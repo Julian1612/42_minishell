@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:16:29 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/20 17:01:45 by jschneid         ###   ########.fr       */
+/*   Updated: 2022/12/30 13:54:44 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	count_cmd(char **token_arr, int i)
 	int	count;
 
 	count = 0;
-	while (token_arr[i] != NULL) // anderen opperatoren einfügen >>, <<, ||
+	while (token_arr[i] != NULL)
 	{
 		if (token_arr[i][0] == '|' || token_arr[i][0] == '>'
 			|| token_arr[i][0] == '<' || token_arr[i][0] == '\0')
