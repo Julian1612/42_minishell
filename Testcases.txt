@@ -100,117 +100,116 @@ cd $OLDPWD/builtins				-->
 
 ECHO:
 
-echo																--> funktioniert
-echo echo															--> funktioniert
-eCho																--> funktioniert
-eChO																--> funktioniert
-eCHO																--> funktioniert
-echo $																--> funktioniert
-echo $ $															--> funktioniert
-ECHO																--> funktioniert
-echo rhobebou														--> funktioniert
-echo stop barking													--> funktioniert
-echo "bonjour"														--> funktioniert
-echo bonjour														--> funktioniert
-echo 'bonjour'														--> funktioniert
-echo -n bonjour														--> funktioniert
-echo -n -n -n bonjour												--> funktioniert
-echo "-n" bonjour													--> funktioniert
-echo -n"-n" bonjour													--> funktioniert
-echo "-nnnn" bonjour												--> funktioniert
-echo "-nnnn" -n bonjour												--> funktioniert
-echo "-n -n -n"-n bonjour											--> funktioniert
-echo "-n '-n'" bonjour												--> funktioniert
-echo $USER															-->
-echo "$USER"														-->
-echo "'$USER'"														-->
-echo " '$USER' "													-->
-echo text"$USER"													-->
-echo text"'$USER'" ' $USER '										-->
-echo "text"   "$USER"    "$USER"									-->
-echo '              $USER          '								-->
-echo               text "$USER"            "$USER"text				-->
-echo ''''''''''$USER''''''''''										-->
-echo """"""""$USER""""""""											-->
-echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''	-->
-echo $USER '' $USER $USER '' $USER '' $USER -n $USER				-->
-echo ' \' ' \'														-->
-echo '\" ' " \"\""													-->
-echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'						-->
-echo "$USER""$USER""$USER"											-->
-echo text"$USER"test												-->
-echo '$USER' "$USER" "text \' text"									-->
-echo '$USER'														-->
-echo $USER " "														-->
-echo "$USER""Users/$USER/file""'$USER'"'$USER'						-->
-echo "$USER$USER$USER"												-->
-echo '$USER'"$USER"'$USER'											-->
-echo '"$USER"''$USER'"""$USER"										-->
-echo " $USER  "'$PWD'												-->
-echo " $USER  \$ "'$PWD'											-->
-echo $USER=4														-->
-echo $USER=thallard 												-->
-echo $USER															-->
-echo $?																-->
-echo $PWD/file														-->
-echo "$PWD/file"													-->
-echo "text" "text$USER" ... "$USER"									-->
-echo $PWD															-->
+echo																--> ✅
+echo echo															--> ✅
+eCho																--> ✅
+eChO																--> ✅
+eCHO																--> ✅
+echo $																--> ✅
+echo $ $															--> ✅
+ECHO																--> ✅
+echo rhobebou														--> ✅
+echo stop barking													--> ✅
+echo "bonjour"														--> ✅
+echo bonjour														--> ✅
+echo 'bonjour'														--> ✅
+echo -n bonjour														--> ✅
+echo -n -n -n bonjour												--> ✅
+echo "-n" bonjour													--> ✅
+echo -n"-n" bonjour													--> ✅
+echo "-nnnn" bonjour												--> ✅
+echo "-nnnn" -n bonjour												--> ✅
+echo "-n -n -n"-n bonjour											--> ✅
+echo "-n '-n'" bonjour												--> ✅
+echo $USER															--> ✅
+echo "$USER"														--> ✅
+echo "'$USER'"														--> ✅
+echo " '$USER' "													--> ✅
+echo text"$USER"													--> ✅
+echo text"'$USER'" ' $USER '										--> ❌		 LEXER ERROR 
+echo "text"   "$USER"    "$USER"									--> ✅
+echo '              $USER          '								--> ✅
+echo               text "$USER"            "$USER"text				--> ✅
+echo ''''''''''$USER''''''''''										--> ❌		 LEXER ERROR
+echo """"""""$USER""""""""											-->	❌		 LEXER ERROR
+echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''	--> ✅
+echo $USER '' $USER $USER '' $USER '' $USER -n $USER				--> ❌		 PARSER ERROR
+echo ' \' ' \'														--> ✅
+echo '\" ' " \"\""													-->	❌		 EXPANDER ERROR
+echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'						-->	❌		 LEXER/PARSER ERROR
+echo "$USER""$USER""$USER"											-->	❌		 IDK ERROR
+echo text"$USER"test												--> ✅
+echo '$USER' "$USER" "text \' text"									--> ✅
+echo '$USER'														--> ✅
+echo $USER " "														--> ✅
+echo "$USER""Users/$USER/file""'$USER'"'$USER'						-->	❌		 LEXER OR ECHO ERROR
+echo "$USER$USER$USER"												--> ✅
+echo '$USER'"$USER"'$USER'											--> ✅
+echo '"$USER"''$USER'"""$USER"										-->	❌		 LEXER OR ECHO ERROR
+echo " $USER  "'$PWD'												--> ✅
+echo " $USER  \$ "'$PWD'											--> ✅
+echo $USER=4														-->	❌		 EXPAND ERROR
+echo $USER=thallard 												-->	❌		 EXPAND ERROR
+echo $?																--> ✅
+echo $PWD/file														-->	❌		 EXPAND ERROR
+echo "$PWD/file"													-->	❌		 EXPAND ERROR
+echo "text" "text$USER" ... "$USER"									--> ✅
+echo $PWD															--> ✅
 
 EXIT:
 
-exit 0 0							-->
-exit 42 42							-->
-exit -42 -24						-->
-exit 42								-->
-exit 42 53 68						-->
-exit 259							-->
-exit -12030							-->
-exit --1239312						-->
-exit ++++1203020103					-->
-exit +0								-->
-exit ++++++0						-->
-exit -----0							-->
-exit azerty							-->
-exit kewkwqke						-->
-exit a								-->
-exit z								-->
-exit "1"							-->
-exit "2"							-->
-exit "+102"							-->
-exit "1230"							-->
-exit "+++1230"						-->
-exit "1"23							-->
-exit "2"32"32"						-->
-exit "'42'"							-->
-exit '42'"42"42						-->
-exit +'42'"42"42					-->
-exit -'42'"42"42					-->
-exit 9223372036854775807			-->
-exit 9223372036854775808			-->
-exit -4								-->
-exit wrong							-->
-exit wrong_command					-->
-exit something						-->
-exit 1								-->
-exit -1								-->
-exit 42								-->
-exit 0								-->
-exit --000							-->
-exit +++++++000						-->
-exit ++++3193912939					-->
-exit ---31232103012					-->
-exit "something"					-->
-exit q								-->
-exit help							-->
-exit export							-->
-exit echo							-->
-exit cd ..							-->
-exit 0 0							-->
-exit something somethingv2			-->
-exit 42 42 42 42 42					-->
-exit echo something					-->
-exit exit							-->
+exit 0 0							--> ✅
+exit 42 42							--> ✅
+exit -42 -24						--> ❌
+exit 42								--> ✅
+exit 42 53 68						--> ✅
+exit 259							--> ✅
+exit -12030							--> ❌
+exit --1239312						--> ✅
+exit ++++1203020103					--> ✅
+exit +0								--> ❌
+exit ++++++0						--> ✅
+exit -----0							--> ✅
+exit azerty							--> ✅
+exit kewkwqke						--> ✅
+exit a								--> ✅
+exit z								--> ✅
+exit "1"							--> ✅
+exit "2"							--> ✅
+exit "+102"							--> ❌
+exit "1230"							--> ✅
+exit "+++1230"						--> ✅
+exit "1"23							--> ✅
+exit "2"32"32"						--> ✅
+exit "'42'"							--> ✅
+exit '42'"42"42						--> ❌
+exit +'42'"42"42					--> ❌
+exit -'42'"42"42					--> ❌
+exit 9223372036854775807			--> ✅
+exit 9223372036854775808			--> ❌
+exit -4								--> ❌
+exit wrong							--> ✅
+exit wrong_command					--> ✅
+exit something						--> ✅
+exit 1								--> ✅
+exit -1								--> ❌
+exit 42								--> ✅
+exit 0								--> ✅
+exit --000							--> ❌
+exit +++++++000						--> ❌
+exit ++++3193912939					--> ❌
+exit ---31232103012					--> ❌
+exit "something"					--> ✅
+exit q								--> ✅
+exit help							--> ✅
+exit export							--> ✅
+exit echo							--> ✅
+exit cd ..							--> ✅
+exit 0 0							--> ✅
+exit something somethingv2			--> ✅
+exit 42 42 42 42 42					--> ✅
+exit echo something					--> ✅
+exit exit							--> ✅
 
 EXPORT:
 
@@ -399,10 +398,10 @@ echo "'$USER'"
 > out																					-->
 ​
 ​
-echo "$PWD         "a																	--> funktioniert
+echo "$PWD         "a																	--> ✅
 /Users/wollio/Desktop/projects/4/minishell         a
 ​
-echo "         $PWD"																	--> funktioniert
+echo "         $PWD"																	--> ✅
          /Users/wollio/Desktop/projects/4/minishell
 
 EXPAND
@@ -410,7 +409,7 @@ EXPAND
 $? = exitstatus
 $$ = Prozess ID
 Note vllt. access auf X_OK stellen statt F_OK
-cat | cat > out < in     --> funktioniert nicht genua wie bash
+cat | cat > out < in     --> ✅ nicht genua wie bash
 minishell in minshell aufrufen geht nicht
 
 cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 20:00:29 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 22:26:45 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,38 @@ int	init_envp(t_koopa *shell, char **envp)
 	return (0);
 }
 
-// void	list_test(t_data *cmd_list)
-// {
-// 	t_data	*cur = cmd_list;
-// 	int g = 1;
-// 	int y = 0;
+ void	list_test(t_data *cmd_list)
+ {
+ 	t_data	*cur = cmd_list;
+ 	int g = 1;
+ 	int y = 0;
 
-// 	while (cur != NULL)
-// 	{
-// 		printf("%d. node: %s\n", g, cur->cmd_name);
-// 		printf("cmd: %s\n", cur->cmd_name);
-// 		while (cur->cmd_line[y] != NULL)
-// 		{
-// 			printf("%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
-// 			y++;
-// 		}
-// 		y = 0;
-// 		printf("operator: %d\n", cur->operator);
-// 		cur = cur->next;
-// 		g++;
-// 		printf("----------------------\n");
-// 	}
-// }
+ 	while (cur != NULL)
+ 	{
+ 		printf("%d. node: %s\n", g, cur->cmd_name);
+ 		printf("cmd: %s\n", cur->cmd_name);
+ 		while (cur->cmd_line[y] != NULL)
+ 		{
+ 			printf("%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
+ 			y++;
+ 		}
+ 		y = 0;
+ 		printf("operator: %d\n", cur->operator);
+ 		cur = cur->next;
+ 		g++;
+ 		printf("----------------------\n");
+ 	}
+ }
 
-// void	arr_test(char **arr)
-// {
-// 	int	i = 0;
-// 	while (arr[i] != NULL)
-// 	{
-// 		printf("%d. (%s)\n", i, arr[i]);
-// 		i++;
-// 	}
-// }
+ void	arr_test(char **arr)
+ {
+ 	int	i = 0;
+ 	while (arr[i] != NULL)
+ 	{
+ 		printf("%d. (%s)\n", i, arr[i]);
+ 		i++;
+ 	}
+ }
 
 // static void	free_all(t_koopa *shell, t_data *data)
 // {
@@ -97,9 +97,9 @@ static int	execute_minishell(t_koopa *shell)
 			break ;
 		add_history(cmd);
 		token_arr = tokenizer(cmd);
-		//  arr_test(token_arr);
+		  arr_test(token_arr);
 		tabel = parser(token_arr);
-		// list_test(tabel);
+		 list_test(tabel);
 		signal(SIGINT, SIG_IGN);
 		ft_execute(shell, tabel);
 		free_data(tabel);

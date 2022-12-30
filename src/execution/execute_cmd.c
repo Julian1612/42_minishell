@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 17:44:20 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 22:09:16 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data)
 		signal(SIGINT, SIG_DFL);
 		prepare_execution(shell, data);
 		execve(shell->file, data->cmd_line, shell->envp);
-		printf("dajsdadasd\n");
 		print_error(data->cmd_line[0], NULL, NULL);
 		exit(127);
 	}
