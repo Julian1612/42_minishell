@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/29 18:18:13 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 15:23:05 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 /// @brief Main stuct
 typedef struct s_koopa
 {
+	t_data		*head;
 	char		**envp;
 	char		**path;
 	char		*line;
@@ -95,6 +96,7 @@ int		replace(t_data *data, t_exp *exp);
 int		ft_check_char(int c);
 int		print_error(char *failed_cmd, char	*failed_arg, char *reason);
 int		check_for_heredoc(t_koopa *shell, t_data *tabel);
+void	free_shell(t_koopa *head);
 
 ////////////////////////////////////////
 ////////		  UTILS  		////////

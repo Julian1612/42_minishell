@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/29 18:34:28 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 15:18:40 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ static int	execute_minishell(t_koopa *shell)
 	char				**token_arr;
 	char				*cmd;
 
+	tabel = NULL;
 	while (TRUE)
 	{
 		signal(SIGINT, ft_signal_handler);
@@ -101,10 +102,9 @@ static int	execute_minishell(t_koopa *shell)
 		//list_test(tabel);
 		signal(SIGINT, SIG_IGN);
 		ft_execute(shell, tabel);
-		free_double(token_arr);
 		free_data(tabel);
-		free(cmd);
 	}
+	free_shell(shell);
 	rl_clear_history();
 	return (0);
 }
@@ -133,6 +133,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argv;
 	argc++;
+	shell = NULL;
 	signal(SIGQUIT, SIG_IGN);
 	shell = init_shell();
 	init_envp(shell, envp);

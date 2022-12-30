@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 19:13:16 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/30 17:22:26 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int	check_input(char *arg, int size, t_koopa *shell)
 		{
 			write(2, "exit\n", 5);
 			print_error("exit", arg, "numeric argument required");
+			free_data(shell->head);
+			free_shell(shell);
 			exit(255);
 		}
 	}
@@ -47,11 +49,17 @@ void	ft_exit(t_koopa *shell, char **cmd_line)
 
 	num = 0;
 	if (cmd_line[1] == NULL)
+	{
+		free_data(shell->head);
+		free_shell(shell);
 		exit(0);
+	}
 	size = ft_ptrcnt(cmd_line);
 	if (check_input(cmd_line[1], size, shell) == -1)
 		return ;
 	num = ft_atoi(cmd_line[1]);
 	write(2, "exit\n", 5);
+	free_data(shell->head);
+	free_shell(shell);
 	exit(num);
 }
