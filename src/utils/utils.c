@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 15:04:14 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 19:44:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void	free_double(char **double_pointer)
 	i = -1;
 	while (double_pointer[++i] != NULL)
 		free(double_pointer[i]);
+	free(double_pointer[i]);
 	free(double_pointer);
 }
