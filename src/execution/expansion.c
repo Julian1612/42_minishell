@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 10:19:12 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 20:11:02 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,12 @@ static char	*get_content(t_koopa *shell, t_exp *exp, int *idx)
 
 	variable = get_variable(exp, idx);
 	if (ft_check_char(variable[0]))
+	{
+		free(variable);
 		return (NULL);
+	}
 	content = ft_strdup(ft_name_len(variable) + ft_getenv(shell, variable));
+	free(variable);
 	exp->content_len = ft_strlen(content);
 	return (content);
 }

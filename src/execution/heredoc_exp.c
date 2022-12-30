@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_exp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 13:47:29 by dna               #+#    #+#             */
-/*   Updated: 2022/12/25 23:38:35 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/30 20:41:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ static char	*ft_content(t_koopa *shell, t_exp *doc, int *idx)
 
 	variable = get_variable(doc, idx);
 	if (ft_check_char(variable[0]))
+	{
+		free(variable);
 		return (NULL);
+	}
 	content = ft_strdup(ft_name_len(variable) + ft_getenv(shell, variable));
+	free(variable);
 	doc->content_len = ft_strlen(content);
 	return (content);
 }
@@ -54,6 +58,7 @@ static int	init_doc(t_exp	*doc, char *heredoc)
 	if (heredoc == NULL)
 		return (1);
 	doc->line = ft_strdup(heredoc);
+	free(heredoc);
 	doc->squo = -1;
 	doc->dquo = -1;
 	doc->len = 0;
@@ -71,6 +76,5 @@ char	*ft_expand_heredoc(t_koopa *shell, char *heredoc)
 	while (doc.line[++i] != '\0')
 		if (doc.line[i] == '$')
 			execute_expansion(shell, &doc, &i);
-	free(heredoc);
 	return (doc.line);
 }

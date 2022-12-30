@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 18:51:56 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/30 21:10:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,25 @@ static int	catch_crash(int fd, char *heredoc)
 	return (0);
 }
 
+static char	*heredoc_strjoin(char *s1, char const *s2)
+{
+	char	*new_string;
+	size_t	len;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	if (s1[0] == '\0' && s2[0] == '\0')
+	len++;
+	new_string = malloc (sizeof(char) * (len));
+	if (new_string == NULL)
+		return (NULL);
+	ft_strlcpy(new_string, s1, len);
+	ft_strlcat(new_string, s2, len);
+	free(s1);
+	return (new_string);
+}
+
 int	check_for_heredoc(t_koopa *shell, t_data *tabel)
 {
 	shell->tmp_stdin = dup(STDIN_FILENO);
@@ -108,8 +127,8 @@ int	ft_heredoc(t_koopa *shell, t_data *tabel)
 		if (!input || ft_strncmp(input, tabel->cmd_name, \
 		ft_strlen(tabel->cmd_name)) == 0)
 			break ;
-		heredoc = ft_strjoin(heredoc, input);
-		heredoc = ft_strjoin(heredoc, "\n");
+		heredoc = heredoc_strjoin(heredoc, input);
+		heredoc = ft_addchar(heredoc, '\n');
 		free(input);
 	}
 	if (catch_crash(fd, heredoc) == ERROR)
