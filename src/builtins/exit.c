@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 17:22:26 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 11:45:14 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_exit(t_koopa *shell, char **cmd_line)
 	{
 		free_data(shell->head);
 		free_shell(shell);
+		write(2, "exit\n", 5);
 		exit(0);
 	}
 	size = ft_ptrcnt(cmd_line);

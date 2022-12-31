@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 14:47:24 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/31 11:50:06 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,20 @@ static int	check_var(char *variable)
 
 	i = -1;
 	if (variable[0] == '=' || ft_isdigit(variable[0]) || variable[0] == '\0')
+	{
+		print_error("export", variable, "not a valid identifier");
 		return (ERROR);
+	}
 	while (variable[++i] != '\0')
 	{
-		if (!ft_isalnum(variable[i]) && variable[i] != '_' \
-		&& variable[i] == '=')
+		if (!ft_isalnum(variable[i]) && variable[i] != '_')
 			break ;
 	}
-	if (variable[i] == '\0')
+	if (variable[i] == '\0' || variable[i] != '=')
+	{
+		print_error("export", variable, "not a valid identifier");
 		return (ERROR);
+	}
 	return (0);
 }
 

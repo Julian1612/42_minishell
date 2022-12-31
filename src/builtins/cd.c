@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 21:39:06 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/31 09:49:47 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ int	ft_cd(t_koopa *shell, char **path)
 		return (status);
 	if (*path == NULL)
 	{
-		if (chdir(ft_getenv(shell, "HOME") + 5))
+		if (chdir(ft_getenv(shell, "HOME=") + 5))
 		{
-			print_error("cd", NULL, "HOME not set");
+			print_error("cd", NULL, "HOME1 not set");
 			return (1);
 		}		
 	}
