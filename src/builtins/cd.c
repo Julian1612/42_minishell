@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 09:49:47 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 17:18:35 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	update_pwd(t_koopa *shell, int check)
 		return (1);
 	else
 	{
-		oldpwd = ft_strjoin("OLDPWD=", ft_getenv(shell, "PWD") + 4);
+		oldpwd = ft_strjoin("OLDPWD=", ft_getenv(shell, "PWD=") + 4);
 		ft_export(shell, oldpwd);
 		pwd = ft_strjoin("PWD=", buf);
 		ft_export(shell, pwd);
@@ -85,7 +85,7 @@ int	ft_cd(t_koopa *shell, char **path)
 	{
 		if (chdir(ft_getenv(shell, "HOME=") + 5))
 		{
-			print_error("cd", NULL, "HOME1 not set");
+			print_error("cd", NULL, "HOME not set");
 			return (1);
 		}		
 	}
