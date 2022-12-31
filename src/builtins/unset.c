@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 14:23:11 by dna              ###   ########.fr       */
+/*   Updated: 2022/12/31 16:46:12 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ static int	input_check(char *variable)
 		return (ERROR);
 	while (variable[++i] != '\0')
 	{
-		if (!ft_isalnum(variable[i]) && variable[i] != '_' \
-		&& variable[i] == '=')
+		if (!ft_isalnum(variable[i]) && variable[i] != '_')
 			break ;
 	}
 	if (variable[i] != '\0')
@@ -57,6 +56,8 @@ int	ft_unset(t_koopa *shell, char *variable)
 
 	k = 0;
 	i = -1;
+	if (variable == NULL)
+		return (0);
 	if (input_check(variable) == ERROR)
 		return (1);
 	if (!var_checker(shell, variable))
