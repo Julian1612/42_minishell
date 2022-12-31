@@ -84,7 +84,7 @@ cd ./././ 															--> ✅
 cd / 																--> ✅
 cd '/etc' 															--> ✅
 cd '/var' 															--> ✅
-cd "$PWD/prompt"													--> ❌
+cd "$PWD/prompt"													--> ✅
 cd "doesntexist"													--> ✅
 cd "doesntexist" 2>/dev/null										--> ❌
 cd ../../..															--> ✅
@@ -93,8 +93,8 @@ cd +																--> ✅
 cd _																--> ✅
 cd bark bark														--> ✅
 cd '/'																--> ✅
-cd $PWD/file_tests													--> ❌
-cd $OLDPWD/builtins													--> ❌
+cd $PWD/file_tests													--> ✅
+cd $OLDPWD/builtins													--> ✅
 
 ECHO:
 
@@ -135,7 +135,7 @@ echo $USER '' $USER $USER '' $USER '' $USER -n $USER				--> ❌		 PARSER ERROR
 echo ' \' ' \'														--> ✅
 echo '\" ' " \"\""													-->	❌		 EXPANDER ERROR
 echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'						-->	❌		 LEXER/PARSER ERROR
-echo "$USER""$USER""$USER"											-->	❌		 IDK ERROR
+echo "$USER""$USER""$USER"											-->	❌		 LEXER
 echo text"$USER"test												--> ✅
 echo '$USER' "$USER" "text \' text"									--> ✅
 echo '$USER'														--> ✅
@@ -146,11 +146,11 @@ echo '$USER'"$USER"'$USER'											--> ✅
 echo '"$USER"''$USER'"""$USER"										-->	❌		 LEXER OR ECHO ERROR
 echo " $USER  "'$PWD'												--> ✅
 echo " $USER  \$ "'$PWD'											--> ✅
-echo $USER=4														-->	❌		 EXPAND ERROR
-echo $USER=thallard 												-->	❌		 EXPAND ERROR
+echo $USER=4														-->	✅
+echo $USER=thallard 												-->	✅
 echo $?																--> ✅
-echo $PWD/file														-->	❌		 EXPAND ERROR
-echo "$PWD/file"													-->	❌		 EXPAND ERROR
+echo $PWD/file														-->	✅
+echo "$PWD/file"													-->	✅
 echo "text" "text$USER" ... "$USER"									--> ✅
 echo $PWD															--> ✅
 
@@ -158,14 +158,14 @@ EXIT:
 
 exit 0 0															--> ✅
 exit 42 42															--> ✅
-exit -42 -24														--> ❌
+exit -42 -24														--> ✅
 exit 42																--> ✅
 exit 42 53 68														--> ✅
 exit 259															--> ✅
-exit -12030															--> ❌
+exit -12030															--> ✅
 exit --1239312														--> ✅
 exit ++++1203020103													--> ✅
-exit +0																--> ❌
+exit +0																--> ✅
 exit ++++++0														--> ✅
 exit -----0															--> ✅
 exit azerty															--> ✅
@@ -174,7 +174,7 @@ exit a																--> ✅
 exit z																--> ✅
 exit "1"															--> ✅
 exit "2"															--> ✅
-exit "+102"															--> ❌
+exit "+102"															--> ✅
 exit "1230"															--> ✅
 exit "+++1230"														--> ✅
 exit "1"23															--> ✅
@@ -183,20 +183,20 @@ exit "'42'"															--> ✅
 exit '42'"42"42														--> ❌
 exit +'42'"42"42													--> ❌
 exit -'42'"42"42													--> ❌
-exit 9223372036854775807											--> ✅
+exit 9223372036854775807											--> ❌
 exit 9223372036854775808											--> ❌
-exit -4																--> ❌
+exit -4																--> ✅
 exit wrong															--> ✅
 exit wrong_command													--> ✅
 exit something														--> ✅
 exit 1																--> ✅
-exit -1																--> ❌
+exit -1																--> ✅
 exit 42																--> ✅
 exit 0																--> ✅
-exit --000															--> ❌
-exit +++++++000														--> ❌
-exit ++++3193912939													--> ❌
-exit ---31232103012													--> ❌
+exit --000															--> ✅
+exit +++++++000														--> ✅
+exit ++++3193912939													--> ✅
+exit ---31232103012													--> ✅
 exit "something"													--> ✅
 exit q																--> ✅
 exit help															--> ✅
@@ -213,8 +213,8 @@ EXPORT:
 
 env | grep "_="														--> ✅
 export | grep "SHLVL"												--> ✅
-export | grep "OLDPWD"												--> ❌
-export | grep "PWD"													--> ❌
+export | grep "OLDPWD"												--> ✅
+export | grep "PWD"													--> ✅
 export $?															--> ✅
 export TEST															--> ✅
 export TEST=														--> ✅
