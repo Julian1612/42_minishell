@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 11:45:14 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 21:01:18 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	check_input(char *arg, int size, t_koopa *shell)
 	int	i;
 
 	i = -1;
+	if (arg[0] == '-' || arg[0] == '+')
+		i++;
 	while (arg[++i] != '\0')
 	{
 		if (ft_isdigit(arg[i]) == 0)

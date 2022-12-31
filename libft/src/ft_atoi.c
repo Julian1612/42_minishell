@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/23 12:16:20 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/13 15:31:13 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 20:57:40 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	isnumber(const char *str, int i, int sign, long int result1)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (result1 * sign > 2147483647)
-			return (-1);
+			return (0);
 		if (result1 * sign < -2147483648)
 			return (0);
 		result1 = 10 * result1 + (str[i] - '0');
