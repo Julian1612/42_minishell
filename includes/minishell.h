@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 16:53:57 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 17:21:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,5 +168,6 @@ void	init_node_null(t_data *node);
 t_data	*create_head(void);
 int		count_cmd(char **token_arr, int i);
 void	init_node_null(t_data *node);
+ void	arr_test(char **arr);
 
 #endif

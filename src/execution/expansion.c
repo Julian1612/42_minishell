@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 20:11:02 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 17:35:01 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_variable(t_exp *exp, int *idx)
 	while (exp->line[++i] != '\0' && !ft_isspace(exp->line[i]))
 	{
 		exp->len++;
-		if (exp->line[i] == '?' || exp->line[i] == '$')
+		if (exp->line[i] == '?' || exp->line[i] == '$' || exp->line[i] == '/')
 			break ;
 	}
 	i = *idx;
@@ -107,6 +107,7 @@ int	ft_expand(t_koopa *shell, t_data *data)
 
 	j = 0;
 	i = -1;
+
 	if (init_exp(&exp, data) == 1)
 		return (0);
 	while (exp.line[++i] != '\0')
@@ -122,5 +123,6 @@ int	ft_expand(t_koopa *shell, t_data *data)
 	}
 	remove_quots(&exp, j);
 	replace(data, &exp);
+	arr_test(data->cmd_line);
 	return (0);
 }
