@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 15:24:38 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 22:54:29 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_execute_builtin(t_koopa *shell, t_data *data)
 	else if (!ft_strcmp(data->cmd_name, "exit"))
 		ft_exit(shell, data->cmd_line);
 	else if (!ft_strcmp(data->cmd_name, "export"))
-		shell->exit_status = ft_export(shell, data->cmd_line[1]);
+		shell->exit_status = ft_export(shell, data->cmd_line);
 	else if (!ft_strcmp(data->cmd_name, "pwd"))
 		shell->exit_status = ft_pwd();
 	else if (!ft_strcmp(data->cmd_name, "unset"))

@@ -346,42 +346,42 @@ echo '$PWD hallo | cat -e'
 echo "$PWD hallo | cat -e"
 ​
 ​
-export TEST=1 test=2 sup=																-->
-export TEST=1 test=2 sup= | env															-->
-wc < Makefile -l | cat -e > outfile | echo hello | rev > outfile2						-->
-< test.txt < Makefile<README.md wc -l|cat -e | rev										-->
-< Makefile cat > out | < README.md cat -e 												-->
-< README.md cat -e | <Makefile cat														-->
+export TEST=1 test=2 sup=																--> ✅
+export TEST=1 test=2 sup= | env															--> ❌ Lexer
+wc < Makefile -l | cat -e > outfile | echo hello | rev > outfile2						--> ❌ parser
+< test.txt < Makefile<README.md wc -l|cat -e | rev										--> ❌ parser
+< Makefile cat > out | < README.md cat -e 												--> ❌ parser
+< README.md cat -e | <Makefile cat														--> ❌ parser
 																	-->
-< in1 cat -e > out1 | < in2 cat															-->
-env | rev | head -5 | cat -e | rev														-->
+< in1 cat -e > out1 | < in2 cat															--> ❌ parser
+env | rev | head -5 | cat -e | rev														--> ❌ execution
 < in1 <in2 <in3 < Makefile rev | head -5 | cat -e | rev > out > out2 > out3 >> out4		-->
 ​
-echo ok"hello"ok1"mfg" == echo ok'hello'ok1'mfg'
+echo ok"hello"ok1"mfg" == echo ok'hello'ok1'mfg'										--> ✅
 -- okhellook1mfg
 ​
-echo okhellook1"mfg" == echo okhellook1'mfg'
+echo okhellook1"mfg" == echo okhellook1'mfg'											--> ✅
 -- okhellook1mfg
 ​
-echo "o""k       "hellook1 == echo 'o''k       'hellook1
+echo "o""k       "hellook1 == echo 'o''k       'hellook1								--> ❌
 -- ok       hellook1
 ​
-echo '"***hello***"'
+echo '"***hello***"'																	--> ✅
 "***hello***"
 ​
-echo "'***hello***'"
+echo "'***hello***'"																	--> ✅
 "***hello***'
 ​
-echo ok"'hello'"ok1"hello1"ok2
+echo ok"'hello'"ok1"hello1"ok2															--> ✅
 ​
-echo "text"   "$USER"    "$USER"
-echo """"""""$USER""""""""
-echo "-n -n -n"-n bonjour
-echo "'$USER'"
+echo "text"   "$USER"    "$USER"														--> ✅
+echo """"""""$USER""""""""																--> ❌
+echo "-n -n -n"-n bonjour																--> ✅
+echo "'$USER'"																			--> ✅
 < in1 < in2																				-->
 < in1 cat < in2																			-->
-< Makefile > outfile																	-->
-> out																					-->
+< Makefile > outfile																	--> ✅
+> out																					--> ✅
 ​
 ​
 echo "$PWD         "a																	--> ✅

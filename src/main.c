@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 21:03:59 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/01 00:53:32 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ int	init_envp(t_koopa *shell, char **envp)
 // 	}
 // }
 
- void	arr_test(char **arr)
- {
- 	int	i = 0;
- 	while (arr[i] != NULL)
- 	{
- 		printf("%d. (%s)\n", i, arr[i]);
- 		i++;
- 	}
- }
+//  void	arr_test(char **arr)
+//  {
+//  	int	i = 0;
+//  	while (arr[i] != NULL)
+//  	{
+//  		printf("%d. (%s)\n", i, arr[i]);
+//  		i++;
+//  	}
+//  }
 
 // static void	free_all(t_koopa *shell, t_data *data)
 // {
