@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 23:19:54 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/01 16:49:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	ft_exit(t_koopa *shell, char **cmd_line);
 int		ft_cd(t_koopa *shell, char **path);
 int		ft_echo(char **cmd_line);
 int		ft_env(t_koopa *shell);
-int		ft_export(t_koopa *shell, char **variable);
+int		ft_export(t_koopa *shell, char **cmd_line);
 int		ft_pwd(void);
-int		ft_unset(t_koopa *shell, char *variable);
+int		ft_unset(t_koopa *shell, char **cmd_line);
 
 ////////////////////////////////////////
 ////////		execution		////////

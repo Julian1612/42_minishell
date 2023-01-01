@@ -275,7 +275,7 @@ cd .. | pwd															--> ✅
 ifconfig | grep ":"													--> ✅
 ifconfig | grep nothing												--> ✅
 whoami | grep $USER													--> ✅
-whoami | grep $USER > tmp/file										--> ✅ verhält sich komisch wenn man den cmd davor aufruft
+whoami | grep $USER > tmp/file										--> ✅
 whoami | cat -e | cat -e > tmp/file									--> ❌
 cat Makefile | grep "FLAGS"											--> 
 cat Makefile | cat -e | cat -e										--> 
