@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/01 17:08:03 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/01 17:24:21 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,43 @@
 #include <stdio.h>
 #include <string.h>
 
+static int	mini_strcmp(const char *s1, const char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (ft_tolower(s1[i]) < s2[i])
+			return (-1);
+		if (ft_tolower(s1[i]) > s2[i])
+			return (1);
+		i++;
+	}
+	if (s1[i] == '\0' && s2[i] == '\0')
+		return (0);
+	else if (s1[i] == '\0')
+		return (-1);
+	return (1);
+}
+
 int	ft_execute_builtin(t_koopa *shell, t_data *data)
 {
 	if (shell->skip == 1)
 		return (0);
-	if (!ft_strcmp(data->cmd_name, "cd"))
+	if (!mini_strcmp(data->cmd_name, "cd"))
 		shell->exit_status = ft_cd(shell, &data->cmd_line[1]);
-	else if (!ft_strcmp(data->cmd_name, "echo"))
+	else if (!mini_strcmp(data->cmd_name, "echo"))
 		shell->exit_status = ft_echo(data->cmd_line);
-	else if (!ft_strcmp(data->cmd_name, "env"))
+	else if (!mini_strcmp(data->cmd_name, "env"))
 		shell->exit_status = ft_env(shell);
-	else if (!ft_strcmp(data->cmd_name, "exit"))
+	else if (!mini_strcmp(data->cmd_name, "exit"))
 		ft_exit(shell, data->cmd_line);
-	else if (!ft_strcmp(data->cmd_name, "export"))
+	else if (!mini_strcmp(data->cmd_name, "export"))
 		shell->exit_status = ft_export(shell, data->cmd_line);
-	else if (!ft_strcmp(data->cmd_name, "pwd"))
+	else if (!mini_strcmp(data->cmd_name, "pwd"))
 		shell->exit_status = ft_pwd();
-	else if (!ft_strcmp(data->cmd_name, "unset"))
+	else if (!mini_strcmp(data->cmd_name, "unset"))
 		shell->exit_status = ft_unset(shell, data->cmd_line);
 	else
 		return (1);
