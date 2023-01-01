@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 17:21:57 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 23:19:54 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_exit(t_koopa *shell, char **cmd_line);
 int		ft_cd(t_koopa *shell, char **path);
 int		ft_echo(char **cmd_line);
 int		ft_env(t_koopa *shell);
-int		ft_export(t_koopa *shell, char *variable);
+int		ft_export(t_koopa *shell, char **variable);
 int		ft_pwd(void);
 int		ft_unset(t_koopa *shell, char *variable);
 
@@ -168,6 +168,6 @@ void	init_node_null(t_data *node);
 t_data	*create_head(void);
 int		count_cmd(char **token_arr, int i);
 void	init_node_null(t_data *node);
- void	arr_test(char **arr);
+void	arr_test(char **arr);
 
 #endif

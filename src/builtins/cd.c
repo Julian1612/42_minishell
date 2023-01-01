@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 17:18:35 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/01 00:29:14 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,19 @@ static int	check_path(t_koopa *shell, char ***path, int *check)
 	return (0);
 }
 
+static char	**to_double(char *str)
+{
+	char	**new;
+
+	new = malloc(sizeof(char *) * 2);
+	if (new == NULL)
+		return (NULL);
+	new[0] = ft_strdup("cd");
+	new[1] = ft_strdup(str);
+	new[2] = NULL;
+	return (new);
+}
+
 static int	update_pwd(t_koopa *shell, int check)
 {
 	char	buf[PATH_MAX];
@@ -58,9 +71,9 @@ static int	update_pwd(t_koopa *shell, int check)
 	else
 	{
 		oldpwd = ft_strjoin("OLDPWD=", ft_getenv(shell, "PWD=") + 4);
-		ft_export(shell, oldpwd);
+		ft_export(shell, to_double(oldpwd));
 		pwd = ft_strjoin("PWD=", buf);
-		ft_export(shell, pwd);
+		ft_export(shell, to_double(pwd));
 		free(oldpwd);
 		free(pwd);
 		oldpwd = NULL;
