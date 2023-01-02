@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 20:11:02 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 21:03:36 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ char	*get_variable(t_exp *exp, int *idx)
 		exp->len++;
 		if (exp->line[i] == '?' || exp->line[i] == '$')
 			break ;
+		if (!ft_isalnum(exp->line[i]) && exp->line[i] != '_')
+		{
+			exp->len--;
+			break ;
+		}
 	}
 	i = *idx;
 	variable = ft_substr(exp->line, ++i, exp->len);
@@ -107,6 +112,7 @@ int	ft_expand(t_koopa *shell, t_data *data)
 
 	j = 0;
 	i = -1;
+
 	if (init_exp(&exp, data) == 1)
 		return (0);
 	while (exp.line[++i] != '\0')

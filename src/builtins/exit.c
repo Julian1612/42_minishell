@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 17:22:26 by dgross           ###   ########.fr       */
+/*   Updated: 2022/12/31 21:01:18 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	check_input(char *arg, int size, t_koopa *shell)
 	int	i;
 
 	i = -1;
+	if (arg[0] == '-' || arg[0] == '+')
+		i++;
 	while (arg[++i] != '\0')
 	{
 		if (ft_isdigit(arg[i]) == 0)
@@ -52,6 +54,7 @@ void	ft_exit(t_koopa *shell, char **cmd_line)
 	{
 		free_data(shell->head);
 		free_shell(shell);
+		write(2, "exit\n", 5);
 		exit(0);
 	}
 	size = ft_ptrcnt(cmd_line);
