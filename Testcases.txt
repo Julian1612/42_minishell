@@ -1,4 +1,5 @@
 echo > out echo hi
+echo > out > out1 echo hi
 < Makefile cat -e | wc -l > out.txt | echo hi | cat -e
 < Makefile cat -e | wc -l > out0.txt > out1.txt > out2.txt | echo hi | cat -e
 
@@ -279,19 +280,19 @@ ifconfig | grep nothing												--> ✅
 whoami | grep $USER													--> ✅
 whoami | grep $USER > tmp/file										--> ✅
 whoami | cat -e | cat -e > tmp/file									--> ❌
-cat Makefile | grep "FLAGS"											--> 
-cat Makefile | cat -e | cat -e										--> 
-cat Makefile | grep "FLAGS" | grep "FLAGS" | cat -e					--> 
-export TEST=123 | cat -e | cat -e									--> 
-unset TEST | cat -e													--> 
-echo test | cat -e | cat -e | cat -e								--> 
-whereis ls | cat -e | cat -e > test									--> 
+cat Makefile | grep "FLAGS"											-->
+cat Makefile | cat -e | cat -e										-->
+cat Makefile | grep "FLAGS" | grep "FLAGS" | cat -e					-->
+export TEST=123 | cat -e | cat -e									-->
+unset TEST | cat -e													-->
+echo test | cat -e | cat -e | cat -e								-->
+whereis ls | cat -e | cat -e > test									-->
 echo test | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e | cat -e
-ls -la | grep "."													--> 
-whereis grep > tmp/file												--> 
-whereis grep > tmp/file												--> 
-ls -la > tmp/file													--> 
-ls -la > tmp/file													--> 
+ls -la | grep "."													-->
+whereis grep > tmp/file												-->
+whereis grep > tmp/file												-->
+ls -la > tmp/file													-->
+ls -la > tmp/file													-->
 
 UNSET:
 
