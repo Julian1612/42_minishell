@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:09 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/21 14:56:49 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/01 16:34:58 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 void	skip_whitespace(char *str, int *i)
 {
-	while ((str[*i] == ' ' || str[*i] == '\t') && str[*i] != '\0')
+	while ((str[*i] == ' ' || str[*i] == '\t' || str[*i] == '\n'
+			|| str[*i] == '\r'|| str[*i] == '\v' || str[*i] == '\f') && str[*i] != '\0')
 		(*i)++;
 }
 
