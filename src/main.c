@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/02 12:11:34 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/02 14:03:50 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ int	init_envp(t_koopa *shell, char **envp)
 // 	}
 // }
 
-//  void	arr_test(char **arr)
-//  {
-//  	int	i = 0;
-//  	while (arr[i] != NULL)
-//  	{
-//  		printf("%d. (%s)\n", i, arr[i]);
-//  		i++;
-//  	}
-//  }
+  void	arr_test(char **arr)
+  {
+  	int	i = 0;
+  	while (arr[i] != NULL)
+  	{
+  		printf("%d. (%s)\n", i, arr[i]);
+  		i++;
+  	}
+  }
 
 // static void	free_all(t_koopa *shell, t_data *data)
 // {
@@ -97,7 +97,7 @@ static int	execute_minishell(t_koopa *shell)
 			break ;
 		add_history(cmd);
 		token_arr = tokenizer(cmd);
-		//   arr_test(token_arr);
+		arr_test(token_arr);
 		tabel = parser(token_arr);
 		//  list_test(tabel);
 		signal(SIGINT, SIG_IGN);

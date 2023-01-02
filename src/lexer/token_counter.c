@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:38 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/02 12:09:57 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/02 16:15:09 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,13 @@ int	token_counter(char *str)
 	{
 		if (str[i] == ' ' || str[i] == '\t')
 			skip_whitespace(str, &i);
-		else if (str[i] == '-')
-			skip_flags(str, &i, &count);
 		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
 			skip_opperator(str, &i, &count);
-		else if (str[i] == 39 || str[i] == '"')
+		else if (str[i] == '\'' || str[i] == '\"')
 			skip_qoutes(str, &i, &count);
 		else if (str[i] >= '0' && str[i] <= '9')
 			skip_nbrs(str, &i, &count);
-		else if (str[i] >= '!' && str[i] <= '~')
+		else if ((str[i] >= '!' && str[i] <= '~') || (!ft_isascii(str[i])))
 			skip_str(str, &i, &count);
 	}
 	return (count);
