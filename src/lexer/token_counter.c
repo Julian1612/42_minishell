@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_counter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:38 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/01 00:54:01 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/02 09:00:09 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	token_counter(char *str)
 	count = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == ' ')
+		if (str[i] == ' ' || str[i] == '\t')
 			skip_whitespace(str, &i);
 		else if (str[i] == '-')
 			skip_flags(str, &i, &count);

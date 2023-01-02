@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/01 17:19:46 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/02 11:54:35 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ static int	ft_redirect_infile(t_koopa *shell, t_data *data)
 
 static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 {
+	if (shell->out > 0)
+		close(shell->out);
 	shell->out = open(data->cmd_line[0], O_RDWR | O_CREAT | O_TRUNC, 00644);
 	if (shell->out == -1)
 	{
+		shell->out = dup(shell->tmp_stdin);
 		print_error(NULL, data->cmd_line[0], NULL);
 		return (ERROR);
 	}
@@ -41,9 +44,12 @@ static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 
 static int	ft_append_outfile(t_koopa *shell, t_data *data)
 {
+	if (shell->out > 0)
+		close(shell->out);
 	shell->out = open(data->cmd_line[0], O_CREAT | O_RDWR | O_APPEND, 00644);
 	if (shell->out == -1)
 	{
+		shell->out = dup(shell->tmp_stdin);
 		print_error(NULL, data->cmd_line[0], NULL);
 		return (ERROR);
 	}
@@ -55,7 +61,7 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 	int	status;
 
 	status = 0;
-	while (data != NULL && shell->skip == 0)
+	while (data != NULL && shell->skip == 0 && data->operator != PIPE)
 	{
 		if (data->operator == IN && shell->skip == 0)
 			status = ft_redirect_infile(shell, data);

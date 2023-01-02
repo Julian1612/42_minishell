@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 21:03:36 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/02 10:04:17 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*get_variable(t_exp *exp, int *idx)
 	while (exp->line[++i] != '\0' && !ft_isspace(exp->line[i]))
 	{
 		exp->len++;
-		if (exp->line[i] == '?' || exp->line[i] == '$')
+		if (exp->line[*idx + 1] == '?' || exp->line[*idx + 1] == '$')
 			break ;
 		if (!ft_isalnum(exp->line[i]) && exp->line[i] != '_')
 		{
@@ -69,6 +69,7 @@ static char	*get_content(t_koopa *shell, t_exp *exp, int *idx)
 	char	*content;
 
 	variable = get_variable(exp, idx);
+	variable = ft_addchar(variable, '=');
 	if (ft_check_char(variable[0]))
 	{
 		free(variable);
@@ -112,7 +113,6 @@ int	ft_expand(t_koopa *shell, t_data *data)
 
 	j = 0;
 	i = -1;
-
 	if (init_exp(&exp, data) == 1)
 		return (0);
 	while (exp.line[++i] != '\0')

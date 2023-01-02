@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 09:50:49 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/02 10:04:39 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	ft_name_len(char *variable)
 		return (-1);
 	while (variable[++i] != '\0')
 	{
-		if (variable[i] == '=')
-			break ;
 		if (variable[0] == '?')
 			return (0);
+		if (variable[i] == '=')
+			break ;
 	}
 	return (i + 1);
 }

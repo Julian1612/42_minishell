@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 16:36:05 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/02 11:58:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,25 @@ void	write_to(t_koopa *shell, t_data *tabel)
 	{
 		if (tabel->next->operator == OUT || tabel->next->operator == APPEND)
 		{
+			if (shell->skip == 1)
+				return ;
 			dup2(shell->out, STDOUT_FILENO);
 			close(shell->out);
 		}
 		else if (tabel->operator == PIPE)
 			dup2(shell->fd[1], STDOUT_FILENO);
 	}
+	else
+	{
+		dup2(shell->out, STDOUT_FILENO);
+		close(shell->out);
+	}
 }
 
 static	void	close_fd(t_koopa *shell)
 {
+	close(shell->out);
+	close(shell->in);
 	dup2(shell->tmp_stdin, STDIN_FILENO);
 	close(shell->tmp_stdin);
 	dup2(shell->tmp_stdout, STDOUT_FILENO);
@@ -57,6 +66,7 @@ static	void	close_fd(t_koopa *shell)
 int	ft_execute(t_koopa *shell, t_data *tabel)
 {
 	shell->head = tabel;
+	shell->skip = 0;
 	if (check_for_heredoc(shell, tabel) == ERROR)
 		return (ERROR);
 	while (tabel != NULL)
@@ -78,7 +88,8 @@ int	ft_execute(t_koopa *shell, t_data *tabel)
 	}
 	close_fd(shell);
 	while (waitpid(0, &shell->exit_status, 0) > 0)
-		;
-	shell->exit_status = WEXITSTATUS(shell->exit_status);
+		shell->exit_status = WEXITSTATUS(shell->exit_status);
+	if (shell->skip == 1)
+		shell->exit_status = 1;
 	return (0);
 }
