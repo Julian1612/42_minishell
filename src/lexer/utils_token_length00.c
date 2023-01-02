@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_token_length00.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:37:00 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/12 09:07:09 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:06:47 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,21 @@ int	counter_opp_len(char *str, int *j)
 
 int	counter_quote_len(char *str, int *j)
 {
-	if (str[*j] == 39)
-		return (counter_sqoutes_len(str, j));
-	else if (str[*j] == '"')
-		return (counter_dqoutes_len(str, j));
-	return (0);
+	int	token_len;
+
+	token_len = *j;
+	while (str[(*j)] != '\0' && (str[*j] == '\'' || str[*j] == '\"'))
+	{
+		if (str[*j] == '\'')
+			while (str[++(*j)] != '\0' && str[*j] != '\'')
+				;
+		else if (str[*j] == '\"')
+			while (str[++(*j)] != '\0' && str[*j] != '\"')
+				;
+		if (str[*j] >= '!' && str[*j] <= '~')
+			while ((str[++(*j)] != '\0' && str[*j] >= '!' && str[*j] <= '~'))
+				;
+	}
+	token_len = *j - token_len;
+	return (token_len);
 }

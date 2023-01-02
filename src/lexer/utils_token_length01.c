@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_token_length01.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:38:30 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/24 17:24:47 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/02 18:32:33 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,14 @@ int	counter_nbrs_len(char *str, int *i)
 	{
 		token_len++;
 		(*i)++;
+	}
+	if (str[*i] >= '!' && str[*i] <= '~')
+	{
+		while ((str[(*i)] != '\0' && str[*i] >= '!' && str[*i] <= '~'))
+		{
+			token_len++;
+			(*i)++;
+		}
 	}
 	return (token_len);
 }

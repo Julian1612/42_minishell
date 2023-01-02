@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_token_length03.c                             :+:      :+:    :+:   */
+/*   utils_token_length02.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:00:21 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/11 18:00:23 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:27:09 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,30 @@ int	counter_str_len(char *str, int *j)
 {
 	int	token_len;
 
-	token_len = 0;
-	while ((str[*j] >= '!' && str[*j] <= '~') && str[*j] != '\0')
+	token_len = *j;
+	while (((str[*j] >= '!' && str[*j] <= '~')
+			|| (!ft_isascii(str[*j]))) && str[*j] != '\0')
 	{
-		(*j)++;
-		token_len++;
-		if (str[*j] == '"' || str[*j] == 39)
+		if (str[*j] == '\'')
 		{
-			(*j)++;
-			token_len++;
-			while (str[*j] != '"' && str[*j] != 39 && str[*j] != '\0')
-			{
+			while (str[++(*j)] != '\0' && str[*j] != '\'')
+				;
+			if (str[(*j)] != '\0')
 				(*j)++;
-				token_len++;
-			}
-			(*j)++;
-			token_len++;
 		}
+		else if (str[*j] == '\"')
+		{
+			while (str[++(*j)] != '\0' && str[*j] != '\"')
+				;
+			if (str[(*j)] != '\0')
+				(*j)++;
+		}
+		else if (!ft_isascii(str[*j]))
+			while (str[*j] != '\0' && !ft_isascii(str[*j]))
+				(*j)++;
+		else
+			(*j)++;
 	}
+	token_len = *j - token_len;
 	return (token_len);
 }

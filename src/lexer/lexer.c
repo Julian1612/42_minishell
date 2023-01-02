@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:51:45 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/02 09:03:53 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/02 16:39:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**tokenizer(char *str)
 	i = 0;
 	j = 0;
 	token_count = token_counter(str);
+	printf("%d\n", token_count);
 	token_arr = (char **) malloc(sizeof(char *) * (token_count + 1));
 	if (token_arr == NULL)
 		return (NULL);
