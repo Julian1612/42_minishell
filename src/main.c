@@ -6,11 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/12/31 11:46:24 by jschneid         ###   ########.fr       */
-=======
-/*   Updated: 2023/01/01 17:10:52 by dgross           ###   ########.fr       */
->>>>>>> f564f357c6043c461401251777fb9a922272f5cd
+/*   Updated: 2023/01/02 11:27:54 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +34,6 @@ int	init_envp(t_koopa *shell, char **envp)
 	return (0);
 }
 
-<<<<<<< HEAD
- void	arr_test(char **arr)
- {
- 	int	i = 0;
- 	while (arr[i] != NULL)
- 	{
- 		printf("%d. (%s)\n", i, arr[i]);
- 		i++;
- 	}
- }
-=======
 // void	list_test(t_data *cmd_list)
 // {
 // 	t_data	*cur = cmd_list;
@@ -81,7 +66,6 @@ int	init_envp(t_koopa *shell, char **envp)
 //  		i++;
 //  	}
 //  }
->>>>>>> f564f357c6043c461401251777fb9a922272f5cd
 
 // static void	free_all(t_koopa *shell, t_data *data)
 // {
@@ -113,15 +97,9 @@ static int	execute_minishell(t_koopa *shell)
 			break ;
 		add_history(cmd);
 		token_arr = tokenizer(cmd);
-<<<<<<< HEAD
-		//   arr_test(token_arr);
-		tabel = parser(token_arr);
-		//  list_test(tabel);
-=======
 		//  arr_test(token_arr);
 		tabel = parser(token_arr);
 		// list_test(tabel);
->>>>>>> f564f357c6043c461401251777fb9a922272f5cd
 		signal(SIGINT, SIG_IGN);
 		ft_execute(shell, tabel);
 		free_data(tabel);

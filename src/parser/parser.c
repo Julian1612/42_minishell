@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/31 14:21:33 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:10:00 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,32 +61,47 @@ int	get_op(char **token_arr, int i)
 	return (CMD);
 }
 
-int	handle_redir(t_data *node, char **token_arr, int *i)
-{
-	node->cmd_name = ft_strdup(token_arr[*i + 1]);
-	node->cmd_line = (char **) malloc(sizeof(char *) * 2);
-	if (node->cmd_line == NULL)
-		return (1);
-	node->cmd_line[0] = ft_strdup(token_arr[*i + 1]);
-	node->cmd_line[1] = NULL;
-	if (token_arr[*i][0] == '<')
-	{
-		if (token_arr[*i][1] == '<')
-			node->operator = HEREDOC;
-		else
-			node->operator = IN;
-	}
-	else if (token_arr[*i][0] == '>')
-	{
-		if (token_arr[*i][1] == '>')
-			node->operator = APPEND;
-		else
-			node->operator = OUT;
-	}
-	node->next = NULL;
-	(*i) += 2;
-	return (0);
-}
+// int	handle_redir(t_data *node, char **token_arr, int *i)
+// {
+// 	node->cmd_name = ft_strdup(token_arr[*i + 1]);
+// 	node->cmd_line = (char **) malloc(sizeof(char *) * 2);
+// 	if (node->cmd_line == NULL)
+// 		return (1);
+// 	node->cmd_line[0] = ft_strdup(token_arr[*i + 1]);
+// 	node->cmd_line[1] = NULL;
+// 	if (token_arr[*i][0] == '<')
+// 	{
+// 		if (token_arr[*i][1] == '<')
+// 			node->operator = HEREDOC;
+// 		else
+// 			node->operator = IN;
+// 	}
+// 	else if (token_arr[*i][0] == '>')
+// 	{
+// 		if (token_arr[*i][1] == '>')
+// 			node->operator = APPEND;
+// 		else
+// 			node->operator = OUT;
+// 	}
+// 	node->next = NULL;
+// 	(*i) += 2;
+// 	return (0);
+// }
+
+// int	init_node(t_data *node, char **token_arr, int *i)
+// {
+// 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>' )
+// 	{
+// 		if (handle_redir(node, token_arr, i))
+// 			return (1);
+// 	}
+// 	else
+// 	{
+// 		if (handle_cmd(node, token_arr, i))
+// 			return (1);
+// 	}
+// 	return (0);
+// }
 
 int	handle_cmd(t_data *node, char **token_arr, int *i)
 {
@@ -117,9 +132,96 @@ int	handle_cmd(t_data *node, char **token_arr, int *i)
 	return (0);
 }
 
+int	init_node_redir(t_data	*node, char **token_arr, int i)
+{
+	return (0);
+}
+
+t_data	*create_node_redir(char **token_arr, int *i)
+{
+	t_data	*new_node;
+
+	new_node = (t_data *) malloc(sizeof(t_data));
+	if (new_node == NULL)
+		return (NULL);
+	if (init_node_redir(new_node, token_arr, *i))
+		return (NULL);
+	return (new_node);
+}
+
+int	append_redir(t_data **head, char **token_arr, int *i)
+{
+	t_data	*tmp;
+
+	tmp = NULL;
+	tmp = *head;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	tmp->next = create_node_redir(token_arr, i);
+	if (tmp->next == NULL)
+		return (1);
+	return (0);
+}
+
+int	handle_redir(t_data *node, char **token_arr, int *i)
+{
+	int	len_cmd;
+
+	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
+	{
+		node->cmd_name = ft_strdup(token_arr[*i + 1]);
+		node->cmd_line = (char **) malloc(sizeof(char *) * 2);
+		if (node->cmd_line == NULL)
+			return (1);
+		node->cmd_line[0] = ft_strdup(token_arr[*i + 1]);
+		node->cmd_line[1] = NULL;
+		if (token_arr[*i][0] == '<')
+		{
+			if (token_arr[*i][1] == '<')
+				node->operator = HEREDOC;
+			else
+				node->operator = IN;
+		}
+		else if (token_arr[*i][0] == '>')
+		{
+			if (token_arr[*i][1] == '>')
+				node->operator = APPEND;
+			else
+				node->operator = OUT;
+		}
+		node->next = NULL;
+		(*i) += 2;
+		return (0);
+	}
+	else
+	{
+		len_cmd = count_cmd(token_arr, *i);
+		printf("%d\n", len_cmd);
+	}
+	return (0);
+}
+
+int	redir_check(char **token_arr, int i)
+{
+	int	counter;
+
+	counter = 0;
+	while (token_arr[i] != NULL && token_arr[i][0] != '|')
+	{
+		if (token_arr[i][0] == '<' || token_arr[i][0] == '>')
+			counter++;
+		i++;
+	}
+	return (counter);
+}
+
 int	init_node(t_data *node, char **token_arr, int *i)
 {
-	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>' )
+	int	redirection;
+
+	redirection = redir_check(token_arr, *i);
+	printf("redirection flag: %d\n", redirection);
+	if (redirection > 0)
 	{
 		if (handle_redir(node, token_arr, i))
 			return (1);
