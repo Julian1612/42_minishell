@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/31 21:01:18 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/01 20:50:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_input(char *arg, int size, t_koopa *shell)
 	{
 		write(2, "exit\n", 5);
 		print_error("exit", NULL, "too many arguments");
-		shell->exit_status = 2;
+		shell->exit_status = 1;
 		return (-1);
 	}
 	return (0);

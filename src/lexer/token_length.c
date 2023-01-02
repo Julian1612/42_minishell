@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_length.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 17:00:40 by jschneid          #+#    #+#             */
-/*   Updated: 2022/12/21 14:43:54 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/02 09:17:36 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_token_length(char *str, int *j)
 	token_len = 0;
 	while (str[*j] != '\0')
 	{
-		if (str[*j] == ' ')
+		if (str[*j] == ' ' || str[*j] == '\t')
 			skip_whitespace(str, j);
 		if (str[*j] == '-')
 			return (counter_flag_len(str, j));

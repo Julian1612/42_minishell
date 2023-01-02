@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/01 17:03:13 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/01 20:42:17 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ static int	input_check(char *variable)
 
 	i = -1;
 	if (variable[0] == '=' || ft_isdigit(variable[0]) || variable[0] == '\0')
+	{
+		print_error("export", variable, "not a valid identifier");
 		return (ERROR);
+	}
 	while (variable[++i] != '\0')
 	{
 		if (!ft_isalnum(variable[i]) && variable[i] != '_')
@@ -67,7 +70,7 @@ int	ft_unset(t_koopa *shell, char **cmd_line)
 		k = 0;
 		status = input_check(cmd_line[j]);
 		if (status != 0)
-			end_status = status;
+			end_status = 1;
 		if (!var_checker(shell, cmd_line[j]))
 			status = 1;
 		if (status == 0)
