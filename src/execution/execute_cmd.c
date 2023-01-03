@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 12:17:37 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 15:39:36 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*create_path(t_koopa *shell, char *cmd)
 	int	i;
 
 	i = -1;
-	while (shell->path[++i])
+	while (shell->path[++i] != NULL)
 	{
 		shell->path[i] = ft_strjoin(shell->path[i], "/");
 		shell->path[i] = ft_strjoin(shell->path[i], cmd);
@@ -42,9 +42,9 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 		shell->path = ft_split(ft_getenv(shell, "PATH") + 5, ':');
 		if (shell->path == NULL)
 		{
-			free_double(shell->path);
 			print_error(NULL, "path", "Not enough space/cannot \
 			allocate memory");
+			exit(127);
 		}
 		shell->file = create_path(shell, data->cmd_name);
 		if (shell->file == NULL)
@@ -68,6 +68,7 @@ void	ft_execute_cmd(t_koopa *shell, t_data *data)
 {
 	int	pid;
 
+	shell->exit = CHILD;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -88,6 +89,7 @@ void	pipe_cmd(t_koopa *shell, t_data *data)
 		shell->skip = 0;
 		return ;
 	}
+	shell->exit = CHILD;
 	pid = fork();
 	if (pid == 0)
 	{

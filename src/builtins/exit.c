@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/02 15:31:43 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:34:20 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	check_input(char *arg, int size, t_koopa *shell)
 	{
 		write(2, "exit\n", 5);
 		print_error("exit", NULL, "too many arguments");
-		shell->exit_status = 1;
+		shell->exit_code = 1;
 		return (-1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/02 10:04:39 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 15:05:25 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ int	ft_name_len(char *variable)
 			break ;
 	}
 	return (i + 1);
+}
+
+char	**ft_arrdup(char **old)
+{
+	char	**double_pointer;
+	int		i;
+
+	i = -1;
+	double_pointer = ft_calloc(ft_ptrcnt(old) + 1, sizeof(char *));
+	while (old[++i] != NULL)
+		double_pointer[i] = ft_strdup(old[i]);
+	double_pointer[i] = NULL;
+	free_double(old);
+	return (double_pointer);
 }
 
 char	*ft_getenv(t_koopa *shell, char *name)

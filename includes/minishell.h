@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 12:19:59 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 15:04:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define OUT 3
 # define APPEND 4
 # define HEREDOC 5
+# define CHILD 6
+# define BUILTIN 7
 
 typedef struct s_exp
 {
@@ -55,11 +57,13 @@ typedef struct s_koopa
 	char		*file;
 	int			fd[2];
 	int			exit_status;
+	int			exit_code;
 	int			tmp_stdout;
 	int			tmp_stdin;
 	int			skip;
 	int			out;
 	int			in;
+	int			exit;
 }t_koopa;
 
 ////////////////////////////////////////
@@ -100,6 +104,7 @@ void	free_shell(t_koopa *head);
 void	get_exit_status(t_koopa *shell);
 int		ft_check_after(int c);
 void	check_typ_of_error(char	*cmd);
+char	**ft_arrdup(char **old);
 
 ////////////////////////////////////////
 ////////		  UTILS  		////////
