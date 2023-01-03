@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/01 16:49:56 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 19:43:32 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,15 +159,19 @@ int		init_arr(char **token_arr, char *str, int *j, int *i);
 ////////////////////////////////////////
 
 t_data	*parser(char **token_arr);
-void	init_node_null(t_data *node);
-void	init_list(t_data *head, char **token_arr);
-t_data	*create_list(const int nbr_cmd);
-int		cmd_counter(char **token_arr);
-t_data	*create_list(const int nbr_cmd);
-void	init_node_null(t_data *node);
-t_data	*create_head(void);
+// void	init_node_null(t_data *node);
+// void	init_list(t_data *head, char **token_arr);
+// t_data	*create_list(const int nbr_cmd);
+// int		cmd_counter(char **token_arr);
+// t_data	*create_list(const int nbr_cmd);
+// void	init_node_null(t_data *node);
+// t_data	*create_head(void);
 int		count_cmd(char **token_arr, int i);
-void	init_node_null(t_data *node);
-void	arr_test(char **arr);
-
+// void	init_node_null(t_data *node);
+// void	arr_test(char **arr);
+// int		init_node(t_data *node, char **token_arr, int *i);
+int		handle_redir(t_data *node, char **token_arr, int *i);
+int		handle_cmd(t_data *node, char **token_arr, int *i);
+int		append_node(t_data **head, char **token_arr, int *i, int (*init)(t_data *, char **, int *));
+int		get_op(char **token_arr, int i);
 #endif
