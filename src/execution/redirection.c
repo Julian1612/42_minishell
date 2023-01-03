@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 11:01:44 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 20:43:00 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static int	ft_redirect_infile(t_koopa *shell, t_data *data)
 {
-	shell->in = open(data->cmd_name, O_RDONLY);
+	shell->in = open(data->cmd_line[0], O_RDONLY);
 	if (shell->in == -1)
 	{
 		print_error(NULL, data->cmd_line[0], NULL);
@@ -78,8 +78,9 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 	int	status;
 
 	status = 0;
-	while (data != NULL && shell->skip == 0 && data->operator != PIPE)
+	while (data != NULL && shell->skip == 0)
 	{
+		ft_expand(shell, data);
 		if (data->operator == IN && shell->skip == 0)
 			status = ft_redirect_infile(shell, data);
 		else if (data->operator == OUT && shell->skip == 0)
@@ -88,8 +89,6 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 			status = ft_append_outfile(shell, data);
 		if (status == ERROR)
 			shell->skip = 1;
-		if (shell->skip == 0)
-			ft_expand(shell, data);
 		data = data->next;
 	}
 	return (0);

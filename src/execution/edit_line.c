@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   edit_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 10:28:32 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 19:55:56 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,11 @@ char	*double_to_str(t_data *data)
 
 int	init_exp(t_exp *exp, t_data *data)
 {
-	if (data->operator == PIPE || data->operator == CMD)
-	{
-		exp->line = double_to_str(data);
-		exp->squo = -1;
-		exp->dquo = -1;
-		exp->len = 0;
-		return (0);
-	}
-	return (1);
+	exp->line = double_to_str(data);
+	exp->squo = -1;
+	exp->dquo = -1;
+	exp->len = 0;
+	return (0);
 }
 
 int	ft_isspace(int c)
