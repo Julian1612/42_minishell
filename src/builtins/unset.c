@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/01 20:42:17 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 11:04:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,43 +51,53 @@ static int	var_checker(t_koopa *shell, char *variable)
 	return (0);
 }
 
-int	ft_unset(t_koopa *shell, char **cmd_line)
+static int	unset_var(t_koopa *shell, char **cmd_line, int i, int j)
 {
 	char	**tmp_envp;
+	int		k;
+
+	k = -1;
+	tmp_envp = ft_calloc(ft_ptrcnt(shell->envp) + 2, sizeof(char *));
+	if (tmp_envp == NULL)
+	{
+		print_error(NULL, "tmp_envp", "Not enough space/cannot \
+		allocate memory");
+		return (ERROR);
+	}
+	while (shell->envp[++i] != NULL)
+	{
+		if (ft_strncmp(shell->envp[i], cmd_line[j], \
+		ft_strlen(cmd_line[j])) != 0)
+			tmp_envp[k++] = ft_strdup(shell->envp[i]);
+	}
+	tmp_envp[k] = NULL;
+	free_double(shell->envp);
+	shell->envp = tmp_envp;
+	return (0);
+}
+
+int	ft_unset(t_koopa *shell, char **cmd_line)
+{
 	int		i;
 	int		j;
-	int		k;
 	int		status;
 	int		end_status;
 
 	status = 0;
-	k = 0;
+	end_status = 0;
 	i = -1;
 	j = 0;
 	while (cmd_line[++j] != NULL)
 	{
 		i = -1;
-		k = 0;
 		status = input_check(cmd_line[j]);
 		if (status != 0)
 			end_status = 1;
 		if (!var_checker(shell, cmd_line[j]))
 			status = 1;
 		if (status == 0)
-		{
-			tmp_envp = ft_calloc(ft_ptrcnt(shell->envp) + 2, sizeof(char *));
-			while (shell->envp[++i] != NULL)
-			{
-				if (ft_strncmp(shell->envp[i], cmd_line[j], ft_strlen(cmd_line[j])) != 0)
-				{
-					tmp_envp[k] = ft_strdup(shell->envp[i]);
-					k++;
-				}
-			}
-			tmp_envp[k] = NULL;
-			free_double(shell->envp);
-			shell->envp = tmp_envp;	
-		}
+			if (unset_var(shell, cmd_line, i, j) == ERROR)
+				return (ERROR);
 	}
 	return (end_status);
 }

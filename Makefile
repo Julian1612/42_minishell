@@ -6,29 +6,23 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2022/12/31 10:14:24 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/03 11:57:04 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 VPATH		= src: src/builtins: src/utils: src/signals: \
-			  src/lexer: src/token_counter: src/token_length \
-			  src/utils_token_counter00: src/utils_token_counter01: \
-			  src/utils_token_length00: src/utils_token_length01: \
-			  src/parser: src/utils_create_list00.c: \
-			  src/execution:
+			  src/lexer: src/parser: src/execution: \
 
 LIBFT		= libft/libft.a
 
 SRC			= main.c error.c\
 			  utils.c \
 			  signals.c free.c\
-			  lexer.c token_counter.c token_length.c \
-			  utils_token_counter00.c utils_token_counter01.c \
-			  utils_token_length00.c utils_token_length01.c utils_token_length02.c \
+			  lexer.c counter.c skipper.c whitespace_skipper.c \
 			  parser.c utils_create_list00.c \
-			  execution.c execute_builtin.c execute_cmd.c \
+			  execution.c execute_builtin.c execute_cmd.c exec_exit.c\
 			  heredoc.c redirection.c expansion.c edit_line.c heredoc_exp.c \
 			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
 

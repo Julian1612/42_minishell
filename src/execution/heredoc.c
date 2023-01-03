@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/02 11:30:28 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 11:01:36 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,6 @@ static char	*heredoc_strjoin(char *s1, char const *s2)
 	ft_strlcat(new_string, s2, len);
 	free(s1);
 	return (new_string);
-}
-
-int	check_for_heredoc(t_koopa *shell, t_data *tabel)
-{
-	shell->tmp_stdin = dup(STDIN_FILENO);
-	shell->tmp_stdout = dup(STDOUT_FILENO);
-	shell->out = dup(STDIN_FILENO);
-	while (tabel != NULL)
-	{
-		if (tabel->operator == HEREDOC)
-		{
-			if (ft_heredoc(shell, tabel) == ERROR)
-				return (ERROR);
-		}
-		tabel = tabel->next;
-	}
-	return (0);
 }
 
 int	ft_heredoc(t_koopa *shell, t_data *tabel)
