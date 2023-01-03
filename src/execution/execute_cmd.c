@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/02 11:47:44 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 12:17:37 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,7 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 		}
 		shell->file = create_path(shell, data->cmd_name);
 		if (shell->file == NULL)
-		{
-			print_error(data->cmd_line[0], NULL, "command not found");
-			exit(127);
-		}
+			check_typ_of_error(data->cmd_line[0]);
 	}
 	else
 		shell->file = data->cmd_line[0];

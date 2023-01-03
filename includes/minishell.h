@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/01 16:49:56 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 12:19:59 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ int		ft_check_char(int c);
 int		print_error(char *failed_cmd, char	*failed_arg, char *reason);
 int		check_for_heredoc(t_koopa *shell, t_data *tabel);
 void	free_shell(t_koopa *head);
+void	get_exit_status(t_koopa *shell);
+int		ft_check_after(int c);
+void	check_typ_of_error(char	*cmd);
 
 ////////////////////////////////////////
 ////////		  UTILS  		////////
@@ -135,23 +138,16 @@ void	free_data(t_data *head);
 char	**tokenizer(char *str);
 int		token_counter(char *str);
 void	skip_opperator(char *str, int *i, int *counter);
-void	skip_flags(char *str, int *i, int *counter);
-void	skip_qoutes(char *str, int *i, int *counter);
-void	skip_sqoutes(char *str, int *i, int *counter);
-void	skip_dqoutes(char *str, int *i, int *counter);
-void	skip_backslash(char *str, int *i, int *counter);
 void	skip_nbrs(char *str, int *i, int *counter);
 void	skip_whitespace(char *str, int *i);
 void	skip_str(char *str, int *i, int *counter);
-int		counter_str_len(char *str, int *j);
-int		counter_flag_len(char *str, int *j);
-int		counter_opp_len(char *str, int *j);
-int		counter_nbrs_len(char *str, int *i);
+void	skip_qoutes(char *str, int *i, int *counter);
+int		str_len_counter(char *str, int *j);
+int		opp_len_counter(char *str, int *j);
+int		nbr_len_counter(char *str, int *i);
 int		get_token_length(char *str, int *j);
-int		counter_dqoutes_len(char *str, int *j);
 void	cpy_token(char *str, char *token_arr, int token_len, int start_copy);
-int		counter_sqoutes_len(char *str, int *j);
-int		counter_quote_len(char *str, int *j);
+int		quote_len_counter(char *str, int *j);
 int		init_arr(char **token_arr, char *str, int *j, int *i);
 
 ////////////////////////////////////////

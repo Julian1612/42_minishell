@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 19:18:31 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/27 16:37:33 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/03 12:20:35 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h> //perror	
 #include <errno.h>
 #include <string.h>
-
+#include <stdlib.h>
 // gucken wie wir ne überall ausführbare error function hinbekommen
 int	print_error(char *failed_cmd, char	*failed_arg, char *reason)
 {
@@ -37,4 +37,16 @@ int	print_error(char *failed_cmd, char	*failed_arg, char *reason)
 		ft_putstr_fd("\n", 2);
 	}
 	return (0);
+}
+
+void	check_typ_of_error(char	*cmd)
+{
+	char	*check;
+
+	check = ft_strchr(cmd, '/');
+	if (check == NULL)
+		print_error(cmd, NULL, "command not found");
+	else
+		print_error(cmd, NULL, NULL);
+	exit(127);
 }

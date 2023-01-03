@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:09 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/02 13:59:44 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 11:29:52 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,11 @@ void	skip_whitespace(char *str, int *i)
 		(*i)++;
 }
 
-void	skip_flags(char *str, int *i, int *counter)
+int	ft_check_after(int c)
 {
-	(*counter)++;
-	(*i)++;
-	while (((str[*i] >= 'a' && str[*i] <= 'z')
-			|| (str[*i] >= 'A' && str[*i] <= 'Z'))
-		&& str[*i] != '\0')
-	{
-		if (str[*i + 1] == '\"' || str[*i + 1] == '\'')
-		{
-			(*i) += 2;
-			while (str[*i] != '\"' && str[*i] != '\0')
-				(*i)++;
-			(*i)++;
-		}
-		(*i)++;
-	}
+	return (c == '\f' || c == '\n' || c == '\r' \
+	|| c == '\t' || c == '\v' || c == ' '\
+	|| c == '\0');
 }
 
 void	skip_opperator(char *str, int *i, int *counter)
@@ -53,52 +41,4 @@ void	skip_opperator(char *str, int *i, int *counter)
 	}
 	(*i)++;
 	(*counter)++;
-}
-
-void	skip_sqoutes(char *str, int *i, int *counter)
-{
-	if (str[*i] == '\'' && str[*i + 1] == '\'')
-	{
-		(*i) += 2;
-		return ;
-	}
-	(*counter)++;
-	(*i)++;
-	while (str[*i] != '\'' && str[*i] != '\0')
-		(*i)++;
-	if (str[*i + 1] == '\'')
-	{
-		(*i)++;
-		return ;
-	}
-	if (str[*i + 1] != ' ')
-	{
-		while (str[*i] >= '!' && str[*i] <= '~' && str[*i] != '\0')
-			(*i)++;
-	}
-	else
-		(*i)++;
-}
-
-void	skip_dqoutes(char *str, int *i, int *counter)
-{
-	if (str[*i] == '\"' && str[*i + 1] == '\"')
-	{
-		(*i) += 2;
-		return ;
-	}
-	(*counter)++;
-	(*i)++;
-	while (str[*i] != '\"' && str[*i] != '\0')
-		(*i)++;
-	if (str[*i + 1] == '\"')
-	{
-		(*i)++;
-		return ;
-	}
-	if (str[*i + 1] != ' ')
-		while (str[*i] >= '!' && str[*i] <= '~' && str[*i] != '\0')
-			(*i)++;
-	else
-		(*i)++;
 }

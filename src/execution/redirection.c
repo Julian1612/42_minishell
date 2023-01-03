@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/02 11:54:35 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 11:01:44 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,23 @@ static int	ft_append_outfile(t_koopa *shell, t_data *data)
 		shell->out = dup(shell->tmp_stdin);
 		print_error(NULL, data->cmd_line[0], NULL);
 		return (ERROR);
+	}
+	return (0);
+}
+
+int	check_for_heredoc(t_koopa *shell, t_data *tabel)
+{
+	shell->tmp_stdin = dup(STDIN_FILENO);
+	shell->tmp_stdout = dup(STDOUT_FILENO);
+	shell->out = dup(STDIN_FILENO);
+	while (tabel != NULL)
+	{
+		if (tabel->operator == HEREDOC)
+		{
+			if (ft_heredoc(shell, tabel) == ERROR)
+				return (ERROR);
+		}
+		tabel = tabel->next;
 	}
 	return (0);
 }

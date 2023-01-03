@@ -6,13 +6,12 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/02 11:58:57 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 11:02:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h> // dup access fork
-#include <sys/wait.h> // waitpid
 #include <stdio.h>
 #include <stdlib.h> // exit
 
@@ -87,9 +86,6 @@ int	ft_execute(t_koopa *shell, t_data *tabel)
 		tabel = tabel->next;
 	}
 	close_fd(shell);
-	while (waitpid(0, &shell->exit_status, 0) > 0)
-		shell->exit_status = WEXITSTATUS(shell->exit_status);
-	if (shell->skip == 1)
-		shell->exit_status = 1;
+	get_exit_status(shell);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:51:45 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/02 16:39:57 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 11:40:10 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ char	**tokenizer(char *str)
 	i = 0;
 	j = 0;
 	token_count = token_counter(str);
-	printf("%d\n", token_count);
 	token_arr = (char **) malloc(sizeof(char *) * (token_count + 1));
 	if (token_arr == NULL)
 		return (NULL);
@@ -38,6 +37,29 @@ char	**tokenizer(char *str)
 	free(str);
 	token_arr[token_count] = NULL;
 	return (token_arr);
+}
+
+int	token_counter(char *str)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == ' ' || str[i] == '\t')
+			skip_whitespace(str, &i);
+		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
+			skip_opperator(str, &i, &count);
+		else if (str[i] == '\'' || str[i] == '\"')
+			skip_qoutes(str, &i, &count);
+		else if (str[i] >= '0' && str[i] <= '9')
+			skip_nbrs(str, &i, &count);
+		else if ((str[i] >= '!' && str[i] <= '~') || (!ft_isascii(str[i])))
+			skip_str(str, &i, &count);
+	}
+	return (count);
 }
 
 int	init_arr(char **token_arr, char *str, int *j, int *i)
@@ -56,6 +78,30 @@ int	init_arr(char **token_arr, char *str, int *j, int *i)
 	cpy_token(str, token_arr[*i], token_len, start_copy);
 	token_arr[*i][token_len] = '\0';
 	return (0);
+}
+
+int	get_token_length(char *str, int *j)
+{
+	int	token_len;
+
+	token_len = 0;
+	while (str[*j] != '\0')
+	{
+		if (str[*j] == ' ' || str[*j] == '\t')
+			skip_whitespace(str, j);
+		else if (str[*j] == '|' || str[*j] == '<' || str[*j] == '>')
+			return (opp_len_counter(str, j));
+		else if (str[*j] == '\"' || str[*j] == '\'')
+			return (quote_len_counter(str, j));
+		else if (str[*j] >= '0' && str[*j] <= '9')
+			return (nbr_len_counter(str, j));
+		else if ((str[*j] >= '!' && str[*j] <= '~') || (!ft_isascii(str[*j])))
+			return (str_len_counter(str, j));
+	}
+	if (str[*j] == '\0')
+		return (token_len);
+	else
+		return (-1);
 }
 
 void	cpy_token(char *str, char *token_arr, int token_len, int start_copy)
