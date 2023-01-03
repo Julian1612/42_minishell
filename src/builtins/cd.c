@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/01 00:29:14 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/03 15:20:02 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	**to_double(char *str)
 {
 	char	**new;
 
-	new = malloc(sizeof(char *) * 2);
+	new = malloc(sizeof(char *) * 3);
 	if (new == NULL)
 		return (NULL);
 	new[0] = ft_strdup("cd");

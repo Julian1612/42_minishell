@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 11:04:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 15:12:45 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,21 @@ static int	input_check(char *variable)
 	return (0);
 }
 
-static int	var_checker(t_koopa *shell, char *variable)
+static int	var_checker(t_koopa *shell, char **variable)
 {
 	int	i;
 
 	i = -1;
-	if (variable == NULL)
+	if (*variable == NULL)
 		return (0);
+	*variable = ft_addchar(*variable, '=');
 	while (shell->envp[++i] != NULL)
 	{
-		if (ft_strncmp(shell->envp[i], variable, ft_name_len(variable)))
+		if (ft_strncmp(shell->envp[i], *variable, ft_name_len(*variable) == 0))
+		{
+			printf("%s\n", shell->envp[i]);
 			return (1);
+		}
 	}
 	return (0);
 }
@@ -56,8 +60,8 @@ static int	unset_var(t_koopa *shell, char **cmd_line, int i, int j)
 	char	**tmp_envp;
 	int		k;
 
-	k = -1;
-	tmp_envp = ft_calloc(ft_ptrcnt(shell->envp) + 2, sizeof(char *));
+	k = 0;
+	tmp_envp = ft_calloc(ft_ptrcnt(shell->envp), sizeof(char *));
 	if (tmp_envp == NULL)
 	{
 		print_error(NULL, "tmp_envp", "Not enough space/cannot \
@@ -72,32 +76,34 @@ static int	unset_var(t_koopa *shell, char **cmd_line, int i, int j)
 	}
 	tmp_envp[k] = NULL;
 	free_double(shell->envp);
-	shell->envp = tmp_envp;
+	shell->envp = ft_arrdup(tmp_envp);
 	return (0);
 }
 
 int	ft_unset(t_koopa *shell, char **cmd_line)
 {
-	int		i;
-	int		j;
-	int		status;
 	int		end_status;
+	int		status;
+	int		j;
+	int		i;
 
+	j = 0;
+	i = -1;
 	status = 0;
 	end_status = 0;
-	i = -1;
-	j = 0;
 	while (cmd_line[++j] != NULL)
 	{
 		i = -1;
 		status = input_check(cmd_line[j]);
 		if (status != 0)
 			end_status = 1;
-		if (!var_checker(shell, cmd_line[j]))
+		if (!var_checker(shell, &cmd_line[j]))
 			status = 1;
 		if (status == 0)
+		{
 			if (unset_var(shell, cmd_line, i, j) == ERROR)
 				return (ERROR);
+		}
 	}
 	return (end_status);
 }

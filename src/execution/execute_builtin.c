@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/01 17:24:21 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:34:11 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,21 @@ int	ft_execute_builtin(t_koopa *shell, t_data *data)
 	if (shell->skip == 1)
 		return (0);
 	if (!mini_strcmp(data->cmd_name, "cd"))
-		shell->exit_status = ft_cd(shell, &data->cmd_line[1]);
+		shell->exit_code = ft_cd(shell, &data->cmd_line[1]);
 	else if (!mini_strcmp(data->cmd_name, "echo"))
-		shell->exit_status = ft_echo(data->cmd_line);
+		shell->exit_code = ft_echo(data->cmd_line);
 	else if (!mini_strcmp(data->cmd_name, "env"))
-		shell->exit_status = ft_env(shell);
+		shell->exit_code = ft_env(shell);
 	else if (!mini_strcmp(data->cmd_name, "exit"))
 		ft_exit(shell, data->cmd_line);
 	else if (!mini_strcmp(data->cmd_name, "export"))
-		shell->exit_status = ft_export(shell, data->cmd_line);
+		shell->exit_code = ft_export(shell, data->cmd_line);
 	else if (!mini_strcmp(data->cmd_name, "pwd"))
-		shell->exit_status = ft_pwd();
+		shell->exit_code = ft_pwd();
 	else if (!mini_strcmp(data->cmd_name, "unset"))
-		shell->exit_status = ft_unset(shell, data->cmd_line);
+		shell->exit_code = ft_unset(shell, data->cmd_line);
 	else
 		return (1);
+	shell->exit = BUILTIN;
 	return (0);
 }
