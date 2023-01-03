@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2022/12/31 10:14:24 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/03 14:50:13 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC			= main.c error.c\
 			  lexer.c token_counter.c token_length.c \
 			  utils_token_counter00.c utils_token_counter01.c \
 			  utils_token_length00.c utils_token_length01.c utils_token_length02.c \
-			  parser.c utils_create_list00.c \
+			  parser.c parser_0.c utils_create_list00.c \
 			  execution.c execute_builtin.c execute_cmd.c \
 			  heredoc.c redirection.c expansion.c edit_line.c heredoc_exp.c \
 			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
