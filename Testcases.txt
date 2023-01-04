@@ -79,9 +79,9 @@ cd 																	--> ✅
 cd .. 																--> ✅
 cd . 																--> ✅
 cd /Users 															--> ✅
-cd // 																--> ❌
-cd '//' 															--> ❌
-cd ////// 															--> ❌
+cd // 																--> ✅
+cd '//' 															--> ✅
+cd ////// 															--> ✅
 cd ./././ 															--> ✅
 cd / 																--> ✅
 cd '/etc' 															--> ✅
@@ -135,8 +135,8 @@ echo """"""""$USER""""""""											-->	✅
 echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''	--> ✅
 echo $USER '' $USER $USER '' $USER '' $USER -n $USER				--> ✅
 echo ' \' ' \'														--> ✅
-echo '\" ' " \"\""													-->	❌		 EXPANDER ERROR
-echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'						-->	❌		 LEXER/PARSER ERROR
+echo '\" ' " \"\""													-->	✅
+echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'						-->	✅
 echo "$USER""$USER""$USER"											-->	✅
 echo text"$USER"test												--> ✅
 echo '$USER' "$USER" "text \' text"									--> ✅
@@ -238,10 +238,10 @@ export ==========													--> ✅
 export 1TEST=														--> ✅
 export TES=T=""														--> ✅
 export TE+S=T=""													--> ✅
-export TES\\\\T=123													--> ❌ Parser\lexer
+export TES\\\\T=123													--> ✅
 export TES.T=123													--> ✅
-export TES\\\$T=123													--> ❌ Parser\lexer
-export TES\\\\T														--> ❌ Parser\lexer
+export TES\\\$T=123													--> ✅
+export TES\\\\T														--> ✅
 export TES+T=123													--> ✅
 export TES=T=123													--> ✅
 export TES}T=123													--> ✅
@@ -260,7 +260,7 @@ export +++++++=123													--> ✅
 export ________=123													--> ✅
 export TES^T=123													--> ✅
 export TES!T=123													--> ✅
-export TES\~T=123													--> ❌ Parser\lexer
+export TES\~T=123													--> ✅
 export TEST+=100													--> ✅
 
 PIPES:
@@ -281,7 +281,7 @@ whoami | grep $USER > tmp/file										--> ✅
 whoami | cat -e | cat -e > tmp/file									--> ✅
 cat Makefile | grep "FLAGS"											--> ✅
 cat Makefile | cat -e | cat -e										--> ✅
-cat Makefile | grep "FLAGS" | grep "FLAGS" | cat -e					--> ❌
+cat Makefile | grep "FLAGS" | grep "FLAGS" | cat -e					--> ✅
 export TEST=123 | cat -e | cat -e									--> ✅
 unset TEST | cat -e													--> ✅
 echo test | cat -e | cat -e | cat -e								--> ✅
@@ -302,8 +302,8 @@ unset OLDPWD														--> ✅
 unset PATH															--> ✅
 unset PATH															--> ✅
 unset PATH															--> ✅
-unset TES\\\\T														--> ❌
-unset TES;T															--> ??
+unset TES\\\\T														--> ✅
+unset TES;T															--> ✅
 unset TES.T															--> ✅
 unset TES+T															--> ✅
 unset TES=T															--> ✅
@@ -330,7 +330,7 @@ unset unset															--> ✅
 unset sudo															--> ✅
 unset TES^T															--> ✅
 unset TES!T															--> ✅
-unset TES\~T														--> ❌
+unset TES\~T														--> ✅
 
 <in cmd "str1 str2 str3" | cmd2 -arg | cmd3 >out >out2
 cmd "str1 str2 str3" >out | cmd2 -arg | cmd3 >out2 >out3
@@ -354,7 +354,7 @@ wc < Makefile -l | cat -e > outfile | echo hello | rev > outfile2						--> ❌ p
 < README.md cat -e | <Makefile cat														--> ❌ parser
 																						--> ✅
 < in1 cat -e > out1 | < in2 cat															--> ❌ parser
-env | rev | head -5 | cat -e | rev														--> ❌ lexer
+env | rev | head -5 | cat -e | rev														--> ✅ lexer
 < in1 <in2 <in3 < Makefile rev | head -5 | cat -e | rev > out > out2 > out3 >> out4		-->
 ​
 echo ok"hello"ok1"mfg" == echo ok'hello'ok1'mfg'										--> ✅
@@ -378,8 +378,8 @@ echo "text"   "$USER"    "$USER"														--> ✅
 echo """"""""$USER""""""""																--> ✅
 echo "-n -n -n"-n bonjour																--> ✅
 echo "'$USER'"																			--> ✅
-< in1 < in2																				-->
-< in1 cat < in2																			-->
+< in1 < in2																				-->	✅
+< in1 cat < in2																			-->	✅
 < Makefile > outfile																	--> ✅
 > out																					--> ✅
 ​

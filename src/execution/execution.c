@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 11:02:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:08:07 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	write_to(t_koopa *shell, t_data *tabel)
 		else if (tabel->operator == PIPE)
 			dup2(shell->fd[1], STDOUT_FILENO);
 	}
-	else
+	else if (tabel->operator != OUT)
 	{
 		dup2(shell->out, STDOUT_FILENO);
 		close(shell->out);
@@ -65,12 +65,12 @@ static	void	close_fd(t_koopa *shell)
 int	ft_execute(t_koopa *shell, t_data *tabel)
 {
 	shell->head = tabel;
-	shell->skip = 0;
 	if (check_for_heredoc(shell, tabel) == ERROR)
 		return (ERROR);
 	while (tabel != NULL)
 	{
-		ft_redirection(shell, tabel);
+		if (ft_redirection(shell, tabel) == ERROR)
+			break ;
 		if (tabel->operator == PIPE)
 		{
 			open_pipe(shell);

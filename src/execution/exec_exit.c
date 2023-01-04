@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 10:40:03 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 14:34:42 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 11:56:05 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ void	get_exit_status(t_koopa *shell)
 		shell->exit_status = shell->exit_code;
 	if (shell->skip == 1)
 		shell->exit_status = 1;
+	shell->skip = 0;
 }
