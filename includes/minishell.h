@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 15:04:03 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:11:50 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_koopa
 	int			exit_code;
 	int			tmp_stdout;
 	int			tmp_stdin;
+	int			redirect;
 	int			skip;
 	int			out;
 	int			in;
@@ -105,6 +106,7 @@ void	get_exit_status(t_koopa *shell);
 int		ft_check_after(int c);
 void	check_typ_of_error(char	*cmd);
 char	**ft_arrdup(char **old);
+int		reset_redir(t_koopa *shell, t_data *data);
 
 ////////////////////////////////////////
 ////////		  UTILS  		////////

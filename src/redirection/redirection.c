@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 20:43:00 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/04 16:09:41 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 	shell->out = open(data->cmd_line[0], O_RDWR | O_CREAT | O_TRUNC, 00644);
 	if (shell->out == -1)
 	{
-		shell->out = dup(shell->tmp_stdin);
+		shell->out = dup(shell->tmp_stdout);
 		print_error(NULL, data->cmd_line[0], NULL);
 		return (ERROR);
 	}
@@ -58,9 +58,11 @@ static int	ft_append_outfile(t_koopa *shell, t_data *data)
 
 int	check_for_heredoc(t_koopa *shell, t_data *tabel)
 {
+	shell->skip = 0;
+	shell->redirect = 1;
 	shell->tmp_stdin = dup(STDIN_FILENO);
 	shell->tmp_stdout = dup(STDOUT_FILENO);
-	shell->out = dup(STDIN_FILENO);
+	shell->out = dup(STDOUT_FILENO);
 	while (tabel != NULL)
 	{
 		if (tabel->operator == HEREDOC)
@@ -78,9 +80,16 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 	int	status;
 
 	status = 0;
-	while (data != NULL && shell->skip == 0)
+	if (reset_redir(shell, data) == 1)
+		return (0);
+	while (data != NULL && shell->skip == 0 && shell->redirect == 1)
 	{
-		ft_expand(shell, data);
+		if (ft_expand(shell, data) == ERROR)
+		{
+			shell->exit = BUILTIN;
+			shell->exit_code = 1;
+			return (ERROR);
+		}
 		if (data->operator == IN && shell->skip == 0)
 			status = ft_redirect_infile(shell, data);
 		else if (data->operator == OUT && shell->skip == 0)
@@ -91,5 +100,6 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 			shell->skip = 1;
 		data = data->next;
 	}
+	shell->redirect = 0;
 	return (0);
 }

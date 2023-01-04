@@ -6,20 +6,20 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2023/01/04 10:41:18 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/04 16:12:32 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 VPATH		= src: src/builtins: src/utils: src/signals: \
-			  src/lexer: src/parser: src/execution: \
+			  src/lexer: src/parser: src/execution: src/redirection: \
 
 LIBFT		= libft/libft.a
 
 SRC			= main.c error.c\
 			  utils.c \
-			  signals.c free.c\
+			  signals.c free.c reset_redir.c\
 			  lexer.c counter.c skipper.c whitespace_skipper.c \
 			  parser.c utils_create_list00.c \
 			  execution.c execute_builtin.c execute_cmd.c exec_exit.c\

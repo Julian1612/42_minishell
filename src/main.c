@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 20:05:37 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/04 15:56:44 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,6 @@ void	arr_test(char **arr)
   	}
 }
 
-// static void	free_all(t_koopa *shell, t_data *data)
-// {
-// 	while (data != NULL)
-// 	{
-// 		free_double(data->cmd_line);
-// 		free(data->cmd_name);
-// 		data = data->next;
-// 	}
-// 	free(data);
-// 	free_double(shell->envp);
-// 	free(shell->file);
-// 	free(shell->line);
-// 	free(shell);
-// }
-
 static int	execute_minishell(t_koopa *shell)
 {
 	t_data				*tabel;
@@ -124,6 +109,7 @@ static t_koopa	*init_shell(void)
 	shell->out = -1;
 	shell->exit_status = 0;
 	shell->skip = 0;
+	shell->redirect = 1;
 	return (shell);
 }
 
