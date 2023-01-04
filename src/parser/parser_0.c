@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:24:15 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/03 19:42:49 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:59:05 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@
 // }
 int	init_redir(t_data *node, char **token_arr, int *i)
 {
-	node->cmd_name = ft_strdup("test");
+	node->cmd_name = ft_strdup(token_arr[*i + 1]);
 	node->cmd_line = (char **) malloc(sizeof(char *) * 2);
 	if (node->cmd_line == NULL)
 		return (1);
-	node->cmd_line[0] = ft_strdup("test");
+	node->cmd_line[0] = ft_strdup(token_arr[*i + 1]);
 	node->cmd_line[1] = NULL;
 	if (token_arr[*i][0] == '<')
 	{
@@ -76,33 +76,36 @@ int	init_redir(t_data *node, char **token_arr, int *i)
 	return (0);
 }
 
-int	c_cmd(t_data *node, char **token_arr, int *i)
+int	c_cmd(t_data **node, char **token_arr, int i)
 {
 	int	count;
 
 	count = 0;
-	while (token_arr[*i] != NULL)
+	while (token_arr[i] != NULL)
 	{
-		if (token_arr[*i][0] == '>' || token_arr[*i][0] == '<')
+		if (token_arr[i][0] == '>' || token_arr[i][0] == '<')
 		{
-			append_node(&node, token_arr, i, init_redir);
-			(*i)++;
+			printf("append token\n");
+			append_node(node, token_arr, &i, init_redir);
 		}
-		if (token_arr[*i][0] == '|')
+		if (token_arr[i][0] == '|')
 			break ;
 		count++;
-		(*i)++;
+		i++;
 	}
 	return (count);
 }
 
+// Problem is here in the funvtion, node gtes not init correctly
 int	init_cmd(t_data *node, char **token_arr, int *i)
 {
 	int	num_cmd;
 	int	j;
 
 	node->operator = get_op(token_arr, *i);
-	num_cmd = c_cmd(node, token_arr, i);
+	node->next = NULL;
+	num_cmd = c_cmd(&node, token_arr, *i);
+	printf("num_cmd: %d\n", num_cmd);
 	node->cmd_name = ft_strdup(token_arr[*i]);
 	if (node->cmd_name == NULL)
 		return (1);
@@ -111,18 +114,20 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 		return (1);
 	node->cmd_line[num_cmd] = NULL;
 	j = 0;
-	printf("token_arr: %s\n", token_arr[*i]);
-	while (token_arr[*i][0] != '|' && token_arr[*i] != NULL)
+	// printf("hi\n");
+	while (j < num_cmd)
 	{
+		printf("hi2\n");
 		if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 			(*i) += 2;
 		node->cmd_line[j] = ft_strdup(token_arr[*i]);
 		if (node->cmd_line[j] == NULL)
 			return (1);
+		printf("token_arr[%d]: %s, %d\n", *i, token_arr[*i], j);
 		j++;
 		(*i)++;
 	}
-	node->next = NULL;
+	printf("hi3\n");
 	return (0);
 }
 
@@ -135,12 +140,11 @@ int	handle_redir(t_data *node, char **token_arr, int *i)
 			return (0);
 		while (token_arr[*i] != NULL && (token_arr[*i][0] == '<'
 			|| token_arr[*i][0] == '>') && token_arr[*i][0] != '|')
-		{
 			append_node(&node, token_arr, i, init_redir);
-		}
+		append_node(&node, token_arr, i, init_cmd);
 	}
 	if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
 		return (0);
-	append_node(&node, token_arr, i, init_cmd);
+	init_cmd(node, token_arr, i);
 	return (0);
 }

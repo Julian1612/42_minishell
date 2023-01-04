@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/03 19:43:16 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:57:33 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,9 @@ int	init_content(t_data *node, char **token_arr, int *i)
 	int	redirection;
 
 	redirection = redir_check(token_arr, *i);
-	printf("redirection flag: %d\n", redirection);
 	if (redirection > 0)
 	{
+		printf("redirection flag: %d\n", redirection);
 		if (handle_redir(node, token_arr, i))
 			return (1);
 	}

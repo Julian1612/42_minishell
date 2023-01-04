@@ -6,11 +6,11 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/02 11:27:54 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:54:18 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>

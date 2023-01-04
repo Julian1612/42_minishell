@@ -6,14 +6,14 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 19:43:32 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:57:30 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "libft.h"
+# include "../libft/includes/libft.h"
 # include "stdbool.h"
 # include <signal.h>
 
