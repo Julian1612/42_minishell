@@ -423,3 +423,5 @@ lsa
 gucken wegen ; \ '\n'
 
 syntax error
+
+ nocmal wegen infile gucken ob man die nach jeder pipe nochmal reseten muss oder nicht

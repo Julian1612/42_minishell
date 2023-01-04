@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 16:09:41 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 18:23:12 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,16 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 	int	status;
 
 	status = 0;
+	if (ft_expand(shell, data) == ERROR)
+	{
+		shell->exit = BUILTIN;
+		shell->exit_code = 1;
+		return (ERROR);
+	}
 	if (reset_redir(shell, data) == 1)
 		return (0);
 	while (data != NULL && shell->skip == 0 && shell->redirect == 1)
 	{
-		if (ft_expand(shell, data) == ERROR)
-		{
-			shell->exit = BUILTIN;
-			shell->exit_code = 1;
-			return (ERROR);
-		}
 		if (data->operator == IN && shell->skip == 0)
 			status = ft_redirect_infile(shell, data);
 		else if (data->operator == OUT && shell->skip == 0)
