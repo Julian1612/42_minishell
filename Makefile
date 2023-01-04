@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2023/01/03 11:57:04 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/04 10:41:18 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC			= main.c error.c\
 			  lexer.c counter.c skipper.c whitespace_skipper.c \
 			  parser.c utils_create_list00.c \
 			  execution.c execute_builtin.c execute_cmd.c exec_exit.c\
-			  heredoc.c redirection.c expansion.c edit_line.c heredoc_exp.c \
+			  heredoc.c redirection.c expansion.c edit_line.c heredoc_exp.c\
 			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/

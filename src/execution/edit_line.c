@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 10:28:32 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 10:46:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ int	replace(t_data *data, t_exp *exp)
 		return (ERROR);
 	}
 	free(exp->line);
+	if (exp->dquo == TRUE || exp->squo == TRUE)
+	{
+		print_error("syntax error", NULL, "unclosed quotation mark");
+		return (-1);
+	}
 	return (0);
 }
 
