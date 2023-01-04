@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:24:15 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/04 15:59:05 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:11:56 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,7 @@ int	c_cmd(t_data **node, char **token_arr, int i)
 	while (token_arr[i] != NULL)
 	{
 		if (token_arr[i][0] == '>' || token_arr[i][0] == '<')
-		{
-			printf("append token\n");
 			append_node(node, token_arr, &i, init_redir);
-		}
 		if (token_arr[i][0] == '|')
 			break ;
 		count++;
@@ -102,10 +99,9 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 	int	num_cmd;
 	int	j;
 
-	node->operator = get_op(token_arr, *i);
 	node->next = NULL;
+	node->operator = get_op(token_arr, *i);
 	num_cmd = c_cmd(&node, token_arr, *i);
-	printf("num_cmd: %d\n", num_cmd);
 	node->cmd_name = ft_strdup(token_arr[*i]);
 	if (node->cmd_name == NULL)
 		return (1);
@@ -114,20 +110,16 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 		return (1);
 	node->cmd_line[num_cmd] = NULL;
 	j = 0;
-	// printf("hi\n");
 	while (j < num_cmd)
 	{
-		printf("hi2\n");
 		if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 			(*i) += 2;
 		node->cmd_line[j] = ft_strdup(token_arr[*i]);
 		if (node->cmd_line[j] == NULL)
 			return (1);
-		printf("token_arr[%d]: %s, %d\n", *i, token_arr[*i], j);
 		j++;
 		(*i)++;
 	}
-	printf("hi3\n");
 	return (0);
 }
 
