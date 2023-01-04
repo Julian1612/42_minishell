@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 16:35:32 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 21:33:31 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h> // dup access fork
 #include <stdio.h>
 #include <stdlib.h> // exit
+#include <sys/stat.h>
 
 static void	open_pipe(t_koopa *shell)
 {
@@ -33,6 +34,8 @@ static void	close_pipe(t_koopa *shell)
 
 void	write_to(t_koopa *shell, t_data *tabel)
 {
+	dup2(shell->in, STDIN_FILENO);
+	close(shell->in);
 	if (tabel->next != NULL)
 	{
 		if (tabel->next->operator == OUT || tabel->next->operator == APPEND)
