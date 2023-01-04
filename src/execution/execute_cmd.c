@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 15:39:36 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 20:00:45 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 			allocate memory");
 			exit(127);
 		}
-		shell->file = create_path(shell, data->cmd_name);
+		shell->file = create_path(shell, data->cmd_line[0]);
 		if (shell->file == NULL)
 			check_typ_of_error(data->cmd_line[0]);
 	}

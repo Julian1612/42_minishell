@@ -392,15 +392,34 @@ echo "         $PWD"																	--> ✅
 
 EXPAND
 
-$? = exitstatus
-$$ = Prozess ID
-Note vllt. access auf X_OK stellen statt F_OK
 cat | cat > out < in     --> nicht genua wie bash
-minishell in minshell aufrufen geht nicht
 
 cat | echo $? sollte eigentlich nach einem befehl sich beenden macht es aber nicht
-probleme mit pipes und readline -> bricht nach der executen ab
 
-echo hi | echo kek -> sachen gehen nicht schnell genug durch (fds nochmal nachgucken)
-echo 42 | cat -e --> 42 $ space zu viel kp woher
-echo hi hi 8ewe5esf8s 8wd ---> random leerzeichen wieder
+exit "" --> geht nicht
+/bin/echo 1 | kaka -->
+"" >tmp_std_outfile && ls | grep tmp_std_outfile -->
+"" -->
+./ls
+
+"./"ls
+
+"./""ls"
+
+"./"''"ls"
+
+lsa
+
+/ls
+
+/ls/
+
+/bin/
+
+/bin/cats
+
+./4242424242.sh
+
+gucken wegen ; \ '\n'
+
+syntax error
