@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   counter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:37:00 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/03 11:50:49 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/03 19:35:55 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,49 @@
 
 int	opp_len_counter(char *str, int *j)
 {
-	int	token_len;
+	char	typ;
+	int		token_len;
 
-	token_len = 0;
-	if ((str[*j] == '>' && str[*j + 1] == '>')
-		|| (str[*j] == '<' && str[*j + 1] == '<'))
+	token_len = *j;
+	typ = 'X';
+	if (str[*j] == '>' || str[*j] == '<')
 	{
-		(*j) += 2;
-		token_len += 2;
-		return (token_len);
+		typ = str[*j];
+		while (str[++(*j)] != '\0' && str[*j] == typ)
+			;
 	}
-	(*j)++;
-	token_len++;
-	return (token_len);
+	else if (str[*j] == '|')
+	{
+		while (str[++(*j)] != '\0' && str[*j] == '|')
+			;
+	}
+	return (*j - token_len);
 }
 
 int	quote_len_counter(char *str, int *j)
 {
-	int	token_len;
+	int		token_len;
+	char	typ;
 
+	typ = 'X';
 	token_len = *j;
-	while (str[(*j)] != '\0' && (str[*j] == '\'' || str[*j] == '\"'))
+	while (str[*j] != '\0' && (str[*j] == '\'' || str[*j] == '\"'))
 	{
-		if (str[*j] == '\'')
+		if (str[*j] == '\'' || str[*j] == '\"')
 		{
-			while (str[++(*j)] != '\0' && str[*j] != '\'')
+			typ = str[*j];
+			while (str[++(*j)] != '\0' && str[*j] != typ)
 				;
-			(*j)++;
+			if (str[(*j)] != '\0')
+				(*j)++;
 		}
-		else if (str[*j] == '\"')
-		{
-			while (str[++(*j)] != '\0' && str[*j] != '\"')
-				;
-			(*j)++;
-		}
+		if (str[*j] == '|' || str[*j] == '<' || str[*j] == '>')
+			return (*j - token_len);
 		if (!ft_isspace(str[*j]))
 			while (!ft_isspace(str[*j]))
 				(*j)++;
 	}
-	token_len = *j - token_len;
-	return (token_len);
+	return (*j - token_len);
 }
 
 int	str_len_counter(char *str, int *j)
@@ -80,11 +83,12 @@ int	str_len_counter(char *str, int *j)
 		else if (!ft_isascii(str[*j]))
 			while (str[*j] != '\0' && !ft_isascii(str[*j]))
 				(*j)++;
+		else if (str[*j] == '|' || str[*j] == '<' || str[*j] == '>')
+			return (*j - token_len);
 		else
 			(*j)++;
 	}
-	token_len = *j - token_len;
-	return (token_len);
+	return (*j - token_len);
 }
 
 int	nbr_len_counter(char *str, int *i)
