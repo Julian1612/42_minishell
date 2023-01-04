@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/02 10:04:17 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 10:47:38 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int	ft_expand(t_koopa *shell, t_data *data)
 			j++;
 	}
 	remove_quots(&exp, j);
-	replace(data, &exp);
+	if (replace(data, &exp) == ERROR)
+		return (ERROR);
 	return (0);
 }

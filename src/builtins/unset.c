@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 15:12:45 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 08:23:02 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,8 @@ static int	var_checker(t_koopa *shell, char **variable)
 	*variable = ft_addchar(*variable, '=');
 	while (shell->envp[++i] != NULL)
 	{
-		if (ft_strncmp(shell->envp[i], *variable, ft_name_len(*variable) == 0))
-		{
-			printf("%s\n", shell->envp[i]);
+		if (!ft_strncmp(shell->envp[i], *variable, ft_name_len(*variable)))
 			return (1);
-		}
 	}
 	return (0);
 }
