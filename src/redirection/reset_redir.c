@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reset_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:10:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 18:13:36 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 21:29:54 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	reset_redir(t_koopa *shell, t_data *data)
 	{
 		shell->redirect = 1;
 		shell->out = dup(shell->tmp_stdout);
+		shell->in = dup(shell->tmp_stdin);
 		return (1);
 	}
 	return (0);

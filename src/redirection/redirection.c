@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 18:23:12 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/04 21:25:41 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,28 @@
 #include <fcntl.h> // open
 #include <unistd.h> // close
 #include <stdio.h>
+#include <sys/stat.h>
 
 static int	ft_redirect_infile(t_koopa *shell, t_data *data)
 {
+	struct stat	file_stat;
+
+	if (fstat(shell->in, &file_stat) == 0)
+		close(shell->in);
 	shell->in = open(data->cmd_line[0], O_RDONLY);
 	if (shell->in == -1)
 	{
 		print_error(NULL, data->cmd_line[0], NULL);
 		return (ERROR);
 	}
-	dup2(shell->in, STDIN_FILENO);
-	close(shell->in);
 	return (0);
 }
 
 static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 {
-	if (shell->out > 0)
+	struct stat	file_stat;
+
+	if (fstat(shell->out, &file_stat) == 0)
 		close(shell->out);
 	shell->out = open(data->cmd_line[0], O_RDWR | O_CREAT | O_TRUNC, 00644);
 	if (shell->out == -1)
@@ -44,7 +49,9 @@ static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 
 static int	ft_append_outfile(t_koopa *shell, t_data *data)
 {
-	if (shell->out > 0)
+	struct stat	file_stat;
+
+	if (fstat(shell->out, &file_stat) == 0)
 		close(shell->out);
 	shell->out = open(data->cmd_line[0], O_CREAT | O_RDWR | O_APPEND, 00644);
 	if (shell->out == -1)
@@ -58,13 +65,16 @@ static int	ft_append_outfile(t_koopa *shell, t_data *data)
 
 int	check_for_heredoc(t_koopa *shell, t_data *tabel)
 {
+	struct stat	file_stat;
+
 	shell->skip = 0;
 	shell->redirect = 1;
 	shell->tmp_stdin = dup(STDIN_FILENO);
 	shell->tmp_stdout = dup(STDOUT_FILENO);
-	shell->out = dup(STDOUT_FILENO);
 	while (tabel != NULL)
 	{
+		if (fstat(shell->in, &file_stat) == 0)
+			close(shell->in);
 		if (tabel->operator == HEREDOC)
 		{
 			if (ft_heredoc(shell, tabel) == ERROR)
@@ -90,7 +100,9 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 		return (0);
 	while (data != NULL && shell->skip == 0 && shell->redirect == 1)
 	{
-		if (data->operator == IN && shell->skip == 0)
+		if (data->operator == PIPE)
+			break ;
+		else if (data->operator == IN && shell->skip == 0)
 			status = ft_redirect_infile(shell, data);
 		else if (data->operator == OUT && shell->skip == 0)
 			status = ft_redirect_outfile(shell, data);
