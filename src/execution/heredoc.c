@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 18:26:45 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/05 14:01:26 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <readline/history.h>
 #include <signal.h>
 #include <errno.h>
+#include <sys/stat.h>
 
 static int	check_limiter(t_data *tabel)
 {
@@ -53,17 +54,14 @@ static void	finish_heredoc(t_koopa *shell, char	*heredoc, int i)
 	write(shell->in, heredoc, ft_strlen(heredoc));
 	close(shell->in);
 	free(heredoc);
-	shell->in = open("here_doc", O_RDONLY);
-	dup2(shell->in, STDIN_FILENO);
-	close(shell->in);
+	shell->in = open("here_doc", O_RDONLY, 00644);
 }
 
 static int	catch_crash(int fd, char *heredoc)
 {
-	int	test;
+	struct stat	file_stat;
 
-	test = dup(STDIN_FILENO);
-	if (test < 0)
+	if (fstat(STDIN_FILENO, &file_stat) != 0)
 	{
 		dup2(fd, STDIN_FILENO);
 		close(fd);
@@ -71,7 +69,6 @@ static int	catch_crash(int fd, char *heredoc)
 		return (ERROR);
 	}
 	close(fd);
-	close(test);
 	return (0);
 }
 
@@ -101,17 +98,17 @@ int	ft_heredoc(t_koopa *shell, t_data *tabel)
 	int		i;
 	int		fd;
 
+	fd = 0;
 	fd = dup(STDIN_FILENO);
 	signal(SIGINT, ft_signal_heredoc);
 	signal(SIGQUIT, SIG_IGN);
 	heredoc = ft_strdup("");
 	i = check_limiter(tabel);
-	shell->in = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 0777);
+	shell->in = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 00644);
 	while (1)
 	{
 		input = readline("> ");
-		if (!input || ft_strncmp(input, tabel->cmd_name, \
-		ft_strlen(tabel->cmd_name)) == 0)
+		if (!input || ft_strcmp(input, tabel->cmd_name) == 0)
 			break ;
 		heredoc = heredoc_strjoin(heredoc, input);
 		heredoc = ft_addchar(heredoc, '\n');

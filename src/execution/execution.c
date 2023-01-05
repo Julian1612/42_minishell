@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 09:39:39 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/05 14:31:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	open_pipe(t_koopa *shell)
 
 static void	close_pipe(t_koopa *shell)
 {
-	dup2(shell->fd[0], STDIN_FILENO);
+	dup2(shell->fd[0], shell->in);
 	close(shell->fd[0]);
 	close(shell->fd[1]);
 }
