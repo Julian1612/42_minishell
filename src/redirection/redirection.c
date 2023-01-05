@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 09:41:30 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/05 14:20:59 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static int	ft_redirect_outfile(t_koopa *shell, t_data *data)
 	shell->out = open(data->cmd_line[0], O_RDWR | O_CREAT | O_TRUNC, 00644);
 	if (shell->out == -1)
 	{
-		shell->out = dup(shell->tmp_stdout);
 		print_error(NULL, data->cmd_line[0], NULL);
 		return (ERROR);
 	}
@@ -75,12 +74,14 @@ int	check_for_heredoc(t_koopa *shell, t_data *tabel)
 	shell->out = dup(STDOUT_FILENO);
 	while (tabel != NULL)
 	{
-		if (fstat(shell->in, &file_stat) == 0)
-			close(shell->in);
 		if (tabel->operator == HEREDOC)
 		{
+			if (fstat(shell->in, &file_stat) == 0)
+				close(shell->in);
 			if (ft_heredoc(shell, tabel) == ERROR)
 				return (ERROR);
+			if (fstat(STDIN_FILENO, &file_stat) != 0)
+				dup2(shell->tmp_stdin, STDIN_FILENO);
 		}
 		tabel = tabel->next;
 	}
