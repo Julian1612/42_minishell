@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 21:25:41 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/05 09:41:30 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ int	check_for_heredoc(t_koopa *shell, t_data *tabel)
 	shell->redirect = 1;
 	shell->tmp_stdin = dup(STDIN_FILENO);
 	shell->tmp_stdout = dup(STDOUT_FILENO);
+	shell->in = dup(STDIN_FILENO);
+	shell->out = dup(STDOUT_FILENO);
 	while (tabel != NULL)
 	{
 		if (fstat(shell->in, &file_stat) == 0)
@@ -96,8 +98,6 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 		shell->exit_code = 1;
 		return (ERROR);
 	}
-	if (reset_redir(shell, data) == 1)
-		return (0);
 	while (data != NULL && shell->skip == 0 && shell->redirect == 1)
 	{
 		if (data->operator == PIPE)
