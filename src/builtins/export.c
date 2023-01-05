@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 11:03:46 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/05 14:40:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,6 @@ static int	already_exist(t_koopa *shell, char *variable)
 	int	i;
 
 	i = -1;
-	if (variable == NULL)
-	{
-		print_env(shell);
-		return (0);
-	}
 	if (check_var(variable) == ERROR)
 		return (1);
 	while (shell->envp[++i] != NULL)
@@ -116,6 +111,11 @@ int	ft_export(t_koopa *shell, char **cmd_line)
 	j = 0;
 	status = 0;
 	end_status = 0;
+	if (cmd_line[1] == NULL)
+	{
+		print_env(shell);
+		return (0);
+	}
 	while (cmd_line[++j] != NULL)
 	{
 		i = -1;
