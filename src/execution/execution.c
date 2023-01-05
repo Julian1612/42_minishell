@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 21:33:31 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/05 09:39:39 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,21 @@ static void	close_pipe(t_koopa *shell)
 
 void	write_to(t_koopa *shell, t_data *tabel)
 {
+	struct stat	file_stat;
+
 	dup2(shell->in, STDIN_FILENO);
 	close(shell->in);
 	if (tabel->next != NULL)
 	{
-		if (tabel->next->operator == OUT || tabel->next->operator == APPEND)
+		if (tabel->operator == PIPE)
+			dup2(shell->fd[1], STDOUT_FILENO);
+		else if (fstat(shell->out, &file_stat) == 0)
 		{
 			if (shell->skip == 1)
 				return ;
 			dup2(shell->out, STDOUT_FILENO);
 			close(shell->out);
 		}
-		else if (tabel->operator == PIPE)
-			dup2(shell->fd[1], STDOUT_FILENO);
 	}
 	else if (tabel->operator != OUT)
 	{

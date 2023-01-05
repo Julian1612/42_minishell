@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 17:20:36 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/05 09:36:33 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,4 +104,5 @@ void	pipe_cmd(t_koopa *shell, t_data *data)
 		else
 			ft_cmd(shell, data);
 	}
+	reset_redir(shell, data);
 }

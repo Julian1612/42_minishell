@@ -425,3 +425,5 @@ gucken wegen ; \ '\n'
 syntax error
 
  nocmal wegen infile gucken ob man die nach jeder pipe nochmal reseten muss oder nicht
+
+ fragen ob wir wirklich bei unclosed quotes einen error schreiben sollen oder nicht
