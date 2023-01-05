@@ -3,27 +3,30 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2023/01/04 16:12:32 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/05 20:16:15 by dna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= minishell
 
 VPATH		= src: src/builtins: src/utils: src/signals: \
-			  src/lexer: src/parser: src/execution: src/redirection: \
+			  src/lexer: src/parser: src/execution: \
+			  src/redirection: src/heredoc:
 
 LIBFT		= libft/libft.a
 
-SRC			= main.c error.c\
-			  utils.c \
-			  signals.c free.c reset_redir.c\
-			  lexer.c counter.c skipper.c whitespace_skipper.c \
+SRC			= main.c error.c free.c\
+			  utils.c catch.c\
+			  signals.c \
+			  reset_redir.c redirection.c \
 			  parser.c utils_create_list00.c \
-			  execution.c execute_builtin.c execute_cmd.c exec_exit.c\
-			  heredoc.c redirection.c expansion.c edit_line.c heredoc_exp.c\
+			  lexer.c counter.c skipper.c whitespace_skipper.c \
+			  heredoc_exp.c heredoc.c \
+			  execution.c execute_builtin.c execute_cmd.c \
+			  exec_exit.c expansion.c edit_line.c \
 			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/

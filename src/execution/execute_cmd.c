@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 15:58:32 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:16:31 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	pipe_cmd(t_koopa *shell, t_data *data)
 	{
 		signal(SIGINT, SIG_DFL);
 		write_to(shell, data);
+		handle_null(shell, data);
 		if (ft_execute_builtin(shell, data) == 0)
 		{
 			close(shell->fd[0]);

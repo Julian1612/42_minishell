@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 19:18:31 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 16:30:46 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/05 20:08:11 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,4 @@ void	check_typ_of_error(char	*cmd)
 	else
 		print_error(cmd, NULL, NULL);
 	exit(127);
-}
-
-int	garbage_bin(char *cmd)
-{
-	int	i;
-
-	i = ft_strlen(cmd);
-	if (access(cmd, F_OK) != -1)
-		return (1);
-	if (ft_strncmp(cmd, "/", 1) == 0)
-		return (0);
-	if (ft_strncmp(cmd, "../", 3) == 0 || ft_strncmp(cmd, "./", 2) == 0)
-		return (0);
-	return (1);
 }

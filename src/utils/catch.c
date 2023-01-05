@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset_redir.c                                      :+:      :+:    :+:   */
+/*   catch.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/04 16:10:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 20:04:52 by dna              ###   ########.fr       */
+/*   Created: 2023/01/05 20:07:42 by dna               #+#    #+#             */
+/*   Updated: 2023/01/05 20:15:37 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h>
-#include <sys/stat.h>
+#include "libft.h"
+#include <unistd.h> // access
+#include <stdlib.h> // exit
 
-int	reset_redir(t_koopa *shell, t_data *data)
+void	handle_null(t_koopa *shell, t_data *data)
 {
-	struct stat	file_stat;
-
-	if (data->operator == PIPE && shell->redirect == 0)
+	if (data->cmd_name == NULL)
 	{
-		shell->redirect = 1;
-		if (fstat(shell->out, &file_stat) == 0)
-			close(shell->out);
-		shell->out = dup(shell->tmp_stdout);
-		if (fstat(shell->in, &file_stat) == 0)
-			close(shell->in);
-		shell->in = dup(shell->tmp_stdin);
-		return (1);
+		close(shell->fd[0]);
+		close(shell->fd[1]);
+		exit(0);
 	}
-	return (0);
+}
+
+int	garbage_bin(char *cmd)
+{
+	if (access(cmd, F_OK) != -1)
+		return (1);
+	if (ft_strncmp(cmd, "/", 1) == 0)
+		return (0);
+	if (ft_strncmp(cmd, "../", 3) == 0 || ft_strncmp(cmd, "./", 2) == 0)
+		return (0);
+	return (1);
 }
