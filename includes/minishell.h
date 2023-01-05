@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 16:34:33 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/05 16:02:14 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void	ft_signals(void);
 ////////////////////////////////////////
 
 int		print_error(char *failed_cmd, char	*failed_arg, char *reason);
+int		garbage_bin(char *cmd);
 
 ////////////////////////////////////////
 ////////		 FREE	 		////////
