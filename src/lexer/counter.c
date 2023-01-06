@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   counter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:37:00 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/03 19:35:55 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/06 10:44:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

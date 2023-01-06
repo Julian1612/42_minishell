@@ -6,13 +6,15 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 17:54:09 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 11:38:30 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
+
+#include <stdio.h> // NULL
+#include <stdlib.h> // free
 
 static void	remove_quots(t_exp *exp, int count)
 {

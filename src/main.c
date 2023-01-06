@@ -6,11 +6,13 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 14:41:11 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 11:17:19 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
+
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -18,7 +20,6 @@
 #include <readline/readline.h> // readline
 #include <readline/history.h> // readline
 #include <fcntl.h>
-#include <limits.h>
 
 int	init_envp(t_koopa *shell, char **envp)
 {
@@ -99,6 +100,7 @@ static t_koopa	*init_shell(void)
 	t_koopa	*shell;
 
 	shell = ft_calloc(1, sizeof(t_koopa));
+	g_exit_status = 0;
 	shell->envp = NULL;
 	shell->path = NULL;
 	shell->line = NULL;
@@ -107,7 +109,6 @@ static t_koopa	*init_shell(void)
 	shell->tmp_stdout = -1;
 	shell->in = -1;
 	shell->out = -1;
-	shell->exit_status = 0;
 	shell->skip = 0;
 	shell->redirect = 1;
 	return (shell);

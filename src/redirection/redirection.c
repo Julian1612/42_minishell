@@ -6,15 +6,16 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 14:20:59 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:46:09 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 #include <fcntl.h> // open
-#include <unistd.h> // close
-#include <stdio.h>
-#include <sys/stat.h>
+#include <unistd.h> // close, dup, dup2
+#include <stdio.h> // NULL
+#include <sys/stat.h> // fstat
 
 static int	ft_redirect_infile(t_koopa *shell, t_data *data)
 {

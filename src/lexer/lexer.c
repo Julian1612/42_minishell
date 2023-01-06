@@ -6,11 +6,12 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:51:45 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/03 11:40:10 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:11:37 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

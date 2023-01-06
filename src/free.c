@@ -6,13 +6,14 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:48:24 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/30 16:06:31 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:49:37 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h>
-#include <stdio.h>
+
+#include <stdlib.h> // free
+#include <stdio.h> 
 
 void	free_data(t_data *head)
 {

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 20:16:31 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/06 11:41:33 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
 
-#include <unistd.h> // dup access fork
-#include <stdlib.h> // 
-#include <stdio.h> // 
-#include <errno.h>
-#include <string.h>
+#include <stdio.h>
+#include <unistd.h> // dup access fork close execve
+#include <stdlib.h> // exit 
+#include <signal.h> // signal
 
 static char	*create_path(t_koopa *shell, char *cmd)
 {

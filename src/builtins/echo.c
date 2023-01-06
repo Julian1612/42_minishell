@@ -6,15 +6,14 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:47 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 15:45:40 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:07:34 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft.h" // ft_stcmp
+#include "libft.h"
+
 #include <stdio.h> // printf
-#include <unistd.h>
-#include <string.h>
 
 static int	check_for_n(char *cmd_line)
 {

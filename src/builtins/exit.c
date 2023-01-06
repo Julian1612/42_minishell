@@ -6,14 +6,14 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 14:34:20 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:09:54 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h> // dup access fork
-#include <sys/wait.h> // waitpid
-#include <stdio.h>
+#include "libft.h"
+
+#include <unistd.h> // write
 #include <stdlib.h> // exit
 
 static int	check_input(char *arg, int size, t_koopa *shell)

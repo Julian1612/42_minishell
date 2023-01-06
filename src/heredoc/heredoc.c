@@ -6,21 +6,21 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 14:01:26 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:44:37 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <fcntl.h> // open
-#include "libft.h" // ft_strncmp ft_malloc ft_strjoin ft_strlen
-#include <unistd.h> // read write
-#include <stdlib.h> // free
+#include "libft.h"
+
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <signal.h>
-#include <errno.h>
-#include <sys/stat.h>
+#include <fcntl.h> // open
+#include <unistd.h> // write, close, dup2, dup
+#include <stdlib.h> // free, malloc
+#include <signal.h> // signal
+#include <sys/stat.h> // fstat
 
 static int	check_limiter(t_data *tabel)
 {

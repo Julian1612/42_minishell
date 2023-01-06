@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   reset_redir.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 16:10:40 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 20:04:52 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/06 10:46:51 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h>
-#include <sys/stat.h>
+
+#include <unistd.h> // dup, close
+#include <sys/stat.h> // fstat
 
 int	reset_redir(t_koopa *shell, t_data *data)
 {
