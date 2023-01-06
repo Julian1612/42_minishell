@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_create_list00.c                              :+:      :+:    :+:   */
+/*   token_counter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/15 16:16:29 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/03 17:17:21 by jschneid         ###   ########.fr       */
+/*   Created: 2022/12/07 12:47:38 by jschneid          #+#    #+#             */
+/*   Updated: 2023/01/02 11:28:04 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,27 @@
 #include <string.h>
 #include <stdlib.h>
 
-int	count_cmd(char **token_arr, int i)
+int	token_counter(char *str)
 {
+	int	i;
 	int	count;
 
+	i = 0;
 	count = 0;
-	while (token_arr[i] != NULL)
+	while (str[i] != '\0')
 	{
-		if (token_arr[i][0] == '|' || token_arr[i][0] == '>'
-			|| token_arr[i][0] == '<')
-			break ;
-		count++;
-		i++;
+		if (str[i] == ' ')
+			skip_whitespace(str, &i);
+		else if (str[i] == '-')
+			skip_flags(str, &i, &count);
+		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
+			skip_opperator(str, &i, &count);
+		else if (str[i] == 39 || str[i] == '"')
+			skip_qoutes(str, &i, &count);
+		else if (str[i] >= '0' && str[i] <= '9')
+			skip_nbrs(str, &i, &count);
+		else if (str[i] >= '!' && str[i] <= '~')
+			skip_str(str, &i, &count);
 	}
 	return (count);
 }
-
-// int	count_cmd(char **token_arr, int *i)
-// {
-// 	int	count;
-
-// 	count = 0;
-// 	while (token_arr[*i] != NULL)
-// 	{
-// 		if (token_arr[*i][0] == '>' || token_arr[*i][0] == '<')
-// 		{
-// 			append_node();
-// 			(*i)++;
-// 		}
-// 		if (token_arr[*i][0] == '|')
-// 			break ;
-// 		count++;
-// 		(*i)++;
-// 	}
-// 	return (count);
-// }

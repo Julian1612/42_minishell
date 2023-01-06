@@ -12,7 +12,6 @@
 
 #include "minishell.h"
 #include "libft.h"
-
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -51,39 +50,6 @@ int	init_envp(t_koopa *shell, char **envp)
 	return (0);
 }
 
-//void	list_test(t_data *cmd_list)
-//{
-//	t_data	*cur = cmd_list;
-//	int g = 1;
-//	int y = 0;
-
-//	while (cur != NULL)
-//	{
-//		printf("%d. node: %s\n", g, cur->cmd_name);
-//		printf("cmd: %s\n", cur->cmd_name);
-//		while (cur->cmd_line[y] != NULL)
-//		{
-//			printf("%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
-//			y++;
-//		}
-//		y = 0;
-//		printf("operator: %d\n", cur->operator);
-//		cur = cur->next;
-//		g++;
-//		printf("----------------------\n");
-//	}
-//}
-
-//void	arr_test(char **arr)
-//{
-//  	int	i = 0;
-//  	while (arr[i] != NULL)
-//  	{
-//  		printf("%d. (%s)\n", i, arr[i]);
-//  		i++;
-//  	}
-//}
-
 static int	execute_minishell(t_koopa *shell)
 {
 	t_data				*tabel;
@@ -99,7 +65,6 @@ static int	execute_minishell(t_koopa *shell)
 			break ;
 		add_history(cmd);
 		token_arr = tokenizer(cmd);
-		//arr_test(token_arr);
 		tabel = parser(token_arr);
 		// list_test(tabel);
 		signal(SIGINT, SIG_IGN);
