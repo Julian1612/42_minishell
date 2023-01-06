@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 14:10:40 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:01:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int	ft_expand(t_koopa *shell, t_data *data)
 
 	j = 0;
 	i = -1;
+	if (data->cmd_line == NULL)
+		return (0);
 	init_exp(&exp, data);
 	while (exp.line[++i] != '\0')
 	{

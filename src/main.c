@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 15:13:03 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 18:34:27 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static int	execute_minishell(t_koopa *shell)
 		add_history(cmd);
 		token_arr = tokenizer(cmd);
 		tabel = parser(token_arr);
-		// list_test(tabel);
 		signal(SIGINT, SIG_IGN);
 		ft_execute(shell, tabel);
 		free_data(tabel);

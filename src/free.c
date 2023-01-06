@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:48:24 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 10:49:37 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 18:21:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ void	free_data(t_data *head)
 	{
 		tmp = head;
 		head = head->next;
-		free_double(tmp->cmd_line);
-		free(tmp->cmd_name);
+		if (tmp->cmd_line != NULL)
+		{
+			free_double(tmp->cmd_line);
+			free(tmp->cmd_name);
+		}
 		free(tmp);
 	}
 }
