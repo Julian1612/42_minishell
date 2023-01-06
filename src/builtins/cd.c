@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 10:06:24 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 14:54:51 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ static int	check_path(t_koopa *shell, char ***path, int *check)
 	return (0);
 }
 
-static char	**to_double(char *str)
+char	**to_double(char *str)
 {
 	char	**new;
 
 	new = malloc(sizeof(char *) * 3);
 	if (new == NULL)
 		return (NULL);
-	new[0] = ft_strdup("cd");
+	new[0] = ft_strdup("Koopa_Shell");
 	new[1] = ft_strdup(str);
 	new[2] = NULL;
 	return (new);

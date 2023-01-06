@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 13:46:32 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 14:54:18 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int		ft_env(t_koopa *shell);
 int		ft_export(t_koopa *shell, char **cmd_line);
 int		ft_pwd(void);
 int		ft_unset(t_koopa *shell, char **cmd_line);
+char	**to_double(char *str);
 
 ////////////////////////////////////////
 ////////		execution		////////

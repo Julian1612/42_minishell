@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 11:17:19 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 15:13:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,24 @@
 #include <readline/history.h> // readline
 #include <fcntl.h>
 
+static void	increas_shlvl(t_koopa *shell)
+{
+	char	*tmp;
+	char	*new_lvl;
+	int		i;
+
+	tmp = ft_strdup(ft_getenv(shell, "SHLVL=") + 6);
+	i = ft_atoi(tmp);
+	free(tmp);
+	i++;
+	new_lvl = ft_strjoin("SHLVL=", ft_itoa(i));
+	ft_export(shell, to_double(new_lvl));
+	free(new_lvl);
+}
+
 int	init_envp(t_koopa *shell, char **envp)
 {
-	int					i;
+	int	i;
 
 	i = -1;
 	shell->envp = ft_calloc(ft_ptrcnt(envp) + 1, sizeof(char *));
@@ -32,6 +47,7 @@ int	init_envp(t_koopa *shell, char **envp)
 	while (envp[++i] != NULL)
 		shell->envp[i] = ft_strdup(envp[i]);
 	shell->envp[i] = NULL;
+	increas_shlvl(shell);
 	return (0);
 }
 
