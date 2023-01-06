@@ -138,10 +138,14 @@ int	redir_check(char **token_arr, int i)
 	int	counter;
 
 	counter = 0;
+	if (token_arr[i] == NULL)
+		return (-1);
 	while (token_arr[i] != NULL && token_arr[i][0] != '|')
 	{
 		if (token_arr[i][0] == '<' || token_arr[i][0] == '>')
 			counter++;
+		if (token_arr[i] == NULL)
+			return (counter);
 		i++;
 	}
 	return (counter);
