@@ -1,6 +1,8 @@
 echo > out echo hi
+echo > out > out1 echo hi
 < Makefile cat -e | wc -l > out.txt | echo hi | cat -e
 < Makefile cat -e | wc -l > out0.txt > out1.txt > out2.txt | echo hi | cat -e
+< in cat | < in2 cat > out
 
 echo > out0.txt > out1.txt > out2.txt echo hi | echo hi
 echo > out | echo hi
