@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+         #
+#    By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2023/01/06 12:11:59 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/06 23:45:08 by jschneid         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC			= main.c error.c free.c\
 			  utils.c catch.c\
 			  signals.c \
 			  reset_redir.c redirection.c \
-			  parser.c parser_0.c utils_create_list00.c \
+			  parser.c cmd_counter.c cmd_handler.c init_cmd.c redir_handler.c \
 			  lexer.c counter.c skipper.c whitespace_skipper.c \
 			  heredoc_exp.c heredoc.c \
 			  execution.c execute_builtin.c execute_cmd.c \
