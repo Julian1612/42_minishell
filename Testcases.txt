@@ -404,3 +404,8 @@ exit "" --> geht nicht
 "" -->
 
 fragen ob wir wirklich bei unclosed quotes einen error schreiben sollen oder nicht
+
+EXPORT UNSET EXIT should work 
+export printing fix
+mehrere signal handler um auch sowas wie 130 bei sleep und so zu machne
+heredoc signals nochmal nachgucken
