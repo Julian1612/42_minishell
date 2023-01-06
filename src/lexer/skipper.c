@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:30:55 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/06 10:44:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 13:48:42 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	skip_qoutes(char *str, int *i, int *counter)
 		}
 		if (str[*i] == '|' || str[*i] == '<' || str[*i] == '>')
 			return ;
-		if (!ft_isspace(str[*i]))
-			while (!ft_isspace(str[*i]))
+		if (!ft_is_end(str[*i]))
+			while (!ft_is_end(str[*i]))
 				(*i)++;
 	}
 }

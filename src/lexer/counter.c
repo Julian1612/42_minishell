@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:37:00 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/06 10:44:49 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 13:48:19 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	quote_len_counter(char *str, int *j)
 		}
 		if (str[*j] == '|' || str[*j] == '<' || str[*j] == '>')
 			return (*j - token_len);
-		if (!ft_isspace(str[*j]))
-			while (!ft_isspace(str[*j]))
+		if (!ft_is_end(str[*j]))
+			while (!ft_is_end(str[*j]))
 				(*j)++;
 	}
 	return (*j - token_len);

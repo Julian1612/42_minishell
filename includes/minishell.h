@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 12:09:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 13:46:32 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,13 @@ char	*get_variable(t_exp *exp, int *idx);
 int		ft_execute_builtin(t_koopa *shell, t_data *data);
 int		ft_execute(t_koopa *shell, t_data *data);
 int		ft_expand(t_koopa *shell, t_data *data);
-int		ft_isspace(int c);
+int		ft_is_end(int c);
 int		init_exp(t_exp *exp, t_data *data);
 int		replace(t_data *data, t_exp *exp);
 int		ft_check_char(int c);
 void	get_exit_status(t_koopa *shell);
 void	handle_null(t_koopa *shell, t_data *data);
+int		ft_isspace(int c);
 
 ////////////////////////////////////////
 ////////		  HEREDOC  		////////

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 11:38:30 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 14:10:40 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,26 @@ static void	remove_quots(t_exp *exp, int count)
 char	*get_variable(t_exp *exp, int *idx)
 {
 	int		i;
+	int		offset;
 	char	*variable;
 
 	exp->len = 0;
 	i = *idx;
-	while (exp->line[++i] != '\0' && !ft_isspace(exp->line[i]))
+	offset = 1;
+	while (exp->line[++i] != '\0' && !ft_is_end(exp->line[i]))
 	{
 		exp->len++;
-		if (exp->line[*idx + 1] == '?' || exp->line[*idx + 1] == '$')
+		if (exp->line[*idx + 1] == '?')
 			break ;
 		if (!ft_isalnum(exp->line[i]) && exp->line[i] != '_')
 		{
-			exp->len--;
+			--exp->len;
+			--offset;
 			break ;
 		}
 	}
 	i = *idx;
-	variable = ft_substr(exp->line, ++i, exp->len);
+	variable = ft_substr(exp->line, i + offset, exp->len);
 	return (variable);
 }
 
@@ -72,7 +75,7 @@ static char	*get_content(t_koopa *shell, t_exp *exp, int *idx)
 
 	variable = get_variable(exp, idx);
 	variable = ft_addchar(variable, '=');
-	if (ft_check_char(variable[0]))
+	if (variable[0] != '?' && !ft_isalnum(variable[0]))
 	{
 		free(variable);
 		return (NULL);

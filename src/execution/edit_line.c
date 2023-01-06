@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 10:19:29 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 13:53:33 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	init_exp(t_exp *exp, t_data *data)
 	return (0);
 }
 
-int	ft_isspace(int c)
+int	ft_is_end(int c)
 {
 	return (c == '\f' || c == '\n' || c == '\r' \
 	|| c == '\t' || c == '\v' || c == ' '\
@@ -71,7 +71,7 @@ int	replace(t_data *data, t_exp *exp)
 
 int	ft_check_char(int c)
 {
-	return (c == '\f' || c == '\n' || c == '\r' \
-	|| c == '\t' || c == '\v' || c == ' ' || c == '$'\
-	|| c == '\'' || c == '\"' || c == '\0');
+	return (c == '\f' || c == '\n' || c == '\r'
+		|| c == '\t' || c == '\v' || c == ' '
+		|| c == '\'' || c == '\"' || c == '\0');
 }

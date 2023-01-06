@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:51:45 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/06 10:11:37 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 13:49:31 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	token_counter(char *str)
 	count = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == ' ' || str[i] == '\t')
+		if (ft_isspace(str[i]))
 			skip_whitespace(str, &i);
 		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
 			skip_opperator(str, &i, &count);
