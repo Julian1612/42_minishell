@@ -6,13 +6,13 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 20:07:42 by dna               #+#    #+#             */
-/*   Updated: 2023/01/06 12:10:36 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 18:43:40 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
-
+#include <stdio.h>
 #include <unistd.h> // access, close
 #include <stdlib.h> // exit
 

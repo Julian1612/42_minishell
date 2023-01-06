@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:24:15 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/04 17:11:56 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/06 19:18:05 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	init_redir(t_data *node, char **token_arr, int *i)
 	}
 	node->next = NULL;
 	(*i) += 2;
-	printf("End of init_redir token_arr[%d] = %s\n", *i, token_arr[*i]);
+	//printf("End of init_redir token_arr[%d] = %s\n", *i, token_arr[*i]);
 	if (token_arr[*i] == NULL)
 		return (0);
 	if (token_arr[*i][0] == '|')
