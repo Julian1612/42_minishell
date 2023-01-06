@@ -174,4 +174,5 @@ int		handle_redir(t_data *node, char **token_arr, int *i);
 int		handle_cmd(t_data *node, char **token_arr, int *i);
 int		append_node(t_data **head, char **token_arr, int *i, int (*init)(t_data *, char **, int *));
 int		get_op(char **token_arr, int i);
+t_data	*create_node(char **token_arr, int *i, int (*init)(t_data *, char **, int *));
 #endif

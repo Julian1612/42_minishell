@@ -108,6 +108,7 @@ int	handle_cmd(t_data *node, char **token_arr, int *i)
 	int	num_cmd;
 	int	j;
 
+	printf("token_arr[%d] = %s\n", *i, token_arr[*i]);
 	if (token_arr[*i][0] == '|')
 		(*i)++;
 	node->operator = get_op(token_arr, *i);
@@ -151,15 +152,17 @@ int	init_content(t_data *node, char **token_arr, int *i)
 	int	redirection;
 
 	redirection = redir_check(token_arr, *i);
-	printf("token_arr[%d]: %s\n", *i, token_arr[*i]);
 	if (redirection > 0)
 	{
+		printf("---------------------\n");
 		printf("redirection flag: %d\n", redirection);
 		if (handle_redir(node, token_arr, i))
 			return (1);
 	}
 	else
 	{
+		printf("---------------------\n");
+		printf("normal command flag\n");
 		if (handle_cmd(node, token_arr, i))
 			return (1);
 	}
