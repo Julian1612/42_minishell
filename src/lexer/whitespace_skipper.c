@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   whitespace_skipper.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:09 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/03 20:56:03 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/06 10:45:04 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

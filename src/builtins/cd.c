@@ -6,16 +6,16 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 15:20:02 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:06:24 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h> // chdir
-#include <stdlib.h> // getenv
-#include <limits.h> // [PATH_MAX]
 #include "libft.h"
-#include <stdio.h>
+
+#include <unistd.h> // chdir
+#include <stdlib.h> // getenv, free, malloc
+#include <limits.h> // [PATH_MAX]
 
 static int	check_path(t_koopa *shell, char ***path, int *check)
 {

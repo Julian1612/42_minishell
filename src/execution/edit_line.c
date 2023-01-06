@@ -6,13 +6,14 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:00:51 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 16:09:27 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:19:29 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h> // perror
-#include <stdlib.h>
+#include "libft.h"
+
+#include <stdlib.h> // free
 
 char	*double_to_str(t_data *data)
 {

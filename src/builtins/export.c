@@ -6,13 +6,15 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:54 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 14:40:56 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 12:03:34 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
+
 #include <stdlib.h> // free
-#include <stdio.h>
+#include <stdio.h> // printf
 
 static int	check_var(char *variable)
 {
@@ -67,7 +69,7 @@ static int	already_exist(t_koopa *shell, char *variable)
 
 	i = -1;
 	if (check_var(variable) == ERROR)
-		return (1);
+		return (ERROR);
 	while (shell->envp[++i] != NULL)
 	{
 		if (!ft_strncmp(shell->envp[i], variable, ft_name_len(variable)))
@@ -120,8 +122,8 @@ int	ft_export(t_koopa *shell, char **cmd_line)
 	{
 		i = -1;
 		status = already_exist(shell, cmd_line[j]);
-		if (status != ERROR)
-			end_status = status;
+		if (status == ERROR)
+			end_status = 1;
 		if (status == 0)
 			if (export_new_var(shell, cmd_line, i, j) == ERROR)
 				return (ERROR);

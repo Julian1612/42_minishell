@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   skipper.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:30:55 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/03 19:35:52 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/06 10:44:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "libft.h"
 
 void	skip_qoutes(char *str, int *i, int *counter)
 {

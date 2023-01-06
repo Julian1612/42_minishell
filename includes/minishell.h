@@ -3,19 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 20:08:48 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/06 12:09:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
-# include "libft.h"
-# include "stdbool.h"
-# include <signal.h>
 
 # define TRUE 1
 # define FALSE -1
@@ -29,6 +25,9 @@
 # define HEREDOC 5
 # define CHILD 6
 # define BUILTIN 7
+
+////---------GLOBAL---------//
+int	g_exit_status;
 
 typedef struct s_exp
 {
@@ -56,7 +55,6 @@ typedef struct s_koopa
 	char		*line;
 	char		*file;
 	int			fd[2];
-	int			exit_status;
 	int			exit_code;
 	int			tmp_stdout;
 	int			tmp_stdin;
@@ -90,30 +88,36 @@ void	ft_cmd(t_koopa *shell, t_data *data);
 void	pipe_cmd(t_koopa *shell, t_data *data);
 char	*double_to_str(t_data *data);
 char	*get_variable(t_exp *exp, int *idx);
-char	*ft_expand_heredoc(t_koopa *shell, char *heredoc);
 int		ft_execute_builtin(t_koopa *shell, t_data *data);
 int		ft_execute(t_koopa *shell, t_data *data);
-int		ft_redirection(t_koopa *shell, t_data *data);
 int		ft_expand(t_koopa *shell, t_data *data);
-int		ft_heredoc(t_koopa *shell, t_data *data);
 int		ft_isspace(int c);
 int		init_exp(t_exp *exp, t_data *data);
 int		replace(t_data *data, t_exp *exp);
 int		ft_check_char(int c);
-int		print_error(char *failed_cmd, char	*failed_arg, char *reason);
-int		check_for_heredoc(t_koopa *shell, t_data *tabel);
-void	free_shell(t_koopa *head);
 void	get_exit_status(t_koopa *shell);
-int		ft_check_after(int c);
-void	check_typ_of_error(char	*cmd);
-char	**ft_arrdup(char **old);
-int		reset_redir(t_koopa *shell, t_data *data);
 void	handle_null(t_koopa *shell, t_data *data);
+
+////////////////////////////////////////
+////////		  HEREDOC  		////////
+////////////////////////////////////////
+
+int		ft_heredoc(t_koopa *shell, t_data *data);
+char	*ft_expand_heredoc(t_koopa *shell, char *heredoc);
+
+////////////////////////////////////////
+////////	  REDIRECTION  		////////
+////////////////////////////////////////
+
+int		ft_redirection(t_koopa *shell, t_data *data);
+int		check_for_heredoc(t_koopa *shell, t_data *tabel);
+int		reset_redir(t_koopa *shell, t_data *data);
 
 ////////////////////////////////////////
 ////////		  UTILS  		////////
 ////////////////////////////////////////
 
+char	**ft_arrdup(char **old);
 void	free_double(char **double_pointer);
 char	*ft_getenv(t_koopa *shell, char *name);
 int		ft_name_len(char *variable);
@@ -134,12 +138,14 @@ void	ft_signals(void);
 
 int		print_error(char *failed_cmd, char	*failed_arg, char *reason);
 int		garbage_bin(char *cmd);
+void	check_typ_of_error(char	*cmd);
 
 ////////////////////////////////////////
 ////////		 FREE	 		////////
 ////////////////////////////////////////
 
 void	free_data(t_data *head);
+void	free_shell(t_koopa *head);
 
 ////////////////////////////////////////
 ////////		 LEXER	 		////////
@@ -159,6 +165,7 @@ int		get_token_length(char *str, int *j);
 void	cpy_token(char *str, char *token_arr, int token_len, int start_copy);
 int		quote_len_counter(char *str, int *j);
 int		init_arr(char **token_arr, char *str, int *j, int *i);
+int		ft_check_after(int c);
 
 ////////////////////////////////////////
 ////////		PARSER	 		////////

@@ -6,11 +6,13 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/03 15:05:25 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:10:59 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
+
 #include <stdlib.h> // free
 #include <stdio.h>
 
@@ -72,7 +74,7 @@ char	*ft_getenv(t_koopa *shell, char *name)
 	if (ft_strncmp(name, "?", 1) == 0)
 	{
 		free(name);
-		name = ft_itoa(shell->exit_status);
+		name = ft_itoa(g_exit_status);
 		return (name);
 	}
 	while (shell->envp[++i] != NULL)

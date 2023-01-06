@@ -6,21 +6,23 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/05 14:31:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:35:14 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h> // dup access fork
-#include <stdio.h>
+#include "libft.h"
+
+#include <unistd.h> // dup2 access fork close
 #include <stdlib.h> // exit
-#include <sys/stat.h>
+#include <sys/stat.h> // fstat
 
 static void	open_pipe(t_koopa *shell)
 {
 	if (pipe(shell->fd) == -1)
 	{
-		printf("Pipe ERROR\n");
+		print_error("Pipe", NULL, "Not enough space/cannot \
+		allocate memory");
 		return ;
 	}
 }

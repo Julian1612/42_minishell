@@ -6,12 +6,12 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:59 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/04 08:23:02 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:18:28 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
+#include "libft.h"
 
 static int	input_check(char *variable)
 {

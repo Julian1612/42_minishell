@@ -6,13 +6,15 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 13:47:29 by dna               #+#    #+#             */
-/*   Updated: 2022/12/30 20:41:38 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 10:40:58 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
+
+#include <stdio.h> // NULL
+#include <stdlib.h> // free 
 
 static char	*ft_content(t_koopa *shell, t_exp *doc, int *idx)
 {
