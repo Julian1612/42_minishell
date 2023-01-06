@@ -29,12 +29,16 @@ void	list_test(t_data *cmd_list)
 		printf("\e[37m----------------------\n");
 		printf("\e[32mcmd: %s\n", cur->cmd_name);
 		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
-		while (cur->cmd_line[y] != NULL)
+		if (cur->cmd_line != NULL)
 		{
-			printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
-			y++;
+			while (cur->cmd_line[y] != NULL)
+			{
+				printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
+				y++;
+			}
+			y = 0;
+
 		}
-		y = 0;
 		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
 		printf("\e[95moperator: %d\033[0m\n", cur->operator);
 		cur = cur->next;
@@ -108,7 +112,7 @@ int	handle_cmd(t_data *node, char **token_arr, int *i)
 	int	num_cmd;
 	int	j;
 
-	printf("token_arr[%d] = %s\n", *i, token_arr[*i]);
+	// printf("token_arr[%d] = %s\n", *i, token_arr[*i]);
 	if (token_arr[*i][0] == '|')
 		(*i)++;
 	node->operator = get_op(token_arr, *i);
@@ -158,15 +162,15 @@ int	init_content(t_data *node, char **token_arr, int *i)
 	redirection = redir_check(token_arr, *i);
 	if (redirection > 0)
 	{
-		printf("---------------------\n");
-		printf("redirection flag: %d\n", redirection);
+		// printf("---------------------\n");
+		// printf("redirection flag: %d\n", redirection);
 		if (handle_redir(node, token_arr, i))
 			return (1);
 	}
 	else
 	{
-		printf("---------------------\n");
-		printf("normal command flag\n");
+		// printf("---------------------\n");
+		// printf("normal command flag\n");
 		if (handle_cmd(node, token_arr, i))
 			return (1);
 	}

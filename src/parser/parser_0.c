@@ -50,6 +50,17 @@
 // 	return (0);
 // }
 
+int	init_test(t_data *node, char **token_arr, int *i)
+{
+	(void) token_arr;
+	(void) *i;
+	node->cmd_name = NULL;
+	node->cmd_line = NULL;
+	node->operator = PIPE;
+	node->next = NULL;
+	return (0);
+}
+
 int	init_redir(t_data *node, char **token_arr, int *i)
 {
 	node->cmd_name = ft_strdup(token_arr[*i + 1]);
@@ -75,6 +86,10 @@ int	init_redir(t_data *node, char **token_arr, int *i)
 	node->next = NULL;
 	(*i) += 2;
 	printf("End of init_redir token_arr[%d] = %s\n", *i, token_arr[*i]);
+	if (token_arr[*i] == NULL)
+		return (0);
+	if (token_arr[*i][0] == '|')
+		append_node(&node, token_arr, i, init_test);
 	return (0);
 }
 
@@ -100,15 +115,15 @@ int	c_cmd(t_data **node, char **token_arr, int i)
 	count = 0;
 	while (token_arr[i] != NULL)
 	{
-		printf("pre c_cmd i: %d\n", i);
+		// printf("pre c_cmd i: %d\n", i);
 		// printf("token_arr c_cmd: %s\n", token_arr[i]);
 		if (token_arr[i][0] == '>' || token_arr[i][0] == '<')
 		{
-			printf("redir\n");
+			// printf("redir\n");
 			append_redir(node, token_arr, &i, init_redir);
 			continue ;
 		}
-		printf("past c_cmd i: %d\n", i);
+		// printf("past c_cmd i: %d\n", i);
 		if (token_arr[i] == NULL || token_arr[i][0] == '|')
 			return (count);
 		count++;
@@ -127,7 +142,7 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 	// printf("pre c_cmd i: %d\n", *i);
 	num_cmd = c_cmd(&node, token_arr, *i);
 	// printf("past c_cmd i: %d\n", *i);
-	printf("num_cmd: %d\n", num_cmd);
+	// printf("num_cmd: %d\n", num_cmd);
 	node->cmd_name = ft_strdup(token_arr[*i]);
 	if (node->cmd_name == NULL)
 		return (1);
@@ -139,10 +154,10 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 	// die schleife bis zum schluss laufen lassen also bis pipw oder
 	while (j < num_cmd)
 	{
-		printf("OGGGGGGtoken_arr[%d] = %s\n", *i, token_arr[*i]);
+		// printf("OGGGGGGtoken_arr[%d] = %s\n", *i, token_arr[*i]);
 		if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 		{
-			printf("hi\n");
+			// printf("hi\n");
 			(*i) += 2;
 			continue ;
 		}
@@ -152,9 +167,9 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 			return (1);
 		j++;
 		(*i)++;
-		printf("eOGGGGGGtoken_arr[%d] = %s\n", *i, token_arr[*i]);
+		// printf("eOGGGGGGtoken_arr[%d] = %s\n", *i, token_arr[*i]);
 	}
-	printf("i	hi\n");
+	// printf("i	hi\n");
 	while (token_arr[*i] != NULL && token_arr[*i][0] != '|')
 		(*i)++;
 	return (0);
@@ -166,17 +181,17 @@ int	handle_redir(t_data *node, char **token_arr, int *i)
 	int	flag;
 
 	flag = 0;
-	printf("For first if token_arr[%d] = %s\n", *i, token_arr[*i]);
+	// printf("For first if token_arr[%d] = %s\n", *i, token_arr[*i]);
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 	{
 		init_redir(node, token_arr, i);
-		printf("In first if token_arr[%d] = %s\n", *i, token_arr[*i]);
+		// printf("In first if token_arr[%d] = %s\n", *i, token_arr[*i]);
 		if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
 			return (0);
 		while (token_arr[*i] != NULL && (token_arr[*i][0] == '<'
 			|| token_arr[*i][0] == '>') && token_arr[*i][0] != '|')
 		{
-			printf("while loop\n");
+			// printf("while loop\n");
 			append_node(&node, token_arr, i, init_redir);
 		}
 		// append_node(&node, token_arr, i, init_cmd);
@@ -186,12 +201,12 @@ int	handle_redir(t_data *node, char **token_arr, int *i)
 		return (0);
 	if (flag == 1)
 	{
-		printf("append node\n");
+		// printf("appen/d node\n");
 		append_node(&node, token_arr, i, init_cmd);
 	}
 	else
 		init_cmd(node, token_arr, i);
-	printf("End of function token_arr[%d] = %s\n", *i, token_arr[*i]);
+	// printf("End of function token_arr[%d] = %s\n", *i, token_arr[*i]);
 	if (token_arr[*i] == NULL)
 		return (0);
 	if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
