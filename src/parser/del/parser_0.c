@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser_0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD:src/parser/del/parser_0.c
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 12:24:15 by jschneid          #+#    #+#             */
 /*   Updated: 2023/01/06 20:57:28 by jschneid         ###   ########.fr       */
+=======
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/03 12:24:15 by jschneid          #+#    #+#             */
+/*   Updated: 2023/01/06 19:18:05 by dgross           ###   ########.fr       */
+>>>>>>> 86b5271ff4582449f23302f1054b4bd71d04c395:src/parser/parser_0.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +64,10 @@ int	init_redir(t_data *node, char **token_arr, int *i)
 	}
 	node->next = NULL;
 	(*i) += 2;
+<<<<<<< HEAD:src/parser/del/parser_0.c
+=======
+	//printf("End of init_redir token_arr[%d] = %s\n", *i, token_arr[*i]);
+>>>>>>> 86b5271ff4582449f23302f1054b4bd71d04c395:src/parser/parser_0.c
 	if (token_arr[*i] == NULL)
 		return (0);
 	if (token_arr[*i][0] == '|')
