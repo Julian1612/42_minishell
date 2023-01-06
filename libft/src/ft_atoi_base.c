@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 14:13:27 by dgross            #+#    #+#             */
-/*   Updated: 2022/12/13 15:35:20 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 13:47:48 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static int	ft_has_prefix(const char *str, int base)
 
 static int	ft_isspace(int c)
 {
-	return (c == '\f' || c == '\n' || c == '\r' \
-	|| c == '\t' || c == '\v' || c == ' ');
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r');
 }
 
 static int	ft_isdigit_base(char c, int base)

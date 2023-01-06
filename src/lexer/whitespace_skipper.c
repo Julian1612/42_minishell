@@ -6,11 +6,12 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:09 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/06 10:45:04 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/06 13:47:59 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -26,9 +27,15 @@ void	skip_whitespace(char *str, int *i)
 
 int	ft_check_after(int c)
 {
-	return (c == '\f' || c == '\n' || c == '\r' \
-	|| c == '\t' || c == '\v' || c == ' '\
-	|| c == '\0' || c == '<' || c == '>' || c == '|' );
+	return (c == '\f' || c == '\n' || c == '\r'
+		|| c == '\t' || c == '\v' || c == ' '
+		|| c == '\0' || c == '<' || c == '>' || c == '|' );
+}
+
+int	ft_isspace(int c)
+{
+	return (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\v' || c == '\f' || c == '\r');
 }
 
 void	skip_opperator(char *str, int *i, int *countern)
