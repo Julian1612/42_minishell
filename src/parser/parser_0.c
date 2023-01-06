@@ -74,7 +74,7 @@ int	init_redir(t_data *node, char **token_arr, int *i)
 	}
 	node->next = NULL;
 	(*i) += 2;
-	printf("redir token_arr[%d] = %s\n", *i, token_arr[*i]);
+	printf("End of init_redir token_arr[%d] = %s\n", *i, token_arr[*i]);
 	return (0);
 }
 
@@ -101,11 +101,16 @@ int	c_cmd(t_data **node, char **token_arr, int i)
 	while (token_arr[i] != NULL)
 	{
 		printf("pre c_cmd i: %d\n", i);
+		// printf("token_arr c_cmd: %s\n", token_arr[i]);
 		if (token_arr[i][0] == '>' || token_arr[i][0] == '<')
+		{
+			printf("redir\n");
 			append_redir(node, token_arr, &i, init_redir);
+			continue ;
+		}
 		printf("past c_cmd i: %d\n", i);
 		if (token_arr[i] == NULL || token_arr[i][0] == '|')
-			break ;
+			return (count);
 		count++;
 		i++;
 	}
@@ -122,6 +127,7 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 	// printf("pre c_cmd i: %d\n", *i);
 	num_cmd = c_cmd(&node, token_arr, *i);
 	// printf("past c_cmd i: %d\n", *i);
+	printf("num_cmd: %d\n", num_cmd);
 	node->cmd_name = ft_strdup(token_arr[*i]);
 	if (node->cmd_name == NULL)
 		return (1);
@@ -138,14 +144,17 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 		{
 			printf("hi\n");
 			(*i) += 2;
+			continue ;
 		}
 		node->cmd_line[j] = ft_strdup(token_arr[*i]);
-		printf("i = %d\n", *i);
+		// printf("i = %d\n", *i);
 		if (node->cmd_line[j] == NULL)
 			return (1);
 		j++;
 		(*i)++;
+		printf("eOGGGGGGtoken_arr[%d] = %s\n", *i, token_arr[*i]);
 	}
+	printf("i	hi\n");
 	while (token_arr[*i] != NULL && token_arr[*i][0] != '|')
 		(*i)++;
 	return (0);
@@ -157,18 +166,17 @@ int	handle_redir(t_data *node, char **token_arr, int *i)
 	int	flag;
 
 	flag = 0;
-	printf("GGtoken_arr[%d] = %s\n", *i, token_arr[*i]);
+	printf("For first if token_arr[%d] = %s\n", *i, token_arr[*i]);
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 	{
 		init_redir(node, token_arr, i);
-		printf("OGtoken_arr[%d] = %s\n", *i, token_arr[*i]);
+		printf("In first if token_arr[%d] = %s\n", *i, token_arr[*i]);
 		if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
 			return (0);
-
 		while (token_arr[*i] != NULL && (token_arr[*i][0] == '<'
 			|| token_arr[*i][0] == '>') && token_arr[*i][0] != '|')
 		{
-			printf("while\n");
+			printf("while loop\n");
 			append_node(&node, token_arr, i, init_redir);
 		}
 		// append_node(&node, token_arr, i, init_cmd);
@@ -178,13 +186,15 @@ int	handle_redir(t_data *node, char **token_arr, int *i)
 		return (0);
 	if (flag == 1)
 	{
-		printf("hi\n");
+		printf("append node\n");
 		append_node(&node, token_arr, i, init_cmd);
 	}
 	else
 		init_cmd(node, token_arr, i);
-	printf("OPtoken_arr[%d] = %s\n", *i, token_arr[*i]);
-	if (token_arr[*i][0] == '|')
+	printf("End of function token_arr[%d] = %s\n", *i, token_arr[*i]);
+	if (token_arr[*i] == NULL)
+		return (0);
+	if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
 		(*i)++;
 	return (0);
 }
