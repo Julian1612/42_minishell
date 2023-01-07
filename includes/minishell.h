@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 16:47:13 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/07 17:27:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,21 +172,33 @@ int		ft_check_after(int c);
 ////////		PARSER	 		////////
 ////////////////////////////////////////
 
+//parser
 t_data	*parser(char **token_arr);
-// void	init_node_null(t_data *node);
-// void	init_list(t_data *head, char **token_arr);
-// t_data	*create_list(const int nbr_cmd);
-// int		cmd_counter(char **token_arr);
-// t_data	*create_list(const int nbr_cmd);
-// void	init_node_null(t_data *node);
-// t_data	*create_head(void);
-int		count_cmd(char **token_arr, int i);
-// void	init_node_null(t_data *node);
-// void	arr_test(char **arr);
-// int		init_node(t_data *node, char **token_arr, int *i);
+int		append_node(t_data **head, char **token_arr, int *i,
+			int (*init)(t_data *, char **, int *));
+t_data	*create_node(char **token_arr, int *i,
+			int (*init)(t_data *, char **, int *));
+int		init_content(t_data *node, char **token_arr, int *i);
+int		redir_check(char **token_arr, int i);
+
+// redir_handler
 int		handle_redir(t_data *node, char **token_arr, int *i);
+int		init_redir(t_data *node, char **token_arr, int *i);
+int		init_data(t_data *node, char **token_arr, int *i);
+int		init_test(t_data *node, char **token_arr, int *i);
+
+// command_handler
 int		handle_cmd(t_data *node, char **token_arr, int *i);
-int		append_node(t_data **head, char **token_arr, int *i, int (*init)(t_data *, char **, int *));
 int		get_op(char **token_arr, int i);
-t_data	*create_node(char **token_arr, int *i, int (*init)(t_data *, char **, int *));
+int		count_cmd(char **token_arr, int i);
+
+// command_counter
+int		c_cmd(t_data **node, char **token_arr, int i);
+int		append_redir(t_data **head, char **token_arr,
+			int *i, int (*init)(t_data *, char **, int *));
+
+// inittialize_command.c
+int		init_cmd(t_data *node, char **token_arr, int *i);
+int		init_cmd_line(t_data *node, char **token_arr, int *i, int num_cmd);
+
 #endif
