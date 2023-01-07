@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 17:22:01 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/07 17:24:47 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <unistd.h> // dup2 access fork close
 #include <stdlib.h> // exit
 #include <sys/stat.h> // fstat
-#include <stdio.h>
+
 static void	open_pipe(t_koopa *shell)
 {
 	if (pipe(shell->fd) == -1)
