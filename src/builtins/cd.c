@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 14:54:51 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/07 16:21:20 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,8 @@ static int	update_pwd(t_koopa *shell, int check)
 	return (1);
 }
 
-int	ft_cd(t_koopa *shell, char **path)
+static int	ft_change_dir(t_koopa *shell, char **path)
 {
-	int	check;
-	int	status;
-
-	check = 0;
-	status = check_path(shell, &path, &check);
-	if (status != 0)
-		return (status);
 	if (*path == NULL)
 	{
 		if (chdir(ft_getenv(shell, "HOME=") + 5))
@@ -110,6 +103,21 @@ int	ft_cd(t_koopa *shell, char **path)
 			return (1);
 		}	
 	}
-	status = update_pwd(shell, check);
-	return (status);
+	return (0);
+}
+
+int	ft_cd(t_koopa *shell, t_data *data, char **path)
+{
+	int	check;
+
+	check = 0;
+	if (ft_strcmp(data->cmd_name, "CD") == 0)
+		return (0);
+	if (check_path(shell, &path, &check) != 0)
+		return (1);
+	if (ft_change_dir(shell, path) != 0)
+		return (1);
+	if (update_pwd(shell, check) != 0)
+		return (1);
+	return (0);
 }

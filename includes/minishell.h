@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 14:54:18 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/07 16:47:13 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	list_test(t_data *cmd_list);
 ////////////////////////////////////////
 
 void	ft_exit(t_koopa *shell, char **cmd_line);
-int		ft_cd(t_koopa *shell, char **path);
+int		ft_cd(t_koopa *shell, t_data *data, char **path);
 int		ft_echo(char **cmd_line);
 int		ft_env(t_koopa *shell);
 int		ft_export(t_koopa *shell, char **cmd_line);
@@ -132,7 +132,6 @@ char	*ft_addchar(char *str, char c);
 void	ft_signal_handler(int sig);
 void	ft_signal_heredoc(int sig);
 void	ft_terminal(int num);
-void	ft_signals(void);
 
 ////////////////////////////////////////
 ////////		 ERROR	 		////////
