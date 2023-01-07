@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 20:16:36 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/07 17:22:01 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,38 @@ static void	open_pipe(t_koopa *shell)
 
 static void	close_pipe(t_koopa *shell)
 {
-	dup2(shell->fd[0], shell->in);
-	close(shell->fd[0]);
+	dup2(shell->fd[0], STDIN_FILENO);
 	close(shell->fd[1]);
+	close(shell->fd[0]);
 }
 
 void	write_to(t_koopa *shell, t_data *tabel)
 {
-	struct stat	file_stat;
-
-	dup2(shell->in, STDIN_FILENO);
-	close(shell->in);
 	if (tabel->next != NULL)
 	{
-		if (tabel->operator == PIPE)
-			dup2(shell->fd[1], STDOUT_FILENO);
-		else if (fstat(shell->out, &file_stat) == 0)
+		if (shell->out != -1)
 		{
 			if (shell->skip == 1)
 				return ;
 			dup2(shell->out, STDOUT_FILENO);
 			close(shell->out);
+			shell->out = -1;
 		}
+		else if (tabel->operator == PIPE)
+			dup2(shell->fd[1], STDOUT_FILENO);
 	}
-	else if (tabel->operator != OUT)
+	else if (tabel->operator != OUT && shell->out != -1)
 	{
 		dup2(shell->out, STDOUT_FILENO);
 		close(shell->out);
+		shell->out = -1;
 	}
 }
 
 static	void	close_fd(t_koopa *shell)
 {
 	close(shell->out);
-	close(shell->in);
+	shell->out = -1;
 	dup2(shell->tmp_stdin, STDIN_FILENO);
 	close(shell->tmp_stdin);
 	dup2(shell->tmp_stdout, STDOUT_FILENO);
