@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:24:15 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/06 23:59:49 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:08:39 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,26 @@
 #include <string.h>
 #include <stdlib.h>
 
+int	check(char **arr, int i)
+{
+	while (arr[i] != NULL && arr[i][0] != '|')
+	{
+		if (arr[i][0] == '>')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	handle_redir(t_data *node, char **token_arr, int *i)
 {
 	int	flag;
+	int	flag1;
 
 	flag = 0;
+	flag1 = 0;
+	if (check(token_arr, *i))
+		flag = 1;
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 	{
 		init_redir(node, token_arr, i);
@@ -29,17 +44,19 @@ int	handle_redir(t_data *node, char **token_arr, int *i)
 		while (token_arr[*i] != NULL && (token_arr[*i][0] == '<'
 			|| token_arr[*i][0] == '>') && token_arr[*i][0] != '|')
 			append_node(&node, token_arr, i, init_redir);
-		flag = 1;
+		flag1 = 1;
 	}
 	if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
 		return (0);
-	if (flag == 1)
+	if (flag1 == 1)
 		append_node(&node, token_arr, i, init_cmd);
 	else
 		init_cmd(node, token_arr, i);
 	if (token_arr[*i] == NULL)
 		return (0);
-	if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
+	if (token_arr[*i][0] == '|' && flag)
+		append_node(&node, token_arr, i, init_null);
+	if (token_arr[*i][0] == '|')
 		(*i)++;
 	return (0);
 }
@@ -65,8 +82,6 @@ int	init_redir(t_data *node, char **token_arr, int *i)
 	(*i) += 2;
 	if (token_arr[*i] == NULL)
 		return (0);
-	if (token_arr[*i][0] == '|')
-		append_node(&node, token_arr, i, init_test);
 	return (0);
 }
 
@@ -81,7 +96,7 @@ int	init_data(t_data *node, char **token_arr, int *i)
 	return (0);
 }
 
-int	init_test(t_data *node, char **token_arr, int *i)
+int	init_null(t_data *node, char **token_arr, int *i)
 {
 	(void) token_arr;
 	(void) *i;
