@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 20:16:36 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/07 13:42:14 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
-
 #include <unistd.h> // dup2 access fork close
 #include <stdlib.h> // exit
 #include <sys/stat.h> // fstat
 #include <stdio.h>
+
 static void	open_pipe(t_koopa *shell)
 {
 	if (pipe(shell->fd) == -1)

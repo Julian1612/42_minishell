@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 18:34:27 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/08 15:18:22 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,32 @@ int	init_envp(t_koopa *shell, char **envp)
 		shell->envp[i] = ft_strdup(envp[i]);
 	shell->envp[i] = NULL;
 	increas_shlvl(shell);
+	return (0);
+}
+
+int	syntax_check(char **token_arr)
+{
+	int	i;
+
+	i = 0;
+	if (token_arr[i][0] == '|')
+		return (1);
+	while (token_arr[i] != NULL)
+	{
+		if (token_arr[i][0] == '<' && token_arr[i + 1][0] == '|')
+			return (1);
+		else if (token_arr[i][0] == '>' && token_arr[i + 1][0] == '|')
+			return (1);
+		else if (token_arr[i][0] == '<' && token_arr[i][1] == '<'
+			&& token_arr[i + 1][0] == '|')
+			return (1);
+		else if (token_arr[i][0] == '>' && token_arr[i][1] == '>'
+			&& token_arr[i + 1][0] == '|')
+			return (1);
+		else if (token_arr[i][0])
+			return (1);
+		i++;
+	}
 	return (0);
 }
 

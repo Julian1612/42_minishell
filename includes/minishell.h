@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 00:00:33 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/07 15:16:12 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,7 +186,7 @@ int		redir_check(char **token_arr, int i);
 int		handle_redir(t_data *node, char **token_arr, int *i);
 int		init_redir(t_data *node, char **token_arr, int *i);
 int		init_data(t_data *node, char **token_arr, int *i);
-int		init_test(t_data *node, char **token_arr, int *i);
+int		init_null(t_data *node, char **token_arr, int *i);
 
 // command_handler
 int		handle_cmd(t_data *node, char **token_arr, int *i);

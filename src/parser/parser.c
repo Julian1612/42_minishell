@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/07 00:20:46 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/07 13:41:58 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ void	list_test(t_data *cmd_list)
 		g++;
 	}
 }
-
-
 
 t_data	*parser(char **token_arr)
 {
