@@ -1,15 +1,48 @@
+> out echo hi < Makefile | wc -l	✔️ operator falsch
+echo < out < Makefile | wc -l		✔️
+echo > out < Makefile | wc -l		✔️
+echo < Makefile hi > out | wc -l	✔️
+echo < Makefile | wc -l				✔️
+
+> = minishell: syntax error: invalid redirection
+< = minishell: syntax error: invalid redirection
+<< = minishell: syntax error: invalid redirection
+>>>>> = minishell: syntax error: invalid redirection
+> > > > > = minishell: syntax error: invalid redirection
+>> >> >> >> = minishell: syntax error: invalid redirection
+<<<<<< = minishell: syntax error: invalid redirection
+< < < < < < = minishell: syntax error: invalid redirection
+/bin/cat >< = minishell: syntax error: invalid redirection
+/bin/cat <Makefile > = minishell: syntax error: invalid redirection
+echo > = minishell: syntax error: invalid redirection
+echo > < = minishell: syntax error: invalid redirection
+>echo>  = minishell: syntax error: invalid redirection
+<echo< = minishell: syntax error: invalid redirection
+>>echo>> = minishell: syntax error: invalid redirection
+|echo| = minishell: syntax error: invalid pipe
+|
+| test
+| | |
+| | | | test
+< << in cat
+<< << in cat
+< < in cat
+echo hi >> > out
+echo >> | sadsa
+echo << | sadsa
+echo < | sadsa
+echo > | sadsa --> parse error
+echo > out hi|echo hi
+
 echo > out echo hi
 echo > out > out1 echo hi
 < Makefile cat -e | wc -l > out.txt | echo hi | cat -e
 < Makefile cat -e | wc -l > out0.txt > out1.txt > out2.txt | echo hi | cat -e
 < in cat | < in2 cat > out
-
 echo > out0.txt > out1.txt > out2.txt echo hi | echo hi
 echo > out | echo hi
-echo > | sadsa --> parse error
 echo ''''''''''$USER''''''''''
 echo """"""""$USER""""""""
-
 < Makefile < Makefile cat												--> works
 cat lulrich.txt | tr [:lower:] [:upper:] | sed "s/A/a/g" | tr "AEIOU" "aeiou" | rev | cut -c 1-10 | tr " " "\n" | sort | uniq -c | sort -rn | head -n 5 | awk '{print $2}' | tr "\n" "," | sed "s/,$//" > haral.txt
 echo "Hello, world" ; ls ; pwd
@@ -405,7 +438,7 @@ exit "" --> geht nicht
 
 fragen ob wir wirklich bei unclosed quotes einen error schreiben sollen oder nicht
 
-EXPORT UNSET EXIT should work 
+EXPORT UNSET EXIT should work
 export printing fix
 mehrere signal handler um auch sowas wie 130 bei sleep und so zu machne
 heredoc signals nochmal nachgucken

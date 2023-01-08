@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:24:12 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/06 23:37:24 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:50:05 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+// int	check(char **arr, int i)
+// {
+// 	while (arr[i] != NULL && arr[i][0] != '|')
+// 	{
+// 		if (arr[i][0] == '>')
+// 			return (1);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 int	handle_cmd(t_data *node, char **token_arr, int *i)
 {
@@ -47,15 +58,24 @@ int	handle_cmd(t_data *node, char **token_arr, int *i)
 
 int	get_op(char **token_arr, int i)
 {
+	int	flag;
+
+	flag = 0;
 	i++;
+	if (token_arr[0][0] == '>')
+		flag = 1;
 	while (token_arr[i])
 	{
-		if (token_arr[i][0] == '|')
+		if (token_arr[i][0] == '>')
+		{
+			flag = 1;
+			i++;
+			printf("gg\n");
+		}
+		else if (flag == 1 && token_arr[i][0] == '|')
+			return (CMD);
+		else if (token_arr[i][0] == '|')
 			return (PIPE);
-		else if (token_arr[i][0] == '<')
-			return (CMD);
-		else if (token_arr[i][0] == '>')
-			return (CMD);
 		else if (token_arr[i] == NULL)
 			return (CMD);
 		else
