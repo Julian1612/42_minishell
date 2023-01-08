@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/08 16:50:57 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/08 23:00:45 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,22 @@
 static void	remove_quots(t_exp *exp, int count)
 {
 	char	*tmp;
+	char	typ;
 	int		i;
 	int		j;
 
 	i = -1;
 	j = 0;
+	typ = 'X';
 	tmp = ft_calloc(count + 1, sizeof(char));
 	while (exp->line[++i] != '\0')
 	{
-		if (exp->line[i] == '\'')
-			while (exp->line[++i] != '\0' && exp->line[i] != '\'')
+		if (exp->line[i] == '\'' || exp->line[i] == '\"')
+		{
+			typ = exp->line[i];
+			while (exp->line[++i] != '\0' && exp->line[i] != typ)
 				tmp[j++] = exp->line[i];
-		else if (exp->line[i] == '\"')
-			while (exp->line[++i] != '\0' && exp->line[i] != '\"')
-				tmp[j++] = exp->line[i];
+		}
 		else
 			tmp[j++] = exp->line[i];
 	}
@@ -51,10 +53,8 @@ char	*get_variable(t_exp *exp, int *idx)
 	exp->len = 0;
 	i = *idx;
 	offset = 1;
-	printf("----------\n");
 	while (exp->line[++i] != '\0' && !ft_is_end(exp->line[i]))
 	{
-		printf("%c\n", exp->line[i]);
 		exp->len++;
 		if (exp->line[*idx + 1] == '?')
 			break ;
