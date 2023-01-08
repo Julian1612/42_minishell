@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 17:01:03 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/08 16:50:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ char	*get_variable(t_exp *exp, int *idx)
 	exp->len = 0;
 	i = *idx;
 	offset = 1;
+	printf("----------\n");
 	while (exp->line[++i] != '\0' && !ft_is_end(exp->line[i]))
 	{
+		printf("%c\n", exp->line[i]);
 		exp->len++;
 		if (exp->line[*idx + 1] == '?')
 			break ;
@@ -64,7 +66,7 @@ char	*get_variable(t_exp *exp, int *idx)
 		}
 	}
 	i = *idx;
-	variable = ft_substr(exp->line, i + offset, exp->len);
+	variable = ft_substr(exp->line, (i + offset), exp->len);
 	return (variable);
 }
 
