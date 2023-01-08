@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 17:27:57 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/08 17:03:33 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ int		redir_check(char **token_arr, int i);
 int		handle_redir(t_data *node, char **token_arr, int *i);
 int		init_redir(t_data *node, char **token_arr, int *i);
 int		init_data(t_data *node, char **token_arr, int *i);
-int		init_test(t_data *node, char **token_arr, int *i);
+int		init_null(t_data *node, char **token_arr, int *i);
 
 // command_handler
 int		handle_cmd(t_data *node, char **token_arr, int *i);
