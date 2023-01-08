@@ -134,7 +134,7 @@ cd $PWD/file_tests													--> ✅
 cd $OLDPWD/builtins													--> ✅
 
 ECHO:
-
+'\n'
 echo																--> ✅
 echo echo															--> ✅
 eCho																--> ✅

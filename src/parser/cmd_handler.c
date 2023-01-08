@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:24:12 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/08 16:50:05 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/08 21:36:54 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	get_op(char **token_arr, int i)
 		{
 			flag = 1;
 			i++;
-			printf("gg\n");
 		}
 		else if (flag == 1 && token_arr[i][0] == '|')
 			return (CMD);

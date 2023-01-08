@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:51:45 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/06 13:49:31 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/08 22:31:19 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	get_token_length(char *str, int *j)
 	token_len = 0;
 	while (str[*j] != '\0')
 	{
-		if (str[*j] == ' ' || str[*j] == '\t')
+		if (ft_isspace(str[*j]))
 			skip_whitespace(str, j);
 		else if (str[*j] == '|' || str[*j] == '<' || str[*j] == '>')
 			return (opp_len_counter(str, j));
