@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/07 17:38:08 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/08 11:41:02 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_data	*parser(char **token_arr)
 		return (NULL);
 	while (token_arr[i] != NULL)
 		append_node(&head, token_arr, &i, init_content);
-	list_test(head);
+	//list_test(head);
 	free_double(token_arr);
 	return (head);
 }

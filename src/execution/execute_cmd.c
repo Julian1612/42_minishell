@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:24 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 16:47:29 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/08 09:57:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	prepare_execution(t_koopa *shell, t_data *data)
 {
 	if (garbage_bin(data->cmd_line[0]) == 0)
 		shell->file = data->cmd_line[0];
-	else if (access(data->cmd_line[0], F_OK) == -1)
+	else if (access(data->cmd_line[0], X_OK) == -1)
 	{
 		shell->path = ft_split(ft_getenv(shell, "PATH") + 5, ':');
 		if (shell->path == NULL)

@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 16:21:20 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/08 10:35:32 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,10 @@ char	**to_double(char *str)
 	new = malloc(sizeof(char *) * 3);
 	if (new == NULL)
 		return (NULL);
-	new[0] = ft_strdup("Koopa_Shell");
+	new[0] = ft_strdup("koopa_shell");
 	new[1] = ft_strdup(str);
 	new[2] = NULL;
+	free(str);
 	return (new);
 }
 
@@ -64,6 +65,8 @@ static int	update_pwd(t_koopa *shell, int check)
 	char	buf[PATH_MAX];
 	char	*oldpwd;
 	char	*pwd;
+	char	**oldpwd_arr;
+	char	**pwd_arr;
 
 	pwd = getcwd(buf, PATH_MAX);
 	if (pwd == NULL)
@@ -71,13 +74,13 @@ static int	update_pwd(t_koopa *shell, int check)
 	else
 	{
 		oldpwd = ft_strjoin("OLDPWD=", ft_getenv(shell, "PWD=") + 4);
-		ft_export(shell, to_double(oldpwd));
+		oldpwd_arr = to_double(oldpwd);
+		ft_export(shell, oldpwd_arr);
 		pwd = ft_strjoin("PWD=", buf);
-		ft_export(shell, to_double(pwd));
-		free(oldpwd);
-		free(pwd);
-		oldpwd = NULL;
-		pwd = NULL;
+		pwd_arr = to_double(pwd);
+		ft_export(shell, pwd_arr);
+		free_double(pwd_arr);
+		free_double(oldpwd_arr);
 		if (check == 1)
 			ft_pwd();
 		return (0);
