@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 16:41:20 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/08 11:45:30 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,19 @@
 
 static void	increas_shlvl(t_koopa *shell)
 {
-	char	*tmp;
 	char	*new_lvl;
+	char	**shlvl;
+	char	*content;
 	int		i;
 
-	tmp = ft_strdup(ft_getenv(shell, "SHLVL=") + 6);
-	i = ft_atoi(tmp);
-	free(tmp);
+	i = ft_atoi(ft_getenv(shell, "SHLVL=") + 6);
 	i++;
-	new_lvl = ft_strjoin("SHLVL=", ft_itoa(i));
-	ft_export(shell, to_double(new_lvl));
-	free(new_lvl);
+	content = ft_itoa(i);
+	new_lvl = ft_strjoin("SHLVL=", content);
+	free(content);
+	shlvl = to_double(new_lvl);
+	ft_export(shell, shlvl);
+	free_double(shlvl);
 }
 
 int	init_envp(t_koopa *shell, char **envp)
