@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 15:16:12 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:03:33 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	list_test(t_data *cmd_list);
 ////////////////////////////////////////
 
 void	ft_exit(t_koopa *shell, char **cmd_line);
-int		ft_cd(t_koopa *shell, char **path);
+int		ft_cd(t_koopa *shell, t_data *data, char **path);
 int		ft_echo(char **cmd_line);
 int		ft_env(t_koopa *shell);
 int		ft_export(t_koopa *shell, char **cmd_line);
@@ -132,7 +132,6 @@ char	*ft_addchar(char *str, char c);
 void	ft_signal_handler(int sig);
 void	ft_signal_heredoc(int sig);
 void	ft_terminal(int num);
-void	ft_signals(void);
 
 ////////////////////////////////////////
 ////////		 ERROR	 		////////

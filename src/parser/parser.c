@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/07 13:41:58 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:02:27 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,35 @@
 #include <string.h>
 #include <stdlib.h>
 
-void	list_test(t_data *cmd_list)
-{
-	t_data	*cur;
-	cur = cmd_list;
-	int g = 1;
-	int y = 0;
-	while (cur != NULL)
-	{
-		printf("\e[37m----------------------\n");
-		printf("\e[106m----------%d-----------\e[49m\n", g);
-		printf("\e[37m----------------------\n");
-		printf("\e[32mcmd: %s\n", cur->cmd_name);
-		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
-		if (cur->cmd_line != NULL)
-		{
-			while (cur->cmd_line[y] != NULL)
-			{
-				printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
-				y++;
-			}
-			y = 0;
+//void	list_test(t_data *cmd_list)
+//{
+//	t_data	*cur;
+//	cur = cmd_list;
+//	int g = 1;
+//	int y = 0;
+//	while (cur != NULL)
+//	{
+//		printf("\e[37m----------------------\n");
+//		printf("\e[106m----------%d-----------\e[49m\n", g);
+//		printf("\e[37m----------------------\n");
+//		printf("\e[32mcmd: %s\n", cur->cmd_name);
+//		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
+//		if (cur->cmd_line != NULL)
+//		{
+//			while (cur->cmd_line[y] != NULL)
+//			{
+//				printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
+//				y++;
+//			}
+//			y = 0;
 
-		}
-		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
-		printf("\e[95moperator: %d\033[0m\n", cur->operator);
-		cur = cur->next;
-		g++;
-	}
-}
+//		}
+//		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
+//		printf("\e[95moperator: %d\033[0m\n", cur->operator);
+//		cur = cur->next;
+//		g++;
+//	}
+//}
 
 t_data	*parser(char **token_arr)
 {
@@ -57,7 +57,7 @@ t_data	*parser(char **token_arr)
 		return (NULL);
 	while (token_arr[i] != NULL)
 		append_node(&head, token_arr, &i, init_content);
-	list_test(head);
+	//list_test(head);
 	free_double(token_arr);
 	return (head);
 }
