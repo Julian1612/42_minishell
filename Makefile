@@ -6,7 +6,7 @@
 #    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2023/01/09 15:55:07 by dgross           ###   ########.fr        #
+#    Updated: 2023/01/09 18:47:43 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFT		= libft/libft.a
 
 SRC			= main.c error.c free.c syntax.c\
 			  utils.c catch.c\
-			  signals.c \
+			  signals.c open_file.c\
 			  reset_redir.c redirection.c \
 			  parser.c cmd_counter.c cmd_handler.c init_cmd.c redir_handler.c \
 			  lexer.c counter.c skipper.c whitespace_skipper.c \

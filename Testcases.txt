@@ -383,8 +383,8 @@ echo "$PWD hallo | cat -e"
 ​
 export TEST=1 test=2 sup=																--> ✅
 export TEST=1 test=2 sup= | env															--> ✅
-wc < Makefile -l | cat -e > outfile | echo hello | rev > outfile2						--> ❌ parser
-< test.txt < Makefile<README.md wc -l|cat -e | rev										--> ❌ parser
+wc < Makefile -l | cat -e > outfile | echo hello | rev > outfile2						--> ✅ parser
+< test.txt < Makefile<README.md wc -l|cat -e | rev										--> ✅ parser
 < Makefile cat > out | < README.md cat -e 												--> ❌ parser
 < README.md cat -e | <Makefile cat														--> ❌ parser
 																						--> ✅

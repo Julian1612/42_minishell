@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 10:13:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/08 17:04:23 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:36:11 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int	ft_execute(t_koopa *shell, t_data *tabel)
 	shell->head = tabel;
 	if (check_for_heredoc(shell, tabel) == ERROR)
 		return (ERROR);
+	signal(SIGINT, SIG_IGN);
 	while (tabel != NULL)
 	{
 		if (ft_redirection(shell, tabel) == ERROR)
