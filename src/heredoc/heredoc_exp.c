@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 13:47:29 by dna               #+#    #+#             */
-/*   Updated: 2023/01/06 10:40:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/09 19:10:27 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static char	*ft_content(t_koopa *shell, t_exp *doc, int *idx)
 	char	*content;
 
 	variable = get_variable(doc, idx);
-	if (ft_check_char(variable[0]))
+	variable = ft_addchar(variable, '=');
+	if (variable[0] != '?' && !ft_isalnum(variable[0]) && variable[0] != '_')
 	{
 		free(variable);
 		return (NULL);

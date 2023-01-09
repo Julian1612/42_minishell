@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 10:44:37 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/09 18:39:11 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ static void	finish_heredoc(t_koopa *shell, char	*heredoc, int i)
 {
 	if (i == 0)
 		heredoc = ft_expand_heredoc(shell, heredoc);
-	write(shell->in, heredoc, ft_strlen(heredoc));
-	close(shell->in);
+	write(shell->heredoc_file, heredoc, ft_strlen(heredoc));
+	close(shell->heredoc_file);
 	free(heredoc);
-	shell->in = open("here_doc", O_RDONLY, 00644);
+	shell->heredoc_file = open("here_doc", O_RDONLY, 00644);
 }
 
 static int	catch_crash(int fd, char *heredoc)
@@ -104,7 +104,7 @@ int	ft_heredoc(t_koopa *shell, t_data *tabel)
 	signal(SIGQUIT, SIG_IGN);
 	heredoc = ft_strdup("");
 	i = check_limiter(tabel);
-	shell->in = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 00644);
+	shell->heredoc_file = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 00644);
 	while (1)
 	{
 		input = readline("> ");
