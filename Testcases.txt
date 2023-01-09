@@ -394,7 +394,7 @@ env | rev | head -5 | cat -e | rev														--> ✅ lexer
 ​
 echo ok"hello"ok1"mfg" == echo ok'hello'ok1'mfg'										--> ✅
 -- okhellook1mfg
-​
+​o
 echo okhellook1"mfg" == echo okhellook1'mfg'											--> ✅
 -- okhellook1mfg
 ​
@@ -405,7 +405,7 @@ echo '"***hello***"'																	--> ✅
 "***hello***"
 ​
 echo "'***hello***'"																	--> ✅
-"***hello***'
+'***hello***'
 ​
 echo ok"'hello'"ok1"hello1"ok2															--> ✅
 ​

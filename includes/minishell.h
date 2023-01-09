@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 10:45:03 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:23:16 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_koopa
 	char		**path;
 	char		*line;
 	char		*file;
+	int			inter;
 	int			fd[2];
 	int			exit_code;
 	int			tmp_stdout;
@@ -202,4 +203,12 @@ int		append_redir(t_data **head, char **token_arr,
 int		init_cmd(t_data *node, char **token_arr, int *i);
 int		init_cmd_line(t_data *node, char **token_arr, int *i, int num_cmd);
 
+////////////////////////////////////////
+////////		SYNTAX	 		////////
+////////////////////////////////////////
+
+void	chose_error(int error_code);
+int		catch_one(char **token_arr, int arr_len);
+int		catch_two(char **token_arr, int i);
+int		syntax_check(char **token_arr);
 #endif
