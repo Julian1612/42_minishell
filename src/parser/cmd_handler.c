@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:24:12 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/08 21:36:54 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/09 16:29:45 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@
 // 	return (0);
 // }
 
-int	handle_cmd(t_data *node, char **token_arr, int *i)
+int	handle_cmd(t_data *node, char **token_arr, int *i, int pipe_nbr)
 {
 	int	num_cmd;
 	int	j;
 
 	if (token_arr[*i][0] == '|')
 		(*i)++;
+	(void) pipe_nbr;
+	node->redir = get_pipe_nbr(token_arr, *i);
 	node->operator = get_op(token_arr, *i);
 	num_cmd = count_cmd(token_arr, *i);
 	node->cmd_name = ft_strdup(token_arr[*i]);
