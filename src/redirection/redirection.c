@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 16:28:56 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:57:27 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,15 @@ int	check_redir(t_data *data)
 {
 	if (data->operator == PIPE)
 	{
-		while (data->next != NULL && data->redir == data->next->redir)
-		{
-		
-		}
+		if (data->next != NULL && data->redir == data->next->redir)
+			return (0);
+		else
+			return (1);
 	}
 	else
 		return (0);
 }
+
 int	ft_redirection(t_koopa *shell, t_data *data)
 {
 	int	status;
@@ -125,7 +126,7 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 			shell->skip = 1;
 		data = data->next;
 	}
-	if (shell->inter < data->redir)
+	if (data != NULL && shell->inter < data->redir)
 		shell->inter++;
 	return (0);
 }
