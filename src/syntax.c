@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:39:14 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 16:12:45 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/09 19:06:15 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ int	catch_two(char **token_arr, int i)
 	{
 		if (token_arr[i][0] == '<' || token_arr[i][0] == '>')
 		{
-			if (token_arr[i - 1][0] == '>' || token_arr[i - 1][0] == '<'
-				|| token_arr[i - 1][0] == '|')
+			if (token_arr[i - 1][0] == '>' || token_arr[i - 1][0] == '<')
 				return (1);
 		}
 		if (token_arr[i][0] == '|')
@@ -80,6 +79,8 @@ int	syntax_check(char **token_arr)
 	i = 1;
 	flag = 0;
 	arr_len = ft_ptrcnt(token_arr);
+	if (arr_len == 0)
+		return (0);
 	flag = catch_one(token_arr, arr_len);
 	if (flag > 0)
 	{

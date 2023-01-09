@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 19:13:39 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:27:47 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_koopa
 	int			skip;
 	int			out;
 	int			in;
+	int			heredoc_file;
 	int			exit;
 }t_koopa;
 
@@ -102,6 +103,10 @@ void	get_exit_status(t_koopa *shell);
 void	handle_null(t_koopa *shell, t_data *data);
 int		ft_isspace(int c);
 char	*take_var_name(int i, int offset, t_exp *exp);
+int		ft_append_outfile(t_koopa *shell, t_data *data);
+int		ft_redirect_heredoc(t_koopa *shell);
+int		ft_redirect_outfile(t_koopa *shell, t_data *data);
+int		ft_redirect_infile(t_koopa *shell, t_data *data);
 
 ////////////////////////////////////////
 ////////		  HEREDOC  		////////
