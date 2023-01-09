@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/08 23:05:56 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/09 10:45:03 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int		ft_check_char(int c);
 void	get_exit_status(t_koopa *shell);
 void	handle_null(t_koopa *shell, t_data *data);
 int		ft_isspace(int c);
+char	*take_var_name(int i, int offset, t_exp *exp);
 
 ////////////////////////////////////////
 ////////		  HEREDOC  		////////

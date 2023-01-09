@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/08 23:00:45 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/09 10:40:37 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,28 @@ char	*get_variable(t_exp *exp, int *idx)
 {
 	int		i;
 	int		offset;
-	char	*variable;
 
 	exp->len = 0;
 	i = *idx;
 	offset = 1;
 	while (exp->line[++i] != '\0' && !ft_is_end(exp->line[i]))
 	{
-		exp->len++;
 		if (exp->line[*idx + 1] == '?')
-			break ;
-		if (!ft_isalnum(exp->line[i]) && exp->line[i] != '_')
 		{
-			--exp->len;
+			exp->len++;
+			break ;
+		}
+		else if (!ft_isalnum(exp->line[*idx + 1]) && exp->line[*idx + 1] != '_')
+		{
 			--offset;
 			break ;
 		}
+		else if (!ft_isalnum(exp->line[i]) && exp->line[i] != '_')
+			break ;
+		exp->len++;
 	}
 	i = *idx;
-	variable = ft_substr(exp->line, (i + offset), exp->len);
-	return (variable);
+	return (take_var_name(i, offset, exp));
 }
 
 static char	*get_content(t_koopa *shell, t_exp *exp, int *idx)
@@ -77,7 +79,7 @@ static char	*get_content(t_koopa *shell, t_exp *exp, int *idx)
 
 	variable = get_variable(exp, idx);
 	variable = ft_addchar(variable, '=');
-	if (variable[0] != '?' && !ft_isalnum(variable[0]))
+	if (variable[0] != '?' && !ft_isalnum(variable[0]) && variable[0] != '_')
 	{
 		free(variable);
 		return (NULL);

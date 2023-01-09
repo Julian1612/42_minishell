@@ -134,7 +134,7 @@ cd $PWD/file_tests													--> ✅
 cd $OLDPWD/builtins													--> ✅
 
 ECHO:
-'\n'
+
 echo																--> ✅
 echo echo															--> ✅
 eCho																--> ✅
@@ -171,7 +171,7 @@ echo $USER'$USER'text oui oui     oui  oui $USER oui      $USER ''	--> ✅
 echo $USER '' $USER $USER '' $USER '' $USER -n $USER				--> ✅
 echo ' \' ' \'														--> ✅
 echo '\" ' " \"\""													-->	✅
-echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\'						-->	✅
+echo \\\" \\\" \\\" \\\"\\\"\\\" \\\'\\\'\\\						-->	✅
 echo "$USER""$USER""$USER"											-->	✅
 echo text"$USER"test												--> ✅
 echo '$USER' "$USER" "text \' text"									--> ✅
