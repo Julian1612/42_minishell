@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   token_counter.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:38 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/02 11:28:04 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:34:17 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
