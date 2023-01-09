@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:24:15 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/08 16:08:39 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:32:16 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-int	check(char **arr, int i)
+int	check_out(char **arr, int i)
 {
 	while (arr[i] != NULL && arr[i][0] != '|')
 	{
@@ -27,14 +27,16 @@ int	check(char **arr, int i)
 	return (0);
 }
 
-int	handle_redir(t_data *node, char **token_arr, int *i)
+int	handle_redir(t_data *node, char **token_arr, int *i, int pipe_nbr)
 {
 	int	flag;
 	int	flag1;
 
 	flag = 0;
 	flag1 = 0;
-	if (check(token_arr, *i))
+	(void) pipe_nbr;
+	node->redir = get_pipe_nbr(token_arr, *i);
+	if (check_out(token_arr, *i))
 		flag = 1;
 	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
 	{
@@ -64,6 +66,7 @@ int	handle_redir(t_data *node, char **token_arr, int *i)
 int	init_redir(t_data *node, char **token_arr, int *i)
 {
 	init_data(node, token_arr, i);
+	node->redir = get_pipe_nbr(token_arr, *i);
 	if (token_arr[*i][0] == '<')
 	{
 		if (token_arr[*i][1] == '<')
@@ -98,11 +101,10 @@ int	init_data(t_data *node, char **token_arr, int *i)
 
 int	init_null(t_data *node, char **token_arr, int *i)
 {
-	(void) token_arr;
-	(void) *i;
 	node->cmd_name = NULL;
 	node->cmd_line = NULL;
 	node->operator = PIPE;
+	node->redir = get_pipe_nbr(token_arr, *i);
 	node->next = NULL;
 	return (0);
 }
