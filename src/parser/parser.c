@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/08 17:06:32 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:27:26 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,37 @@
 #include <string.h>
 #include <stdlib.h>
 
-//void	list_test(t_data *cmd_list)
-//{
-//	t_data	*cur;
-//	cur = cmd_list;
-//	int g = 1;
-//	int y = 0;
-//	while (cur != NULL)
-//	{
-//		printf("\e[37m----------------------\n");
-//		printf("\e[106m----------%d-----------\e[49m\n", g);
-//		printf("\e[37m----------------------\n");
-//		printf("\e[32mcmd: %s\n", cur->cmd_name);
-//		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
-//		if (cur->cmd_line != NULL)
-//		{
-//			while (cur->cmd_line[y] != NULL)
-//			{
-//				printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
-//				y++;
-//			}
-//			y = 0;
+void	list_test(t_data *cmd_list)
+{
+	t_data	*cur;
+	cur = cmd_list;
+	int g = 1;
+	int y = 0;
+	while (cur != NULL)
+	{
+		printf("\e[37m----------------------\n");
+		printf("\e[106m----------%d-----------\e[49m\n", g);
+		printf("\e[37m----------------------\n");
+		printf("\e[32mcmd: %s\n", cur->cmd_name);
+		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
+		if (cur->cmd_line != NULL)
+		{
+			while (cur->cmd_line[y] != NULL)
+			{
+				printf("\e[34m%d.%d. cmd_line: %s\n", g, y, cur->cmd_line[y]);
+				y++;
+			}
+			y = 0;
 
-//		}
-//		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
-//		printf("\e[95moperator: %d\033[0m\n", cur->operator);
-//		cur = cur->next;
-//		g++;
-//	}
-//}
+		}
+		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
+		printf("\e[95moperator: %d\033[0m\n", cur->operator);
+		printf("\e[37m~~~~~~~~~~~~~~~~~~~~~~\n");
+		printf("\e[95mredir: %d\033[0m\n", cur->redir);
+		cur = cur->next;
+		g++;
+	}
+}
 
 t_data	*parser(char **token_arr)
 {
@@ -57,7 +59,7 @@ t_data	*parser(char **token_arr)
 		return (NULL);
 	while (token_arr[i] != NULL)
 		append_node(&head, token_arr, &i, init_content);
-	//list_test(head);
+	list_test(head);
 	free_double(token_arr);
 	return (head);
 }
@@ -99,19 +101,39 @@ t_data	*create_node(char **token_arr, int *i,
 	return (new_node);
 }
 
+int	get_pipe_nbr(char **token_arr, int i)
+{
+	int	j;
+	int	pipe;
+
+	j = 0;
+	pipe = 1;
+	while (token_arr[j] != NULL && j < i)
+	{
+		if (token_arr[j][0] == '|')
+			pipe++;
+		j++;
+	}
+	if (token_arr[i] == NULL)
+		pipe++;
+	return (pipe);
+}
+
 int	init_content(t_data *node, char **token_arr, int *i)
 {
 	int	redirection;
+	int	pipe_nbr;
 
 	redirection = redir_check(token_arr, *i);
+	pipe_nbr = get_pipe_nbr(token_arr, *i);
 	if (redirection > 0)
 	{
-		if (handle_redir(node, token_arr, i))
+		if (handle_redir(node, token_arr, i, pipe_nbr))
 			return (1);
 	}
 	else
 	{
-		if (handle_cmd(node, token_arr, i))
+		if (handle_cmd(node, token_arr, i, pipe_nbr))
 			return (1);
 	}
 	return (0);

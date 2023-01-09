@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 16:23:16 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:41:57 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_data
 	char			*cmd_name;
 	char			**cmd_line;
 	int				operator;
+	int				redir;
 	struct s_data	*next;
 }				t_data;
 
@@ -182,15 +183,16 @@ t_data	*create_node(char **token_arr, int *i,
 			int (*init)(t_data *, char **, int *));
 int		init_content(t_data *node, char **token_arr, int *i);
 int		redir_check(char **token_arr, int i);
+int		get_pipe_nbr(char **token_arr, int i);
 
 // redir_handler
-int		handle_redir(t_data *node, char **token_arr, int *i);
+int		handle_redir(t_data *node, char **token_arr, int *i, int pipe_nbr);
 int		init_redir(t_data *node, char **token_arr, int *i);
 int		init_data(t_data *node, char **token_arr, int *i);
 int		init_null(t_data *node, char **token_arr, int *i);
 
 // command_handler
-int		handle_cmd(t_data *node, char **token_arr, int *i);
+int		handle_cmd(t_data *node, char **token_arr, int *i, int pipe_nbr);
 int		get_op(char **token_arr, int i);
 int		count_cmd(char **token_arr, int i);
 

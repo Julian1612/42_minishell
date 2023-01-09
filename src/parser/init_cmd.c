@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:23:46 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/07 00:02:32 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:19:47 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 	int	num_cmd;
 
 	node->next = NULL;
+	node->redir = get_pipe_nbr(token_arr, *i);
 	node->operator = get_op(token_arr, *i);
 	num_cmd = c_cmd(&node, token_arr, *i);
 	node->cmd_name = ft_strdup(token_arr[*i]);
