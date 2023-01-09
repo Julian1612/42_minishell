@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 11:50:03 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/09 16:27:26 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:19:56 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,39 +101,19 @@ t_data	*create_node(char **token_arr, int *i,
 	return (new_node);
 }
 
-int	get_pipe_nbr(char **token_arr, int i)
-{
-	int	j;
-	int	pipe;
-
-	j = 0;
-	pipe = 1;
-	while (token_arr[j] != NULL && j < i)
-	{
-		if (token_arr[j][0] == '|')
-			pipe++;
-		j++;
-	}
-	if (token_arr[i] == NULL)
-		pipe++;
-	return (pipe);
-}
-
 int	init_content(t_data *node, char **token_arr, int *i)
 {
 	int	redirection;
-	int	pipe_nbr;
 
 	redirection = redir_check(token_arr, *i);
-	pipe_nbr = get_pipe_nbr(token_arr, *i);
 	if (redirection > 0)
 	{
-		if (handle_redir(node, token_arr, i, pipe_nbr))
+		if (handle_redir(node, token_arr, i))
 			return (1);
 	}
 	else
 	{
-		if (handle_cmd(node, token_arr, i, pipe_nbr))
+		if (handle_cmd(node, token_arr, i))
 			return (1);
 	}
 	return (0);

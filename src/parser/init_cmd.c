@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:23:46 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/09 16:19:47 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:13:28 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ int	init_cmd(t_data *node, char **token_arr, int *i)
 	node->cmd_line[num_cmd] = NULL;
 	init_cmd_line(node, token_arr, i, num_cmd);
 	return (0);
+}
+
+int	get_pipe_nbr(char **token_arr, int i)
+{
+	int	j;
+	int	pipe;
+
+	j = 0;
+	pipe = 1;
+	while (token_arr[j] != NULL && j < i)
+	{
+		if (token_arr[j][0] == '|')
+			pipe++;
+		j++;
+	}
+	if (token_arr[i] == NULL)
+		pipe++;
+	return (pipe);
 }
 
 int	init_cmd_line(t_data *node, char **token_arr, int *i, int num_cmd)
