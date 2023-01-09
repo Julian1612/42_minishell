@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 17:20:15 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:28:56 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	check_for_heredoc(t_koopa *shell, t_data *tabel)
 	struct stat	file_stat;
 
 	shell->skip = 0;
-	shell->redirect = 1;
+	shell->inter = 0;
 	shell->tmp_stdin = dup(STDIN_FILENO);
 	shell->tmp_stdout = dup(STDOUT_FILENO);
 	while (tabel != NULL)
@@ -88,6 +88,18 @@ int	check_for_heredoc(t_koopa *shell, t_data *tabel)
 	return (0);
 }
 
+int	check_redir(t_data *data)
+{
+	if (data->operator == PIPE)
+	{
+		while (data->next != NULL && data->redir == data->next->redir)
+		{
+		
+		}
+	}
+	else
+		return (0);
+}
 int	ft_redirection(t_koopa *shell, t_data *data)
 {
 	int	status;
@@ -99,9 +111,9 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 		shell->exit_code = 1;
 		return (ERROR);
 	}
-	while (data != NULL && shell->skip == 0 && shell->redirect == 1)
+	while (data != NULL && shell->skip == 0 && shell->inter < data->redir)
 	{
-		if (data->operator == PIPE)
+		if (check_redir(data))
 			break ;
 		else if (data->operator == IN && shell->skip == 0)
 			status = ft_redirect_infile(shell, data);
@@ -113,6 +125,7 @@ int	ft_redirection(t_koopa *shell, t_data *data)
 			shell->skip = 1;
 		data = data->next;
 	}
-	shell->redirect = 0;
+	if (shell->inter < data->redir)
+		shell->inter++;
 	return (0);
 }

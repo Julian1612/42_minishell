@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+         #
+#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2023/01/08 17:02:57 by jschneid         ###   ########.fr        #
+#    Updated: 2023/01/09 15:55:07 by dgross           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ VPATH		= src: src/builtins: src/utils: src/signals: \
 
 LIBFT		= libft/libft.a
 
-SRC			= main.c error.c free.c\
+SRC			= main.c error.c free.c syntax.c\
 			  utils.c catch.c\
 			  signals.c \
 			  reset_redir.c redirection.c \
@@ -37,10 +37,10 @@ CC			= cc
 
 CFLAGS		= -Wall -Wextra -Werror -g
 
-INCLUDES	= -I./includes -I./libft/includes -I /Users/$(USER)/goinfre/.brew/opt/readline/include #-Wno-gnu-include-next -ILeaksanitizer/include
+INCLUDES	= -I./includes -I./libft/includes -I /Users/$(USER)/goinfre/.brew/opt/readline/include
 
 
-LINCLUDES	= -L./libft -lft -L /Users/$(USER)/goinfre/.brew/opt/readline/lib #-LLeaksanitizer -llsan -lc++
+LINCLUDES	= -L./libft -lft -L /Users/$(USER)/goinfre/.brew/opt/readline/lib
 
 g			= \033[1;32m
 de 			= \033[0m

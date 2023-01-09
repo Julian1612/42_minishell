@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/08 23:02:15 by dna              ###   ########.fr       */
+/*   Updated: 2023/01/09 16:28:33 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,32 +52,6 @@ int	init_envp(t_koopa *shell, char **envp)
 	return (0);
 }
 
-int	syntax_check(char **token_arr)
-{
-	int	i;
-
-	i = 0;
-	if (token_arr[i][0] == '|')
-		return (1);
-	while (token_arr[i] != NULL)
-	{
-		if (token_arr[i][0] == '<' && token_arr[i + 1][0] == '|')
-			return (1);
-		else if (token_arr[i][0] == '>' && token_arr[i + 1][0] == '|')
-			return (1);
-		else if (token_arr[i][0] == '<' && token_arr[i][1] == '<'
-			&& token_arr[i + 1][0] == '|')
-			return (1);
-		else if (token_arr[i][0] == '>' && token_arr[i][1] == '>'
-			&& token_arr[i + 1][0] == '|')
-			return (1);
-		else if (token_arr[i][0])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 static int	execute_minishell(t_koopa *shell)
 {
 	t_data				*tabel;
@@ -93,6 +67,8 @@ static int	execute_minishell(t_koopa *shell)
 			break ;
 		add_history(cmd);
 		token_arr = tokenizer(cmd);
+		if (syntax_check(token_arr))
+			continue ;
 		tabel = parser(token_arr);
 		signal(SIGINT, SIG_IGN);
 		ft_execute(shell, tabel);
@@ -118,7 +94,7 @@ static t_koopa	*init_shell(void)
 	shell->in = -1;
 	shell->out = -1;
 	shell->skip = 0;
-	shell->redirect = 1;
+	shell->inter = 0;
 	return (shell);
 }
 
