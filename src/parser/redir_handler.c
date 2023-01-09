@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:24:15 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/09 16:32:16 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:18:18 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,33 @@ int	check_out(char **arr, int i)
 	return (0);
 }
 
-int	handle_redir(t_data *node, char **token_arr, int *i, int pipe_nbr)
+int	process_redir(t_data *node, char **token_arr, int *i, int *flag)
+{
+	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
+	{
+		init_redir(node, token_arr, i);
+		if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
+			return (1);
+		while (token_arr[*i] != NULL && (token_arr[*i][0] == '<'
+			|| token_arr[*i][0] == '>') && token_arr[*i][0] != '|')
+			append_node(&node, token_arr, i, init_redir);
+		(*flag) = 1;
+	}
+	return (0);
+}
+
+int	handle_redir(t_data *node, char **token_arr, int *i)
 {
 	int	flag;
 	int	flag1;
 
 	flag = 0;
 	flag1 = 0;
-	(void) pipe_nbr;
 	node->redir = get_pipe_nbr(token_arr, *i);
 	if (check_out(token_arr, *i))
 		flag = 1;
-	if (token_arr[*i][0] == '<' || token_arr[*i][0] == '>')
-	{
-		init_redir(node, token_arr, i);
-		if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
-			return (0);
-		while (token_arr[*i] != NULL && (token_arr[*i][0] == '<'
-			|| token_arr[*i][0] == '>') && token_arr[*i][0] != '|')
-			append_node(&node, token_arr, i, init_redir);
-		flag1 = 1;
-	}
+	if (process_redir(node, token_arr, i, &flag1))
+		return (0);
 	if (token_arr[*i] == NULL || token_arr[*i][0] == '|')
 		return (0);
 	if (flag1 == 1)
@@ -60,31 +66,6 @@ int	handle_redir(t_data *node, char **token_arr, int *i, int pipe_nbr)
 		append_node(&node, token_arr, i, init_null);
 	if (token_arr[*i][0] == '|')
 		(*i)++;
-	return (0);
-}
-
-int	init_redir(t_data *node, char **token_arr, int *i)
-{
-	init_data(node, token_arr, i);
-	node->redir = get_pipe_nbr(token_arr, *i);
-	if (token_arr[*i][0] == '<')
-	{
-		if (token_arr[*i][1] == '<')
-			node->operator = HEREDOC;
-		else
-			node->operator = IN;
-	}
-	else if (token_arr[*i][0] == '>')
-	{
-		if (token_arr[*i][1] == '>')
-			node->operator = APPEND;
-		else
-			node->operator = OUT;
-	}
-	node->next = NULL;
-	(*i) += 2;
-	if (token_arr[*i] == NULL)
-		return (0);
 	return (0);
 }
 

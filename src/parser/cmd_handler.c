@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:24:12 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/09 16:29:45 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 18:31:44 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,22 @@
 #include <string.h>
 #include <stdlib.h>
 
-// int	check(char **arr, int i)
-// {
-// 	while (arr[i] != NULL && arr[i][0] != '|')
-// 	{
-// 		if (arr[i][0] == '>')
-// 			return (1);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+static void	init(t_data *node, char **token_arr, int *i)
+{
+	node->redir = get_pipe_nbr(token_arr, *i);
+	node->operator = get_op(token_arr, *i);
+	node->cmd_name = ft_strdup(token_arr[*i]);
+}
 
-int	handle_cmd(t_data *node, char **token_arr, int *i, int pipe_nbr)
+int	handle_cmd(t_data *node, char **token_arr, int *i)
 {
 	int	num_cmd;
 	int	j;
 
 	if (token_arr[*i][0] == '|')
 		(*i)++;
-	(void) pipe_nbr;
-	node->redir = get_pipe_nbr(token_arr, *i);
-	node->operator = get_op(token_arr, *i);
+	init(node, token_arr, i);
 	num_cmd = count_cmd(token_arr, *i);
-	node->cmd_name = ft_strdup(token_arr[*i]);
 	if (node->cmd_name == NULL)
 		return (1);
 	node->cmd_line = (char **) malloc(sizeof(char *) * (num_cmd + 1));

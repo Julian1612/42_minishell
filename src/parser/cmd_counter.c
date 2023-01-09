@@ -6,7 +6,7 @@
 /*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 23:24:09 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/06 23:37:46 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:18:21 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,30 @@ int	append_redir(t_data **head, char **token_arr,
 	tmp->next = create_node(token_arr, i, init);
 	if (tmp->next == NULL)
 		return (1);
+	return (0);
+}
+
+int	init_redir(t_data *node, char **token_arr, int *i)
+{
+	init_data(node, token_arr, i);
+	node->redir = get_pipe_nbr(token_arr, *i);
+	if (token_arr[*i][0] == '<')
+	{
+		if (token_arr[*i][1] == '<')
+			node->operator = HEREDOC;
+		else
+			node->operator = IN;
+	}
+	else if (token_arr[*i][0] == '>')
+	{
+		if (token_arr[*i][1] == '>')
+			node->operator = APPEND;
+		else
+			node->operator = OUT;
+	}
+	node->next = NULL;
+	(*i) += 2;
+	if (token_arr[*i] == NULL)
+		return (0);
 	return (0);
 }

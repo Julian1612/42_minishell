@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 16:41:57 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/09 19:13:39 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,16 +183,15 @@ t_data	*create_node(char **token_arr, int *i,
 			int (*init)(t_data *, char **, int *));
 int		init_content(t_data *node, char **token_arr, int *i);
 int		redir_check(char **token_arr, int i);
-int		get_pipe_nbr(char **token_arr, int i);
 
 // redir_handler
-int		handle_redir(t_data *node, char **token_arr, int *i, int pipe_nbr);
+int		handle_redir(t_data *node, char **token_arr, int *i);
 int		init_redir(t_data *node, char **token_arr, int *i);
 int		init_data(t_data *node, char **token_arr, int *i);
 int		init_null(t_data *node, char **token_arr, int *i);
 
 // command_handler
-int		handle_cmd(t_data *node, char **token_arr, int *i, int pipe_nbr);
+int		handle_cmd(t_data *node, char **token_arr, int *i);
 int		get_op(char **token_arr, int i);
 int		count_cmd(char **token_arr, int i);
 
@@ -204,6 +203,7 @@ int		append_redir(t_data **head, char **token_arr,
 // inittialize_command.c
 int		init_cmd(t_data *node, char **token_arr, int *i);
 int		init_cmd_line(t_data *node, char **token_arr, int *i, int num_cmd);
+int		get_pipe_nbr(char **token_arr, int i);
 
 ////////////////////////////////////////
 ////////		SYNTAX	 		////////
