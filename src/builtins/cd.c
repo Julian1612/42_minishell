@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 16:43:44 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/08 10:35:32 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/10 14:38:05 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_path(t_koopa *shell, char ***path, int *check)
 	{
 		free(**path);
 		**path = NULL;
-		**path = ft_strdup(ft_getenv(shell, "OLDPWD") + 7);
+		**path = ft_strdup(ft_getenv(shell, "OLDPWD=") + 7);
 		if (**path[0] == '\0')
 		{
 			print_error("cd", NULL, "OLDPWD not set");
@@ -36,7 +36,7 @@ static int	check_path(t_koopa *shell, char ***path, int *check)
 	else if (ft_strcmp(**path, "~") == 0)
 	{
 		free(**path);
-		**path = ft_strdup(ft_getenv(shell, "HOME"));
+		**path = ft_strdup(ft_getenv(shell, "HOME=") + 5);
 		if (**path[0] == '\0')
 		{
 			print_error("cd", NULL, "HOME not set");
