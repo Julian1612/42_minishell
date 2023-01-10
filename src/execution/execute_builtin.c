@@ -6,12 +6,15 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/07 16:11:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/10 10:45:21 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
+
+#include <unistd.h> // fork
+#include <stdlib.h> // exit
 
 static int	mini_strcmp(const char *s1, const char *s2)
 {
@@ -33,6 +36,24 @@ static int	mini_strcmp(const char *s1, const char *s2)
 	return (1);
 }
 
+static void	handel_exit(t_koopa *shell, t_data *data)
+{
+	int	pid;
+
+	pid = -1;
+	if (shell->nbr > 1)
+	{
+		pid = fork();
+		if (pid == 0)
+		{
+			ft_exit(shell, data->cmd_line, 0);
+			exit(1);
+		}
+	}
+	else
+		ft_exit(shell, data->cmd_line, 1);
+}
+
 int	ft_execute_builtin(t_koopa *shell, t_data *data)
 {
 	if (shell->skip == 1)
@@ -44,7 +65,7 @@ int	ft_execute_builtin(t_koopa *shell, t_data *data)
 	else if (!mini_strcmp(data->cmd_name, "env"))
 		shell->exit_code = ft_env(shell);
 	else if (!ft_strcmp(data->cmd_name, "exit"))
-		ft_exit(shell, data->cmd_line);
+		handel_exit(shell, data);
 	else if (!ft_strcmp(data->cmd_name, "export"))
 		shell->exit_code = ft_export(shell, data->cmd_line);
 	else if (!mini_strcmp(data->cmd_name, "pwd"))

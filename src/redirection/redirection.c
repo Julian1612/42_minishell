@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 18:46:09 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/10 10:26:45 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	check_for_heredoc(t_koopa *shell, t_data *tabel)
 	shell->tmp_stdin = dup(STDIN_FILENO);
 	shell->tmp_stdout = dup(STDOUT_FILENO);
 	shell->heredoc_file = -1;
+	shell->nbr = -1;
+	count_pipes(shell, tabel);
 	while (tabel != NULL)
 	{
 		if (tabel->operator == HEREDOC)

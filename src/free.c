@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 18:48:24 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 18:21:24 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/10 12:06:52 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,15 @@ void	free_shell(t_koopa *head)
 		free_double(tmp->envp);
 		free(tmp);
 	}
+}
+
+void	free_double(char **double_pointer)
+{
+	int	i;
+
+	i = -1;
+	while (double_pointer[++i] != NULL)
+		free(double_pointer[i]);
+	free(double_pointer[i]);
+	free(double_pointer);
 }

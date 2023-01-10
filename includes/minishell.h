@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 19:27:47 by jschneid         ###   ########.fr       */
+/*   Updated: 2023/01/10 10:39:49 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_koopa
 	int			in;
 	int			heredoc_file;
 	int			exit;
+	int			nbr;
 }t_koopa;
 
 void	list_test(t_data *cmd_list);
@@ -73,7 +74,7 @@ void	list_test(t_data *cmd_list);
 ////////		BUILINTS		////////
 ////////////////////////////////////////
 
-void	ft_exit(t_koopa *shell, char **cmd_line);
+void	ft_exit(t_koopa *shell, char **cmd_line, int print);
 int		ft_cd(t_koopa *shell, t_data *data, char **path);
 int		ft_echo(char **cmd_line);
 int		ft_env(t_koopa *shell);
@@ -114,7 +115,7 @@ int		ft_redirect_infile(t_koopa *shell, t_data *data);
 
 int		ft_heredoc(t_koopa *shell, t_data *data);
 char	*ft_expand_heredoc(t_koopa *shell, char *heredoc);
-
+void	count_pipes(t_koopa *shell, t_data *tabel);
 ////////////////////////////////////////
 ////////	  REDIRECTION  		////////
 ////////////////////////////////////////
