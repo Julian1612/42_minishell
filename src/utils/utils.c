@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/06 10:10:59 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/10 10:49:10 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,12 @@ char	*ft_getenv(t_koopa *shell, char *name)
 	return ("\0");
 }
 
-void	free_double(char **double_pointer)
+void	count_pipes(t_koopa *shell, t_data *tabel)
 {
-	int	i;
-
-	i = -1;
-	while (double_pointer[++i] != NULL)
-		free(double_pointer[i]);
-	free(double_pointer[i]);
-	free(double_pointer);
+	while (tabel != NULL)
+	{
+		if (tabel->redir > shell->nbr)
+			shell->nbr = tabel->redir;
+		tabel = tabel->next;
+	}
 }
