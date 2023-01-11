@@ -6,7 +6,7 @@
 /*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 14:01:00 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/10 10:49:10 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/11 09:37:43 by dgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*ft_getenv(t_koopa *shell, char *name)
 		if (!ft_strncmp(shell->envp[i], name, ft_strlen(name)))
 			return (shell->envp[i]);
 	}
-	return ("\0");
+	return ("");
 }
 
 void	count_pipes(t_koopa *shell, t_data *tabel)
