@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jschneid <jschneid@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:09 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/10 10:26:45 by dgross           ###   ########.fr       */
+/*   Updated: 2023/01/10 15:11:37 by jschneid         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,12 @@ static void	exec_redirection(t_koopa *shell, t_data *data)
 
 int	ft_redirection(t_koopa *shell, t_data *data)
 {
-	int	status;
-
-	status = 0;
 	if (ft_expand(shell, data) == ERROR)
 	{
 		shell->exit = BUILTIN;
 		shell->exit_code = 1;
 		return (ERROR);
-	}	
+	}
 	exec_redirection(shell, data);
 	if (data == NULL)
 		shell->inter++;
