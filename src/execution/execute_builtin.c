@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:04:26 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/10 10:45:21 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/15 19:23:38 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,24 @@ static int	mini_strcmp(const char *s1, const char *s2)
 	return (1);
 }
 
-static void	handel_exit(t_koopa *shell, t_data *data)
+int	is_builtin(t_data *data)
 {
-	int	pid;
-
-	pid = -1;
-	if (shell->nbr > 1)
-	{
-		pid = fork();
-		if (pid == 0)
-		{
-			ft_exit(shell, data->cmd_line, 0);
-			exit(1);
-		}
-	}
+	if (!ft_strcmp(data->cmd_name, "cd"))
+		return (1);
+	else if (!mini_strcmp(data->cmd_name, "echo"))
+		return (1);
+	else if (!mini_strcmp(data->cmd_name, "env"))
+		return (1);
+	else if (!ft_strcmp(data->cmd_name, "exit"))
+		return (1);
+	else if (!ft_strcmp(data->cmd_name, "export"))
+		return (1);
+	else if (!mini_strcmp(data->cmd_name, "pwd"))
+		return (1);
+	else if (!ft_strcmp(data->cmd_name, "unset"))
+		return (1);
 	else
-		ft_exit(shell, data->cmd_line, 1);
+		return (0);
 }
 
 int	ft_execute_builtin(t_koopa *shell, t_data *data)
@@ -65,7 +67,12 @@ int	ft_execute_builtin(t_koopa *shell, t_data *data)
 	else if (!mini_strcmp(data->cmd_name, "env"))
 		shell->exit_code = ft_env(shell);
 	else if (!ft_strcmp(data->cmd_name, "exit"))
-		handel_exit(shell, data);
+	{
+		if (shell->nbr > 1)
+			ft_exit(shell, data->cmd_line, 0);
+		else
+			ft_exit(shell, data->cmd_line, 1);
+	}
 	else if (!ft_strcmp(data->cmd_name, "export"))
 		shell->exit_code = ft_export(shell, data->cmd_line);
 	else if (!mini_strcmp(data->cmd_name, "pwd"))

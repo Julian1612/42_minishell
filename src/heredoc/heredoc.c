@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 12:15:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/10 14:43:26 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/15 19:05:49 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,27 @@
 #include <signal.h> // signal
 #include <sys/stat.h> // fstat
 
-static int	check_limiter(t_data *tabel)
+static int	check_limiter(t_data *table)
 {
 	char	*tmp;
 	int		i;
 
 	i = -1;
 	tmp = ft_strdup("");
-	while (tabel->cmd_name[++i] != '\0')
+	while (table->cmd_name[++i] != '\0')
 	{
-		if (tabel->cmd_name[i] == '\'')
-			while (tabel->cmd_name[++i] != '\0' && tabel->cmd_name[i] != '\'')
-				tmp = ft_addchar(tmp, tabel->cmd_name[i]);
-		else if (tabel->cmd_name[i] == '\"')
-			while (tabel->cmd_name[++i] != '\0' && tabel->cmd_name[i] != '\"')
-				tmp = ft_addchar(tmp, tabel->cmd_name[i]);
+		if (table->cmd_name[i] == '\'')
+			while (table->cmd_name[++i] != '\0' && table->cmd_name[i] != '\'')
+				tmp = ft_addchar(tmp, table->cmd_name[i]);
+		else if (table->cmd_name[i] == '\"')
+			while (table->cmd_name[++i] != '\0' && table->cmd_name[i] != '\"')
+				tmp = ft_addchar(tmp, table->cmd_name[i]);
 		else
-			tmp = ft_addchar(tmp, tabel->cmd_name[i]);
+			tmp = ft_addchar(tmp, table->cmd_name[i]);
 	}
-	i = ft_strcmp(tabel->cmd_name, tmp);
-	free(tabel->cmd_name);
-	tabel->cmd_name = ft_strdup(tmp);
+	i = ft_strcmp(table->cmd_name, tmp);
+	free(table->cmd_name);
+	table->cmd_name = ft_strdup(tmp);
 	free(tmp);
 	return (i);
 }
@@ -91,7 +91,7 @@ static char	*heredoc_strjoin(char *s1, char const *s2)
 	return (new_string);
 }
 
-int	ft_heredoc(t_koopa *shell, t_data *tabel)
+int	ft_heredoc(t_koopa *shell, t_data *table)
 {
 	char	*input;
 	char	*heredoc;
@@ -103,12 +103,12 @@ int	ft_heredoc(t_koopa *shell, t_data *tabel)
 	signal(SIGINT, ft_signal_heredoc);
 	signal(SIGQUIT, SIG_IGN);
 	heredoc = ft_strdup("");
-	i = check_limiter(tabel);
+	i = check_limiter(table);
 	shell->heredoc_file = open("here_doc", O_CREAT | O_WRONLY | O_TRUNC, 00644);
 	while (1)
 	{
 		input = readline("> ");
-		if (!input || ft_strcmp(input, tabel->cmd_name) == 0)
+		if (!input || ft_strcmp(input, table->cmd_name) == 0)
 			break ;
 		heredoc = heredoc_strjoin(heredoc, input);
 		heredoc = ft_addchar(heredoc, '\n');

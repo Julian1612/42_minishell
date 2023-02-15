@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgross <dgross@student.42.fr>              +#+  +:+       +#+         #
+#    By: dna <dna@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/21 10:38:06 by dgross            #+#    #+#              #
-#    Updated: 2023/01/10 12:14:17 by dgross           ###   ########.fr        #
+#    Updated: 2023/02/15 19:16:34 by dna              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC			= main.c error.c free.c syntax.c\
 			  lexer.c counter.c skipper.c whitespace_skipper.c \
 			  heredoc_exp.c heredoc.c \
 			  execution.c execute_builtin.c execute_cmd.c \
-			  exec_exit.c expansion.c edit_line.c \
+			  exec_exit.c expansion.c edit_line.c pipes.c\
 			  echo.c cd.c pwd.c export.c env.c exit.c unset.c
 
 OBJ_DIR		= ./obj/

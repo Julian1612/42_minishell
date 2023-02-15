@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/10 10:39:49 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/15 19:24:36 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,20 +108,23 @@ int		ft_append_outfile(t_koopa *shell, t_data *data);
 int		ft_redirect_heredoc(t_koopa *shell);
 int		ft_redirect_outfile(t_koopa *shell, t_data *data);
 int		ft_redirect_infile(t_koopa *shell, t_data *data);
-
+void	close_fd(t_koopa *shell);
+void	close_pipe(t_koopa *shell);
+void	open_pipe(t_koopa *shell);
+int		is_builtin(t_data *data);
 ////////////////////////////////////////
 ////////		  HEREDOC  		////////
 ////////////////////////////////////////
 
 int		ft_heredoc(t_koopa *shell, t_data *data);
 char	*ft_expand_heredoc(t_koopa *shell, char *heredoc);
-void	count_pipes(t_koopa *shell, t_data *tabel);
+void	count_pipes(t_koopa *shell, t_data *table);
 ////////////////////////////////////////
 ////////	  REDIRECTION  		////////
 ////////////////////////////////////////
 
 int		ft_redirection(t_koopa *shell, t_data *data);
-int		check_for_heredoc(t_koopa *shell, t_data *tabel);
+int		check_for_heredoc(t_koopa *shell, t_data *table);
 int		reset_redir(t_koopa *shell, t_data *data);
 
 ////////////////////////////////////////
