@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/21 09:26:39 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/21 09:49:08 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void	skip_operator(char *str, int *i, int *counter);
 void	skip_nbrs(char *str, int *i, int *counter);
 void	skip_whitespace(char *str, int *i);
 void	skip_str(char *str, int *i, int *counter);
-void	skip_qoutes(char *str, int *i, int *counter);
+void	skip_quotes(char *str, int *i, int *counter);
 int		str_len_counter(char *str, int *j);
 int		opp_len_counter(char *str, int *j);
 int		nbr_len_counter(char *str, int *i);
@@ -216,7 +216,7 @@ int		get_pipe_nbr(char **token_arr, int i);
 ////////		SYNTAX	 		////////
 ////////////////////////////////////////
 
-void	chose_error(int error_code);
+void	choose_error(int error_code);
 int		catch_one(char **token_arr, int arr_len);
 int		catch_two(char **token_arr, int i);
 int		syntax_check(char **token_arr);

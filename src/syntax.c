@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:39:14 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 19:06:15 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/21 09:37:10 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 
-void	chose_error(int error_code)
+void	choose_error(int error_code)
 {
 	if (error_code == 1)
 		print_error("syntax error", NULL, "invalid redirection");
@@ -84,14 +84,14 @@ int	syntax_check(char **token_arr)
 	flag = catch_one(token_arr, arr_len);
 	if (flag > 0)
 	{
-		chose_error(flag);
+		choose_error(flag);
 		free_double(token_arr);
 		return (1);
 	}
 	flag = catch_two(token_arr, i);
 	if (flag > 0)
 	{
-		chose_error(flag);
+		choose_error(flag);
 		free_double(token_arr);
 		return (1);
 	}

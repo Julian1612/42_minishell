@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 16:05:58 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/10 11:38:33 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/21 09:35:44 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <readline/history.h> // readline
 #include <fcntl.h>
 
-static void	increas_shlvl(t_koopa *shell)
+static void	increase_shlvl(t_koopa *shell)
 {
 	char	*new_lvl;
 	char	**shlvl;
@@ -48,7 +48,7 @@ int	init_envp(t_koopa *shell, char **envp)
 	while (envp[++i] != NULL)
 		shell->envp[i] = ft_strdup(envp[i]);
 	shell->envp[i] = NULL;
-	increas_shlvl(shell);
+	increase_shlvl(shell);
 	return (0);
 }
 

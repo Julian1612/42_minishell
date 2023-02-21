@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 14:36:52 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 10:40:37 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/21 09:52:55 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h> // NULL
 #include <stdlib.h> // free
 
-static void	remove_quots(t_exp *exp, int count)
+static void	remove_quotes(t_exp *exp, int count)
 {
 	char	*tmp;
 	char	typ;
@@ -136,7 +136,7 @@ int	ft_expand(t_koopa *shell, t_data *data)
 		else
 			j++;
 	}
-	remove_quots(&exp, j);
+	remove_quotes(&exp, j);
 	if (replace(data, &exp) == ERROR)
 		return (ERROR);
 	return (0);

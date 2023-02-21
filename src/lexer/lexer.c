@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 16:51:45 by jschneid          #+#    #+#             */
-/*   Updated: 2023/02/21 09:27:16 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/21 09:49:14 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	token_counter(char *str)
 		else if (str[i] == '|' || str[i] == '<' || str[i] == '>')
 			skip_operator(str, &i, &count);
 		else if (str[i] == '\'' || str[i] == '\"')
-			skip_qoutes(str, &i, &count);
+			skip_quotes(str, &i, &count);
 		else if (str[i] >= '0' && str[i] <= '9')
 			skip_nbrs(str, &i, &count);
 		else if ((str[i] >= '!' && str[i] <= '~') || (!ft_isascii(str[i])))

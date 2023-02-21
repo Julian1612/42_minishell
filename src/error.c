@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 19:18:31 by dgross            #+#    #+#             */
-/*   Updated: 2023/01/09 15:38:58 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/21 09:39:48 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdlib.h> // exit
 #include <unistd.h> // dup access fork
 
-// gucken wie wir ne überall ausführbare error function hinbekommen
 int	print_error(char *failed_cmd, char	*failed_arg, char *reason)
 {
 	ft_putstr_fd("minishell: ", 2);

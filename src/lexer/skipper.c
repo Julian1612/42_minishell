@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 17:30:55 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/08 22:22:39 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/21 09:49:19 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-void	skip_qoutes(char *str, int *i, int *counter)
+void	skip_quotes(char *str, int *i, int *counter)
 {
 	char	typ;
 
