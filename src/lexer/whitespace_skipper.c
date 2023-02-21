@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   whitespace_skipper.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgross <dgross@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:47:09 by jschneid          #+#    #+#             */
-/*   Updated: 2023/01/09 10:44:34 by dgross           ###   ########.fr       */
+/*   Updated: 2023/02/21 09:27:41 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_check_char(int c)
 		|| c == '\'' || c == '\"' || c == '\0');
 }
 
-void	skip_opperator(char *str, int *i, int *countern)
+void	skip_operator(char *str, int *i, int *countern)
 {
 	char	typ;
 

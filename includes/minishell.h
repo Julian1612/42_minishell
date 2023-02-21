@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/21 09:24:46 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/21 09:26:39 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_data
 	struct s_data	*next;
 }				t_data;
 
-/// @brief Main stuct
 typedef struct s_koopa
 {
 	t_data		*head;
@@ -165,7 +164,7 @@ void	free_shell(t_koopa *head);
 
 char	**tokenizer(char *str);
 int		token_counter(char *str);
-void	skip_opperator(char *str, int *i, int *counter);
+void	skip_operator(char *str, int *i, int *counter);
 void	skip_nbrs(char *str, int *i, int *counter);
 void	skip_whitespace(char *str, int *i);
 void	skip_str(char *str, int *i, int *counter);
