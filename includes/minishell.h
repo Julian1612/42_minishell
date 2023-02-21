@@ -6,7 +6,7 @@
 /*   By: dna <dna@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 10:39:39 by dgross            #+#    #+#             */
-/*   Updated: 2023/02/15 19:24:36 by dna              ###   ########.fr       */
+/*   Updated: 2023/02/21 09:24:46 by dna              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,8 @@ typedef struct s_koopa
 	int			nbr;
 }t_koopa;
 
-void	list_test(t_data *cmd_list);
 ////////////////////////////////////////
-////////		BUILINTS		////////
+////////		BUILTINS		////////
 ////////////////////////////////////////
 
 void	ft_exit(t_koopa *shell, char **cmd_line, int print);
