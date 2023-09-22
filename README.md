@@ -4,10 +4,10 @@ This team project, is an essential shell implementation created as part of the 4
 
 ## Installation
 Before running the program, make sure you have the required dependencies installed.
-- Ensure that the Readline package is installed on your system. 
-- Open the terminal and use the 'cd' command to navigate to the cloned directory
-- Build the program by running the 'make' command. The Makefile compiles the program and generates the executable 'minishell'
-- After successful compilation, you can execute the program with './minishell'
+Ensure that the Readline package is installed on your system. 
+1. Open the terminal and use the 'cd' command to navigate to the cloned directory
+2. Build the program by running the 'make' command. The Makefile compiles the program and generates the executable 'minishell'
+3. After successful compilation, you can execute the program with './minishell'
 
 - install readline package
 - go to directory with cd
