@@ -1,5 +1,5 @@
 
-*Minishell - Team Project*
+##Minishell - Team Project##
 Overview
 This team project, known as Minishell, is an essential shell implementation created as part of the 42 Heilbronn core curriculum. Minishell provides the basic functionality of a shell, allowing users to interact with their operating system through a command-line interface.
 
