@@ -5,15 +5,19 @@ This team project, is an essential shell implementation created as part of the 4
 ## Installation
 Before running the program, make sure you have the required dependencies installed.
 Ensure that the Readline package is installed on your system. 
-1. Open the terminal and use the 'cd' command to navigate to the cloned directory
-2. Build the program by running the 'make' command. The Makefile compiles the program and generates the executable 'minishell'
-3. After successful compilation, you can execute the program with './minishell'
-
-- install readline package
-- go to directory with cd
-- run the make file with make
-- run the program with : ./minishell
-...
+1. Clone the repository to you mashine
+```bash
+git clone https://github.com/Julian1612/42_minishell.git
+```
+1. Open the terminal and navigate to the cloned directory
+```bash
+cd 42_minishell
+```
+3. Build the program by running the 'make' command. The Makefile compiles the program and generates the executable 'minishell'
+4. After successful compilation, you can execute the program
+```bash
+./minishell
+```
 
 ## Basic Usage
 ...
