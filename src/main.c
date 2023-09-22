@@ -101,6 +101,7 @@ static t_koopa	*init_shell(void)
 
 int	main(int argc, char **argv, char **envp)
 {
+	(void) argc;
 	t_koopa				*shell;
 
 	(void)argv;
