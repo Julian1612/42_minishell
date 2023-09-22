@@ -1,6 +1,6 @@
 # Minishell
 ## Overview
-This team project, is an essential shell implementation created as part of the 42 Heilbronn core curriculum. Minishell provides the basic functionality of a shell, allowing users to interact with their operating system through a command-line interface. It is a collaborative effort by [Your Name] and [D Gross].
+This team project, is an essential shell implementation created as part of the 42 Heilbronn core curriculum. Minishell provides the basic functionality of a shell, allowing users to interact with their operating system through a command-line interface. It is a collaborative effort with [DGross](https://github.com/DGross245).
 
 ## Installation
 Before running the program, make sure you have the required dependencies installed.
@@ -36,7 +36,5 @@ cd ..
 ```bash
 pwd
 ```
-
-
 
 Explore the world of command-line computing with Minishell.
