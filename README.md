@@ -22,17 +22,17 @@ cd 42_minishell
 ## Basic Usage
 Minishell supports all the basic commands and features you'd expect from a standard Linux shell. Here are some examples to help you get started:
 
-# Echo
+### Echo
 ```bash
 echo Hello World!
 ```
 
-# Chande directory
+### Chande directory
 ```bash
 cd ..
 ```
 
-# Print working directory
+### Print working directory
 ```bash
 pwd
 ```
