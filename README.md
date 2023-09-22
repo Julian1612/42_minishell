@@ -11,9 +11,9 @@ User-Friendly: While minimalistic, Minishell offers an easy-to-use interface for
 ...
 
 ## Installation
-Clone this repository to your local machine.
+...
 
 ## Usage
-[Insert usage instructions]
+...
 
 Explore the world of command-line computing with Minishell.
